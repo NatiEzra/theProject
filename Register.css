@@ -1,0 +1,18 @@
+
+.Error_start {
+    color: red;
+    display: block;
+}
+
+.Error_NoShow {
+    color: red;
+    display: none;
+}
+*{
+    text-align: center;
+}
+input:hover{
+    background-color: aqua;
+}
+/* fdfdf */
+
