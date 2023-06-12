@@ -1,0 +1,71 @@
+body {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+  }
+.Error_start {
+    color: red;
+    display: block;
+}
+
+.Error_NoShow {
+    color: red;
+    display: none;
+}
+
+#AccountDetails{
+    background-color: rgba(58,71,80,255);
+    padding: 20px;
+    border-radius: 20px;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 20px;
+    height: 480px;
+    margin-left: 33%;
+    
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+h1{
+    margin-top: 1px;
+    font-family: Poppins-Bold;
+    font-size: 30px;
+    color: #ea9215;
+    font-weight: bold;
+    line-height: 1.2;
+}
+*{
+    text-align: center;
+}
+label{
+    color:white; 
+     
+}
+input{
+  color: black;  
+}
+#RegisterBtn{
+    padding: 8px 20px;
+  background-color: #ea9215;
+  color: #fff;
+  border: none;
+  margin-top: 4%;
+  border-radius: 20px;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#RegisterBtn:hover {
+    background-color: gainsboro;
+  }
+  #password
+  {
+    margin-left: 5%;
+  }
+
+
+/* fdfdf */
+
