@@ -46,7 +46,7 @@ body {
   line-height: 1.2;
 }
 .bodyLogin {
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .form_container {
   margin-top: 20px;
