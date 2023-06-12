@@ -12,7 +12,7 @@ body {
 }
 
 .login-box {
-  background-color: rgba(58,71,80,255);
+  background-color: rgba(58, 71, 80, 255);
   padding: 20px;
   border-radius: 20px;
   width: 400px;
@@ -29,8 +29,8 @@ body {
   font-weight: bold;
   line-height: 1.2;
 }
-.bodyLogin{
-  background-color:gray;
+.bodyLogin {
+  background-color: gray;
 }
 .form_container {
   margin-top: 20px;
@@ -44,7 +44,7 @@ label {
   display: block;
   margin-bottom: 5px;
   text-align: left;
-  color:white;
+  color: white;
 }
 
 input[type="text"],
@@ -53,6 +53,7 @@ input[type="password"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  padding-left: 45px;
 }
 
 button[type="submit"] {
@@ -70,3 +71,14 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #ea9215a8;
 }
+/* Icons for login page */
+.input-icon {
+  position: relative;
+  width: 100%;
+}
+.input-icon-img {
+  position: absolute;
+  height: 100%;
+  padding: 12px;
+}
+/* Icons for login page */

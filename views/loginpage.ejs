@@ -1,48 +1,44 @@
 <!DOCTYPE ejs>
 <html>
-  <head>
-    <title>Sportify || Login Page</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" type="text/css" href="../Loginpage.css" />
-  </head>
-  <body class="bodyLogin">
-    <div class="container">
-      
-      <div class="login-box">
-        <h2 class="LogIn_title">Login</h2>
-        <form id="login-form" class="form_container">
-          <div class="input-group">
-            <label for="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              required
-              placeholder="Type your Username"
-            />
+<head>
+  <title>Sportify || Login Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="../Loginpage.css" />
+</head>
+<body class="bodyLogin">
+  <div class="container">
+    <div class="login-box">
+      <h2 class="LogIn_title">Login</h2>
+      <form id="login-form" class="form_container">
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <div class="input-icon">
+            <img class="input-icon-img"
+             src="../Images/user.png"
+             alt="User Icon" />
+            <input type="text" 
+                   id="username" 
+                   required placeholder="Type your Username" />
           </div>
-          <div class="input-group">
-            <label for="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              required
-              placeholder="Type your password"
-            />
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <div class="input-icon">
+            <img class="input-icon-img" 
+                 src="../Images/login.png"
+                 alt="Login Icon" />
+            <input type="password" id="password" required placeholder="Type your password" />
           </div>
-          <div class="input-group">
-            <button type="submit">Login</button>
-          </div>
-          <label >Not a Member? <a style="color:#ea9215; font-weight: bold;" href="">Join us</a></label>
-          <img style="width: 136px;" src="../Images/logo.png" alt="Logo">
-        </form>
-      </div>
+        </div>
+        <div class="input-group">
+          <button type="submit">Login</button>
+        </div>
+        <label>Not a Member? <a style="color:#ea9215; font-weight: bold;" href="">Join us</a></label>
+        <img style="width: 136px;" src="../Images/logo.png" alt="Logo" />
+      </form>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
