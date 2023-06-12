@@ -5,7 +5,7 @@
 }
 
 .Error_NoShow {
-    color: blue;
+    color: red;
     display: none;
 }
 *{
