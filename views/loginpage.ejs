@@ -11,38 +11,70 @@
     <link rel="stylesheet" type="text/css" href="../Loginpage.css" />
   </head>
   <body class="bodyLogin">
+    <div class="strip"></div>
     <div class="container">
-      
       <div class="login-box">
         <h2 class="LogIn_title">Login</h2>
         <form id="login-form" class="form_container">
           <div class="input-group">
             <label for="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              required
-              placeholder="Type your Username"
-            />
+            <div class="input-icon">
+              <img
+                class="input-icon-img"
+                src="../Images/user.png"
+                alt="User Icon"
+              />
+              <input
+                type="text"
+                id="username"
+                required
+                placeholder="Type your Username"
+              />
+            </div>
           </div>
           <div class="input-group">
             <label for="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              required
-              placeholder="Type your password"
-            />
+            <div class="input-icon">
+              <img
+                class="input-icon-img"
+                src="../Images/login.png"
+                alt="Login Icon"
+              />
+              <input
+                type="password"
+                id="password"
+                required
+                placeholder="Type your password"
+              />
+            </div>
           </div>
           <div class="input-group">
             <button type="submit">Login</button>
           </div>
-          <label >Not a Member? <a style="color:#ea9215; font-weight: bold;" href="">Join us</a></label>
-          <img style="width: 136px;" src="../Images/logo.png" alt="Logo">
+          <label
+            >Not a Member?
+            <a
+              style="
+                color: #ea9215;
+                font-weight: bold;
+                font-family: Poppins-Bold;
+              "
+              href=""
+              >Join us</a
+            ></label>
+          <p class="or-sign-in">OR SIGN IN WITH...</p>
+          <div class="social-buttons">
+            <button class="facebook-button" onclick="window.location.href = 'https://www.facebook.com/';">
+              <img src="../Images/facebook.png" alt="Facebook Icon" />FACEBOOK
+            </button>
+            <button class="google-button" onclick="window.location.href = 'https://www.google.com';">
+              <img src="../Images/google.png" alt="Google Icon" />GOOGLE
+            </button>
+          </div>
+          <img style="width: 136px" src="../Images/logo.png" alt="Logo" />
         </form>
       </div>
-    </div>
-
+      <div class="strip-bottom"></div>
     <script src="script.js"></script>
   </body>
 </html>
