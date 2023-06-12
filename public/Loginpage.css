@@ -1,13 +1,29 @@
 body {
   background-color: #3a4750;
   font-family: Arial, sans-serif;
+  margin: 0;
 }
-
+.strip {
+  background-color: rgba(58, 71, 80, 255); 
+  height: 30px; 
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.strip-bottom {
+  background-color: rgba(58, 71, 80, 255); 
+  height: 30px; 
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 100px); 
   flex-direction: column;
 }
 
