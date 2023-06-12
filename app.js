@@ -17,6 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const loginRouter = require('./routes/login');
 app.use('/', loginRouter);
+app.get("/term",(req,res) =>{
+  res.render("termandcon");
+});
 app.get("/Register",(req,res) =>{
   res.render("Register");
 });
