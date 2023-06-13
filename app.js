@@ -4,7 +4,9 @@ const ejs = require('ejs');
 const path = require('path');
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'models')));
 app.use(express.static(path.join(__dirname, 'public')));
+>>>>>>>>> Temporary merge branch 2
 
 const {default:mongoose} = require("mongoose");
 
@@ -16,18 +18,21 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB!');
 });
 
-mongoose.connection.on('error', (error) => {
-  console.error('MongoDB connection error:', error);
-});
+<<<<<<<<< Temporary merge branch 1
 
-mongoose.connection.on('disconnected', () => {
-  console.log('Disconnected from MongoDB');
+app.get("/Register",(req,res) =>{
+  res.render("Register");
 });
+app.listen(PORT,()=>console.log("Server started on port 70"));
+=========
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 const loginRouter = require('./routes/login');
 app.use('/', loginRouter);
+app.get("/term",(req,res) =>{
+  res.render("termandcon");
+});
 app.get("/Register",(req,res) =>{
   res.render("Register");
 });

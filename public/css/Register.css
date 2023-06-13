@@ -4,6 +4,7 @@ body {
   }
 .Error_start {
     color: red;
+    font-weight: bold;
     display: block;
 }
 
@@ -18,15 +19,21 @@ body {
     border-radius: 20px;
     width: 400px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    margin-top: 20px;
-    height: 480px;
-    margin-left: 33%;
+    /* text-align: center; */
+    /* margin-top: 40px; */
+    height: 700px;
+    /* margin-left: 33%; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+
+
 h1{
     margin-top: 1px;
     font-family: Poppins-Bold;
@@ -40,10 +47,24 @@ h1{
 }
 label{
     color:white; 
-     
+ margin-left: 1px;    
 }
 input{
   color: black;  
+  width: 80%;
+  padding: 7px;
+  border: 0.5px solid #ccc;
+  border-radius: 3px;
+}
+#date{
+  margin-top: 8px;
+}
+a{
+ color: #ea9215; 
+ font-weight: bold"
+}
+input[type='checkbox']{
+  width: auto;
 }
 #RegisterBtn{
     padding: 8px 20px;
@@ -52,7 +73,7 @@ input{
   border: none;
   margin-top: 4%;
   border-radius: 20px;
-  width: 100%;
+  width: 80%;
   cursor: pointer;
   text-align: center;
   margin-bottom: 10px;
@@ -65,7 +86,22 @@ input{
   {
     margin-left: 5%;
   }
-
+  .strip {
+    background-color: rgba(58, 71, 80, 255); 
+    height: 30px; 
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .strip-bottom {
+    background-color: rgba(58, 71, 80, 255); 
+    height: 30px; 
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
 
 /* fdfdf */
 
