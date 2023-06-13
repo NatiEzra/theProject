@@ -6,7 +6,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'models')));
 app.use(express.static(path.join(__dirname, 'public')));
->>>>>>>>> Temporary merge branch 2
 
 const {default:mongoose} = require("mongoose");
 
@@ -18,13 +17,12 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB!');
 });
 
-<<<<<<<<< Temporary merge branch 1
 
 app.get("/Register",(req,res) =>{
   res.render("Register");
 });
 app.listen(PORT,()=>console.log("Server started on port 70"));
-=========
+
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
