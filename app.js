@@ -21,17 +21,16 @@ mongoose.connection.on('connected', () => {
 app.get("/Register",(req,res) =>{
   res.render("Register");
 });
-app.listen(PORT,()=>console.log("Server started on port 70"));
+
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 const loginRouter = require('./routes/login');
 app.use('/', loginRouter);
+
 app.get("/term",(req,res) =>{
   res.render("termandcon");
 });
-app.get("/Register",(req,res) =>{
-  res.render("Register");
-});
+
 app.listen(PORT, () => console.log('Server started on port 70'));
