@@ -14,7 +14,7 @@ function foo(req, res) {
 function loginForm(req, res) { res.render("login", {}) }
 
 function registerForm(req, res) { res.render("register", {}) }
-
+function termForm(req, res) { res.render("termandcon", {}) }
 function logout(req, res) {
   req.session.destroy(() => {
     res.redirect('/login');
@@ -24,6 +24,7 @@ function logout(req, res) {
 async function login(req, res) {
   
   const { username, password } = req.body
+  console.log("dasdas",req.body)
   const result = await loginService.login(username, password)
   console.log(username);
   console.log(result);
@@ -54,6 +55,7 @@ module.exports = {
   login,
   loginForm,
   register,
+  termForm,
   registerForm,
   logout,
   foo,

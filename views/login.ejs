@@ -15,9 +15,10 @@
     <div class="container">
       <div class="login-box">
         <h2 class="LogIn_title">Login</h2>
-        <form id="login-form" class="form_container">
+        <form id="login-form" class="form_container" action="/login" method="post">
           <div class="input-group">
-            <label for="username">Username:</label>
+            <label name="username" for="username">Username:</label>
+            
             <div class="input-icon">
               <img
                 class="input-icon-img"
@@ -27,6 +28,7 @@
               <input
                 type="text"
                 id="username"
+                name="username"
                 required
                 placeholder="Type your Username"
               />
@@ -43,6 +45,7 @@
               <input
                 type="password"
                 id="password"
+                name="password"
                 required
                 placeholder="Type your password"
               />
