@@ -69,18 +69,19 @@
     <br>
     <br>
   <input type="password" placeholder="Verify Password" id="Verifypassword">
-  
+  <p id="passwordVerifyError" class="Error_NoShow">Please Verify password</p>
   <p id="passwordsError" class="Error_NoShow">Passwords don't match</p>
  
   </div>
   <br> 
 
   <label>I agree to the terms and conditions</label>
-  <input type="checkbox" id="termsOfConditions"
+  <input type="checkbox" id="termsOfConditions">
+  <p id="checkBoxError" class="Error_NoShow">Please fill the checkbox </p>
  <div>
   <button type="submit" id="RegisterBtn" onclick="register()">Register</button>
   <br>
-  <label >Already a Member? <a style="color:#ea9215; font-weight: bold;" href="">Sign in</a></label>
+  <label >Already a Member? <a style="color:#ea9215; font-weight: bold;" href="http://localhost:70/login">Sign in</a></label>
   <br>
   <img style="width: 136px;" src="../Images/logo.png" alt="Logo">
 
@@ -88,6 +89,5 @@
 </div>
 
 </body>
-
-  <script type="text/javascript" src="../Register.js"></script>
+<script type="text/javascript" src="../Register.js"></script>
 </html>

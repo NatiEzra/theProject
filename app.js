@@ -4,8 +4,8 @@ const ejs = require('ejs');
 const path = require('path');
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'models')));
+app.use(express.static(path.join(__dirname, 'public')));
 const {default:mongoose} = require("mongoose");
 mongoose.connect('mongodb+srv://dormatana101:Dormatana054@sportify.m6md4z5.mongodb.net/', {
   useUnifiedTopology: true,

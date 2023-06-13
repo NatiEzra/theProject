@@ -9,17 +9,17 @@ function register()
         setTimeout(() => {
             document.getElementById('Error').classList.remove('Error_start');
             document.getElementById('Error').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;
     }
     document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
     ||  document.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
-    
-    */
-   if ( document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
+      if ( document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
    ||  document.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
    document.getElementById("password").value=="" || document.getElementById("Verifypassword").value=="" )
-   {
+    */
+ 
+   
     if(userName.length>30 || userName=="")
     {
         document.getElementById('userNameError').classList.add('Error_start');
@@ -27,7 +27,7 @@ function register()
         setTimeout(() => {
             document.getElementById('userNameError').classList.remove('Error_start');
             document.getElementById('userNameError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;
     }
     if (document.getElementById("firstName").value=="")
@@ -38,7 +38,7 @@ function register()
         setTimeout(() => {
             document.getElementById('lengthError').classList.remove('Error_start');
             document.getElementById('lengthError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
       return;  
     }
     if (document.getElementById("lastName").value=="")
@@ -49,7 +49,7 @@ function register()
         setTimeout(() => {
             document.getElementById('lastNameError').classList.remove('Error_start');
             document.getElementById('lastNameError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
      return;   
     }
     if (  document.getElementById("email").value=="")
@@ -60,7 +60,7 @@ function register()
         setTimeout(() => {
             document.getElementById('noEmail').classList.remove('Error_start');
             document.getElementById('noEmail').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;   
     }
    
@@ -72,7 +72,7 @@ function register()
         setTimeout(() => {
             document.getElementById('genderError').classList.remove('Error_start');
             document.getElementById('genderError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;
     }
 
@@ -84,7 +84,7 @@ function register()
         setTimeout(() => {
             document.getElementById('dateError').classList.remove('Error_start');
             document.getElementById('dateError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;
     }
    
@@ -96,13 +96,30 @@ function register()
         setTimeout(() => {
             document.getElementById('passwordError').classList.remove('Error_start');
             document.getElementById('passwordError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;
     }
-   
+    if (  document.getElementById("Verifypassword").value=="")
+    {
+        
+        document.getElementById('passwordVerifyError').classList.add('Error_start');
+        document.getElementById('passwordVerifyError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('passwordVerifyError').classList.remove('Error_start');
+            document.getElementById('passwordVerifyError').classList.add('Error_NoShow');
+        }, "1300");
+        return;
+    }
+    if( !(document.getElementById("termsOfConditions").checked)) 
+    {
+    document.getElementById('checkBoxError').classList.add('Error_start');
+    document.getElementById('checkBoxError').classList.remove('Error_NoShow');
+    setTimeout(() => {
+        document.getElementById('checkBoxError').classList.remove('Error_start');
+        document.getElementById('checkBoxError').classList.add('Error_NoShow');
+    }, "1300");
     return;
 }
-
     if (!validPassword())
     {
         document.getElementById('passwordsError').classList.add('Error_start');
@@ -110,7 +127,7 @@ function register()
         setTimeout(() => {
             document.getElementById('passwordsError').classList.remove('Error_start');
             document.getElementById('passwordsError').classList.add('Error_NoShow');
-        }, "1000");
+        }, "1300");
         return;
     }
     var firstName = document.getElementById("firstName").value;
