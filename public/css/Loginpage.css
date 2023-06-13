@@ -1,25 +1,41 @@
 body {
   background-color: #3a4750;
   font-family: Arial, sans-serif;
+  margin: 0;
 }
-
+.strip {
+  background-color: rgba(58, 71, 80, 255); 
+  height: 30px; 
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.strip-bottom {
+  background-color: rgba(58, 71, 80, 255); 
+  height: 30px; 
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 100px); 
   flex-direction: column;
 }
 
 .login-box {
-  background-color: rgba(58,71,80,255);
+  background-color: rgba(58, 71, 80, 255);
   padding: 20px;
   border-radius: 20px;
   width: 400px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin-top: 20px;
-  height: 480px;
+  height: 550px;
 }
 
 .LogIn_title {
@@ -29,8 +45,8 @@ body {
   font-weight: bold;
   line-height: 1.2;
 }
-.bodyLogin{
-  background-color:gray;
+.bodyLogin {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .form_container {
   margin-top: 20px;
@@ -44,7 +60,7 @@ label {
   display: block;
   margin-bottom: 5px;
   text-align: left;
-  color:white;
+  color: white;
 }
 
 input[type="text"],
@@ -53,6 +69,7 @@ input[type="password"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  padding-left: 45px;
 }
 
 button[type="submit"] {
@@ -70,3 +87,76 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #ea9215a8;
 }
+/* Icons for login page */
+.input-icon {
+  position: relative;
+  width: 100%;
+}
+.input-icon-img {
+  position: absolute;
+  height: 100%;
+  padding: 12px;
+}
+.social-buttons {
+  margin-top: 20px;
+}
+
+.social-buttons {
+  margin-top: 20px;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.facebook-button,
+.google-button {
+  display: flex;
+  /* align-items: center; */
+  padding: 6px 27px;
+  /* font-size: 14px; */
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.facebook-button img,
+.google-button img {
+  margin-right: 8px;
+  width: 24px;
+  height: 24px;
+}
+
+.facebook-button {
+  background-color: #3b5998;
+}
+
+.google-button {
+  background-color: #dd4b39;
+}
+
+.facebook-button:hover,
+.google-button:hover {
+  opacity: 0.8;
+}
+.or-sign-in {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 18px; 
+  /* font-family: Arial, sans-serif;  */
+  font-family: Poppins-Bold;
+  padding-top: 15px;
+}
+
+
+
