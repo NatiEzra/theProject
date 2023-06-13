@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="input-group">
-            <button type="submit">Login</button>
+            <button type="submit" id="login-button">Login</button>
           </div>
           <label
             >Not a Member?
@@ -67,17 +67,17 @@
             ></label>
           <p class="or-sign-in">OR SIGN IN WITH...</p>
           <div class="social-buttons">
-            <button class="facebook-button" onclick="window.location.href = 'https://www.facebook.com/';">
+            <button class="facebook-button" onclick="openSocialLogin('https://www.facebook.com/')">
               <img src="../Images/facebook.png" alt="Facebook Icon" />FACEBOOK
             </button>
-            <button class="google-button" onclick="window.location.href = 'https://www.google.com';">
+            <button class="google-button" onclick="openSocialLogin('https://www.google.com')">
               <img src="../Images/google.png" alt="Google Icon" />GOOGLE
-            </button>
+            </button>                                            
           </div>
           <img style="width: 136px" src="../Images/logo.png" alt="Logo" />
         </form>
       </div>
       <div class="strip-bottom"></div>
-    <script src="script.js"></script>
+    <script src="../js/login.js"></script>
   </body>
 </html>
