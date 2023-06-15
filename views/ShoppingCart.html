@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sportify</title>
+  <link rel="stylesheet" type="text/css" href="../public/css/ShoppingCart.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="main page.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="./Mainpage.html">
+      <img src="../public/Images/logo_transparent2.png" alt="Sportify Logo">
+    </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search items">
+      <button class="register-button">
+        <a href="#register">
+        <img src="../public/Images/user2.png" alt="Register Icon">
+      </a>
+      </button>
+      <button class="like-button">
+        <a href="#liked-items">
+        <img src="../public/Images/heart.png" alt="Register Icon">
+      </a>
+      </button>
+      <button class="bag-button">
+        <a href="#bag">
+        <img src="../public/Images/bag.png" alt="Register Icon">
+      </a>
+      </button>
+    </div>
+  </div>
+
+  <div class="bag-header">
+    <h2>Shopping Cart</h2>
+  </div>
+
+  <div class="content">
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- New products -->
+      </tbody>
+    </table>
+  </div>
+  <div class="checkout-section">
+    <div class="total-row">
+      <span>Total:</span>
+      <span id="total-amount">0.00₪</span>
+    </div>
+    <div class="checkout-button">
+      <button>Sheckout</button>
+    </div>
+  </div>
+  <div class="footer">
+    <h3>Follow us</h3>
+    <button class="instagram-button">
+      <a href="#instagram">
+      <img src="../public/Images/instagram.png" alt="instegram Icon">
+    </a>
+    </button>
+    <button class="facebook-button">
+      <a href="#facebook">
+      <img src="../public/Images/facebook.png" alt="facebook Icon">
+    </a>
+    </button>
+    <h3>Location</h3>
+    <button class="location-button">
+      <a href="#location">
+      <img src="../public/Images/pin.png" alt="location Icon">
+    </a>
+    </button>
+    <h3>Management</h3>
+    <button class="management-button">
+      <a href="#management">
+      <img src="../public/Images/secure.png" alt="management Icon">
+    </a>
+    </button>
+  </div>
+</body>
+</html>
