@@ -11,7 +11,7 @@
     <div class="strip"></div>
     <div id="AccountDetails">
         <h1>Sign Up</h1>
-        <form action="/register" method="post">
+        <form id="register_post" action="/register" method="post">
             <div>
                 <input placeholder="Username" id="userName" name="username">
                 <p id="userNameError" class="Error_NoShow">Please enter username</p>
@@ -21,10 +21,12 @@
             <div id="divName">
                 <input placeholder="First name" id="firstName" name="firstname">
                 <p id="lengthError" class="Error_NoShow">Please enter first name</p>
+                <p id="NameLettersError" class="Error_NoShow">Name can only contain letters</p>
                 <br>
                 <br>
                 <input placeholder="Last name" id="lastName" name="lastname">
                 <p id="lastNameError" class="Error_NoShow">Please enter last name</p>
+                <p id="validLastName" class="Error_NoShow">Name can only contain letters</p>
             </div>
             <br>
 

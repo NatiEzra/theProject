@@ -1,4 +1,82 @@
+document.getElementById("register_post").addEventListener("submit", (event) => {
+
+    if (!(validUserName(document.getElementById('userName').value)||
+    validFirstName(document.getElementById('firstName').value)||
+    validLastName(document.getElementById('lastName').value)))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+    }
+   
+  });
 addEventListener("email", isValid)
+function validUserName(userName)
+{
+    if(userName.length>30 || userName=="")
+    {
+        
+        document.getElementById('userNameError').classList.add('Error_start');
+        document.getElementById('userNameError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('userNameError').classList.remove('Error_start');
+            document.getElementById('userNameError').classList.add('Error_NoShow');
+        }, "1300");
+        return false;
+    }
+    return true;
+}
+function validFirstName(name)
+{
+    if (document.getElementById("firstName").value=="")
+    {
+        
+        document.getElementById('lengthError').classList.add('Error_start');
+        document.getElementById('lengthError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('lengthError').classList.remove('Error_start');
+            document.getElementById('lengthError').classList.add('Error_NoShow');
+        }, "1300");
+      return false;  
+    }
+    var letters=/^[\p{L}a-zA-Zа-яА-Я]+$/u; //allowing the name to have letters in all langueges (p{L}=Uncode)
+    if (!document.getElementById("firstName").value.match(letters))
+    {
+        document.getElementById('NameLettersError').classList.add('Error_start');
+        document.getElementById('NameLettersError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('NameLettersError').classList.remove('Error_start');
+            document.getElementById('NameLettersError').classList.add('Error_NoShow');
+        }, "1300");
+      return false;  
+    }
+    return true;
+}
+function validLastName(name)
+{
+    if (document.getElementById("lastName").value=="")
+    {
+        
+        document.getElementById('lastNameError').classList.add('Error_start');
+        document.getElementById('lastNameError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('lastNameError').classList.remove('Error_start');
+            document.getElementById('lastNameError').classList.add('Error_NoShow');
+        }, "1300");
+      return false;  
+    }
+    var letters=/^[\p{L}a-zA-Zа-яА-Я]+$/u; //allowing the name to have letters in all langueges (p{L}=Uncode)
+    if (!document.getElementById("lastName").value.match(letters))
+    {
+        document.getElementById('validLastName').classList.add('Error_start');
+        document.getElementById('validLastName').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('validLastName').classList.remove('Error_start');
+            document.getElementById('validLastName').classList.add('Error_NoShow');
+        }, "1300");
+      return false;  
+    }
+    return true;
+}
 function register()
 {
     var userName = document.getElementById("userName").value;
@@ -22,6 +100,7 @@ function register()
    
     if(userName.length>30 || userName=="")
     {
+        
         document.getElementById('userNameError').classList.add('Error_start');
         document.getElementById('userNameError').classList.remove('Error_NoShow');
         setTimeout(() => {
@@ -149,14 +228,7 @@ function register()
         date:date
     }
 }
-document.getElementById('register_post')
-  .addEventListener('submit', (event) => {
-    // don't submit the form and
-    // only log to the console
 
-    event.preventDefault();
-    console.log('submitted form');
-  });
 function validPassword()
 {
     
