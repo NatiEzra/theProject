@@ -28,7 +28,7 @@ mongoose.connection.on('connected', () => {
 
 app.set('view engine', 'ejs');
 
-const loginRouter = require('./routes/login');
+const loginRouter = require('./routes/register_login');
 app.use('/', loginRouter);
 
 app.listen(PORT, () => console.log('Server started on port 70'));

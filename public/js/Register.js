@@ -149,6 +149,14 @@ function register()
         date:date
     }
 }
+document.getElementById('register_post')
+  .addEventListener('submit', (event) => {
+    // don't submit the form and
+    // only log to the console
+
+    event.preventDefault();
+    console.log('submitted form');
+  });
 function validPassword()
 {
     
