@@ -13,7 +13,7 @@ function register()
         return;
     }
     document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
-    ||  document.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
+    ||  documents.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
       if ( document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
    ||  document.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
    document.getElementById("password").value=="" || document.getElementById("Verifypassword").value=="" )
