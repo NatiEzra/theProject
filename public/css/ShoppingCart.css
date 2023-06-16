@@ -20,7 +20,6 @@ body {
   width: 100px;
 }
 .search-bar input {
-  
   margin-right: 100px;
   width: 600px;
   height: 30px;
@@ -32,8 +31,8 @@ body {
   background-image: url("../Images/search.png");
   background-repeat: no-repeat;
   background-position: right 10px center;
-  font-family: futura-pt,sans-serif;
-  letter-spacing: .4px;
+  font-family: futura-pt, sans-serif;
+  letter-spacing: 0.4px;
   padding-left: 15px;
   background-size: 25px 25px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
