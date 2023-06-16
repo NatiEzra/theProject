@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 var bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+require('custom-env').env(process.env.NODE_ENV, './config');
 
 const { default: mongoose } = require("mongoose");
 // Add body-parser middleware
@@ -18,7 +18,7 @@ app.use(session({
     resave: false
 }));
 
-mongoose.connect('mongodb+srv://dormatana101:Dormatana054@sportify.m6md4z5.mongodb.net/Sportify?retryWrites=true&w=majority', {
+mongoose.connect(process.env.CONNECTION_STRING, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
