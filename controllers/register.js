@@ -12,7 +12,7 @@ async function register(req, res) {
   const { username, firstname , lastname , email , gender , date , password } = req.body
   try {
     await registerService.register(username, firstname , lastname , email , gender , date , password)    
-    req.session.username = username
+    //req.session.username = username
     res.redirect('/')
   }
   catch (e) { 

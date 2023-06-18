@@ -1,11 +1,10 @@
 const express = require('express');
-const PORT = 70;
 const ejs = require('ejs');
 const path = require('path');
 const app = express();
 var bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+require('custom-env').env(process.env.NODE_ENV, './config');
 
 const { default: mongoose } = require("mongoose");
 // Add body-parser middleware
@@ -18,7 +17,7 @@ app.use(session({
     resave: false
 }));
 
-mongoose.connect('mongodb+srv://dormatana101:Dormatana054@sportify.m6md4z5.mongodb.net/Sportify?retryWrites=true&w=majority', {
+mongoose.connect(process.env.CONNECTION_STRING, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
@@ -31,4 +30,7 @@ app.set('view engine', 'ejs');
 const loginRouter = require('./routes/register_login');
 app.use('/', loginRouter);
 
-app.listen(PORT, () => console.log('Server started on port 70'));
+const Main_page = require('./routes/main_page');
+app.use('/', Main_page);
+
+app.listen(process.env.PORT, () => console.log('Server started on port 70'));

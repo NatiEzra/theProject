@@ -1,15 +1,48 @@
 document.getElementById("register_post").addEventListener("submit", (event) => {
-
-    if (!(validUserName(document.getElementById('userName').value)||
-    validFirstName(document.getElementById('firstName').value)||
-    validLastName(document.getElementById('lastName').value)))
+    if (!(validUserName(document.getElementById('userName').value)))
+    {
+        event.preventDefault();
+        console.log('submitted form'); 
+        return;
+    }
+    if(!validFirstName(document.getElementById('firstName').value))
+    {
+        event.preventDefault();
+        console.log('submitted form'); 
+        return;
+    }
+    if(!validLastName(document.getElementById('lastName').value))
     {
         event.preventDefault();
         console.log('submitted form');
+        return;
     }
-   
+    if(!validPassword(document.getElementById('password').value))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
+    if(!validVerifyPassword(document.getElementById('passwordVerifyError').value))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
+    if(!validDate(document.getElementById('date').value))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
+    if(!validChecked(document.getElementById('termsOfConditions').checked))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
   });
-addEventListener("email", isValid)
+//addEventListener("email", isValid)
 function validUserName(userName)
 {
     if(userName.length>30 || userName=="")
@@ -77,84 +110,8 @@ function validLastName(name)
     }
     return true;
 }
-function register()
+function validDate(date)
 {
-    var userName = document.getElementById("userName").value;
-   /* if(userName.length>30 || userName=="")
-    {
-        document.getElementById('Error').classList.add('Error_start');
-        document.getElementById('Error').classList.remove('Error_NoShow');
-        setTimeout(() => {
-            document.getElementById('Error').classList.remove('Error_start');
-            document.getElementById('Error').classList.add('Error_NoShow');
-        }, "1300");
-        return;
-    }
-    document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
-    ||  documents.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
-      if ( document.getElementById("firstName").value=="" || document.getElementById("lastName").value==""
-   ||  document.getElementById("email").value=="" ||  document.getElementById("date").value=="" ||  document.getElementById("gender").value=="" || 
-   document.getElementById("password").value=="" || document.getElementById("Verifypassword").value=="" )
-    */
- 
-   
-    if(userName.length>30 || userName=="")
-    {
-        
-        document.getElementById('userNameError').classList.add('Error_start');
-        document.getElementById('userNameError').classList.remove('Error_NoShow');
-        setTimeout(() => {
-            document.getElementById('userNameError').classList.remove('Error_start');
-            document.getElementById('userNameError').classList.add('Error_NoShow');
-        }, "1300");
-        return;
-    }
-    if (document.getElementById("firstName").value=="")
-    {
-        
-        document.getElementById('lengthError').classList.add('Error_start');
-        document.getElementById('lengthError').classList.remove('Error_NoShow');
-        setTimeout(() => {
-            document.getElementById('lengthError').classList.remove('Error_start');
-            document.getElementById('lengthError').classList.add('Error_NoShow');
-        }, "1300");
-      return;  
-    }
-    if (document.getElementById("lastName").value=="")
-    {
-        
-        document.getElementById('lastNameError').classList.add('Error_start');
-        document.getElementById('lastNameError').classList.remove('Error_NoShow');
-        setTimeout(() => {
-            document.getElementById('lastNameError').classList.remove('Error_start');
-            document.getElementById('lastNameError').classList.add('Error_NoShow');
-        }, "1300");
-     return;   
-    }
-    if (  document.getElementById("email").value=="")
-    {
-        
-        document.getElementById('noEmail').classList.add('Error_start');
-        document.getElementById('noEmail').classList.remove('Error_NoShow');
-        setTimeout(() => {
-            document.getElementById('noEmail').classList.remove('Error_start');
-            document.getElementById('noEmail').classList.add('Error_NoShow');
-        }, "1300");
-        return;   
-    }
-   
-    if (  document.getElementById("gender").value=="")
-    {
-        
-        document.getElementById('genderError').classList.add('Error_start');
-        document.getElementById('genderError').classList.remove('Error_NoShow');
-        setTimeout(() => {
-            document.getElementById('genderError').classList.remove('Error_start');
-            document.getElementById('genderError').classList.add('Error_NoShow');
-        }, "1300");
-        return;
-    }
-
     if (  document.getElementById("date").value=="")
     {
         
@@ -164,9 +121,29 @@ function register()
             document.getElementById('dateError').classList.remove('Error_start');
             document.getElementById('dateError').classList.add('Error_NoShow');
         }, "1300");
-        return;
+        return false;
     }
-   
+    return true;
+
+}
+function validChecked(checked)
+{
+    if( !(document.getElementById("termsOfConditions").checked)) 
+    {
+    document.getElementById('checkBoxError').classList.add('Error_start');
+    document.getElementById('checkBoxError').classList.remove('Error_NoShow');
+    setTimeout(() => {
+        document.getElementById('checkBoxError').classList.remove('Error_start');
+        document.getElementById('checkBoxError').classList.add('Error_NoShow');
+    }, "1300");
+    return false;
+}
+return true;
+}
+
+// checking if the password isnt null
+function validPassword(password)
+{
     if (  document.getElementById("password").value=="")
     {
         
@@ -176,9 +153,15 @@ function register()
             document.getElementById('passwordError').classList.remove('Error_start');
             document.getElementById('passwordError').classList.add('Error_NoShow');
         }, "1300");
-        return;
+        return false;
     }
-    if (  document.getElementById("Verifypassword").value=="")
+    return true;
+}
+
+// checking if the verify isnt null
+function validVerifyPassword(Verifypassword)
+{
+    if (  document.getElementById("passwordVerifyError").value=="")
     {
         
         document.getElementById('passwordVerifyError').classList.add('Error_start');
@@ -187,19 +170,10 @@ function register()
             document.getElementById('passwordVerifyError').classList.remove('Error_start');
             document.getElementById('passwordVerifyError').classList.add('Error_NoShow');
         }, "1300");
-        return;
+        return false;
     }
-    if( !(document.getElementById("termsOfConditions").checked)) 
-    {
-    document.getElementById('checkBoxError').classList.add('Error_start');
-    document.getElementById('checkBoxError').classList.remove('Error_NoShow');
-    setTimeout(() => {
-        document.getElementById('checkBoxError').classList.remove('Error_start');
-        document.getElementById('checkBoxError').classList.add('Error_NoShow');
-    }, "1300");
-    return;
-}
-    if (!validPassword())
+    // the verify is equal to the password?
+    if(!(document.getElementById("password").value===document.getElementById("Verifypassword").value))
     {
         document.getElementById('passwordsError').classList.add('Error_start');
         document.getElementById('passwordsError').classList.remove('Error_NoShow');
@@ -207,34 +181,10 @@ function register()
             document.getElementById('passwordsError').classList.remove('Error_start');
             document.getElementById('passwordsError').classList.add('Error_NoShow');
         }, "1300");
-        return;
+        return false;
     }
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var email = document.getElementById("email").value;
-    var gender = document.getElementById("gender").value;
-    var date = document.getElementById("date").value;
-    var password = document.getElementById("password").value;
-    var Verifypassword = document.getElementById("Verifypassword").value;
-    var conditions = document.getElementById("termsOfConditions").checked;
-
-    var account = {
-        userName:userName,
-        firstName: firstName,
-        lastName:lastName,
-        email:email,
-        gender:gender,
-        password:password,
-        date:date
-    }
-}
-
-function validPassword()
-{
-    
-    if(document.getElementById("password").value===document.getElementById("Verifypassword").value)
     return true;
-    return false;
+    //return false;
 
 }
 function visiblePassword()
@@ -249,11 +199,9 @@ function visiblePassword()
         pass.type="password"
     }
 }
-function isValid()
-{
 
-}
-
+// catching the input and when accurs event on this input goes to validateEmail func
+addEventListener("email", validateEmail)
 function validateEmail() {
     var emailInput = document.getElementById("email");
     var errorDiv = document.getElementById("emailError");
