@@ -1,15 +1,48 @@
 document.getElementById("register_post").addEventListener("submit", (event) => {
-
-    if (!(validUserName(document.getElementById('userName').value)||
-    validFirstName(document.getElementById('firstName').value)||
-    validLastName(document.getElementById('lastName').value)))
+    if (!(validUserName(document.getElementById('userName').value)))
+    {
+        event.preventDefault();
+        console.log('submitted form'); 
+        return;
+    }
+    if(!validFirstName(document.getElementById('firstName').value))
+    {
+        event.preventDefault();
+        console.log('submitted form'); 
+        return;
+    }
+    if(!validLastName(document.getElementById('lastName').value))
     {
         event.preventDefault();
         console.log('submitted form');
+        return;
     }
-   
+    if(!validPassword(document.getElementById('password').value))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
+    if(!validVerifyPassword(document.getElementById('passwordVerifyError').value))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
+    if(!validDate(document.getElementById('date').value))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
+    if(!validChecked(document.getElementById('termsOfConditions').checked))
+    {
+        event.preventDefault();
+        console.log('submitted form');
+        return;
+    }
   });
-addEventListener("email", isValid)
+//addEventListener("email", isValid)
 function validUserName(userName)
 {
     if(userName.length>30 || userName=="")
@@ -77,6 +110,38 @@ function validLastName(name)
     }
     return true;
 }
+function validDate(date)
+{
+    if (  document.getElementById("date").value=="")
+    {
+        
+        document.getElementById('dateError').classList.add('Error_start');
+        document.getElementById('dateError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('dateError').classList.remove('Error_start');
+            document.getElementById('dateError').classList.add('Error_NoShow');
+        }, "1300");
+        return false;
+    }
+    return true;
+
+}
+function validChecked(checked)
+{
+    if( !(document.getElementById("termsOfConditions").checked)) 
+    {
+    document.getElementById('checkBoxError').classList.add('Error_start');
+    document.getElementById('checkBoxError').classList.remove('Error_NoShow');
+    setTimeout(() => {
+        document.getElementById('checkBoxError').classList.remove('Error_start');
+        document.getElementById('checkBoxError').classList.add('Error_NoShow');
+    }, "1300");
+    return false;
+}
+return true;
+
+}
+
 function register()
 {
     var userName = document.getElementById("userName").value;
@@ -228,13 +293,50 @@ function register()
         date:date
     }
 }
-
-function validPassword()
+// checking if the password isnt null
+function validPassword(password)
 {
-    
-    if(document.getElementById("password").value===document.getElementById("Verifypassword").value)
+    if (  document.getElementById("password").value=="")
+    {
+        
+        document.getElementById('passwordError').classList.add('Error_start');
+        document.getElementById('passwordError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('passwordError').classList.remove('Error_start');
+            document.getElementById('passwordError').classList.add('Error_NoShow');
+        }, "1300");
+        return false;
+    }
     return true;
-    return false;
+}
+
+// checking if the verify isnt null
+function validVerifyPassword(Verifypassword)
+{
+    if (  document.getElementById("passwordVerifyError").value=="")
+    {
+        
+        document.getElementById('passwordVerifyError').classList.add('Error_start');
+        document.getElementById('passwordVerifyError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('passwordVerifyError').classList.remove('Error_start');
+            document.getElementById('passwordVerifyError').classList.add('Error_NoShow');
+        }, "1300");
+        return false;
+    }
+    // the verify is equal to the password?
+    if(!(document.getElementById("password").value===document.getElementById("Verifypassword").value))
+    {
+        document.getElementById('passwordsError').classList.add('Error_start');
+        document.getElementById('passwordsError').classList.remove('Error_NoShow');
+        setTimeout(() => {
+            document.getElementById('passwordsError').classList.remove('Error_start');
+            document.getElementById('passwordsError').classList.add('Error_NoShow');
+        }, "1300");
+        return false;
+    }
+    return true;
+    //return false;
 
 }
 function visiblePassword()
@@ -249,11 +351,9 @@ function visiblePassword()
         pass.type="password"
     }
 }
-function isValid()
-{
 
-}
-
+// catching the input and when accurs event on this input goes to validateEmail func
+addEventListener("email", validateEmail)
 function validateEmail() {
     var emailInput = document.getElementById("email");
     var errorDiv = document.getElementById("emailError");
