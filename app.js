@@ -30,4 +30,7 @@ app.set('view engine', 'ejs');
 const loginRouter = require('./routes/register_login');
 app.use('/', loginRouter);
 
+const Main_page = require('./routes/main_page');
+app.use('/', Main_page);
+
 app.listen(process.env.PORT, () => console.log('Server started on port 70'));
