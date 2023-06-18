@@ -1,5 +1,4 @@
 const express = require('express');
-const PORT = 70;
 const ejs = require('ejs');
 const path = require('path');
 const app = express();
@@ -31,4 +30,4 @@ app.set('view engine', 'ejs');
 const loginRouter = require('./routes/register_login');
 app.use('/', loginRouter);
 
-app.listen(PORT, () => console.log('Server started on port 70'));
+app.listen(process.env.PORT, () => console.log('Server started on port 70'));
