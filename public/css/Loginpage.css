@@ -161,3 +161,21 @@ button[type="submit"]:hover {
   font-family: Poppins-Bold;
   padding-top: 15px;
 }
+
+/*(START) Makes the input field red if they are empty. */
+.input-group input {
+  border: 1px solid #ccc;
+}
+
+.input-group input::placeholder {
+  color: #999;
+}
+
+.input-group input:focus {
+  outline: none;
+}
+
+.input-group input[style="border-color: red;"]::placeholder {
+  color: red;
+}
+/*(END) Makes the input field red if they are empty. */
