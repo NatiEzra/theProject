@@ -13,7 +13,8 @@ function AfterLogedin(req, res) {
 
 async function loginForm(req, res) {
   const result=await loginService.getmap();
-  res.render("login",{ flag : true}) }
+  res.render("login",{ flag : true}) 
+}
 function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
 
 function termForm(req, res) { res.render("termandcon", {}) }

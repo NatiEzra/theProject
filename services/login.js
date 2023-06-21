@@ -13,12 +13,6 @@ async function login(username, password) {
     }
 }
 async function getmap(){
-    const lo=new StoreLocation({
-        lat:"33.1234",
-        lng:"33.1234",
-        Address:"ddd"
-    });
-    await lo.save();
     const storelocation= 
     await StoreLocation.find();
     return storelocation;

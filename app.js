@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
 require('custom-env').env(process.env.NODE_ENV, './config');
 
-
 // app.get('/Mainpage', (req, res) => {
   
 // });
@@ -20,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const session = require('express-session');
 app.use(session({
-    secret: 'foo',    
+    secret: 'key',    
     saveUninitialized: false,
     resave: false
 }));

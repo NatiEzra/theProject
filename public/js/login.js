@@ -1,7 +1,8 @@
 let map;
 let markers = [];
 let infoWindow;
-
+//import sdd from "../controllers/mainpage.js";
+const { getmap } = require('./services/mainpage');
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   map = new Map(document.getElementById("map"), {
@@ -14,7 +15,7 @@ async function initMap() {
     scaledSize: new google.maps.Size(20, 20), // scaled size
   };
 async function getStroreLocations() {
-    const user = await User.findOne({ username: username, password });
+    //const user = await User.findOne({ username: username, password });
     return user != null
 }
   // Create multiple markers
@@ -47,7 +48,7 @@ async function getStroreLocations() {
 }
 
 function getInfoWindowContent() {
-  return "<div style='width: 200px; height: 150px; text-align: right;'><img src='./Images/infowindowImage.png' style='max-width: 100%; height: auto;' /><p style='direction: rtl;'>רשת קמעונאית שמוכרים בה מגוון של נעליים, בגדים ואביזרי ספורט מבית <strong style='font-weight: bold;'>Sportify</strong>.</p><p></p><p></p><p style='direction: rtl;'><strong>שעות פעילות:</strong></p><p style='direction: rtl;'>יום ראשון 9:30–21:30</p><p style='direction: rtl;'>יום שני 9:30–21:30</p><p style='direction: rtl;'>יום שלישי 9:30–21:30</p><p style='direction: rtl;'>יום רביעי 9:30–21:30</p><p style='direction: rtl;'>יום חמישי 9:30–21:30</p><p style='direction: rtl;'>יום שישי 9:00–14:30</p><p style='direction: rtl;'>יום שבת 10:00–23:00</p><p style='direction: rtl;'></p><p style='direction: rtl;'>הצעת שעות פעילות חדשות</p><p></p><p style='direction: rtl;'><strong>052-5845841</strong></p><p></p><p></p></div>";
+  return "<div style='width: 200px; height: 450px; text-align: right;'><img src='./Images/infowindowImage.png' style='max-width: 100%; height: auto;' /><p style='direction: rtl;'>רשת קמעונאית שמוכרים בה מגוון של נעליים, בגדים ואביזרי ספורט מבית <strong style='font-weight: bold;'>Sportify</strong>.</p><p></p><p></p><p style='direction: rtl;'><strong>שעות פעילות:</strong></p><p style='direction: rtl;'>יום ראשון 9:30–21:30</p><p style='direction: rtl;'>יום שני 9:30–21:30</p><p style='direction: rtl;'>יום שלישי 9:30–21:30</p><p style='direction: rtl;'>יום רביעי 9:30–21:30</p><p style='direction: rtl;'>יום חמישי 9:30–21:30</p><p style='direction: rtl;'>יום שישי 9:00–14:30</p><p style='direction: rtl;'>יום שבת 10:00–23:00</p><p style='direction: rtl;'></p><p style='direction: rtl;'>הצעת שעות פעילות חדשות</p><p></p><p style='direction: rtl;'><strong>052-5845841</strong></p><p></p><p></p></div>";
 }
 
 initMap();
