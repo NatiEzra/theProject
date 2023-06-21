@@ -4,22 +4,6 @@ body {
     margin: 0;
     padding: 0;
   }
-  .header-iframe {
-    width: 100%;
-    border: none;
-    height: 70px;
-      }
-  
-  .dropdown-iframe {
-    width: 100%;
-    border: none;
-    height: 40px;
-  }
-  .footer-iframe{
-    width: 100%;
-    border: none;
-    height: 70px;
-  }
   
   .header {
     display: flex;
@@ -34,21 +18,107 @@ body {
   }
   
   .search-bar input {
-    width: 300px; 
+    width: 350px; 
     height: 30px;
     padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+    border-radius: 20px;
     font-size: 14px;
-    background-image: url("search.png"); 
-  background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    background-image: url("../Images/search.png");
+    background-repeat: no-repeat;
   background-position: right center;
   background-size: 25px 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  }
+  .search-bar button {
+    padding: 5px 10px;
+    background-color: #ea9215;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .search-bar input:focus {
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
   
+  .search-bar input::placeholder {
+    color: #999;
+  }
+  
+  .search-bar button:hover {
+    background-color: #f1cd9b;
+  }
+  .menu {
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    width: 200px;
+    text-align: center; /* Выравниваем текст по центру */
+    left: 50%; /* Перемещаем меню на 50% относительно родительского элемента */
+    transform: translateX(-50%); /* Сдвигаем меню влево на половину его ширины */
+  }
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu ul li {
+    margin-bottom: 10px;
+  }
+  .menu ul li .login-join {
+    color: #888; /* Измените цвет на серый (например, #888) */
+  }
+  .menu ul li .accord {
+    margin-bottom: px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .menu ul li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  .menu ul li a:hover {
+    color: #ea9215;
+  }
+  
+  .menu ul li .account {
+    font-size: 18px;
+  }
+  
+  .menu ul li .orders {
+    font-size: 18px;
+  }
+  
+  .menu ul li:first-child {
+    display: flex;
+  }
+  
+  .menu ul li:first-child a {
+    margin-right: 10px;
+  }
+
   .search-bar input:focus {
     outline: none;
     border-color: #ea9215; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
   }
   
   
@@ -229,27 +299,9 @@ body {
   padding: 5px;
 }
 
-.sub-dropdown ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sub-dropdown ul li {
-  margin: 5px 0;
-}
-
-.sub-dropdown ul li a {
-  color: #ea9215;
-  text-decoration: none;
-}
 .dropdown-content .sub-menu {
   display: flex;
   flex-wrap: wrap;
-}
-
-.dropdown-content .sub-menu li {
-  width: 50%;
 }
 
 .dropdown-content .sub-menu a {
