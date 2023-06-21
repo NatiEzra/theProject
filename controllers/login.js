@@ -33,7 +33,7 @@ async function login(req, res) {
 
   if (result) {
     //req.session.username = username
-    res.redirect('/')
+    res.redirect('/Mainpage')
   }
   else
    res.render('login',{flag:result});
