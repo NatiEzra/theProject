@@ -11,8 +11,9 @@ function foo(req, res) {
   res.render("foo", {username: req.session.username})
 }
 
-function loginForm(req, res) { res.render("login",{ flag : true}) }
-function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
+function loginForm(req, res) { res.render("login", {}) }
+
+function registerForm(req, res) { res.render("register", {}) }
 function termForm(req, res) { res.render("termandcon", {}) }
 function logout(req, res) {
   req.session.destroy(() => {
@@ -23,6 +24,7 @@ function logout(req, res) {
 async function login(req, res) {
   
   const { username, password } = req.body
+  console.log("dasdas",req.body)
   const result = await loginService.login(username, password)
   console.log(username);
   console.log(result);
@@ -32,7 +34,7 @@ async function login(req, res) {
     res.redirect('/Register')
   }
   else
-    res.render('login',{flag:result});
+    res.redirect('/login?error=1')
 }
 
 async function register(req, res) {
@@ -45,7 +47,6 @@ async function register(req, res) {
     res.redirect('/')
   }
   catch (e) { 
-    res.render('Register',{flag:false});
     res.redirect('/register?error=1')
   }    
 }

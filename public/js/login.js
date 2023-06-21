@@ -1,7 +1,9 @@
 let map;
 let markers = [];
 let infoWindow;
-import StoreLocation from "../../model/StoreLocation";
+
+import StoreLocation from "../../models/StoreLocation";
+console.log(StoreLocation);
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   map = new Map(document.getElementById("map"), {
@@ -64,7 +66,7 @@ function openSocialLogin(url) {
   if (url === "https://www.facebook.com/" || url === "https://www.google.com") {
     window.open(url, "_blank");
   }
-
+}
 {// A function that checks if the username and password are empty.
   document.addEventListener('DOMContentLoaded', function () {
     var loginForm = document.getElementById('login-form');

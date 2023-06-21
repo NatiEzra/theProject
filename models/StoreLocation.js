@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-const StroeLocationSchema = new mongoose.Schema({
+console.log('1');
+const StoreLocationSchema = new mongoose.Schema({
   storename: {
     type: String,
     required: true,
@@ -16,5 +16,5 @@ const StroeLocationSchema = new mongoose.Schema({
   },
   
 });
-const StroeLocation = mongoose.model('storelocation',StroeLocationSchema);
+const StoreLocation = mongoose.model('storelocation',StoreLocationSchema);
 module.exports = StoreLocation;
