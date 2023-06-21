@@ -7,8 +7,8 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login')
 }
 
-function foo(req, res) {  
-  res.render("foo", {username: req.session.username})
+function AfterLogedin(req, res) {  
+  res.render("Mainpage", {username: req.session.username})
 }
 
 async function loginForm(req, res) {
@@ -26,13 +26,12 @@ function logout(req, res) {
 async function login(req, res) {
   
   const { username, password } = req.body
-  console.log("dasdas",req.body)
   const result = await loginService.login(username, password)
   console.log(username);
   console.log(result);
 
   if (result) {
-    //req.session.username = username
+    req.session.username = username
     res.redirect('/Mainpage')
   }
   else
@@ -45,6 +44,6 @@ module.exports = {
   termForm,
   registerForm,
   logout,
-  foo,
+  AfterLogedin,
   isLoggedIn
 }

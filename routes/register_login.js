@@ -23,7 +23,7 @@ router.post("/login", loginController.login);
 router.get('/logout', loginController.logout);
 
 // GET route for a protected route (requires authentication)
-router.get('/', loginController.isLoggedIn, loginController.foo);
+router.get('/Mainpage', loginController.isLoggedIn, loginController.AfterLogedin);
 
 
 
