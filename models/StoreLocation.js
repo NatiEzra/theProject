@@ -1,18 +1,15 @@
 const mongoose = require("mongoose");
-console.log('1');
 const StoreLocationSchema = new mongoose.Schema({
-  storename: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   lat: {
-    type: Number,
+    type: String,
     required: true,
   },
   lng: {
-    type: Number,
+    type: String,
     required: true,
+  },
+  Address: {
+    type: String,
   },
   
 });
