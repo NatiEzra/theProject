@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const StoreLocation= require('../models/StoreLocation');
 
 async function login(username, password) {
     console.log(username);
