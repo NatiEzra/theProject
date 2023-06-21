@@ -54,6 +54,9 @@
                 placeholder="Type your password"
               />
             </div>
+            <% if (!flag) { %>
+              <p>Username or password are incorrect</p>
+            <% } %>
           </div>
           <div class="input-group">
             <button type="submit">Login</button>
