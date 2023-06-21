@@ -11,7 +11,9 @@ function foo(req, res) {
   res.render("foo", {username: req.session.username})
 }
 
-function loginForm(req, res) { res.render("login",{ flag : true}) }
+function loginForm(req, res) {
+  const result=await.loginService.getmap();
+  res.render("login",{ flag : true}) }
 function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
 
 function termForm(req, res) { res.render("termandcon", {}) }
