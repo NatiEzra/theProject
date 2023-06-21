@@ -2,9 +2,17 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 const app = express();
+const fs = require('fs');
+
 var bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
 require('custom-env').env(process.env.NODE_ENV, './config');
+
+
+// app.get('/Mainpage', (req, res) => {
+  
+// });
+
 
 const { default: mongoose } = require("mongoose");
 // Add body-parser middleware

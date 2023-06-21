@@ -47,16 +47,7 @@
                 <div id="emailError" style="color: red; display: none;">Please enter a valid email address.</div>
                 <p id="noEmail" class="Error_NoShow">Please enter email</p>
                 <% if (!degel) { %>
-                    <script>
-                        const email = document.getElementById("email");                  
-                        email.value = "The email already exists";
-                        document.getElementById("email").classList.add('redText');
-                        setTimeout(() => {               
-                        email.value = "";
-        document.getElementById('email').classList.remove('redText');
-
-    }, "1800");
-                    </script>
+                    <p>The email is already exist</p>
                   <% } %>
             </div>
             <br>

@@ -4,6 +4,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
     "mongoose": "^7.2.3",
     "nodemon": "^2.0.22",
     "path": "^0.12.7"
@@ -13,8 +14,8 @@
   "main": "app.js",
   "scripts": {
     "nodemon": "nodemon app.js",
-    "test": "SET NODE_ENV=test&& nodemon app.js",
-    "start": "SET NODE_ENV=local&& nodemon app.js"
+    "test": "export NODE_ENV=test&& nodemon app.js",
+    "start": "export NODE_ENV=local&& nodemon app.js"
   },
   "author": "",
   "license": "ISC",

@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     if (err) {
       console.error(err);
       res.status(500).send('Internal Server Error');
-    } else {
+    } else { 
       const header = `
       <div class="header">
         <div class="logo">
