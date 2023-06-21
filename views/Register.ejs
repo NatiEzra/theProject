@@ -13,8 +13,20 @@
         <h1>Sign Up</h1>
         <form id="register_post" action="/register" method="post">
             <div>
-                <input placeholder="Username" id="userName" name="username">
+                <input  placeholder="Username" id="userName" name="username">
                 <p id="userNameError" class="Error_NoShow">Please enter username</p>
+                <% if (!flag) { %>                  
+                    <script>
+                        const usernameInput = document.getElementById("userName");                  
+                        usernameInput.value = "The username already exists";
+                        document.getElementById("userName").classList.add('redText');
+                        setTimeout(() => {               
+                        usernameInput.value = "";
+        document.getElementById('userName').classList.remove('redText');
+
+    }, "1800");
+                    </script>
+                  <% } %>
             </div>
             <br>
 
@@ -34,6 +46,18 @@
                 <input type="email" name="email" placeholder="Enter your email" id="email" oninvalid="validateEmail()" required>
                 <div id="emailError" style="color: red; display: none;">Please enter a valid email address.</div>
                 <p id="noEmail" class="Error_NoShow">Please enter email</p>
+                <% if (!degel) { %>
+                    <script>
+                        const email = document.getElementById("email");                  
+                        email.value = "The email already exists";
+                        document.getElementById("email").classList.add('redText');
+                        setTimeout(() => {               
+                        email.value = "";
+        document.getElementById('email').classList.remove('redText');
+
+    }, "1800");
+                    </script>
+                  <% } %>
             </div>
             <br>
 

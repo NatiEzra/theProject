@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const StoreLocation= require('../models/StoreLocation');
 
 async function login(username, password) {
     console.log(username);
@@ -8,30 +9,20 @@ async function login(username, password) {
         return user
     else
     {
-        console.log("here2");
-        const user2 = await User.findOne({ username: username});
-        if(user2==null)
-        {
-              /*console.log("here3");
-                document.getElementById('userError').classList.add('Error_start');
-                console.log("here4");
-                document.getElementById('userError').classList.remove('Error_NoShow');
-                setTimeout(() => {
-                    document.getElementById('userError').classList.remove('Error_start');
-                    document.getElementById('userError').classList.add('Error_NoShow');
-                }, "1300");
-                return;
-                */
-                return "Invalid username";
-    }
-     else {
-      return "Invalid password";
-    } 
-      
-           
+        return false;
     }
 }
-
+async function getmap(){
+    const lo=new StoreLocation({
+        lat:"33.1234",
+        lng:"33.1234",
+        Address:"ddd"
+    });
+    await lo.save();
+    const storelocation= 
+    await StoreLocation.find();
+    return storelocation;
+}
 async function register(username, password) {
 
     const user = new User({
@@ -42,4 +33,5 @@ async function register(username, password) {
     await user.save()        
 }
 
-module.exports = { login, register }
+module.exports = { login, register,getmap }
+

@@ -7,13 +7,15 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login')
 }
 
-function foo(req, res) {  
-  res.render("foo", {username: req.session.username})
+function AfterLogedin(req, res) {  
+  res.render("Mainpage", {username: req.session.username})
 }
 
-function loginForm(req, res) { res.render("login", {}) }
+async function loginForm(req, res) {
+  const result=await loginService.getmap();
+  res.render("login",{ flag : true}) }
+function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
 
-function registerForm(req, res) { res.render("register", {}) }
 function termForm(req, res) { res.render("termandcon", {}) }
 function logout(req, res) {
   req.session.destroy(() => {
@@ -24,40 +26,24 @@ function logout(req, res) {
 async function login(req, res) {
   
   const { username, password } = req.body
-  console.log("dasdas",req.body)
   const result = await loginService.login(username, password)
   console.log(username);
   console.log(result);
 
   if (result) {
-    //req.session.username = username
-    res.redirect('/Register')
+    req.session.username = username
+    res.redirect('/Mainpage')
   }
   else
-    res.redirect('/login?error=1')
-}
-
-async function register(req, res) {
-  const { username, password } = req.body
-
-
-  try {
-    await loginService.register(username, password)    
-    req.session.username = username
-    res.redirect('/')
-  }
-  catch (e) { 
-    res.redirect('/register?error=1')
-  }    
+   res.render('login',{flag:result});
 }
 
 module.exports = {
   login,
   loginForm,
-  register,
   termForm,
   registerForm,
   logout,
-  foo,
+  AfterLogedin,
   isLoggedIn
 }
