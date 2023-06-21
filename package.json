@@ -15,7 +15,8 @@
   "scripts": {
     "nodemon": "nodemon app.js",
     "test": "SET NODE_ENV=test&& nodemon app.js",
-    "start": "SET NODE_ENV=local&& nodemon app.js"
+    "start": "SET NODE_ENV=local&& nodemon app.js",
+    "mac":"export NODE_ENV=local&& nodemon app.js"
   },
   "author": "",
   "license": "ISC",
