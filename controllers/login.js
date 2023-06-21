@@ -11,9 +11,9 @@ function foo(req, res) {
   res.render("foo", {username: req.session.username})
 }
 
-function loginForm(req, res) { res.render("login", {}) }
+function loginForm(req, res) { res.render("login",{ flag : true}) }
+function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
 
-function registerForm(req, res) { res.render("register", {}) }
 function termForm(req, res) { res.render("termandcon", {}) }
 function logout(req, res) {
   req.session.destroy(() => {
@@ -31,10 +31,10 @@ async function login(req, res) {
 
   if (result) {
     //req.session.username = username
-    res.redirect('/Register')
+    res.redirect('/')
   }
   else
-    res.redirect('/login?error=1')
+   res.render('login',{flag:result});
 }
 
 module.exports = {

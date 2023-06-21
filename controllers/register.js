@@ -1,5 +1,5 @@
 const registerService = require("../services/register")
-
+const User = require("../models/User");
 function isLoggedIn(req, res, next) {
   if (req.session.username != null)
     return next()
@@ -15,12 +15,22 @@ async function register(req, res) {
     //req.session.username = username
     res.redirect('/')
   }
-  catch (e) { 
-    res.redirect('/register?error=1')
+  catch (e) {
+    const user = await User.findOne({username:username}); 
+    if(user)
+    {
+    res.render('register',{flag:false,degel:true});
+    }
+    const user1 = await User.findOne({email:email}); 
+    if(user1)
+    {
+      res.render('register',{flag:true, degel:false});
+      }
   }    
 }
-
 module.exports = { 
   register,
   isLoggedIn
 }
+
+
