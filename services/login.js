@@ -34,5 +34,3 @@ async function register(username, password) {
 
 module.exports = { login, register,getmap }
 
-
-module.exports = { login, register }
