@@ -35,25 +35,9 @@ async function login(req, res) {
     res.render('login',{flag:result});
 }
 
-async function register(req, res) {
-  const { username, password } = req.body
-
-
-  try {
-    await loginService.register(username, password)    
-    req.session.username = username
-    res.redirect('/')
-  }
-  catch (e) { 
-    res.render('Register',{flag:false});
-    res.redirect('/register?error=1')
-  }    
-}
-
 module.exports = {
   login,
   loginForm,
-  register,
   termForm,
   registerForm,
   logout,

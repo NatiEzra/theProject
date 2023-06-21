@@ -55,8 +55,15 @@
               />
             </div>
             <% if (!flag) { %>
-              <p>Username or password are incorrect</p>
-            <% } %>
+              <p class="wrongInput" id="wrongInput">Wrong username or password</p>
+              <script>
+                
+                setTimeout(() => {               
+               document.getElementById("wrongInput").innerText="";
+}, "1800");
+            </script>
+          <% } %>
+           
           </div>
           <div class="input-group">
             <button type="submit">Login</button>

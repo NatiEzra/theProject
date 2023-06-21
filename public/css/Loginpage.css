@@ -143,7 +143,10 @@ button[type="submit"]:hover {
 .facebook-button {
   background-color: #3b5998;
 }
-
+.wrongInput{
+  color: red;
+  font-weight: bold;
+}
 .google-button {
   background-color: #dd4b39;
 }
