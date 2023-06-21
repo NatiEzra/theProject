@@ -15,6 +15,9 @@
             <div>
                 <input placeholder="Username" id="userName" name="username">
                 <p id="userNameError" class="Error_NoShow">Please enter username</p>
+                <% if (!flag) { %>
+                    <p>The username is already exist</p>
+                  <% } %>
             </div>
             <br>
 
@@ -34,6 +37,9 @@
                 <input type="email" name="email" placeholder="Enter your email" id="email" oninvalid="validateEmail()" required>
                 <div id="emailError" style="color: red; display: none;">Please enter a valid email address.</div>
                 <p id="noEmail" class="Error_NoShow">Please enter email</p>
+                <% if (!degel) { %>
+                    <p>The email is already exist</p>
+                  <% } %>
             </div>
             <br>
 

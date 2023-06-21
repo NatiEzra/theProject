@@ -12,8 +12,7 @@ function foo(req, res) {
 }
 
 function loginForm(req, res) { res.render("login",{ flag : true}) }
-
-function registerForm(req, res) { res.render("register", {}) }
+function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
 function termForm(req, res) { res.render("termandcon", {}) }
 function logout(req, res) {
   req.session.destroy(() => {
@@ -46,6 +45,7 @@ async function register(req, res) {
     res.redirect('/')
   }
   catch (e) { 
+    res.render('Register',{flag:false});
     res.redirect('/register?error=1')
   }    
 }
