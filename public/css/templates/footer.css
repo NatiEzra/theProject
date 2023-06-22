@@ -1,0 +1,48 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3a4750;
+    padding: 10px;
+    color: #ea9215;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+  .footer h3 {
+    margin-right: 10px;
+  }
+  
+  .footer button {
+    margin-right: 5px;
+  }
+  .instagram-button img,
+  .facebook-button img,
+  .location-button img,
+  .management-button img {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .instagram-button,
+  .facebook-button,
+  .location-button,
+  .management-button {
+    background: #ea9215; /* Set the background to transparent */
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+  
+  .instagram-button:hover,
+  .facebook-button:hover,
+  .location-button:hover,
+  .management-button:hover {
+    background: #f1cd9b;
+  }  
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }

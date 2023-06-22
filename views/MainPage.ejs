@@ -1,41 +1,40 @@
 <!DOCTYPE ejs>
 <html>
-<head>
-  <title>Sportify</title>
-  <link rel="stylesheet" type="text/css" href="../css/main_page.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- 
-</head>
+  <head>
+    <title>Sportify</title>
+    <link rel="stylesheet" type="text/css" href="../css/main_page.css" />
+  </head>
+  <body>
+    <%- include('./templates/header.ejs');%>
+    <div class="welcome-header">
+      <h2>WELCOME TO SPORTIFY</h2>
+    </div>
+    <%- include('./templates/dropDown.ejs');%>
 
+    <div class="content-container">
+      <div class="content">
+        <a href="../../Salepage">
+          <img
+            src="../images/summer-sale.png"
+            alt="Sale-main-page"
+            class="sale-image"
+          />
+        </a>
+      </div>
+    </div>
 
-<body>
- 
-  <div class="header"></div>
-  <div class="welcome-header">
-    <h2>WELCOME TO SPORTIFY</h2>
-  </div>
+    <div class="header2">HOT TRENDS</div>
 
-  <div class="navigation">
-   
-  <div class="content-container">
-  <div class="content">
-    <a href="../../Salepage">
-      <img src="../images/summer-sale.png" alt="Sale-main-page" class="sale-image">
-    </a>
-  </div>
-</div>
-
-
-  <div class="header2">HOT TRENDS</div>
-
-  <div class="content">
-    <a href=" ">
-      <img src="../images/mango-sale.png" alt="Sale-main-page" class="sale-image">
-    </a>
-  </div>
-
-  <div class="footer">
-</body>
-<script src="../controllers/template.js"></script>
+    <div class="content">
+      <a href=" ">
+        <img
+          src="../images/mango-sale.png"
+          alt="Sale-main-page"
+          class="sale-image"
+        />
+      </a>
+    </div>
+    <%- include('./templates/footer.ejs');%>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
 </html>
-
