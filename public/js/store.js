@@ -1,3 +1,6 @@
+let map;
+let markers = [];
+let infoWindow;
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
     map = new Map(document.getElementById("map"), {

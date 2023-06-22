@@ -1,6 +1,4 @@
-let map;
-let markers = [];
-let infoWindow;
+
 //import sdd from "../controllers/mainpage.js";
 //const { getmap } = require('./services/mainpage');
 
