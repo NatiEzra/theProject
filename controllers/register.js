@@ -8,7 +8,6 @@ function isLoggedIn(req, res, next) {
 }
 
 async function register(req, res) {
-  console.log(req.body);
   const { username, firstname , lastname , email , gender , date , password } = req.body
   try {
     await registerService.register(username, firstname , lastname , email , gender , date , password)    

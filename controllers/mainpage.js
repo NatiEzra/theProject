@@ -2,7 +2,6 @@ const fs = require('fs');
 function Mainpage(req, res) {
   fs.readFile("./views/MainPage.ejs", 'utf8', (err, data) => {
     if (err) {
-      console.error(err);
       res.status(500).send('Internal Server Error');
     } else {
       const header = `
@@ -110,7 +109,6 @@ function Mainpage(req, res) {
         .replace('<div class="header">', header)
         .replace('<div class="navigation">', dropdown)
         .replace('<div class="footer">', footer);
-    console.log(modifiedHTML);
       res.send(modifiedHTML);
     }
   });
