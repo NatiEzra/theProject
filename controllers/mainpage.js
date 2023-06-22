@@ -7,7 +7,7 @@ function Mainpage(req, res) {
     } else {
       const header = `
       <div class="header">
-      <div class="logo">
+      <div class="logo"> 
         <a href="./Mainpage.html">
           <img
             src="../Images/logo_transparent2.png"
@@ -26,8 +26,6 @@ function Mainpage(req, res) {
                   <a class="login-join" ;href="http://localhost:70/login">Login</a><span>+ </span
                   ><a class="login-join" ;href="">Join</a>
                 </li>
-                <li>
-                
                    
         <button class="like-button">
           <a href="#liked-items">
@@ -117,7 +115,13 @@ function Mainpage(req, res) {
 }
 function Cartpage(req, res) { res.render("ShoppingCart", {}) }
 
+function Salepage(req,res){
+  res.render("Salepage", {})
+}
 module.exports = {
 Mainpage,
-Cartpage
+Cartpage,
+Salepage
   }
+
+  
