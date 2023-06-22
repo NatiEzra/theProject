@@ -12,7 +12,7 @@ async function initMap() {
       url: "./Images/location.png", // url
       scaledSize: new google.maps.Size(20, 20), // scaled size
     };
-  
+
     // Create multiple markers
     const markerPositions = [
       { lat: 31.771959, lng: 35.217018 },
