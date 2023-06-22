@@ -84,7 +84,10 @@ button[type="submit"] {
   cursor: pointer;
   text-align: center;
 }
-
+.logostyle{
+  width: 136px;
+  padding-top: 25px;
+}
 button[type="submit"]:hover {
   background-color: #ea9215a8;
 }
