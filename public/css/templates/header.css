@@ -6,13 +6,13 @@ body {
     min-height: 100vh;
   }
   
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #3a4750;
-    padding: 10px;
-  }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3a4750;
+  padding: 10px;
+}
   
   .logo img {
     width: 100px;
@@ -139,6 +139,7 @@ body {
   .menu {
     display: none;
     position: absolute;
+    z-index: 3;
     background: #fff;
     padding: 20px;
     border-radius: 5px;
