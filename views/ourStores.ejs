@@ -14,9 +14,15 @@
         v: "weekly",
       });
     </script>
-    <link rel="stylesheet" type="text/css" href="../css/Loginpage.css" />
+    <link rel="stylesheet" type="text/css" href="../css/ourStores.css" />
   </head>
   <body class="">
+    <div class="header"></div>
+    <ol>
+            <% addresses.forEach(address => { %>
+              <li><%= address.Address %></li>
+            <% }); %>
+    </ol>
       <div id="map"></div>
   </body>
 </html>
