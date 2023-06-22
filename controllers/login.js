@@ -1,43 +1,39 @@
 const loginService = require("../services/login");
 function isLoggedIn(req, res, next) {
-  if (req.session.username != null)
-    return next()
-  else
-    res.redirect('/login')
+  if (req.session.username != null) return req.session.username;
+  else return null;
 }
 
-function AfterLogedin(req, res) {  
-  res.render("Mainpage", {username: req.session.username})
+function AfterLogedin(req, res) {
+  res.render("Mainpage", { username: req.session.username });
 }
 
 async function loginForm(req, res) {
   //const result=await loginService.getmap();
-  res.render("login",{ flag : true });
+  res.render("login", { flag: true });
 }
-function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
+function registerForm(req, res) {
+  res.render("register", { flag: true, degel: true });
+}
 
-function termForm(req, res) { res.render("termandcon", {}) }
+function termForm(req, res) {
+  res.render("termandcon", {});
+}
 function logout(req, res) {
   req.session.destroy(() => {
-    res.redirect('/login');
+    res.redirect("/login");
   });
 }
 
 async function login(req, res) {
-  
-  const { username, password } = req.body
-  const result = await loginService.login(username, password)
+  const { username, password } = req.body;
+  const result = await loginService.login(username, password);
 
   if (result) {
-    req.session.username = username
-    res.redirect('/Mainpage')
-  }
-  else
-   res.render('login',{flag:result});
+    req.session.username = username;
+    res.redirect("/Mainpage");
+  } else res.render("login", { flag: result });
 }
-
-
-
 
 module.exports = {
   login,
@@ -47,4 +43,4 @@ module.exports = {
   logout,
   AfterLogedin,
   isLoggedIn,
-}
+};
