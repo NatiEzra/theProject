@@ -1,20 +1,15 @@
 const adress = require("../models/StoreLocation");
-
-
-async function stores(req, res) {
-    const { lat, lng , Address  } = req.body
-   
-      const stores = await adress.find({}); 
-      if(stores)
-      {
-        res.render('ourStores', { addresses: stores });
-        
-      }
-    
+const storeService = require("../services/ourStores");
+require('custom-env').env(process.env.NODE_ENV, './config');
+function Storepgage(req, res) {
+     res.render('ourStores',{apikey:process.env.apikey});
+   }
+async function stores(req, res,next) {
+   const storeLoc=await storeService.getmap();
   }
   module.exports = { 
-    register,
-    isLoggedIn
+    stores,
+    Storepgage
   }
   
   

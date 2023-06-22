@@ -22,9 +22,11 @@ const ItemSchema = new mongoose.Schema({
     required: true,
   },
   img: {
-    type: String,
-    required: true,
+    data: Buffer, // Store image as a Buffer
+    contentType: String, // Store image content type
   },
 });
-const Item = mongoose.model('items',ItemSchema);
+
+const Item = mongoose.model("items", ItemSchema);
+
 module.exports = Item;
