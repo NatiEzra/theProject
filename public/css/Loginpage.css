@@ -85,7 +85,8 @@ button[type="submit"] {
   text-align: center;
 }
 .logostyle{
-  width: 136px;
+  /* width: 136px; */
+  width: 200px;
   padding-top: 25px;
 }
 button[type="submit"]:hover {
