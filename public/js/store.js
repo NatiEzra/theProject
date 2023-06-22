@@ -1,8 +1,18 @@
 
 let map;
 let markers = [];
+let addresses = []
 let infoWindow;
 const markerPositions=[];
+function addAddresses(){
+  const ol = document.getElementById('addressCointaner');
+  addresses.forEach(address=>{
+    const el = document.createElement('li');
+    el.textContent = address; 
+    ol.appendChild(el);
+  })
+
+}
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
     map = new Map(document.getElementById("map"), {
@@ -15,19 +25,22 @@ async function initMap() {
       .then(data=>{
         
         data.forEach(store=>{
-          let { lat, lng } = store;
+          let { lat, lng,Address } = store;
+          addresses.push(Address)
           lat=parseFloat(lat);
           lng=parseFloat(lng);
           markerPositions.push({ lat, lng });
           console.log(lat);
         });
       });
-      
     console.log(markerPositions);    
     const icon = {
       url: "./Images/location.png", // url
       scaledSize: new google.maps.Size(20, 20), // scaled size
     };
+
+    addAddresses();
+
 
     // Create multiple markers
     /*const markerPositions = [

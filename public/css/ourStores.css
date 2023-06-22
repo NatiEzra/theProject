@@ -2,3 +2,15 @@
     height: 400px; /* The height is 400 pixels */
     width: 100%; /* The width is the width of the web page */
   }
+  h1{
+    text-align: center;
+    color:orange
+  }
+  #block{
+    text-align: center;
+  }
+  #addressCointaner{
+    list-style-position: inside; /* Position the list item markers inside the <ol> */
+    
+  }
+  
