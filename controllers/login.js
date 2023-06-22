@@ -1,5 +1,4 @@
-const loginService = require("../services/login")
-
+const loginService = require("../services/login");
 function isLoggedIn(req, res, next) {
   if (req.session.username != null)
     return next()
@@ -12,8 +11,8 @@ function AfterLogedin(req, res) {
 }
 
 async function loginForm(req, res) {
-  const result=await loginService.getmap();
-  res.render("login",{ flag : true}) 
+  //const result=await loginService.getmap();
+  res.render("login",{ flag : true });
 }
 function registerForm(req, res) { res.render("register", {flag:true, degel:true}) }
 
@@ -28,8 +27,6 @@ async function login(req, res) {
   
   const { username, password } = req.body
   const result = await loginService.login(username, password)
-  console.log(username);
-  console.log(result);
 
   if (result) {
     req.session.username = username
@@ -39,6 +36,9 @@ async function login(req, res) {
    res.render('login',{flag:result});
 }
 
+
+
+
 module.exports = {
   login,
   loginForm,
@@ -46,5 +46,5 @@ module.exports = {
   registerForm,
   logout,
   AfterLogedin,
-  isLoggedIn
+  isLoggedIn,
 }
