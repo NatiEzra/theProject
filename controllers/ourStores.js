@@ -4,11 +4,8 @@ const storeService = require("../services/ourStores");
 function Storepgage(req, res) {
      res.render('ourStores',{});
    }
-async function stores(req, res) {
+async function stores(req, res,next) {
    const storeLoc=await storeService.getmap();
-   console.log(storeLoc)
-    res.json(storeLoc.json);
-    return next();
   }
   module.exports = { 
     stores,
