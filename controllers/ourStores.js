@@ -7,6 +7,7 @@ function Storepgage(req, res) {
    }
 async function stores(req, res,next) {
    const storeLoc=await storeService.getmap();
+   res.json(storeLoc);
   }
   module.exports = { 
     stores,
