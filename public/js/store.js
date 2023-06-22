@@ -2,6 +2,7 @@
 let map;
 let markers = [];
 let infoWindow;
+const markerPositions=[];
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
     map = new Map(document.getElementById("map"), {
@@ -12,21 +13,29 @@ async function initMap() {
     const x=await fetch('/ourstores').
       then(response=>response.json())
       .then(data=>{
-        console.log(data);
+        
+        data.forEach(store=>{
+          let { lat, lng } = store;
+          lat=parseFloat(lat);
+          lng=parseFloat(lng);
+          markerPositions.push({ lat, lng });
+          console.log(lat);
+        });
       });
-    console.log(x.json());    
+      
+    console.log(markerPositions);    
     const icon = {
       url: "./Images/location.png", // url
       scaledSize: new google.maps.Size(20, 20), // scaled size
     };
 
     // Create multiple markers
-    const markerPositions = [
+    /*const markerPositions = [
       { lat: 31.771959, lng: 35.217018 },
       { lat: 31.572500, lng: 35.218000 },
       { lat: 31.673000, lng: 35.219000 },
       // Add more marker positions as needed
-    ];
+    ];*/
   
     markerPositions.forEach((position) => {
       const marker = new google.maps.Marker({
@@ -36,7 +45,8 @@ async function initMap() {
         animation: google.maps.Animation.DROP,
         icon: icon,
       });
-  
+      infoWindow = new google.maps.InfoWindow();
+      
       // Attach the same info window to each marker
       marker.addListener("click", () => {
         infoWindow.setContent(getInfoWindowContent());
@@ -46,7 +56,6 @@ async function initMap() {
       markers.push(marker);
     });
   
-    infoWindow = new google.maps.InfoWindow();
   }
   
   function getInfoWindowContent() {
