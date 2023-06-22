@@ -1,4 +1,10 @@
-const adress = require("../models/StoreLocation");
+const StoreLocation= require('../models/StoreLocation');
+
+async function getmap(){
+    const storelocation= 
+    await StoreLocation.find();
+    return storelocation;
+}
 
 
 async function stores(req, res) {
@@ -12,9 +18,8 @@ async function stores(req, res) {
       }
     
   }
-  module.exports = { 
-    stores
+  module.exports={
+    getmap,
+    stores,
+
   }
-  
-  
-  

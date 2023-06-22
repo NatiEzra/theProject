@@ -120,7 +120,8 @@ function renderStores(req,res){ res.render("ourStores", {})}
 module.exports = {
 Mainpage,
 Cartpage,
-Salepage
+Salepage,
+renderStores
   }
 
   
