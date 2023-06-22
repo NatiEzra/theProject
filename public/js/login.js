@@ -2,7 +2,7 @@ let map;
 let markers = [];
 let infoWindow;
 //import sdd from "../controllers/mainpage.js";
-const { getmap } = require('./services/mainpage');
+//const { getmap } = require('./services/mainpage');
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   map = new Map(document.getElementById("map"), {
@@ -14,10 +14,7 @@ async function initMap() {
     url: "./Images/location.png", // url
     scaledSize: new google.maps.Size(20, 20), // scaled size
   };
-async function getStroreLocations() {
-    //const user = await User.findOne({ username: username, password });
-    return user != null
-}
+
   // Create multiple markers
   const markerPositions = [
     { lat: 31.771959, lng: 35.217018 },
