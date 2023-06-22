@@ -1,3 +1,4 @@
+
 let map;
 let markers = [];
 let infoWindow;
@@ -8,8 +9,12 @@ async function initMap() {
       zoom: 8,
     });
   
-    const x=await fetch('/ourstore',{});
-    console.log(x.json);    
+    const x=await fetch('/ourstores').
+      then(response=>response.json())
+      .then(data=>{
+        console.log(data);
+      });
+    console.log(x.json());    
     const icon = {
       url: "./Images/location.png", // url
       scaledSize: new google.maps.Size(20, 20), // scaled size

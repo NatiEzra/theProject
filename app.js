@@ -8,9 +8,6 @@ var bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
 require('custom-env').env(process.env.NODE_ENV, './config');
 
-// app.get('/Mainpage', (req, res) => {
-  
-// });
 
 
 const { default: mongoose } = require("mongoose");
