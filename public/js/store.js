@@ -7,7 +7,10 @@ async function initMap() {
       center: { lat: 31.771959, lng: 35.217018 },
       zoom: 8,
     });
-  
+
+  const x=await fetch('/ourstore',{});
+  console.log(x.json);
+
     const icon = {
       url: "./Images/location.png", // url
       scaledSize: new google.maps.Size(20, 20), // scaled size
