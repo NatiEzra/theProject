@@ -8,49 +8,11 @@
       href="../css/ShoppingCart.css"
     />
   </head>
-
   <body>
-    <div class="header">
-      <div class="logo">
-        <a href="./Mainpage.html">
-          <img
-            src="../Images/logo_transparent2.png"
-            alt="Sportify Logo"
-          />
-        </a>
-      </div>
-      <div class="search-bar">
-        <input type="text" placeholder="Search items" />
-        <button class="register-button">
-          <a href="#register">
-            <img src="../Images/user2.png" alt="Register Icon" />
-            <div class="menu">
-              <ul>
-                <li>
-                  <a class="login-join" ;href="http://localhost:70/login">Login</a><span>+ </span
-                  ><a class="login-join" ;href="">Join</a>
-                </li>
-                <li>
-                
-                   
-        <button class="like-button">
-          <a href="#liked-items">
-            <img src="../Images/heart.png" alt="Register Icon" />
-          </a>
-        </button>
-        <button class="bag-button">
-          <a href="#bag">
-            <img src="../Images/bag.png" alt="Register Icon" />
-          </a>
-        </button>
-      </div>
-    </div>
-
+    <%- include('./templates/header.ejs');%>
     <div class="bag-header">
       <h2>Shopping Cart</h2>
     </div>
-
-    <div class="content">
       <table id="cart-table">
         <thead>
           <tr>
@@ -75,10 +37,10 @@
         <button>Sheckout</button>
       </div>
     </div>
-   
-    <div class="footer">
-
+    <%- include('./templates/footer.ejs');%>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/ShoppingCart.js"></script>
   </body>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../js/ShoppingCart.js"></script>
+
+
 </html>
