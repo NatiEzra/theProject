@@ -10,8 +10,8 @@ router.get("/Cartpage", Main_pageController.Cartpage);
 router.get("/Mainpage", Main_pageController.Mainpage);
 
 // GET route for the sale page
-//router.get("/Salepage", Main_pageController.Salepage);
-// router.get("/ourStores", StorePageController.stores);
+router.get("/Salepage", Main_pageController.Salepage);
+ router.get("/ourStores", StorePageController.stores);
 router.get("/Storelocation", StorePageController.Storepgage);
 
 module.exports = router;
