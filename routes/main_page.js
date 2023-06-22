@@ -11,5 +11,6 @@ router.get("/Mainpage", Main_pageController.Mainpage);
 
 
 router.get("/Salepage", Main_pageController.Salepage);
+router.get("/ourStores", Main_pageController.renderStores);
 
 module.exports = router;

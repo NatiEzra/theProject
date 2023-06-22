@@ -22,8 +22,7 @@ router.post("/login", loginController.login);
 // GET route for logging out
 router.get('/logout', loginController.logout);
 
-// GET route for logging out
-router.get('/ourStores', loginController.logout);
+
 // GET route for a protected route (requires authentication)
 //router.get('/Mainpage', loginController.isLoggedIn, loginController.AfterLogedin);
 
