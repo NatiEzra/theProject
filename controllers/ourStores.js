@@ -1,19 +1,18 @@
 const adress = require("../models/StoreLocation");
+const storeService = require("../services/ourStores");
 
-
+function Storepgage(req, res) {
+     res.render('ourStores',{});
+   }
 async function stores(req, res) {
-    const { lat, lng , Address  } = req.body
-   
-      const stores = await adress.find({}); 
-      if(stores)
-      {
-        res.render('ourStores', { addresses: stores });
-        
-      }
-    
+   const storeLoc=await storeService.getmap();
+   console.log(storeLoc)
+    res.json(storeLoc.json);
+    return next();
   }
   module.exports = { 
-    stores
+    stores,
+    Storepgage
   }
   
   
