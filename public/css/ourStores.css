@@ -1,16 +1,44 @@
+body{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#inline{
+  display: flex;
+}
 #map {
-    height: 400px; /* The height is 400 pixels */
-    width: 100%; /* The width is the width of the web page */
+    height: 550px; /* The height is 550 pixels */
+    width: 75%; 
+   
+
   }
   h1{
     text-align: center;
-    color:orange
+    color:#ea9215;
+    background-color:rgba(58, 71, 80, 255) ;
+    width: 24rem;
+    height:3.5rem;
+    margin:auto;
+    border-radius: 27px;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+    font-family: Poppins-Bold;
   }
   #block{
     text-align: center;
+   width:24%;
   }
   #addressCointaner{
     list-style-position: inside; /* Position the list item markers inside the <ol> */
-    
+    background-color:rgba(58, 71, 80, 255);
+  color:#ea9215;
+  border-radius: 9px;
+  margin-left:1.5rem;
+  font-weight: 500;
+  font-family: Poppins-Bold;
+  margin-right:0rem;
   }
+
+ li{
   
+  margin-bottom: 0.05rem;
+  padding: 0.1em;
+ }
