@@ -4,7 +4,7 @@ const StoreLocation= require('../models/StoreLocation');
 async function login(username, password) {
     console.log(username);
     console.log(password);
-    const user = await User.findOne({username:username,password:password });
+    const user = await User.findOne({username:username,password:password });  
     if(user!==null)
         return user
     else
