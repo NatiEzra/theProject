@@ -7,7 +7,7 @@ function Storepgage(req, res) {
       let username = logedin.isLoggedIn(req, res);
       if (username == null) loggedIn = false;
       else loggedIn = true;
-     res.render('ourStores',{apikey:apikey , loggedIn: loggedIn,username: username});
+     res.render('ourStores',{apikey:apikey , loggedIn: loggedIn,username: username , Admin:false});
    }
 async function stores(req, res,next) {
    const storeLoc=await storeService.getmap();
