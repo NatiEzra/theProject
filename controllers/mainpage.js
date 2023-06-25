@@ -13,7 +13,7 @@ function Mainpage(req, res) {
 }
 
 function Cartpage(req, res) {
-  res.render("ShoppingCart", {});
+  res.render("ShoppingCart", {Admin:false});
 }
 
 module.exports = {
