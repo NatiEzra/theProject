@@ -1,6 +1,10 @@
 const fs = require("fs");
 const Item = require("../models/Item");
-
+async function getitems(){
+  const allitems= 
+  await Item.find();
+  return allitems;
+}
 async function addItemWithImage() {
   try {
     // Read the image file as a Buffer
@@ -18,7 +22,7 @@ async function addItemWithImage() {
         contentType: "image/jpeg",
       },
     });
-
+    
     // Save the new item to the database
     await newItem.save();
 
@@ -28,4 +32,6 @@ async function addItemWithImage() {
   }
 }
 
-module.exports = { addItemWithImage };
+module.exports = { addItemWithImage,
+getitems
+ };

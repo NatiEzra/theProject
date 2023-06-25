@@ -1,5 +1,6 @@
 const fs = require("fs");
 const logedin = require("./login");
+
 function Mainpage(req, res) {
   let username = logedin.isLoggedIn(req, res);
   let admin=false;
@@ -15,6 +16,7 @@ function Mainpage(req, res) {
 function Cartpage(req, res) {
   res.render("ShoppingCart", {});
 }
+
 
 module.exports = {
   Mainpage,

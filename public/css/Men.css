@@ -1,0 +1,18 @@
+.card{
+    width: 18rem;
+}
+#place{
+    background-color: black;
+    width: 15rem;
+    height:5rem;
+}
+.bag-button{
+    border:none;
+width: 40px;
+    height: 40px;
+padding: 5px 10px;
+}
+.bag-button-img{
+    width: 25px;
+    height: 25px;
+}
