@@ -22,8 +22,8 @@ const ItemSchema = new mongoose.Schema({
     required: true,
   },
   img: {
-    data: Buffer, // Store image as a Buffer
-    contentType: String, // Store image content type
+    type: String,
+    required: true,
   },
 });
 
