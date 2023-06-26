@@ -5,7 +5,7 @@ body{
   display: flex;
 }
 #map {
-    height: 550px; /* The height is 550 pixels */
+    height: 560px; /* The height is 560 pixels */
     width: 75%; 
    
 
@@ -35,6 +35,8 @@ body{
   font-weight: 500;
   font-family: Poppins-Bold;
   margin-right:0rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
   }
 
  li{
