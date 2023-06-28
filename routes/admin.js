@@ -9,4 +9,7 @@ const router = express.Router();
 // GET route for the Managment page
 router.get("/management", Admin_pageController.Adminpage);
 
+// POST route for new item
+router.post("/management", Admin_pageController.Additem);
+
 module.exports = router;
