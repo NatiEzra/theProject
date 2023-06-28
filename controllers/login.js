@@ -28,9 +28,14 @@ function logout(req, res) {
 async function login(req, res) {
   const { username, password } = req.body;
   const result = await loginService.login(username, password);
+  req.session.isadmin=false;
   if (result) {
     let admin = result.role;
-    if (admin =="admin") admin=true
+    if (admin =="admin") 
+    { 
+      admin=true
+      req.session.isadmin=true;
+    }
     else admin=false;
     req.session.username = username;
     res.render("Mainpage",{Admin:admin , loggedIn: true, username: result.username});
