@@ -5,6 +5,12 @@ async function getitems(){
   await Item.find();
   return allitems;
 }
+
+async function getMenPants(){
+  const Menpants= 
+  await Item.find({gender:"male", type: "pants"});
+  return Menpants;
+}
 async function getWomenItems(){
   const womenItems= 
   await Item.find({gender:"female"});
@@ -39,5 +45,6 @@ async function addItemWithImage() {
 
 module.exports = { addItemWithImage,
 getitems,
-getWomenItems
+getWomenItems,
+getMenPants
  };
