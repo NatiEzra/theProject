@@ -37,4 +37,7 @@ app.use('/', loginRouter);
 const Main_page = require('./routes/main_page');
 app.use('/', Main_page);
 
+const Admin_page = require('./routes/admin');
+app.use('/', Admin_page);
+
 app.listen(process.env.PORT, () => console.log('Server started on port 70'));

@@ -3,7 +3,8 @@ const logedin = require("./login");
 
 function Mainpage(req, res) {
   let username = logedin.isLoggedIn(req, res);
-  let admin=false;
+  let admin=req.session.isadmin;
+  ;
   if (username == null) loggedIn = false;
   else
   { 
@@ -14,7 +15,7 @@ function Mainpage(req, res) {
 }
 
 async function Cartpage(req, res) {
-  let username = logedin.isLoggedIn(req, res);
+  let username = req.session.username;
   //const result = await loginService.login(username, password);
 
   let admin=false;

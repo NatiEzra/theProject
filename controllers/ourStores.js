@@ -4,10 +4,11 @@ const logedin = require("./login");
 require('custom-env').env(process.env.NODE_ENV, './config');
 function Storepgage(req, res) {
       const apikey=process.env.apikey;
-      let username = logedin.isLoggedIn(req, res);
+      let username = req.session.username;
+      let admin= req.session.isadmin;
       if (username == null) loggedIn = false;
       else loggedIn = true;
-     res.render('ourStores',{apikey:apikey , loggedIn: loggedIn,username: username , Admin:false});
+     res.render('ourStores',{apikey:apikey , loggedIn: loggedIn,username: username , Admin:admin});
    }
 async function stores(req, res,next) {
    const storeLoc=await storeService.getmap();
