@@ -1,5 +1,5 @@
 async function setWomenItems() {
-    const x=await fetch('/WomenJson').
+    const x=await fetch('/MenPantsJson').
           then(response=>response.json())
           .then(data=>{
             const newDiv = document.getElementById('container');
