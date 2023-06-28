@@ -13,8 +13,18 @@ function Mainpage(req, res) {
   res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin });
 }
 
-function Cartpage(req, res) {
-  res.render("ShoppingCart", {Admin:false});
+async function Cartpage(req, res) {
+  let username = logedin.isLoggedIn(req, res);
+  //const result = await loginService.login(username, password);
+
+  let admin=false;
+  if (username == null) loggedIn = false;
+  else
+  { 
+    loggedIn = true;
+    admin=req.session.isadmin;
+  }
+  res.render("ShoppingCart", {username:username,Admin:admin});
 }
 
 
