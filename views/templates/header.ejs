@@ -16,24 +16,21 @@
         <div class="search-bar">
           <input type="text" placeholder="Search items" />
           <button class="register-button">
-            <a href="#register">
-
               <img src="../Images/user2.png" alt="Register Icon" />
               <div class="menu">
                 <ul>
-                  <!-- <% if (loggedIn) { %> -->
+                  <% if (loggedIn) { %>
                     <li>
-                      <!-- Welcome <%= username %> -->
+                      Welcome <%= username %>
                       <a class="login-join" id="sign-out" href="/logout">Sign out</a>
                     </li>
-                  <!-- <% } else { %> -->
+                  <% } else { %>
                     <li>
                       <a class="login-join" href="./login">Login</a>
                       <span>+</span>
                       <a class="login-join" href="./register">Join</a>
                     </li>
-                  <!-- <% } %> -->
-              
+                  <% } %>
                   <li>
                     <a class="accord" href="#my-account">
                       <img src="../Images/user.png" alt="My Account Icon" />
@@ -48,7 +45,6 @@
                   </li>
                 </ul>
               </div>
-               
           <button class="like-button">
             <a href="#liked-items">
               <img src="../Images/heart.png" alt="Register Icon" />

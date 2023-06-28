@@ -5,6 +5,11 @@ async function getitems(){
   await Item.find();
   return allitems;
 }
+async function getWomenItems(){
+  const womenItems= 
+  await Item.find({gender:"female"});
+  return womenItems;
+}
 async function addItemWithImage() {
   try {
     // Read the image file as a Buffer
@@ -33,5 +38,6 @@ async function addItemWithImage() {
 }
 
 module.exports = { addItemWithImage,
-getitems
+getitems,
+getWomenItems
  };
