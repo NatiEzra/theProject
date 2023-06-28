@@ -8,11 +8,22 @@ async function MenJson(req,res){
     res.json(MenItems);
   }
   async function Men(req, res){
-   
+     
     res.render("Men", {});
   }
+  async function Women(req, res){
+   
+    res.render("Women", {});
+  }
+  async function WomenJson(req,res){
+    const WomenItems=await itemService.getWomenItems();
+      res.json(WomenItems);
+    }
+    
 module.exports = {
     additems,
     MenJson,
-    Men
+    Men,
+    Women,
+    WomenJson
   }

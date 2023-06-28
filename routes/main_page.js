@@ -12,6 +12,8 @@ router.get("/Mainpage", Main_pageController.Mainpage);
 //
 router.get("/Men", ItemsPageController.Men);
 router.get("/MenJson", ItemsPageController.MenJson);
+router.get("/Women", ItemsPageController.Women);
+router.get("/WomenJson", ItemsPageController.WomenJson);
 // GET route for the sale page
 //router.get("/Salepage", Main_pageController.Salepage);
 router.get("/ourStores", StorePageController.stores);
