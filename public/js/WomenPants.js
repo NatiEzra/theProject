@@ -1,5 +1,5 @@
-async function setWomenItems() {
-    const x=await fetch('/WomenJson').
+async function setWomenPants() {
+    const x=await fetch('/WomenPantsJson').
           then(response=>response.json())
           .then(data=>{
             const newDiv = document.getElementById('container');
@@ -43,4 +43,4 @@ async function setWomenItems() {
               
             });
           });}
-          setWomenItems();
+          setWomenPants();
