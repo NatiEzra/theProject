@@ -13,24 +13,27 @@
             />
           </a>
         </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Search items" />
+        <div class="style-button">
           <button class="register-button">
               <img src="../Images/user2.png" alt="Register Icon" />
               <div class="menu">
                 <ul>
                   <% if (loggedIn) { %>
                     <li>
-                      Welcome <%= username %>
+                      <span class="greeting">Hi <%= username %></span>    
                       <a class="login-join" id="sign-out" href="/logout">Sign out</a>
                     </li>
+                    
                   <% } else { %>
                     <li>
                       <a class="login-join" href="./login">Login</a>
-                      <span>+</span>
+                      <span></span>
                       <a class="login-join" href="./register">Join</a>
                     </li>
                   <% } %>
+                  
+                    <hr class="menu-divider" /> 
+                
                   <li>
                     <a class="accord" href="#my-account">
                       <img src="../Images/user.png" alt="My Account Icon" />

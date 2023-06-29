@@ -11,6 +11,9 @@ router.get("/Cartpage", Main_pageController.Cartpage);
 router.get("/Mainpage", Main_pageController.Mainpage);
 //
 
+// GET route for the error page
+router.get("/ErrorPage", Main_pageController.Error);
+
 
 // GET route for the sale page
 //router.get("/Salepage", Main_pageController.Salepage);
