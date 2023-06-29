@@ -92,6 +92,35 @@ async function MenJson(req,res){
         const WomenShirtsItems=await itemService.getWomenShirts();
           res.json(WomenShirtsItems);
         }
+
+        async function WomenPants(req, res){
+          const admin=req.session.isadmin;
+          if ('isLoggedIn' in req.session) {
+            const name=req.session.username;
+            res.render("WomenPants", {Admin: admin, loggedIn: true, username:name});
+          } else {
+            res.render("WomenPants", {Admin: admin, loggedIn: false });
+          }
+        
+        }
+        async function WomenPantsJson(req,res){
+          const WomenPantsItems=await itemService.getWomenPants();
+            res.json(WomenPantsItems);
+          }
+          async function WomenShoes(req, res){
+            const admin=req.session.isadmin;
+            if ('isLoggedIn' in req.session) {
+              const name=req.session.username;
+              res.render("WomenShoes", {Admin: admin, loggedIn: true, username:name});
+            } else {
+              res.render("WomenShoes", {Admin: admin, loggedIn: false });
+            }
+          
+          }
+          async function WomenShoesJson(req,res){
+            const WomenPantsItems=await itemService.getWomenShoes();
+              res.json(WomenPantsItems);
+            }
 module.exports = {
     additems,
     MenJson,
@@ -105,5 +134,9 @@ module.exports = {
     MenShirtsJson,
     MenShirts,
     WomenShirtsJson,
-    WomenShirts
+    WomenShirts,
+    WomenPantsJson,
+    WomenPants,
+    WomenShoesJson,
+    WomenShoes
   }
