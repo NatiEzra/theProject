@@ -107,6 +107,7 @@ body {
   }
   .greeting {
     font-weight: bold;
+    font-size: 18px;
   }  
   .menu ul li a img {
     width: 20px;
