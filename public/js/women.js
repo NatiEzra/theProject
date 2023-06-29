@@ -26,7 +26,7 @@ async function setWomenItems() {
                 body.classList.add('card-body');
                 title.classList.add('card-title');
                 desc.classList.add('card-text');
-                aLink.classList.add('bag-button');
+                aLink.classList.add('shop-button');
                 shoppingCart.classList.add('bag-button-img');
                 Like.classList.add('bag-button-img');
                 shoppingCart.alt="Add to cart";
