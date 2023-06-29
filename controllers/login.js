@@ -37,6 +37,7 @@ async function login(req, res) {
       req.session.isadmin=true;
     }
     else admin=false;
+    req.session.isLoggedIn=true;
     req.session.username = username;
     res.render("Mainpage",{Admin:admin , loggedIn: true, username: result.username});
   } else res.render("login", { flag: result});

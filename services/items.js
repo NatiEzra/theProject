@@ -11,6 +11,22 @@ async function getMenPants(){
   await Item.find({gender:"male", type: "pants"});
   return Menpants;
 }
+async function getMenShoes(){
+  const Menshoes= 
+  await Item.find({gender:"male", type: "shoes"});
+  return Menshoes;
+}
+
+async function getMenShirts(){
+  const Menshirts= 
+  await Item.find({gender:"male", type: "shirts"});
+  return Menshirts;
+}
+async function getWomenShirts(){
+  const Womenshirts= 
+  await Item.find({gender:"female", type: "shirts"});
+  return Womenshirts;
+}
 async function getWomenItems(){
   const womenItems= 
   await Item.find({gender:"female"});
@@ -46,5 +62,8 @@ async function addItemWithImage() {
 module.exports = { addItemWithImage,
 getitems,
 getWomenItems,
-getMenPants
+getMenPants,
+getMenShoes,
+getMenShirts,
+getWomenShirts,
  };

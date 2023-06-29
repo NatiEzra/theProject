@@ -1,4 +1,4 @@
-async function setWomenItems() {
+async function setMenPants() {
     const x=await fetch('/MenPantsJson').
           then(response=>response.json())
           .then(data=>{
@@ -43,4 +43,4 @@ async function setWomenItems() {
               
             });
           });}
-          setItems();
+          setMenPants();
