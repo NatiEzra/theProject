@@ -16,7 +16,8 @@ async function setMenItems() {
                 const price=document.createElement('p');
                 shoppingCart.src="../Images/bag.png";
                 Like.src="../Images/heart.png";
-                image.src="../Images/"+=item.img;
+                image.src="../Images/";
+                image.src+=item.img;
                 title.textContent = item.name;
                 desc.textContent=item.details;
                 price.textContent=item.price+'₪';
@@ -25,7 +26,7 @@ async function setMenItems() {
                 body.classList.add('card-body');
                 title.classList.add('card-title');
                 desc.classList.add('card-text');
-                aLink.classList.add('bag-button');
+                aLink.classList.add('shop-button');
                 shoppingCart.classList.add('bag-button-img');
                 Like.classList.add('bag-button-img');
                 shoppingCart.alt="Add to cart";
