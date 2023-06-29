@@ -4,8 +4,12 @@ const router = express.Router();
 const Main_pageController = require("../controllers/mainpage");
 const StorePageController = require("../controllers/ourStores");
 
+
 // GET route for the cart page
 router.get("/Cartpage", Main_pageController.Cartpage);
+
+// GET route for the myaccount page
+router.get("/myaccount", Main_pageController.Myaccount);
 
 // GET route for the main page
 router.get("/Mainpage", Main_pageController.Mainpage);

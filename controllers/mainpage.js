@@ -16,6 +16,17 @@ function Mainpage(req, res) {
 function Error(req, res){
 res.render("ErrorPage", {});
 }
+function Myaccount(req, res){
+  const admin=req.session.isadmin;
+  if ('isLoggedIn' in req.session) {
+    const name=req.session.username;
+    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name});
+  } else {
+    res.render("myAccountPage", {Admin: admin, loggedIn: false });
+  }
+}
+
+
 async function Cartpage(req, res) {
   let username = req.session.username;
   //const result = await loginService.login(username, password);
@@ -34,5 +45,6 @@ async function Cartpage(req, res) {
 module.exports = {
   Mainpage,
   Cartpage,
-  Error
+  Error,
+  Myaccount
 }
