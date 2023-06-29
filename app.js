@@ -37,6 +37,9 @@ app.use('/', loginRouter);
 const Main_page = require('./routes/main_page');
 app.use('/', Main_page);
 
+const Item_page = require('./routes/items');
+app.use('/', Item_page);
+
 const Admin_page = require('./routes/admin');
 app.use('/', Admin_page);
 
