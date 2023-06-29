@@ -8,7 +8,8 @@ function Adminpage(req, res) {
     if (isAdmin === true) {
       res.render("Management", { loggedIn: true, username: username, Admin: isAdmin });
     } else {
-      res.status(404) // Render the 404 error page
+     // res.status(404) // Render the 404 error page
+     res.redirect("/ErrorPage");   // Render the 404 error page
     }
   }
 async function Additem(req, res) {
