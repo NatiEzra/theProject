@@ -1,4 +1,5 @@
-//const itemService = require("../services/admin");
+const AdminService = require("../services/admin");
+
 
 function Adminpage(req, res) {
     let isAdmin = req.session.isadmin;
@@ -10,15 +11,11 @@ function Adminpage(req, res) {
       res.status(404) // Render the 404 error page
     }
   }
-function Additem(req, res) {
-    let isAdmin = req.session.isadmin;
-    let username = req.session.username;
-
-    if (isAdmin === true) {
-      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin });
-    } else {
-      res.status(404) // Render the 404 error page
-    }
+async function Additem(req, res) {
+    const { name, type , gender , price , details ,single_input } = req.body
+    await AdminService.AddItem(req,res,name, type , gender , price , details ,single_input);   
+    //res.redirect('/Mainpage');
+  
   }
 
 module.exports = {
