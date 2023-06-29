@@ -31,19 +31,25 @@
                       <a class="login-join" href="./register">Join</a>
                     </li>
                   <% } %>
-                  
                     <hr class="menu-divider" /> 
-                
-                  <li>
-                    <a class="accord" href="#my-account">
-                      <img src="../Images/user.png" alt="My Account Icon" />
-                      <span class="account">My Account</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="accord" href="#my-orders">
-                      <img src="../Images/checkout.png" alt="My Orders Icon" />
-                      <span class="orders">My Orders</span>
+                    <li>
+                      <% if (loggedIn) { %>
+                        <a class="accord" href="/myaccount">
+                      <% } else { %>
+                        <a class="accord" href="/login">
+                      <% } %>
+                        <img src="../Images/user.png" alt="My Account Icon" />
+                        <span class="account">My Account</span>
+                      </a>
+                    </li>
+                    <li>
+                      <% if (loggedIn) { %>
+                        <a class="accord" href="#my-orders">
+                      <% } else { %>
+                        <a class="accord" href="/login">
+                      <% } %>
+                        <img src="../Images/checkout.png" alt="My Orders Icon" />
+                        <span class="orders">My Orders</span>
                     </a>
                   </li>
                 </ul>
