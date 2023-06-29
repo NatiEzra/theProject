@@ -78,91 +78,45 @@
     </form>
   </div>
 
-  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Add User Form -->
-          <form>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" required>
-            </div>
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName">
-            </div>
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName">
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="form-group">
-              <label for="gender">Gender</label>
-              <select class="form-control" id="gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="date">Date</label>
-              <input type="date" class="form-control" id="date">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" required>
-            </div>
-            <div class="form-group">
-              <label for="role">Role</label>
-              <select class="form-control" id="role">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-              </select>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add User</button>
+  <div class="form-container-hidden" id="formContainer">
+    <form action="/management" method="POST">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="input-text form-control" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select class="input-text form-control" id="type" name="type" required>
+          <option value="Men">Men</option>
+          <option value="Women">Women</option>
+          <option value="Unisex">Unisex</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="input-text form-control" id="gender_" name="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="input-text form-control" id="price" name="price" required>
+      </div>
+      <div class="form-group">
+        <label for="details">Details</label>
+        <textarea class="input-textarea form-control" id="details" name="details" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="img">Upload Single Images Here</label>
+        <div class="mb-3">
+          <input type="file" name="single_input" class="input-text form-control">
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Delete User Form -->
-          <form>
-            <div class="form-group">
-              <label for="deleteUsername">Username</label>
-              <input type="text" class="form-control" id="deleteUsername" required>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger">Delete User</button>
-        </div>
-      </div>
-    </div>
+      <button type="submit" class="btn btn-primary">Add Item</button>
+    </form>
   </div>
 
   <%- include('./templates/footer.ejs'); %>

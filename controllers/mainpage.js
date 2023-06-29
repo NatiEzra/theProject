@@ -1,5 +1,7 @@
 const fs = require("fs");
 const logedin = require("./login");
+const loginService = require("../services/account");
+const accountService = require("../services/account");
 
 function Mainpage(req, res) {
   let username = logedin.isLoggedIn(req, res);
@@ -16,13 +18,15 @@ function Mainpage(req, res) {
 function Error(req, res){
 res.render("ErrorPage", {});
 }
-function Myaccount(req, res){
-  const admin=req.session.isadmin;
+async function Myaccount(req, res){
+  const admin=false;
   if ('isLoggedIn' in req.session) {
+    const admin=req.session.isadmin;
     const name=req.session.username;
-    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name});
+    const user = await accountService.FindUser(name);
+    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
   } else {
-    res.render("myAccountPage", {Admin: admin, loggedIn: false });
+    res.render("login", { flag: true });
   }
 }
 

@@ -22,8 +22,8 @@
 <div class="user-avatar">
 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
 </div>
-<h5 class="user-name">UserName</h5>
-<h6 class="user-email">eMail</h6>
+<h5 class="user-name" ><%=username%></h5>
+<h6 class="user-email"><%=email%></h6>
 </div>
 <div class="about">
 <h5>About</h5>
@@ -42,20 +42,20 @@
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
-<label for="firstName">First Name</label>
-<input type="text" class="form-control" id="firstName" placeholder="Enter first name">
+<label for="firstName" >First Name</label>
+<input type="text" class="form-control" id="firstName"  value="<%=firstName%>">
 </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
     <label for="lastName">Last Name</label>
-    <input type="lastName" class="form-control" id="lastName" placeholder="Enter last name">
+    <input type="lastName" class="form-control" id="lastName" value="<%=lastname%>">
     </div>
     </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="eMail">Email</label>
-<input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+<input type="email" class="form-control" id="eMail" value="<%=email%>">
 </div>
 </div>
 </div>
