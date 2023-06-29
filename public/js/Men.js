@@ -16,7 +16,8 @@ async function setMenItems() {
                 const price=document.createElement('p');
                 shoppingCart.src="../Images/bag.png";
                 Like.src="../Images/heart.png";
-                image.src="../Images/"+=item.img;
+                image.src="../Images/";
+                image.src+=item.img;
                 title.textContent = item.name;
                 desc.textContent=item.details;
                 price.textContent=item.price+'₪';
