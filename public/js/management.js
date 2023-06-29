@@ -9,7 +9,7 @@ function toggleForm() {
     }
   }
   
-  $("#Additem").click(function() {
+  $("#AddItem").click(function() {
     toggleForm();
   });
   
