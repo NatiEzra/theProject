@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const ItemsPageController=require("../controllers/items");
+router.get("/AllItems", ItemsPageController.AllItems);
+router.get("/AllItemsJson", ItemsPageController.AllItemsJson);
 router.get("/Men", ItemsPageController.Men);
 router.get("/MenJson", ItemsPageController.MenJson);
 router.get("/MenPants", ItemsPageController.MenPants);
@@ -18,4 +20,5 @@ router.get("/WomenPantsJson", ItemsPageController.WomenPantsJson);
 router.get("/WomenPants", ItemsPageController.WomenPants);
 router.get("/WomenShoesJson", ItemsPageController.WomenShoesJson);
 router.get("/WomenShoes", ItemsPageController.WomenShoes);
+
 module.exports = router;

@@ -1,5 +1,5 @@
 async function setItems() {
-const x=await fetch('/MenJson').
+const x=await fetch('/AllItemsJson').
       then(response=>response.json())
       .then(data=>{
         const newDiv = document.getElementById('container');
