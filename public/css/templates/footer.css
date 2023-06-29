@@ -28,9 +28,8 @@
   .location-button,
   .management-button {
     background: #ea9215; /* Set the background to transparent */
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    padding: 8px 10px;
+    border-radius: 10px;
   }
   
   .instagram-button:hover,

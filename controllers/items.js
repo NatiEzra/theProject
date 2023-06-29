@@ -19,6 +19,23 @@ async function MenJson(req,res){
     
 
   }
+  async function MenJson(req,res){
+    const MenItems=await itemService.getMenItems();
+      res.json(MenItems);
+    }
+    async function Men(req, res){
+      
+      const admin=req.session.isadmin;
+      if ('isLoggedIn' in req.session) {
+        const name=req.session.username;
+        res.render("Men", {Admin: admin, loggedIn: true, username:name});
+      } else {
+        res.render("Men", {Admin: admin, loggedIn: false });
+      }
+      
+  
+    }
+
   async function MenPantsJson(req,res){
     const MenPants=await itemService.getMenPants();
       res.json(MenPants);
@@ -33,6 +50,22 @@ async function MenJson(req,res){
         res.render("MenPants", {Admin: admin, loggedIn: false});
       }
     }
+
+    async function AllItemsJson(req,res){
+      const all=await itemService.getitems();
+        res.json(all);
+      }
+      async function AllItems(req, res){
+         
+        const admin=req.session.isadmin;
+        if ('isLoggedIn' in req.session) {
+          const name=req.session.username;
+          res.render("AllItems", {Admin: admin, loggedIn: true, username:name});
+        } else {
+          res.render("AllItems", {Admin: admin, loggedIn: false});
+        }
+      }
+
   async function Women(req, res){
     const admin=req.session.isadmin;
     if ('isLoggedIn' in req.session) {
@@ -138,5 +171,7 @@ module.exports = {
     WomenPantsJson,
     WomenPants,
     WomenShoesJson,
-    WomenShoes
+    WomenShoes,
+    AllItems,
+    AllItemsJson,
   }

@@ -37,6 +37,11 @@ async function getWomenShoes(){
   await Item.find({gender:"female", type: "shoes"});
   return Womenshoes;
 }
+async function getMenItems(){
+  const MenItems= 
+  await Item.find({gender:"male"});
+  return MenItems;
+}
 async function getWomenItems(){
   const womenItems= 
   await Item.find({gender:"female"});
@@ -78,4 +83,5 @@ getMenShirts,
 getWomenShirts,
 getWomenPants,
 getWomenShoes,
+getMenItems,
  };

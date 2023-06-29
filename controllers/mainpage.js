@@ -13,7 +13,9 @@ function Mainpage(req, res) {
   }
   res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin });
 }
-
+function Error(req, res){
+res.render("ErrorPage", {});
+}
 async function Cartpage(req, res) {
   let username = req.session.username;
   //const result = await loginService.login(username, password);
@@ -31,5 +33,6 @@ async function Cartpage(req, res) {
 
 module.exports = {
   Mainpage,
-  Cartpage
+  Cartpage,
+  Error
 }
