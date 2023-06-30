@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const Item = require('../models/Item');
-
+const User = require('../models/User');
 // Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -50,5 +50,10 @@ async function AddItem(req, res, name, type, gender, price, details, singleInput
     console.error('Error occurred while adding item:', error);
   }
 }
-
-module.exports = { AddItem };
+async function Listofusers()
+{
+  const Users= 
+  await User.find();
+  return Users;
+}
+module.exports = { AddItem , Listofusers };

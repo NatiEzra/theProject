@@ -12,4 +12,12 @@ router.get("/management", Admin_pageController.Adminpage);
 // POST route for new item
 router.post("/management", Admin_pageController.Additem);
 
+
+router.get('/update-user', Admin_pageController.Update_user_page);
+
+//router.get('/api/users', Admin_pageController.find_user);
+
+router.get('/api/users', Admin_pageController.find_user)
+
+router.put('/api/users/:id', Admin_pageController.Update_user);
 module.exports = router;
