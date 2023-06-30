@@ -65,21 +65,21 @@
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
-<label for="Password">Old password</label>
-<input type="password" class="form-control" id="Password" placeholder="Enter old password">
+<label for="Password">Current password</label>
+<input type="password" class="form-control" id="Password" placeholder="Enter current password">
 </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
     <label for="Password">New password</label>
-    <input type="password" class="form-control" id="Password" placeholder="Enter new password">
+    <input type="password" class="form-control" id="NewPassword" placeholder="Enter new password">
     </div>
     </div>
 </div>
 <div class="row gutters">
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="text-right">
-<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+<button type="button" id="reset" name="reset" class="btn btn-secondary">Reset</button>
 <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
 </div>
 </div>
@@ -94,5 +94,6 @@
 <script type="text/javascript">
 </script>
 <%- include('./templates/footer.ejs'); %>
+<script type="text/JavaScript" src="../js/MyAccount.js"></script>
 </body>
 </html>

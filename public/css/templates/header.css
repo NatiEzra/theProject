@@ -47,7 +47,7 @@ body {
   .bag-header h2 {
     font-size: 36px;
     color: #ea9215;
-    font-weight: bold;
+    text-align: center;
   }
 
   .register-button,
