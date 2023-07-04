@@ -70,5 +70,18 @@ async function updateUser(userId, updatedData) {
       throw error;
     }
   }
+async function CreateUser(username, email,firstname , lastname , gender , date , password){
+    const user = new User({
+      username: username,
+      firstname : firstname , 
+      lastname : lastname,
+      email : email,
+      gender , gender,
+      date: date,
+      password:password
+  });
+  await user.save();
+  return true;
+}
 
-module.exports = { AddItem , Listofusers , updateUser };
+module.exports = { AddItem , Listofusers , updateUser , CreateUser };

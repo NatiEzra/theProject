@@ -23,4 +23,9 @@ router.put('/api/users/:id', Admin_pageController.Update_user);
 
 router.delete('/api/users/:id', Admin_pageController.Delete_user);
 
+router.get('/add-user', Admin_pageController.Add_user_Form);
+
+router.post('/api/users', Admin_pageController.CreateUser)
+
+
 module.exports = router;
