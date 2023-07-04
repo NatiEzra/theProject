@@ -56,4 +56,19 @@ async function Listofusers()
   await User.find();
   return Users;
 }
-module.exports = { AddItem , Listofusers };
+
+async function updateUser(userId, updatedData) {
+    try {
+      const user = await User.findByIdAndUpdate(userId, updatedData, { useFindAndModify: false });
+      if (!user) {
+        throw new Error(`Cannot update user with ID ${userId}. User not found.`);
+      }
+      console.log('User updated successfully.');
+      return user;
+    } catch (error) {
+      console.error('Error occurred while updating user:', error);
+      throw error;
+    }
+  }
+
+module.exports = { AddItem , Listofusers , updateUser };

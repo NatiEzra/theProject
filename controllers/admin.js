@@ -67,25 +67,47 @@ async function find_user(req, res){
 
 }
 
-async function Update_user (req, res){
-  if(!req.body){
-      return res
-          .status(400)
-          .send({ message : "Data to update can not be empty"})
-  }
+// async function Update_user (req, res){
+//   if(!req.body){
+//       return res
+//           .status(400)
+//           .send({ message : "Data to update can not be empty"})
+//   }
 
-  const id = req.params.id;
-  User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
-      .then(data => {
-          if(!data){
-              res.status(404).send({ message : `Cannot Update user with ${id}. Maybe user not found!`})
-          }else{
-              res.send(data)
-          }
-      })
-      .catch(err =>{
-          res.status(500).send({ message : "Error Update user information"})
-      })
+//   const id = req.params.id;
+//   User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+//       .then(data => {
+//           if(!data){
+//               res.status(404).send({ message : `Cannot Update user with ${id}. Maybe user not found!`})
+//           }else{
+//               res.send(data)
+//           }
+//       })
+//       .catch(err =>{
+//           res.status(500).send({ message : "Error Update user information"})
+//       })
+// }
+
+async function Update_user(req, res) {
+  try {
+    if (!req.
+      body) {
+      return res.status(400).send({ message: 'Data to update cannot be empty' });
+    }
+
+    const id = req.params.id;
+    const userData = req.body;
+
+    const updatedUser = await AdminService.updateUser(id, userData);
+
+    if (!updatedUser) {
+      return res.status(404).send({ message: `Cannot update user with ID ${id}. Maybe user not found!` });
+    }
+
+    res.send(updatedUser);
+  } catch (error) {
+    res.status(500).send({ message: 'Error updating user information' });
+  }
 }
 module.exports = {
     Adminpage,
