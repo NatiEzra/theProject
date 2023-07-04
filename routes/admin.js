@@ -20,4 +20,7 @@ router.get('/update-user', Admin_pageController.Update_user_page);
 router.get('/api/users', Admin_pageController.find_user)
 
 router.put('/api/users/:id', Admin_pageController.Update_user);
+
+router.delete('/api/users/:id', Admin_pageController.Delete_user);
+
 module.exports = router;

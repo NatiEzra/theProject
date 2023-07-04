@@ -66,6 +66,25 @@ async function find_user(req, res){
   }
 
 }
+async function Delete_user (req, res)
+{
+    const id = req.params.id;
+    User.findByIdAndDelete(id)
+        .then(data => {
+            if(!data){
+                res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
+            }else{
+                res.send({
+                    message : "User was deleted successfully!"
+                })
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message: "Could not delete User with id=" + id
+            });
+        });
+}
 
 async function Update_user (req, res){
   if(!req.body){
@@ -93,5 +112,6 @@ module.exports = {
     Getlistofusers,
     Update_user,
     Update_user_page,
-    find_user
+    find_user,
+    Delete_user
   }
