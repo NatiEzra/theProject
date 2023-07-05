@@ -1,6 +1,7 @@
 const AdminService = require("../services/admin");
 const axios = require('axios');
 const User = require('../models/User');
+const Swal = require('sweetalert2');
 
 
 async function Adminpage(req, res) {
@@ -20,7 +21,7 @@ function Add_user_Form(req,res)
 {
     if ('isLoggedIn' in req.session) {
         let isAdmin = req.session.isadmin;
-        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username });
+        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' });
     }
     else{
         res.redirect("/ErrorPage");
@@ -40,16 +41,14 @@ async function Getlistofusers()
   return Users;
 }
 
-async function CreateUser(req,res){
-  const { username, email,firstname , lastname , gender , date , password } = req.body
-  let result = await AdminService.CreateUser(username, email,firstname , lastname , gender , date , password);
-  if(result)
-  {
-    let Users= await Getlistofusers();
-    res.render("Management", { loggedIn: true, username: req.session.username, Admin: req.session.isAdmin , users:Users });
+async function CreateUser(req, res) {
+  const { username, email, firstname, lastname, gender, date, password } = req.body;
+  let result = await AdminService.CreateUser(username, email, firstname, lastname, gender, date, password);
+  if (result) {
+    const message  = "The User added successfully!"
+    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message });
 
   }
-
 }
 async function Update_user_page(req,res)
 {
@@ -62,50 +61,26 @@ async function Update_user_page(req,res)
       })
 }
 async function find_user(req, res){
-  if(req.query.id){
-      const id = req.query.id;
-
-      User.findById(id)
-          .then(data =>{
-              if(!data){
-                  res.status(404).send({ message : "Not found user with id "+ id})
-              }else{
-                  res.send(data)
-              }
-          })
-          .catch(err =>{
-              res.status(500).send({ message: "Erro retrieving user with id " + id})
-          })
-
-  }else{
-      Userdb.find()
-          .then(user => {
-              res.send(user)
-          })
-          .catch(err => {
-              res.status(500).send({ message : err.message || "Error Occurred while retriving user information" })
-          })
-  }
-
+  const id = req.query.id;
+  const data = await AdminService.findById(id);
+  if(data)
+    res.send(data);
+  else 
+  res.status(500).send({ message: "Erro retrieving user with id " + id})
+   
 }
 async function Delete_user (req, res)
 {
-    const id = req.params.id;
-    User.findByIdAndDelete(id)
-        .then(data => {
-            if(!data){
-                res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
-            }else{
-                res.send({
-                    message : "User was deleted successfully!"
-                })
-            }
-        })
-        .catch(err =>{
-            res.status(500).send({
-                message: "Could not delete User with id=" + id
-            });
-        });
+  const id = req.params.id;
+  let result = await AdminService.findByIdAndDelete(id);
+  if(result)
+  {
+    res.send({
+      message : "User was deleted successfully!" });
+  }
+  else{
+    console.log("Cant remove account id : "+ id);
+  }
 }
 
 

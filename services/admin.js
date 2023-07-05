@@ -83,5 +83,24 @@ async function CreateUser(username, email,firstname , lastname , gender , date ,
   await user.save();
   return true;
 }
-
-module.exports = { AddItem , Listofusers , updateUser , CreateUser };
+async function findById(id){
+  let data = await User.findById(id); 
+  if(!data){
+    return false;
+  }
+  else{
+    return(data);
+    }
+}
+async function findByIdAndDelete(id)
+{
+  let result = await User.findByIdAndDelete(id);
+  if(!result)
+  {
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete};
