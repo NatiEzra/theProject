@@ -36,6 +36,7 @@ function toggleForm() {
 });
 if(window.location.pathname == "/management"){
   $ondelete = $(".table tbody td a.delete");
+  const message = 
   $ondelete.click(function(){
       var id = $(this).attr("data-id");
 
@@ -44,12 +45,30 @@ if(window.location.pathname == "/management"){
           "method" : "DELETE"
       }
 
-      if(confirm("Do you really want to delete this record?")){
-          $.ajax(request).done(function(response){
-              alert("Data Deleted Successfully!");
-              location.reload();
-          })
-      }
+      Swal.fire({
+        title: 'Confirmation',
+        text: 'Do you really want to delete this record?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax(request).done(function(response) {
+            Swal.fire({
+              title: 'Success',
+              text: response.message,
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then(() => {
+              location.reload(); // Refresh the page
+            });
+          });
+        } else {
+          // User clicked "Cancel" or closed the alert
+          // Do nothing or perform any desired action
+        }
+      });
 
   })
 }
