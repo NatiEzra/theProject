@@ -82,14 +82,16 @@
     </form>
   </div>
 
-  <div class="container">
+ 
+
+    <!-- form handling -->
+    <div id="manageUsersForm" class="container">
+       <div class="container">
     <div class="box-nav d-flex justify-between">
         <a href="/add-user" class="border-shadow">
             <span class="text-gradient">New User <i class="fas fa-user"></i></span>
         </a>
     </div>
-
-    <!-- form handling -->
   <form action="/" method="POST">
         <table class="table">
             <thead class="thead-dark">
@@ -127,6 +129,7 @@
             </tbody>
         </table>
     </form>
+  </div>
 </div>
   <%- include('./templates/footer.ejs'); %>
   <script src="../js/management.js">

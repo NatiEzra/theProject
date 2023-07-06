@@ -1,6 +1,9 @@
 function toggleForm() {
     var formContainer = $("#formContainer");
     if (formContainer.hasClass("form-container-hidden")) {
+      if ($('#manageUsersForm').css('display') === 'block') {
+        $('#manageUsersForm').toggle();
+      } 
       formContainer.removeClass("form-container-hidden");
       formContainer.addClass("form-container-add");
     } else {
@@ -72,3 +75,17 @@ if(window.location.pathname == "/management"){
 
   })
 }
+$(document).ready(function() {
+  // Hide the form initially
+  $('#manageUsersForm').hide();
+
+  // Add click event handler to the "Manage Users" link
+  $('#manageUsers').click(function(e) {
+    e.preventDefault(); // Prevent the default link behavior
+    if ($('#formContainer')[0].classList.contains('form-container-add')) {
+      $('#formContainer')[0].classList.add('form-container-hidden');
+      $('#formContainer')[0].classList.remove('form-container-add');
+    }
+      $('#manageUsersForm').toggle(); // Toggle the visibility of the form
+  });
+});
