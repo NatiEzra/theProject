@@ -33,7 +33,12 @@ function toggleForm() {
     }
 
     $.ajax(request).done(function(response){
-        alert("Data Updated Successfully!");
+        Swal.fire({
+        title: 'Success',
+        text: "Data Updated Successfully!",
+        icon: 'success',
+        confirmButtonText: 'OK'
+        })
     })
 
 });
@@ -77,7 +82,7 @@ if(window.location.pathname == "/management"){
 }
 $(document).ready(function() {
   // Hide the form initially
-  $('#manageUsersForm').hide();
+  //$('#manageUsersForm').hide();
 
   // Add click event handler to the "Manage Users" link
   $('#manageUsers').click(function(e) {
