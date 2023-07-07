@@ -32,7 +32,16 @@ function toggleForm() {
         "data" : data
     }
 
-    $.ajax(request).done(function(response){
+    Swal.fire({
+      title: 'Confirmation',
+      text: 'Do you really want to Update this record?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+      $.ajax(request).done(function(response){
         Swal.fire({
         title: 'Success',
         text: "Data Updated Successfully!",
@@ -40,7 +49,8 @@ function toggleForm() {
         confirmButtonText: 'OK'
         })
     })
-
+  }
+  });
 });
 if(window.location.pathname == "/management"){
   $ondelete = $(".table tbody td a.delete");
