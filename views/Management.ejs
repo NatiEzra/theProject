@@ -7,6 +7,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body>
@@ -80,14 +82,16 @@
     </form>
   </div>
 
-  <div class="container">
+ 
+
+    <!-- form handling -->
+    <div id="manageUsersForm" class="container">
+       <div class="container">
     <div class="box-nav d-flex justify-between">
         <a href="/add-user" class="border-shadow">
             <span class="text-gradient">New User <i class="fas fa-user"></i></span>
         </a>
     </div>
-
-    <!-- form handling -->
   <form action="/" method="POST">
         <table class="table">
             <thead class="thead-dark">
@@ -116,7 +120,7 @@
                       <a href="/update-user?id=<%= users[i]._id%>" class="btn border-shadow update">
                         <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
                         </a>
-                        <a class="btn border-shadow delete" data-id=<%= users[i].username%> >
+                        <a class="btn border-shadow delete" data-id=<%= users[i]._id%> >
                             <span class="text-gradient"><i class="fas fa-times"></i></span>
                         </a>
                     </td>
@@ -125,8 +129,12 @@
             </tbody>
         </table>
     </form>
+  </div>
 </div>
   <%- include('./templates/footer.ejs'); %>
-  <script src="../js/management.js"></script>
+  <script src="../js/management.js">
+  
+
+  </script>
 </body>
 </html>

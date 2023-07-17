@@ -1,0 +1,96 @@
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/admin.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <body>
+
+
+<!-- include header -->
+<%- include('./templates/header.ejs');%>
+<!-- /include header -->
+
+  <!-- Main Site -->
+  <main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+           <div class="filter goback">
+               <a href="/management"><i class="fas fa-angle-double-left"></i><<< All Users</a>
+           </div>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">New User</h2>
+            <span class="text-light">Use the below form to create a new account</span>
+        </div>
+        
+        <form method="POST" action="/api/users" id="update_user">
+            <div class="new_user">
+                <div class="form-group">
+                    <label for="name" class="text-light">UserName</label>
+                    <input type="hidden" name="id">
+                    <input type="text" name="username" placeholder="UserName">
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="text-light">Email</label>
+                    <input type="text" name="email" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="FirstName" class="text-light">FirstName</label>
+                    <input type="text" name="firstname" placeholder="FirstName">
+                </div>
+                <div class="form-group">
+                    <label for="LastName" class="text-light">LastName</label>
+                    <input type="text" name="lastname" placeholder="LastName">
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="text-light">Gender</label>
+                    <div class="radio inline">
+                        <input type="radio" id="radio-2" name="gender" value="Male">
+                        <label for="radio-2" class="radio-label">Male</label>
+                    </div>
+                    <div class="radio inline">
+                        <input type="radio" id="radio-3" name="gender" value="Female">
+                        <label for="radio-3" class="radio-label">Female</label>
+                    </div>
+                    <div class="radio inline">
+                        <input type="radio" id="radio-4" name="gender" value="Other">
+                        <label for="radio-4" class="radio-label">Other</label>
+                    </div>
+                </div>
+                <div id="divDate">
+                    <label>Pick your birthday date</label>
+                    <input name="date" type="date" id="date" min="1907-03-03" max="2023-06-13"/>
+                </div>
+                <div class="form-group">
+                    <label for="Password" class="text-light">Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn text-dark update">Save</button>
+                </div>
+        
+            </div>
+        </form>
+       
+    </div>
+</main>
+<script>
+const message =`<%=message%>`;
+
+// Display the SweetAlert message if it exists
+if (message) {
+  Swal.fire({
+    title: 'Success',
+    text: message,
+    icon: 'success',
+    confirmButtonText: 'OK'
+  });
+}
+</script>
+</body>
+<!-- /Main Site -->
+</head>
+<!-- include footer -->
+<%- include('./templates/footer.ejs');%>
+<!-- /include footer -->

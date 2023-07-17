@@ -18,6 +18,19 @@ function Mainpage(req, res) {
 function Error(req, res){
 res.render("ErrorPage", {});
 }
+  async function SavedItems(req, res){
+    const admin=false;
+    if ('isLoggedIn' in req.session) {
+      const admin=req.session.isadmin;
+      const name=req.session.username;
+      const user = await accountService.FindUser(name);
+      res.render("SavedItems", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+    } else {
+      res.render("login", { flag: true });
+    }
+  }
+
+
 async function Myaccount(req, res){
   const admin=false;
   if ('isLoggedIn' in req.session) {
@@ -31,18 +44,16 @@ async function Myaccount(req, res){
 }
 
 
-async function Cartpage(req, res) {
-  let username = req.session.username;
-  //const result = await loginService.login(username, password);
-
-  let admin=false;
-  if (username == null) loggedIn = false;
-  else
-  { 
-    loggedIn = true;
-    admin=req.session.isadmin;
+async function Cartpage(req, res){
+  const admin=false;
+  if ('isLoggedIn' in req.session) {
+    const admin=req.session.isadmin;
+    const name=req.session.username;
+    const user = await accountService.FindUser(name);
+    res.render("ShoppingCart", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+  } else {
+    res.render("login", { flag: true });
   }
-  res.render("ShoppingCart", {username:username,Admin:admin});
 }
 
 
@@ -50,5 +61,6 @@ module.exports = {
   Mainpage,
   Cartpage,
   Error,
-  Myaccount
+  Myaccount,
+  SavedItems
 }

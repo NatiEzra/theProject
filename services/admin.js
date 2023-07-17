@@ -56,4 +56,51 @@ async function Listofusers()
   await User.find();
   return Users;
 }
-module.exports = { AddItem , Listofusers };
+
+async function updateUser(userId, updatedData) {
+    try {
+      const user = await User.findByIdAndUpdate(userId, updatedData, { useFindAndModify: false });
+      if (!user) {
+        throw new Error(`Cannot update user with ID ${userId}. User not found.`);
+      }
+      console.log('User updated successfully.');
+      return user;
+    } catch (error) {
+      console.error('Error occurred while updating user:', error);
+      throw error;
+    }
+  }
+async function CreateUser(username, email,firstname , lastname , gender , date , password){
+    const user = new User({
+      username: username,
+      firstname : firstname , 
+      lastname : lastname,
+      email : email,
+      gender , gender,
+      date: date,
+      password:password
+  });
+  await user.save();
+  return true;
+}
+async function findById(id){
+  let data = await User.findById(id); 
+  if(!data){
+    return false;
+  }
+  else{
+    return(data);
+    }
+}
+async function findByIdAndDelete(id)
+{
+  let result = await User.findByIdAndDelete(id);
+  if(!result)
+  {
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete};
