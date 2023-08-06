@@ -1,7 +1,7 @@
 //let cart=require("../../controllers/cart");
 function checkLoggedIn() {
   var request = {
-    "url" : `http://localhost:70/check/`,
+    "url" : `http://localhost:70/check`,
     "method" : "GET",
 }
   $.ajax(request).done(function(response){
