@@ -1,3 +1,15 @@
+//let cart=require("../../controllers/cart");
+async function addToCart() {
+  
+    var request = {
+      "url" : `http://localhost:70`,
+      "method" : "GET"
+   }
+   $.ajax(request).done(function(response){
+    console.log(respond);
+   })
+}
+addToCart();
 async function setMenItems() {
     const x=await fetch('/MenJson').
           then(response=>response.json())
@@ -30,6 +42,8 @@ async function setMenItems() {
                 shoppingCart.classList.add('bag-button-img');
                 Like.classList.add('bag-button-img');
                 shoppingCart.alt="Add to cart";
+              //  aLink.onclick=cart.addToCart;
+                
                 newDiv.appendChild(card);
                 card.appendChild(image);
                 card.appendChild(body);

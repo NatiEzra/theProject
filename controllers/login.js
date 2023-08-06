@@ -1,5 +1,5 @@
 const loginService = require("../services/login");
-function isLoggedIn(req, res, next) {
+function isLoggedIn(req, res) {
   if (req.session.username != null) return req.session.username;
   else return null;
 }
