@@ -1,7 +1,7 @@
 const loginService = require("../services/login");
 function isLoggedIn(req, res) {
   if (req.session.username != null) return req.session.username;
-  else return res.status(200).send({ message: "NULL" });;
+  else return null;
 }
 
 function AfterLogedin(req, res) {
@@ -24,7 +24,10 @@ function logout(req, res) {
     res.redirect("/Mainpage");
   });
 }
-
+function LogInCart(req, res) {
+  if (req.session.username != null) return res.status(200).send({ message: req.session.username });
+  else return res.status(200).send({ message: "NULL" });
+}
 async function login(req, res) {
   const { username, password } = req.body;
   const result = await loginService.login(username, password);
@@ -51,4 +54,5 @@ module.exports = {
   logout,
   AfterLogedin,
   isLoggedIn,
+  LogInCart,
 };
