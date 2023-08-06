@@ -2,7 +2,7 @@ const AdminService = require("../services/admin");
 const axios = require('axios');
 const User = require('../models/User');
 const Swal = require('sweetalert2');
-
+require('custom-env').env(process.env.NODE_ENV, './config');
 
 async function Adminpage(req, res) {
     let isAdmin = req.session.isadmin;
@@ -11,15 +11,15 @@ async function Adminpage(req, res) {
       let Users = await Getlistofusers();
       res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users });
     } else {
-     // res.status(404) // Render the 404 error page
-     //res.redirect("/ErrorPage");   // Render the 404 error page
-     res.render("Management", { loggedIn: true, username: username, Admin: true  });
+     res.status(404) // Render the 404 error page
+     res.redirect("/ErrorPage");   // Render the 404 error page
+     //res.render("Management", { loggedIn: true, username: username, Admin: true  });
     }
   }
 async function PostFacebook(req,res)
 {
     const pageId = '105535155938772';
-    const accessToken = 'EAAL8ZCesT3TcBAFW9QzzjQBw9zWP6LSfvpeZAFQqARB3cAXrZCxAt6WJ6LgbAtoMkiDJst6ctfYER3tMDS5X2vZC2ghjVPSYvrfFvFhynoFrHZAPXahFZC5fTqcxjZAn8QwDqZBfC4n9uSMqKyWwhTWyIruMzAtSEekswPTD1VR51gXhfcVJMvZBFPZAFDfZA9TZASQZD';
+    const accessToken = process.env.accessToken_facebook;
     const message = req.body.PostText;
     const apiUrl = `https://graph.facebook.com/${pageId}/feed?message=${message}&access_token=${accessToken}`;
     let isAdmin = req.session.isadmin;
