@@ -1,7 +1,7 @@
 const loginService = require("../services/login");
 function isLoggedIn(req, res) {
   if (req.session.username != null) return req.session.username;
-  else return null;
+  else return res.status(200).send({ message: "NULL" });;
 }
 
 function AfterLogedin(req, res) {
