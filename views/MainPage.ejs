@@ -3,6 +3,12 @@
   <head>
     <title>Sportify || Main Page</title>
     <link rel="stylesheet" type="text/css" href="../css/main_page.css" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+AlYtWk15oGv5F2spOzDyNVrLsS7Fe/QH3SLm3KR9RBN9iW"
+    crossorigin="anonymous"
+  />
   </head>
   <body>
     <%- include('./templates/header.ejs');%>
@@ -10,6 +16,28 @@
       <h2>WELCOME TO SPORTIFY</h2>
     </div>
     <%- include('./templates/dropDown.ejs');%>
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../public/ImagesFront/michael9487_a_pair_of_attractive_couple_standing_on_a_tennis_co_e36b3055-833a-4f27-99af-127463fbc8f2.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../public/ImagesFront/michael9487_joggers_laughing_and_running_on_the_beach_wearing_o_33a0800b-3469-4826-9ceb-dcffcc39b052.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../public/ImagesFront/michael9487_sports_couple_exercising_on_ocean_beach_wearing_ora_f1f4578a-a1fd-4321-aab4-70e4e8f3783f.png" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
 
     <div class="card">
