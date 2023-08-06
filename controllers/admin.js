@@ -16,7 +16,24 @@ async function Adminpage(req, res) {
      res.render("Management", { loggedIn: true, username: username, Admin: true  });
     }
   }
-
+async function PostFacebook(req,res)
+{
+    const pageId = '105535155938772';
+    const accessToken = 'EAAL8ZCesT3TcBAFW9QzzjQBw9zWP6LSfvpeZAFQqARB3cAXrZCxAt6WJ6LgbAtoMkiDJst6ctfYER3tMDS5X2vZC2ghjVPSYvrfFvFhynoFrHZAPXahFZC5fTqcxjZAn8QwDqZBfC4n9uSMqKyWwhTWyIruMzAtSEekswPTD1VR51gXhfcVJMvZBFPZAFDfZA9TZASQZD';
+    const message = req.body.PostText;
+    const apiUrl = `https://graph.facebook.com/${pageId}/feed?message=${message}&access_token=${accessToken}`;
+    let isAdmin = req.session.isadmin;
+    let username = req.session.username;
+    let Users = await Getlistofusers();
+    axios.post(apiUrl,null).then(function(response){
+        if(response.status==200)
+        {
+          res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users });
+        }
+    })
+  
+  
+}
 function Add_user_Form(req,res)
 {
     if ('isLoggedIn' in req.session) {
@@ -115,5 +132,6 @@ module.exports = {
     find_user,
     Delete_user,
     Add_user_Form,
-    CreateUser
+    CreateUser , 
+    PostFacebook
   }

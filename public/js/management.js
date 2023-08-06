@@ -1,3 +1,5 @@
+
+
 function toggleForm() {
     var formContainer = $("#formContainer");
     if (formContainer.hasClass("form-container-hidden")) {
@@ -104,3 +106,4 @@ $(document).ready(function() {
       $('#manageUsersForm').toggle(); // Toggle the visibility of the form
   });
 });
+

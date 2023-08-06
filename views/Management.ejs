@@ -129,6 +129,12 @@
             </tbody>
         </table>
     </form>
+    <form action="/post-form-route" method="POST">
+    <div id="postContainer">
+      <input type="text" id="postInput"name="PostText" placeholder="Write something...">
+      <button id="postButton"  class="btn btn-primary">Post</button>
+    </div>
+    </form>
   </div>
 </div>
   <%- include('./templates/footer.ejs'); %>
