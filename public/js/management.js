@@ -6,6 +6,10 @@ function toggleForm() {
       if ($('#manageUsersForm').css('display') === 'block') {
         $('#manageUsersForm').toggle();
       } 
+      if ($('#PostFacebook_Container')[0].classList.contains('form-container-add')) {
+        $('#PostFacebook_Container')[0].classList.add('form-container-hidden');
+        $('#PostFacebook_Container')[0].classList.remove('form-container-add');
+      }
       formContainer.removeClass("form-container-hidden");
       formContainer.addClass("form-container-add");
     } else {
@@ -13,9 +17,35 @@ function toggleForm() {
       formContainer.addClass("form-container-hidden");
     }
   }
-  
+  function toggle_Facebook_Form() {
+    // $('#PostFacebook_Container').addClass("form-container-add");
+    // $('#PostFacebook_Container').removeClass("form-container-hidden");
+    if ($('#PostFacebook_Container').hasClass("form-container-hidden")) {
+      $('#PostFacebook_Container').addClass("form-container-add");
+      $('#PostFacebook_Container').removeClass("form-container-hidden");
+    }
+    else{
+      if ($('#PostFacebook_Container').hasClass("form-container-add")) {
+        $('#PostFacebook_Container').removeClass("form-container-add");
+        $('#PostFacebook_Container').addClass("form-container-hidden");
+      }
+    }
+    if (($('#formContainer')[0].classList.contains('form-container-add')) || (!($('#formContainer')[0].classList.contains('form-container-hidden')))) {
+      $('#formContainer').addClass("form-container-hidden");
+    }
+    if ($('#manageUsersForm').css('display') === 'block') {
+      $('#manageUsersForm').toggle();
+    } 
+    
+    if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
+      $('#manageUsersForm').addClass("form-container-hidden");
+    }
+  }
   $("#AddItem").click(function() {
     toggleForm();
+  });
+  $("#PostFacebook").click(function() {
+    toggle_Facebook_Form();
   });
   $("#update_user").submit(function(event){
     event.preventDefault();
@@ -102,6 +132,10 @@ $(document).ready(function() {
     if ($('#formContainer')[0].classList.contains('form-container-add')) {
       $('#formContainer')[0].classList.add('form-container-hidden');
       $('#formContainer')[0].classList.remove('form-container-add');
+    }
+    if ($('#PostFacebook_Container')[0].classList.contains('form-container-add')) {
+      $('#PostFacebook_Container')[0].classList.add('form-container-hidden');
+      $('#PostFacebook_Container')[0].classList.remove('form-container-add');
     }
       $('#manageUsersForm').toggle(); // Toggle the visibility of the form
   });

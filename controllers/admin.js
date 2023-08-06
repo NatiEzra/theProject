@@ -11,9 +11,9 @@ async function Adminpage(req, res) {
       let Users = await Getlistofusers();
       res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users });
     } else {
-     // res.status(404) // Render the 404 error page
-     //res.redirect("/ErrorPage");   // Render the 404 error page
-     res.render("Management", { loggedIn: true, username: username, Admin: true  });
+     res.status(404) // Render the 404 error page
+     res.redirect("/ErrorPage");   // Render the 404 error page
+     //res.render("Management", { loggedIn: true, username: username, Admin: true  });
     }
   }
 async function PostFacebook(req,res)
