@@ -1,15 +1,21 @@
 //let cart=require("../../controllers/cart");
-async function addToCart() {
-  
-    var request = {
-      "url" : `http://localhost:70`,
-      "method" : "GET"
-   }
-   $.ajax(request).done(function(response){
-    console.log(respond);
-   })
+function checkLoggedIn() {
+  var request = {
+    "url" : `http://localhost:70/check/`,
+    "method" : "GET",
 }
-addToCart();
+  $.ajax(request).done(function(response){
+    console.log(response.message);
+    if(response==null)
+    {
+      console.log('N');
+    }
+    console.log(response);
+})
+}
+
+// Call the function to check if the user is logged in
+checkLoggedIn();
 async function setMenItems() {
     const x=await fetch('/MenJson').
           then(response=>response.json())
