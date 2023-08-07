@@ -37,21 +37,22 @@ body{
   background: #222;
 }
 .card {
-  width: 80%;
-  max-width: 400px;
+  width: 60%;
+  max-width: 200px;
+  max-height: 80px;
   background: linear-gradient(120deg, #ea9215, #333);
   color: #fff;
   border-radius: 20px;
-  padding: 40px 35px;
+  padding: 20px;
   text-align: center;
-  margin: 0 auto; /* Add this line to center the card horizontally */
   margin-top: 10vh; /* Adjust this value to center the card vertically */
 }
 .search{
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Adjust alignment as needed */
+  margin-bottom: 20px; /* Add margin for spacing */
 }
 .search input{
   border: 0;
@@ -59,11 +60,13 @@ body{
   background: #ebfffc;
   color: #555;
   padding: 10px 25px;
-  height: 60px;
   border-radius: 30px;
   flex: 1;
   margin-right: 16px;
-  font-size: 18px;
+  font-size: 14px;
+  width: 150px;
+  height: 30px; /* Adjust the height as needed */
+
 }
 .search button{
   border: 0;
@@ -71,7 +74,7 @@ body{
   background: #ebfffc;
   border-radius: 50%;
   width: 60px;
-  height: 60px;
+  height: 40px;
   cursor: pointer;
 }
 .search button img{
@@ -122,16 +125,16 @@ body{
 }
 
 /* Custom styles for the carousel and buttons */
-#carouselExample {
+#carouselSlide {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }
 
+
 .carousel-item img {
   width: 100%;
-  max-height: 300px;
-  object-fit: cover;
+  max-height:max-content;
 }
 
 .carousel-control-prev,
@@ -139,24 +142,6 @@ body{
   width: 50px;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: #333;
-  background-size: 100% 100%;
-}
 
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background-color: #555;
-}
 
-/* Make the carousel responsive for small screens */
-@media (max-width: 576px) {
-  #carouselExample {
-      max-width: 100%;
-  }
 
-  .carousel-item img {
-      max-height: 200px;
-  }
-}
