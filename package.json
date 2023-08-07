@@ -13,7 +13,7 @@
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.7.18"
+    "sweetalert2": "^11.7.20"
   },
   "name": "theproject",
   "version": "1.0.0",

@@ -25,7 +25,7 @@ function logout(req, res) {
   });
 }
 function LogInCart(req, res) {
-  if (req.session.username != null) return res.status(200).send({ message: req.session.username });
+  if (req.session.username != null) return res.status(200).send({ message: req.session });
   else return res.status(200).send({ message: "NULL" });
 }
 async function login(req, res) {

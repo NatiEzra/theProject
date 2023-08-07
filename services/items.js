@@ -1,5 +1,6 @@
 const fs = require("fs");
 const Item = require("../models/Item");
+const User = require("../models/User");
 async function getitems(){
   const allitems= 
   await Item.find();
@@ -64,7 +65,11 @@ async function addItemWithImage() {
         contentType: "image/jpeg",
       },
     });
-    
+   
+      
+
+
+ 
     // Save the new item to the database
     await newItem.save();
 
@@ -73,8 +78,29 @@ async function addItemWithImage() {
     console.error("Error saving item:", error);
   }
 }
+async function getAllUsers()
+{
+  const allUsers=await User.find();
+  return allUsers;
 
-module.exports = { addItemWithImage,
+}
+async function updateCart(updatedUser, res)
+{
+  User.findOneAndUpdate({ username: updatedUser.username }, { cart: updatedUser.cart }, { new: true })
+  .then(updatedUser => {
+     if (updatedUser) {
+      res.status(200).json({ message: "Cart updated successfully." });
+    } else {
+      res.status(404).json({ message: "User not found." });
+    }
+  })
+  .catch(error => {
+    res.status(500).json({ message: "Error updating cart.", error: error.message });
+  });
+}
+
+module.exports = { 
+  addItemWithImage,
 getitems,
 getWomenItems,
 getMenPants,
@@ -84,4 +110,6 @@ getWomenShirts,
 getWomenPants,
 getWomenShoes,
 getMenItems,
+getAllUsers,
+updateCart,
  };

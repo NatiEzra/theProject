@@ -1,3 +1,62 @@
+function addToCart(item) {
+  var request = {
+    "url" : `http://localhost:70/check`,
+    "method" : "GET",
+}
+  $.ajax(request).done(function(response){
+    
+    if(response.message=="NULL")
+    {
+      Swal.fire({
+        title: 'Error',
+        text: "Please log-in!",
+        icon: 'error',
+        confirmButtonText: 'OK'
+        })
+    }
+   else{
+     let username=response.message.username;
+    var UserReq={
+      "url": `http://localhost:70/Users`,
+      "method": "GET",
+    }
+    $.ajax(UserReq).done(function(reponse){
+      let Users=reponse;
+      let foundUser=null;
+      Users.forEach(function (user){
+          if (user.username==username)
+          {
+            foundUser=user;
+            return;
+          }
+      });
+      foundUser.cart.push(item);
+      
+      var updateUserReq = {
+        "url": "http://localhost:70/updateCart",
+        "method": "POST",
+        "data": JSON.stringify(foundUser), // Convert the user object to JSON
+        "contentType": "application/json",
+      };
+      $.ajax(updateUserReq).done(function(response) {
+        Swal.fire({
+          title: 'Success',
+          text: "Item added to cart successfully",
+          icon: 'success',
+          confirmButtonText: 'OK'
+          })
+        console.log("Cart updated and saved to the database.");
+      }).fail(function(error) {
+        console.error("Failed to update cart:", error);
+      });
+
+    })
+    
+    
+   }
+})
+}
+
 async function setMenPants() {
     const x=await fetch('/MenPantsJson').
           then(response=>response.json())
@@ -40,7 +99,9 @@ async function setMenPants() {
                 body.appendChild(aLink);
                 body.appendChild(a2);
                 body.appendChild(price);
-               
+                aLink.onclick=function(){
+                  addToCart(item);
+                }
               
             });
           });}

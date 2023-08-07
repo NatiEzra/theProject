@@ -1,22 +1,63 @@
-//let cart=require("../../controllers/cart");
-function checkLoggedIn() {
+function addToCart(item) {
   var request = {
     "url" : `http://localhost:70/check`,
     "method" : "GET",
 }
   $.ajax(request).done(function(response){
-    console.log(response.message);
-    if(response==null)
+    
+    if(response.message=="NULL")
     {
-      console.log('N');
+      Swal.fire({
+        title: 'Error',
+        text: "Please log-in!",
+        icon: 'error',
+        confirmButtonText: 'OK'
+        })
     }
-    console.log(response);
+   else{
+     let username=response.message.username;
+    var UserReq={
+      "url": `http://localhost:70/Users`,
+      "method": "GET",
+    }
+    $.ajax(UserReq).done(function(reponse){
+      let Users=reponse;
+      let foundUser=null;
+      Users.forEach(function (user){
+          if (user.username==username)
+          {
+            foundUser=user;
+            return;
+          }
+      });
+      foundUser.cart.push(item);
+      
+      var updateUserReq = {
+        "url": "http://localhost:70/updateCart",
+        "method": "POST",
+        "data": JSON.stringify(foundUser), // Convert the user object to JSON
+        "contentType": "application/json",
+      };
+      $.ajax(updateUserReq).done(function(response) {
+        Swal.fire({
+          title: 'Success',
+          text: "Item added to cart successfully",
+          icon: 'success',
+          confirmButtonText: 'OK'
+          })
+        console.log("Cart updated and saved to the database.");
+      }).fail(function(error) {
+        console.error("Failed to update cart:", error);
+      });
+
+    })
+    
+    
+   }
 })
 }
-
-// Call the function to check if the user is logged in
-checkLoggedIn();
 async function setMenItems() {
+ 
     const x=await fetch('/MenJson').
           then(response=>response.json())
           .then(data=>{
@@ -32,6 +73,9 @@ async function setMenItems() {
                 const Like=document.createElement("img");
                 const shoppingCart=document.createElement("img");
                 const price=document.createElement('p');
+                const id=document.createElement('p');
+
+
                 shoppingCart.src="../Images/bag.png";
                 Like.src="../Images/heart.png";
                 image.src="../Images/";
@@ -39,6 +83,10 @@ async function setMenItems() {
                 title.textContent = item.name;
                 desc.textContent=item.details;
                 price.textContent=item.price+'₪';
+                
+                
+                
+                
                 image.classList.add('card-img-top');
                 card.classList.add('card');
                 body.classList.add('card-body');
@@ -48,7 +96,6 @@ async function setMenItems() {
                 shoppingCart.classList.add('bag-button-img');
                 Like.classList.add('bag-button-img');
                 shoppingCart.alt="Add to cart";
-              //  aLink.onclick=cart.addToCart;
                 
                 newDiv.appendChild(card);
                 card.appendChild(image);
@@ -56,11 +103,15 @@ async function setMenItems() {
                 body.appendChild(title);
                 body.appendChild(desc);
                 aLink.appendChild(shoppingCart);
-               a2.appendChild(Like);
+                a2.appendChild(Like);
                 body.appendChild(aLink);
                 body.appendChild(a2);
                 body.appendChild(price);
-               
+                
+                aLink.onclick=function(){
+                  addToCart(item);
+                }
+                
               
             });
           });}

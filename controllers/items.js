@@ -154,6 +154,16 @@ async function MenJson(req,res){
             const WomenPantsItems=await itemService.getWomenShoes();
               res.json(WomenPantsItems);
             }
+            async function getUsers(req,res)
+            {
+              const allUsers=await itemService.getAllUsers();
+              res.json(allUsers);
+            }
+            async function updateCart(req,res){
+              const updatedUser = req.body;
+              itemService.updateCart(updatedUser, res);
+              
+            }
 module.exports = {
     additems,
     MenJson,
@@ -174,4 +184,6 @@ module.exports = {
     WomenShoes,
     AllItems,
     AllItemsJson,
+    getUsers,
+    updateCart,
   }

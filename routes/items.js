@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require('body-parser');
 
 const ItemsPageController=require("../controllers/items");
 router.get("/AllItems", ItemsPageController.AllItems);
@@ -20,5 +21,7 @@ router.get("/WomenPantsJson", ItemsPageController.WomenPantsJson);
 router.get("/WomenPants", ItemsPageController.WomenPants);
 router.get("/WomenShoesJson", ItemsPageController.WomenShoesJson);
 router.get("/WomenShoes", ItemsPageController.WomenShoes);
-
+router.get("/Users", ItemsPageController.getUsers);
+router.use(bodyParser.json());
+router.post("/updateCart", ItemsPageController.updateCart);
 module.exports = router;
