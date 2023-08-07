@@ -24,4 +24,6 @@ router.get("/WomenShoes", ItemsPageController.WomenShoes);
 router.get("/Users", ItemsPageController.getUsers);
 router.use(bodyParser.json());
 router.post("/updateCart", ItemsPageController.updateCart);
+router.get("/cart", ItemsPageController.getCart);
+router.post("/removeFromCart", ItemsPageController.removeFromCart);
 module.exports = router;
