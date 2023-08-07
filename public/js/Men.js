@@ -1,6 +1,4 @@
-//import User from "../../models/User";
-//const user = require("../../models/User");
-function checkLoggedIn(item) {
+function addToCart(item) {
   var request = {
     "url" : `http://localhost:70/check`,
     "method" : "GET",
@@ -26,27 +24,38 @@ function checkLoggedIn(item) {
       let Users=reponse;
       let foundUser=null;
       Users.forEach(function (user){
-        console.log(user.username);
           if (user.username==username)
           {
             foundUser=user;
             return;
           }
       });
-      console.log(foundUser.username);
       foundUser.cart.push(item);
-      console.log(foundUser.cart[0].name);
+      
+      var updateUserReq = {
+        "url": "http://localhost:70/updateCart",
+        "method": "POST",
+        "data": JSON.stringify(foundUser), // Convert the user object to JSON
+        "contentType": "application/json",
+      };
+      $.ajax(updateUserReq).done(function(response) {
+        Swal.fire({
+          title: 'Success',
+          text: "Item added to cart successfully",
+          icon: 'success',
+          confirmButtonText: 'OK'
+          })
+        console.log("Cart updated and saved to the database.");
+      }).fail(function(error) {
+        console.error("Failed to update cart:", error);
+      });
 
     })
-    //console.log(i);
-    //console.log(user.username);
+    
     
    }
 })
 }
-
-// Call the function to check if the user is logged in
-//checkLoggedIn();
 async function setMenItems() {
  
     const x=await fetch('/MenJson').
@@ -100,7 +109,7 @@ async function setMenItems() {
                 body.appendChild(price);
                 
                 aLink.onclick=function(){
-                  checkLoggedIn(item);
+                  addToCart(item);
                 }
                 
               

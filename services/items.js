@@ -84,6 +84,20 @@ async function getAllUsers()
   return allUsers;
 
 }
+async function updateCart(updatedUser, res)
+{
+  User.findOneAndUpdate({ username: updatedUser.username }, { cart: updatedUser.cart }, { new: true })
+  .then(updatedUser => {
+     if (updatedUser) {
+      res.status(200).json({ message: "Cart updated successfully." });
+    } else {
+      res.status(404).json({ message: "User not found." });
+    }
+  })
+  .catch(error => {
+    res.status(500).json({ message: "Error updating cart.", error: error.message });
+  });
+}
 
 module.exports = { 
   addItemWithImage,
@@ -97,4 +111,5 @@ getWomenPants,
 getWomenShoes,
 getMenItems,
 getAllUsers,
+updateCart,
  };
