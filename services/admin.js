@@ -78,7 +78,8 @@ async function CreateUser(username, email,firstname , lastname , gender , date ,
       email : email,
       gender , gender,
       date: date,
-      password:password
+      password:password,
+      cart:[],
   });
   await user.save();
   return true;

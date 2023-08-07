@@ -20,5 +20,6 @@ router.get("/WomenPantsJson", ItemsPageController.WomenPantsJson);
 router.get("/WomenPants", ItemsPageController.WomenPants);
 router.get("/WomenShoesJson", ItemsPageController.WomenShoesJson);
 router.get("/WomenShoes", ItemsPageController.WomenShoes);
+router.get("/Users", ItemsPageController.getUsers);
 
 module.exports = router;

@@ -154,6 +154,11 @@ async function MenJson(req,res){
             const WomenPantsItems=await itemService.getWomenShoes();
               res.json(WomenPantsItems);
             }
+            async function getUsers(req,res)
+            {
+              const allUsers=await itemService.getAllUsers();
+              res.json(allUsers);
+            }
 module.exports = {
     additems,
     MenJson,
@@ -174,4 +179,5 @@ module.exports = {
     WomenShoes,
     AllItems,
     AllItemsJson,
+    getUsers,
   }

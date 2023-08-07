@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   },
   cart: {
     type: Array,
-    required: true,
+    default: [],
   },
 });
 const User = mongoose.model('users',UserSchema);

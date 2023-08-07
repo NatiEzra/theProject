@@ -1,5 +1,6 @@
 const fs = require("fs");
 const Item = require("../models/Item");
+const User = require("../models/User");
 async function getitems(){
   const allitems= 
   await Item.find();
@@ -64,7 +65,11 @@ async function addItemWithImage() {
         contentType: "image/jpeg",
       },
     });
-    
+   
+      
+
+
+ 
     // Save the new item to the database
     await newItem.save();
 
@@ -73,8 +78,15 @@ async function addItemWithImage() {
     console.error("Error saving item:", error);
   }
 }
+async function getAllUsers()
+{
+  const allUsers=await User.find();
+  return allUsers;
 
-module.exports = { addItemWithImage,
+}
+
+module.exports = { 
+  addItemWithImage,
 getitems,
 getWomenItems,
 getMenPants,
@@ -84,4 +96,5 @@ getWomenShirts,
 getWomenPants,
 getWomenShoes,
 getMenItems,
+getAllUsers,
  };

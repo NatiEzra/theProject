@@ -1,3 +1,4 @@
+//import User from "../../models/User";
 //const user = require("../../models/User");
 function checkLoggedIn(item) {
   var request = {
@@ -16,10 +17,30 @@ function checkLoggedIn(item) {
         })
     }
    else{
+     let username=response.message.username;
+    var UserReq={
+      "url": `http://localhost:70/Users`,
+      "method": "GET",
+    }
+    $.ajax(UserReq).done(function(reponse){
+      let Users=reponse;
+      let foundUser=null;
+      Users.forEach(function (user){
+        console.log(user.username);
+          if (user.username==username)
+          {
+            foundUser=user;
+            return;
+          }
+      });
+      console.log(foundUser.username);
+      foundUser.cart.push(item);
+      console.log(foundUser.cart[0].name);
+
+    })
     //console.log(i);
-    let user=response.message;
-    console.log(item.name);
-    //user.cart.push(item);
+    //console.log(user.username);
+    
    }
 })
 }
