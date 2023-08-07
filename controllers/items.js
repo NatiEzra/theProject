@@ -164,6 +164,15 @@ async function MenJson(req,res){
               itemService.updateCart(updatedUser, res);
               
             }
+            async function getCart(req,res){
+              const cart=await itemService.getCart(req.session.username);
+              res.json(cart);
+            }
+           async function removeFromCart(req, res){
+            const item = req.body;
+            const username=req.session.username;
+            itemService.removeFromCart(item, username);
+            }
 module.exports = {
     additems,
     MenJson,
@@ -186,4 +195,6 @@ module.exports = {
     AllItemsJson,
     getUsers,
     updateCart,
+    getCart,
+    removeFromCart,
   }

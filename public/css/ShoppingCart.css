@@ -26,3 +26,7 @@ body{
   box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
   vertical-align: middle;
 }
+.images{
+  width: 125px;
+  height: 125px;
+}

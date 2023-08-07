@@ -89,6 +89,7 @@ async function updateCart(updatedUser, res)
   User.findOneAndUpdate({ username: updatedUser.username }, { cart: updatedUser.cart }, { new: true })
   .then(updatedUser => {
      if (updatedUser) {
+      console.log("item added");
       res.status(200).json({ message: "Cart updated successfully." });
     } else {
       res.status(404).json({ message: "User not found." });
@@ -97,6 +98,22 @@ async function updateCart(updatedUser, res)
   .catch(error => {
     res.status(500).json({ message: "Error updating cart.", error: error.message });
   });
+}
+async function getCart(username2){
+ const foundUser= await User.findOne({username: username2});
+ return foundUser.cart;
+}
+async function removeFromCart(item, username2)
+{
+  const foundUser = await User.findOne({ username: username2 });
+  var itemIndex=0;
+  itemIndex = foundUser.cart.findIndex(cartItem => cartItem._id === item._id);
+  while(itemIndex!=-1){
+    foundUser.cart.splice(itemIndex, 1);
+    await foundUser.save();
+    itemIndex = foundUser.cart.findIndex(cartItem => cartItem._id === item._id);
+    console.log("item removed");
+  }
 }
 
 module.exports = { 
@@ -112,4 +129,6 @@ getWomenShoes,
 getMenItems,
 getAllUsers,
 updateCart,
+getCart,
+removeFromCart,
  };
