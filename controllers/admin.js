@@ -123,7 +123,16 @@ async function Update_user(req, res) {
 
     const id = req.params.id;
     const userData = req.body;
-
+    // const { username, email} = req.body
+    // let result = await AdminService.check_username(username, email); 
+    // if(result =="username exsist")
+    // {
+    //     return res.render( "add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:true,message: '' , exsist_email:false });
+    // }
+    // if(result =="email exsist")
+    // {
+    //   return res.render("add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:false,message: '' , exsist_email:true });
+    // }
     const updatedUser = await AdminService.updateUser(id, userData);
 
     if (!updatedUser) {
@@ -132,7 +141,7 @@ async function Update_user(req, res) {
 
     res.send(updatedUser);
   } catch (error) {
-    res.status(500).send({ message: 'Error updating user information' });
+    res.send({ message: 'Error Email or Username is already exsist' });
   }
 }
 module.exports = {
