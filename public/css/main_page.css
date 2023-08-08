@@ -184,3 +184,20 @@ video {
 
 
 
+
+#pic{
+  border-radius: 50%;
+}
+#head{
+  color:black
+}
+
+.c-item {
+  height: 550px;
+}
+
+.c-img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
