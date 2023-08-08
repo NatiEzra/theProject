@@ -292,3 +292,13 @@ body{
 #head{
   color:black
 }
+
+.c-item {
+  height: 550px;
+}
+
+.c-img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
