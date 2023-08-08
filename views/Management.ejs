@@ -132,13 +132,22 @@
   </div>
 </div>
 <div id="PostFacebook_Container" class="form-container-hidden">
-  <form action="/post-form-route" method="POST">
-  <div id="postContainer">
-    <input type="text" id="postInput"name="PostText" placeholder="Write something...">
-    <button id="postButton"  class="btn btn-primary">Post</button>
-  </div>
+  <form action="/post-form-route" method="POST" class="post-form">
+    <div class="image-container">
+      <img src="../Images/faceb.png" class="faceb-image">
+    </div>
+    <div id="postContainer">
+      <input type="text" id="postInput" name="PostText" class="post-input" placeholder="What's on your mind?">
+      <button id="postButton" class="btn btn-primary post-button">Share</button>
+    </div>
   </form>
+  <!-- <div class="logo-container">
+    <img src="../Images/sporiFace.png" alt="Sportyfi Logo" class="logo-image">
+  </div> -->
 </div>
+
+
+
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
   <%- include('./templates/footer.ejs'); %>
   <script src="../js/management.js"></script>

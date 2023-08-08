@@ -293,3 +293,69 @@ table{
     background-color: var(--dark);
     color: var(--border);
 }
+.form-container-hidden {
+    display: none;
+  }
+
+  .post-form {
+    margin-right: 37px;
+    margin-top: 20px;
+    padding: 35px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .post-input:focus {
+    outline: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .post-button:hover {
+    background-color: #0056b3;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .faceb-image {
+    max-width: 40%;
+    margin-bottom: 30px; 
+    border-radius: 20px;
+  }
