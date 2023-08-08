@@ -89,7 +89,6 @@ async function updateCart(updatedUser, res)
   User.findOneAndUpdate({ username: updatedUser.username }, { cart: updatedUser.cart }, { new: true })
   .then(updatedUser => {
      if (updatedUser) {
-      console.log("item added");
       res.status(200).json({ message: "Cart updated successfully." });
     } else {
       res.status(404).json({ message: "User not found." });
