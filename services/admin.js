@@ -26,7 +26,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 // Multer upload instance
-const upload = multer({ storage: storage, fileFilter: fileFilter }).single('single_input');;
+const upload = multer({ storage: storage, fileFilter: fileFilter }).single('single_input');
 
 async function AddItem(req, res, name, type, gender, price, details, singleInput) {
   try {
