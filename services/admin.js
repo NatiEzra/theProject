@@ -104,4 +104,17 @@ async function findByIdAndDelete(id)
     return true;
   }
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete};
+async function check_username(username , email)
+{
+    const user = await User.findOne({username:username}); 
+    if(user)
+    {
+      return "username exsist";
+    }
+    const user1 = await User.findOne({email:email}); 
+    if(user1)
+    {
+      return "email exsist";
+    } 
+}
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username};

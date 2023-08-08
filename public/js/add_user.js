@@ -5,21 +5,21 @@ $(document).ready(function() {
       return emailRegex.test(email);
     }
 
-    function isUniqueUsername(username) {
-        return new Promise((resolve, reject) => {
-        $.ajax({
-            url: '/api/users/check-username',
-            type: 'POST',
-            data: { username: username },
-            success: function(data) {
-            resolve(data.isUnique);
-            },
-            error: function(err) {
-            reject(err);
-            }
-        });
-        });
-    }
+    // function isUniqueUsername(username) {
+    //     return new Promise((resolve, reject) => {
+    //     $.ajax({
+    //         url: '/api/users/check_username',
+    //         type: 'POST',
+    //         data: { username: username },
+    //         success: function(data) {
+    //         resolve(data.isUnique);
+    //         },
+    //         error: function(err) {
+    //         reject(err);
+    //         }
+    //     });
+    //     });
+    // }
 
     function isValidName(name) {
       return name.length > 0 && name.length <= 20;
