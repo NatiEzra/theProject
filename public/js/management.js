@@ -17,6 +17,13 @@ function toggleForm() {
       formContainer.addClass("form-container-hidden");
     }
   }
+  $('#datatable').DataTable({
+    paging: true, // Enable pagination
+    pageLength: 5, // Set the number of rows per page to 5
+    lengthMenu: [5, 10, 15], // Customize the page length options
+
+
+  });
   function toggle_Facebook_Form() {
     // $('#PostFacebook_Container').addClass("form-container-add");
     // $('#PostFacebook_Container').removeClass("form-container-hidden");

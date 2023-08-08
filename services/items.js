@@ -101,7 +101,9 @@ async function updateCart(updatedUser, res)
 }
 async function getCart(username2){
  const foundUser= await User.findOne({username: username2});
- return foundUser.cart;
+ if(foundUser)
+  return foundUser.cart;
+
 }
 async function removeFromCart(item, username2)
 {

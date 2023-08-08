@@ -8,7 +8,10 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.css" rel="stylesheet">
+ 
+  
+  
 
 </head>
 <body>
@@ -90,7 +93,7 @@
         </a>
     </div>
   <form action="/" method="POST">
-        <table class="table">
+        <table id="datatable" class="table">
             <thead class="thead-dark">
                 <tr>
                   <th>Index</th>
@@ -136,10 +139,10 @@
   </div>
   </form>
 </div>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
   <%- include('./templates/footer.ejs'); %>
-  <script src="../js/management.js">
+  <script src="../js/management.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   
-
-  </script>
 </body>
 </html>

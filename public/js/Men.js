@@ -41,7 +41,7 @@ function addToCart(item) {
       }
       if(!itemExists)
       {
-        foundUser.cart.push(item._id);
+        foundUser.cart.push({ itemId: item._id, quantity: 1 });
       }
       
       var updateUserReq = {

@@ -20,33 +20,35 @@ const x=await fetch('/cart').
                 let count=0;
                 var flag=false;
                
-                for (let i=0; i<data.length;i++)
-                {
+                // for (let i=0; i<data.length;i++)
+                // {
                   
-                    if (data[i]._id==item._id)
-                    {
-                        count++;
-                    }
-                }
-                for(let i=0; i<itemIDs.length;i++)
-                {
-                    if (itemIDs[i]==item._id)
-                    {
-                        flag=true;
-                        break;
-                    }
-                }
+                //     if (data[i].itemId==item._id)
+                //     {
+                //         count++;
+                //     }
+                // }
+                // for(let i=0; i<itemIDs.length;i++)
+                // {
+                //     if (itemIDs[i]==item._id)
+                //     {
+                //         flag=true;
+                //         break;
+                //     }
+                // }
+                let product;
                 var ItemExists=false;
                 for (let i=0; i<existingItems.length;i++)
                 {
-                    if (existingItems[i]._id==item._id)
+                    if (existingItems[i]._id==item.itemId)
                     {
+                      product=existingItems[i];
                         ItemExists=true;
                         break;
                     }
                 }
-                if(!flag && ItemExists){
-                itemIDs.push(item._id);
+                if(ItemExists){
+                itemIDs.push(item.itemId);
                 const row=document.createElement("tr");
                 const imageDiv=document.createElement("td");
                 const image=document.createElement("img");
@@ -144,15 +146,15 @@ const x=await fetch('/cart').
                 
                 
                 //inserting the data
-                image.src=item.img;
-                itemName.textContent=item.name;
-                price.textContent=item.price;
+                image.src=product.img;
+                itemName.textContent=product.name;
+                price.textContent=product.price;
                 price.textContent+="₪";
                 quantity.type="number";
                 quantity.min="0";
                 quantity.max="100";
-                quantity.value=count;
-                total.textContent=quantity.value*item.price;
+                quantity.value=item.quantity;
+                total.textContent=quantity.value*product.price;
                 sumprice += parseFloat(total.textContent.replace("₪", ""));
                 total.textContent+="₪";
                 erase.onclick=function(){
@@ -161,43 +163,12 @@ const x=await fetch('/cart').
 
                   quantity.addEventListener("input", async function () {
                     // Update the total when the quantity changes
-                    const updatedTotal = parseFloat(quantity.value) * parseFloat(item.price);
+                    const updatedTotal = parseFloat(quantity.value) * parseFloat(product.price);
                     total.textContent = updatedTotal.toFixed(2) + "₪";
                     sumprice = calculateTotalPrice();
                     const total2=document.getElementById("tp");
                     total2.innerText=sumprice+"₪";
-
-                    if (quantity.value>count)
-                    {
-                      let dif=quantity.value-count;
-                      for (let i=0; i<dif; i++)
-                      {
-                        const addResponse = await addToCart(item);
-                      }
-                    }
-                    else if (quantity.value<count)
-                    {
-                        let dif2=count-quantity.value;
-                        for (let i=dif2 ;i>0;i--)
-                        {
-                          const removeResponse = await removeOnce(item);
-                        }
-                    }
-
-
-                    /*const removeResponse = await removeItem(item);
-                    console.log(quantity.value);
-                      for (let i=0;i<existingItems.length;i++)
-                      {
-                        if (item._id==existingItems[i]._id)
-                        {
-                            for(let j=0; j<quantity.value;j++)
-                            {
-                                const addResponse = await addToCart(existingItems[i]);
-                            }
-                            break;
-                        }
-                      }*/
+                    item.quantity=quantity.value;
                       
                   });
                 //adding classes
