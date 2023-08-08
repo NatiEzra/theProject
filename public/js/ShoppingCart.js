@@ -182,7 +182,7 @@ const x=await fetch('/cart').
                     total.textContent = updatedTotal.toFixed(2) + "₪";
                     sumprice = calculateTotalPrice();
                     const total2=document.getElementById("tp");
-                    total2.innerText=sumprice+"₪";
+                    total2.innerText=Math.round(sumprice*100)/100+"₪";
                   
                     item.quantity=quantity.value;
                       setQuantity(item);
@@ -217,7 +217,7 @@ const x=await fetch('/cart').
 
           })
           const total2=document.getElementById("tp");
-          total2.innerText=sumprice+"₪";
+          total2.innerText=Math.round(sumprice*100)/100+"₪";
         }
           setCart();
 

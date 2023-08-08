@@ -101,6 +101,7 @@ async function setMenShirts() {
                 aLink.classList.add('shop-button');
                 shoppingCart.classList.add('bag-button-img');
                 Like.classList.add('bag-button-img');
+                price.classList.add('price');
                 shoppingCart.alt="Add to cart";
                 newDiv.appendChild(card);
                 card.appendChild(image);

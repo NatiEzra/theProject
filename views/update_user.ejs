@@ -22,7 +22,7 @@
 
         <!-- add user form -->
          <!-- form handling -->
- <form method="POST" action="/api/users" id="update_user">
+ <form  id="update_user">
     <div class="new_user">
         <div class="form-group">
             <label for="name" class="text-light">UserName</label>
@@ -36,21 +36,21 @@
         <div class="form-group">
             <label for="gender" class="text-light">Gender</label>
             <div class="radio inline">
-                <input type="radio" id="radio-2" name="gender" value="Male" <%= user.gender == 'Male' ? 'checked' : '' %>>
+                <input type="radio" id="radio-2" name="gender" value="male" <%= user.gender == 'male' ? 'checked' : '' %>>
                 <label for="radio-2" class="radio-label">Male</label>
             </div>
             <div class="radio inline">
-                <input type="radio" id="radio-3" name="gender" value="Female"  <%= user.gender == 'Female' ? 'checked' : '' %> >
+                <input type="radio" id="radio-3" name="gender" value="female"  <%= user.gender == 'female' ? 'checked' : '' %> >
                 <label for="radio-3" class="radio-label">Female</label>
             </div>
             <div class="radio inline">
-                <input type="radio" id="radio-4" name="gender" value="Other"  <%= user.gender == 'Other' ? 'checked' : '' %> >
+                <input type="radio" id="radio-4" name="gender" value="other"  <%= user.gender == 'other' ? 'checked' : '' %> >
                 <label for="radio-4" class="radio-label">Other</label>
             </div>
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn text-dark update">Save</button>
+            <button type="submit" id="Update_user_data" class="btn text-dark update">Save</button>
         </div>
 
     </div>

@@ -17,6 +17,7 @@ function toggleForm() {
       formContainer.addClass("form-container-hidden");
     }
   }
+  try{
   $('#datatable').DataTable({
     paging: true, // Enable pagination
     pageLength: 5, // Set the number of rows per page to 5
@@ -24,6 +25,8 @@ function toggleForm() {
 
 
   });
+}catch(e)
+{}
   function toggle_Facebook_Form() {
     // $('#PostFacebook_Container').addClass("form-container-add");
     // $('#PostFacebook_Container').removeClass("form-container-hidden");
@@ -81,12 +84,23 @@ function toggleForm() {
     }).then((result) => {
       if (result.isConfirmed) {
       $.ajax(request).done(function(response){
+        if(response.message)
+        {
+          Swal.fire({
+            title: 'Error',
+            text: response.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+            })
+        }
+        else{
         Swal.fire({
         title: 'Success',
         text: "Data Updated Successfully!",
         icon: 'success',
         confirmButtonText: 'OK'
         })
+      }
     })
   }
   });
