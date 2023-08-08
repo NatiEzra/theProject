@@ -16,6 +16,7 @@ async function register(req, res) {
     res.render("Mainpage", { username: username , loggedIn :true , Admin:false });
   }
   catch (e) {
+   //flag is for username, degel is for email
     const user = await User.findOne({username:username}); 
     if(user)
     {
