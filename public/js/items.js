@@ -30,7 +30,19 @@ function addToCart(item) {
             return;
           }
       });
-      foundUser.cart.push(item);
+      let itemExists=false;
+      for (let i=0; i<foundUser.cart.length;i++)
+      {
+        if (foundUser.cart[i].itemId==item._id)
+        {
+          itemExists=true;
+          foundUser.cart[i].quantity++;
+        }
+      }
+      if(!itemExists)
+      {
+        foundUser.cart.push({ itemId: item._id, quantity: 1 });
+      }
       
       var updateUserReq = {
         "url": "http://localhost:70/updateCart",

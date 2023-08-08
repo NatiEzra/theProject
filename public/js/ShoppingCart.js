@@ -169,7 +169,7 @@ const x=await fetch('/cart').
                     const total2=document.getElementById("tp");
                     total2.innerText=sumprice+"₪";
                     item.quantity=quantity.value;
-                      
+                      setQuantity(item);
                   });
                 //adding classes
                 image.classList.add("images");
@@ -338,4 +338,63 @@ const x=await fetch('/cart').
               
             });
 
+          }
+          async function setQuantity(item)
+          {
+            try {
+              const response = await $.ajax({
+                url: "http://localhost:70/check",
+                method: "GET",
+              });
+          
+              if (response.message === "NULL") {
+                Swal.fire({
+                  title: 'Error',
+                  text: "Please log-in!",
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
+              } else {
+                const username = response.message.username;
+          
+                const userResponse = await $.ajax({
+                  url: "http://localhost:70/Users",
+                  method: "GET",
+                });
+          
+                const Users = userResponse;
+                let foundUser = null;
+          
+                Users.forEach(function (user) {
+                  if (user.username === username) {
+                    foundUser = user;
+                    return;
+                  }
+                });
+          
+                if (foundUser) {
+                  for (let i=0; i<foundUser.cart.length; i++)
+                  {
+                    if (item.itemId==foundUser.cart[i].itemId)
+                    {
+                      foundUser.cart[i].quantity=item.quantity;
+                    }
+                  }
+          
+                  const updateUserReq = {
+                    url: "http://localhost:70/updateCart",
+                    method: "POST",
+                    data: JSON.stringify(foundUser), // Convert the user object to JSON
+                    contentType: "application/json",
+                  };
+          
+                  await $.ajax(updateUserReq);
+                  console.log("Cart updated and saved to the database.");
+                } else {
+                  console.error("User not found.");
+                }
+              }
+            } catch (error) {
+              console.error("Failed to update cart:", error);
+            }
           }
