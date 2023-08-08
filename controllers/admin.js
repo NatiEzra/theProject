@@ -38,7 +38,7 @@ function Add_user_Form(req,res)
 {
     if ('isLoggedIn' in req.session) {
         let isAdmin = req.session.isadmin;
-        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' });
+        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' ,exsist_username :false , exsist_email:false });
     }
     else{
         res.redirect("/ErrorPage");
@@ -63,7 +63,7 @@ async function CreateUser(req, res) {
   let result = await AdminService.CreateUser(username, email, firstname, lastname, gender, date, password);
   if (result) {
     const message  = "The User added successfully!"
-    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message });
+    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message,exsist_username:false,exsist_email:false });
 
   }
 }
@@ -100,7 +100,19 @@ async function Delete_user (req, res)
   }
 }
 
-
+async function check_username(req, res,next) {
+  const { username, email} = req.body
+    let result = await AdminService.check_username(username, email);  
+    if(result =="username exsist")
+    {
+        return res.render( "add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:true,message: '' , exsist_email:false });
+    }
+    if(result =="email exsist")
+    {
+      return res.render("add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:false,message: '' , exsist_email:true });
+    }
+    return next();
+}
 
 async function Update_user(req, res) {
   try {
@@ -133,5 +145,6 @@ module.exports = {
     Delete_user,
     Add_user_Form,
     CreateUser , 
-    PostFacebook
+    PostFacebook , 
+    check_username
   }
