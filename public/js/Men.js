@@ -35,10 +35,14 @@ function addToCart(item) {
       {
         if (foundUser.cart[i].itemId==item._id)
         {
-          
+          itemExists=true;
+          foundUser.cart[i].quantity++;
         }
       }
-      foundUser.cart.push(item._id);
+      if(!itemExists)
+      {
+        foundUser.cart.push(item._id);
+      }
       
       var updateUserReq = {
         "url": "http://localhost:70/updateCart",
