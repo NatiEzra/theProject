@@ -135,6 +135,39 @@
   display: none;
 }
 
+/*discount 10% css */
+.discount10 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+}
+
+.discount-link {
+  text-decoration: none;
+  color: #ea9215;
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px;
+ 
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.discount-link:hover {
+  color: #ea9215;
+}
+
+/* video */
+.video-container {
+  margin-top: 20px; 
+  margin-bottom: 40px; 
+  text-align: center;
+}
+
+video {
+  max-width: 80%;
+  height: auto;
+}
 /* Custom styles for the carousel and buttons */
 
 
@@ -147,3 +180,7 @@
   object-fit: cover;
   filter: brightness(0.6);
 }
+
+
+
+

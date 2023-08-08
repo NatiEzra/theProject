@@ -85,8 +85,7 @@ async function setMenItems() {
                 const Like=document.createElement("img");
                 const shoppingCart=document.createElement("img");
                 const price=document.createElement('p');
-                const id=document.createElement('p');
-
+                
 
                 shoppingCart.src="../Images/bag.png";
                 Like.src="../Images/heart.png";
@@ -108,6 +107,7 @@ async function setMenItems() {
                 shoppingCart.classList.add('bag-button-img');
                 Like.classList.add('bag-button-img');
                 shoppingCart.alt="Add to cart";
+                price.classList.add('price');
                 
                 newDiv.appendChild(card);
                 card.appendChild(image);
