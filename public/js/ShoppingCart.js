@@ -2,6 +2,7 @@ async function setCart(){
 var itemIDs=[];
 var existingItems=[];
 var sumprice=0;
+
 const y=await fetch('/allItemsJson').
                 then(response=>response.json())
           .then(data2=>{
@@ -12,11 +13,9 @@ const y=await fetch('/allItemsJson').
 const x=await fetch('/cart').
           then(response=>response.json())
           .then(data=>{
-            var availableCount=0;
-
-              const table=document.getElementById("table");
+                const table=document.getElementById("table");
               
-            data.forEach(item => {
+                data.forEach(item => {
                 //create elements
                 let count=0;
                 var flag=false;
@@ -167,17 +166,38 @@ const x=await fetch('/cart').
                     sumprice = calculateTotalPrice();
                     const total2=document.getElementById("tp");
                     total2.innerText=sumprice+"₪";
-                    const removeResponse = await removeItem(item);
+
+                    if (quantity.value>count)
+                    {
+                      let dif=quantity.value-count;
+                      for (let i=0; i<dif; i++)
+                      {
+                        const addResponse = await addToCart(item);
+                      }
+                    }
+                    else if (quantity.value<count)
+                    {
+                        let dif2=count-quantity.value;
+                        for (let i=dif2 ;i>0;i--)
+                        {
+                          const removeResponse = await removeOnce(item);
+                        }
+                    }
+
+
+                    /*const removeResponse = await removeItem(item);
+                    console.log(quantity.value);
                       for (let i=0;i<existingItems.length;i++)
                       {
                         if (item._id==existingItems[i]._id)
                         {
                             for(let j=0; j<quantity.value;j++)
                             {
-                                const addResponse = await addToCart(item);
+                                const addResponse = await addToCart(existingItems[i]);
                             }
+                            break;
                         }
-                      }
+                      }*/
                       
                   });
                 //adding classes
@@ -283,42 +303,68 @@ const x=await fetch('/cart').
               });
           }
 
-          async function addToCart(item)
-          {
-            var request2 = {
-                "url" : `http://localhost:70/check`,
-                "method" : "GET",
-            }
-              $.ajax(request2).done(function(response){
-            let username2=response.message.username;
-            var UserReq={
-            "url": `http://localhost:70/Users`,
-            "method": "GET",
-            }
-            $.ajax(UserReq).done(function(reponse){
-            let Users=reponse;
-            let foundUser=null;
-            Users.forEach(function (user){
-                if (user.username==username2)
-                {
-                    foundUser=user;
+          async function addToCart(item) {
+            try {
+              const response = await $.ajax({
+                url: "http://localhost:70/check",
+                method: "GET",
+              });
+          
+              if (response.message === "NULL") {
+                Swal.fire({
+                  title: 'Error',
+                  text: "Please log-in!",
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
+              } else {
+                const username = response.message.username;
+          
+                const userResponse = await $.ajax({
+                  url: "http://localhost:70/Users",
+                  method: "GET",
+                });
+          
+                const Users = userResponse;
+                let foundUser = null;
+          
+                Users.forEach(function (user) {
+                  if (user.username === username) {
+                    foundUser = user;
+                    return;
+                  }
+                });
+          
+                if (foundUser) {
+                  foundUser.cart.push(item);
+          
+                  const updateUserReq = {
+                    url: "http://localhost:70/updateCart",
+                    method: "POST",
+                    data: JSON.stringify(foundUser), // Convert the user object to JSON
+                    contentType: "application/json",
+                  };
+          
+                  await $.ajax(updateUserReq);
+                  console.log("Cart updated and saved to the database.");
+                } else {
+                  console.error("User not found.");
                 }
-            });
-            foundUser.cart.push(item);
-            
-            var updateUserReq = {
-                "url": "http://localhost:70/updateCart",
-                "method": "POST",
-                "data": JSON.stringify(foundUser), // Convert the user object to JSON
-                "contentType": "application/json",
+              }
+            } catch (error) {
+              console.error("Failed to update cart:", error);
+            }
+          }
+          async function removeOnce(item)
+          {
+            var request = {
+              "url": "http://localhost:70/removeFromCartOnce",
+              "method": "POST",
+              "data": JSON.stringify(item), // Convert the item object to JSON
+              "contentType": "application/json",
             };
-            $.ajax(updateUserReq).done(function(response) {
-                console.log("Cart updated and saved to the database.");
-            }).fail(function(error) {
-                console.error("Failed to update cart:", error);
+            $.ajax(request).done(function(response) {
+              
             });
 
-            })
-            
-        });
           }

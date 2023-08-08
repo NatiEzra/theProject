@@ -58,7 +58,7 @@ function addToCart(item) {
 }
 
 async function setWomenShirts() {
-    const x=await fetch('/MenShirtsJson').
+    const x=await fetch('/WomenShoesJson').
           then(response=>response.json())
           .then(data=>{
             const newDiv = document.getElementById('container');

@@ -36,10 +36,22 @@ const UserSchema = new mongoose.Schema({
     default:"user",
     required: true,
   },
-  cart: {
-    type: Array,
-    default: [],
-  },
+  cart: [{
+    itemId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Item',
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 1
+    }
+}],
+orderHistory: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'Order'
+}]
 });
 const User = mongoose.model('users',UserSchema);
 module.exports = User;
