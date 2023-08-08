@@ -27,6 +27,8 @@ router.get('/add-user', Admin_pageController.Add_user_Form);
 
 router.post('/api/users', Admin_pageController.check_username ,Admin_pageController.CreateUser)
 
+//router.post('/api/update_users',Admin_pageController.CreateUser)
+
 router.post('/post-form-route', Admin_pageController.PostFacebook)
 
 module.exports = router;
