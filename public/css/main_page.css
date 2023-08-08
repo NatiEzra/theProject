@@ -136,20 +136,14 @@
 }
 
 /* Custom styles for the carousel and buttons */
-#carouselSlide {
-  width: 100%;
-  margin: 0 auto;
-}
-.carousel-item img.d-block {
-  width: 100%;
-  height: auto;
+
+
+.c-item {
+  height: 550px;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-  width: 50px;
+.c-img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
 }
-
-
-
-
