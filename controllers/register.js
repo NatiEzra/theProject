@@ -12,7 +12,8 @@ async function register(req, res) {
   try {
     await registerService.register(username, firstname , lastname , email , gender , date , password)    
     //req.session.username = username
-    res.redirect('/Mainpage');
+    //res.redirect('/Mainpage');
+    res.render("Mainpage", { username: username , loggedIn :true , Admin:false });
   }
   catch (e) {
     const user = await User.findOne({username:username}); 

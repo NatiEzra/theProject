@@ -23,6 +23,88 @@
 </div>
 
 </div>
+<div class="weather-container">
+  <div class="card weather-card">
+      <div class="search">
+        <input type="text" placeholder="Enter city name" spellcheck="false">
+        <button><img src="../Images/search.png"></button>
+    </div>
+
+    <div class="error">
+        <p>Invalid city name</p>
+    </div>
+
+    <div class="weather">
+      <div class="col">
+        <img src="../Images/rain.png" class="weather-icon">
+        <div>
+        <p></p><h1 class="temp">30°C</h1><p></p>
+        <p></p><h2 class="city">Tel Aviv</h2><p></p>
+      </div>
+      </div>
+
+        <div class="details">
+            <div class="col">
+                <img src="../Images/humidity.png">
+             
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                
+            </div>
+
+            
+        </div>
+        <div class="details">
+        <div class="col">
+          <img src="../Images/wind.png">
+       
+              <p class="wind">15 km/h</p>
+              <p>Wind Speed</p>
+          </div>
+      </div>
+    </div>
+</div>
+
+    <script>
+      (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+        key:`AIzaSyB-tnPq02i5-O8u0KIkKvfYhH1JbNs0da8`,
+        v: "weekly",
+      });
+    </script>
+        
+
+
+<link rel="stylesheet" type="text/css" href="../css/templates/footer.css">
+
+
+  <div class="footer">
+      <h3>Follow us</h3>
+      <button class="instagram-button">
+        <a href="https://www.instagram.com/vladislav_polyak/">
+          <img src="../Images/instagram.png" alt="instagram Icon">
+        </a>
+      </button>
+      <button class="facebook-button">
+        <a href="#facebook">
+          <img src="../Images/facebook.png" alt="facebook Icon">
+        </a>
+      </button>
+      <h3>Our Stores</h3>
+      <button class="location-button">
+        <a href="./storelocation">
+          <img src="../Images/pin.png" alt="location Icon">
+        </a>
+      </button>
+
+      
+    </div>
+
+
+      <script type="text/javascript" src="../js/store.js"></script>
+
+
+
+</div>
       <script>
         (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
           key:`<%=apikey%>`,
