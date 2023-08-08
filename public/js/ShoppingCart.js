@@ -70,7 +70,7 @@ const x=await fetch('/cart').
                 erase.classList.add("shop-tooltip");
                 //erase.href="./cartpage"
                 const eraseDiv=document.createElement("td");
-                if (item.type!="shoes"){
+                if (product.type!="shoes"){
                     const blank=document.createElement("option");
                     const XS=document.createElement("option");
                     const S=document.createElement("option");
@@ -414,3 +414,53 @@ const x=await fetch('/cart').
               console.error("Failed to update cart:", error);
             }
           }
+          async function checkout()
+          {
+            const response = await $.ajax({
+              url: "http://localhost:70/check",
+              method: "GET",
+            });
+        
+            if (response.message === "NULL") {
+              return;
+            } else {
+              const username = response.message.username;
+              const userResponse = await $.ajax({
+                url: "http://localhost:70/Users",
+                method: "GET",
+              });
+        
+              const Users = userResponse;
+              let foundUser = null;
+        
+              Users.forEach(function (user) 
+              {
+                if (user.username === username) 
+                {
+                  foundUser = user;
+                }
+              });
+              if (foundUser) 
+              {
+                foundUser.cart=[];
+              
+              }   
+              const updateUserReq = {
+                url: "http://localhost:70/updateCart",
+                method: "POST",
+                data: JSON.stringify(foundUser), // Convert the user object to JSON
+                contentType: "application/json",
+              };
+      
+              await $.ajax(updateUserReq); 
+              await Swal.fire({
+                title: 'Your order has been placed',
+                text: "Enjoy!",
+                icon: 'success',
+                confirmButtonText: 'OK'
+              });
+              
+              
+              window.location.href = "/mainpage";
+          }
+        }
