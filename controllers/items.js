@@ -171,7 +171,7 @@ async function MenJson(req,res){
            async function removeFromCart(req, res){
             const item = req.body;
             const username=req.session.username;
-            itemService.removeFromCart(item, username);
+          itemService.removeFromCart(item, username);
             }
             async function removeFromCartOnce(req, res){
               const item = req.body;
