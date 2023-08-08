@@ -109,12 +109,19 @@ async function removeFromCart(item, username2)
 {
   const foundUser = await User.findOne({ username: username2 });
   var itemIndex=0;
-  itemIndex = foundUser.cart.findIndex(cartItem => cartItem._id === item._id);
-  while(itemIndex!=-1){
+  //itemIndex = foundUser.cart.findIndex(cartItem => cartItem.itemId === item.itemId);
+for(let i=0; i<foundUser.cart.length;i++)
+{
+  if (foundUser.cart[i].itemId==item.itemId)
+  {
+    itemIndex=i;
+    break;
+  }
+  itemIndex=-1;
+}
+  if(itemIndex!=-1){
     foundUser.cart.splice(itemIndex, 1);
     await foundUser.save();
-    itemIndex = foundUser.cart.findIndex(cartItem => cartItem._id === item._id);
-    console.log("item removed");
   }
 }
 async function removeFromCartOnce(item, username2)

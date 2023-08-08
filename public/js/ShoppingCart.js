@@ -163,11 +163,27 @@ const x=await fetch('/cart').
 
                   quantity.addEventListener("input", async function () {
                     // Update the total when the quantity changes
+                   if (quantity.value<0||quantity.value%1!=0||quantity.value>100)
+                    {
+                      if(quantity.value<0)
+                      {
+                        item.quantity=1;
+                      }
+                      quantity.value=item.quantity;
+
+                      Swal.fire({
+                        title: 'Error',
+                        text: "Invalid quantity",
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                      });
+                    }
                     const updatedTotal = parseFloat(quantity.value) * parseFloat(product.price);
                     total.textContent = updatedTotal.toFixed(2) + "₪";
                     sumprice = calculateTotalPrice();
                     const total2=document.getElementById("tp");
                     total2.innerText=sumprice+"₪";
+                  
                     item.quantity=quantity.value;
                       setQuantity(item);
                   });
