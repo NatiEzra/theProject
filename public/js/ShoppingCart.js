@@ -64,6 +64,8 @@ const x=await fetch('/cart').
                 const sizeDiv=document.createElement("td");
                 const erase = document.createElement("a");
                 
+
+
                 erase.className = "shop-tooltip close float-none text-danger";
                 erase.title = "Remove";
                 erase.innerText = "×";
@@ -178,6 +180,7 @@ const x=await fetch('/cart').
                         confirmButtonText: 'OK'
                       });
                     }
+                    document.getElementById('promocodeId').value="";
                     const updatedTotal = parseFloat(quantity.value) * parseFloat(product.price);
                     total.textContent = updatedTotal.toFixed(2) + "₪";
                     sumprice = calculateTotalPrice();
@@ -189,6 +192,7 @@ const x=await fetch('/cart').
                   });
                 //adding classes
                 image.classList.add("images");
+                total.classList.add("totalP");
                 //hachnasa
                 imageDiv.appendChild(image);
                 descriptionDiv.appendChild(itemName);
@@ -197,8 +201,27 @@ const x=await fetch('/cart').
                 quantityDiv.appendChild(quantity);
                 totalDiv.appendChild(total);
                 eraseDiv.appendChild(erase);
-                
 
+               // document.getElementById("promocodeId").addEventListener(checkPromo());
+               /*
+                document.getElementById("promocodeId").addEventListener("input", async () => {
+                  var val=document.getElementById("promocodeId").value;
+       
+                  const x=await fetch('/getPromo').
+                  then(response=>response.json())
+                  .then(data=>{
+                    data.forEach(promo=>{
+                        if(promo.promocodename==val)
+                        {
+                     var totalPrice= parseFloat(document.getElementById("tp").textContent.replace("₪", ""));
+                   totalPrice= totalPrice*((100-promo.discount)/100); 
+                   document.getElementById("tp").innerText=(totalPrice+"₪");
+                            return;
+                        }
+                      });
+                    });}
+                );
+                */
                 row.appendChild(imageDiv);
                 row.appendChild(descriptionDiv);
                 row.appendChild(sizeDiv);
@@ -342,19 +365,8 @@ const x=await fetch('/cart').
               console.error("Failed to update cart:", error);
             }
           }
-          async function removeOnce(item)
-          {
-            var request = {
-              "url": "http://localhost:70/removeFromCartOnce",
-              "method": "POST",
-              "data": JSON.stringify(item), // Convert the item object to JSON
-              "contentType": "application/json",
-            };
-            $.ajax(request).done(function(response) {
-              
-            });
+          
 
-          }
           async function setQuantity(item)
           {
             try {
@@ -371,6 +383,7 @@ const x=await fetch('/cart').
                   confirmButtonText: 'OK'
                 });
               } else {
+                
                 const username = response.message.username;
           
                 const userResponse = await $.ajax({
@@ -443,7 +456,7 @@ const x=await fetch('/cart').
               if (foundUser) 
               {
                 foundUser.cart=[];
-              
+                
               }   
               const updateUserReq = {
                 url: "http://localhost:70/updateCart",
@@ -451,16 +464,125 @@ const x=await fetch('/cart').
                 data: JSON.stringify(foundUser), // Convert the user object to JSON
                 contentType: "application/json",
               };
-      
               await $.ajax(updateUserReq); 
+
+      promoName=document.getElementById("promocodeName").innerText;
+              foundpromo=null
+              if (promoName)
+     { const x = await fetch('/getPromo')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(async promoCode => {
+          if (promoCode.promocodename==promoName)
+          {
+            foundpromo=promoCode;
+          }
+      })});
+
+              var username2= await getUserName();   
+              if (foundpromo)
+           {
+            foundpromo.users.push(username2);
+          }
+   
+          const updateUserPromo = {
+          url: "http://localhost:70/updatePromo",
+          method: "POST",
+          data: JSON.stringify(foundpromo), // Convert the user object to JSON
+          contentType: "application/json",
+            };
+            await $.ajax(updateUserPromo);
+          }
               await Swal.fire({
                 title: 'Your order has been placed',
                 text: "Enjoy!",
                 icon: 'success',
                 confirmButtonText: 'OK'
-              });
-              
+              });        
               
               window.location.href = "/mainpage";
           }
         }
+        /*
+       async function checkPromo(){
+        
+          var val=document.getElementById("promocodeId").value;
+
+          const x=await fetch('/getPromo').
+          then(response=>response.json())
+          .then(data=>{
+            data.forEach(promo=>{
+             if(CheckIfUsed(promo)==false))
+              {
+                if(promo.promocodename==val)
+                {
+             var totalPrice= parseFloat(document.getElementById("tp").textContent.replace("₪", ""));
+           totalPrice= totalPrice*((100-promo.discount)/100); 
+           document.getElementById("tp").innerText=(totalPrice+"₪");
+                  promo.users.push(getUserName());        
+                }
+              } 
+            }       
+              );
+            });}
+*/
+           
+async function checkPromo() {
+  var val = document.getElementById("promocodeId").value;
+
+  const x = await fetch('/getPromo')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(async promo => {
+        if (await CheckIfUsed(promo) === false) {
+          if (promo.promocodename === val) {
+            var totalPrice = calculateTotalPrice();
+            totalPrice = totalPrice * ((100 - promo.discount) / 100);
+            document.getElementById("tp").innerText = (totalPrice + "₪");
+            document.getElementById("fill").innerText="You used the ";
+            document.getElementById("promocodeName").innerText=val;
+            document.getElementById("3rd").innerText=" Promocode";
+            
+          /* var username= await getUserName();   
+           promo.users.push(username);
+   
+          const updateUserPromo = {
+          url: "http://localhost:70/updatePromo",
+          method: "POST",
+          data: JSON.stringify(promo), // Convert the user object to JSON
+          contentType: "application/json",
+            };
+            await $.ajax(updateUserPromo);*/
+          }
+        }
+      });
+    });
+}           
+            async function getUserName(){
+              const response = await $.ajax({
+                url: "http://localhost:70/check",
+                method: "GET",
+              });
+              const username = response.message.username;
+              return username; // the logged user
+            }
+            async function CheckIfUsed(promo){
+              var user=await getUserName();
+              for(var i=0;i<promo.users.length;i++)
+              {
+              if(promo.users[i]==user)
+              {
+              await Swal.fire({
+                title: 'Error',
+                text: "Promocode was already used",
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+              return true;
+            }
+          }
+            return false;
+          }
+        
+            
+        

@@ -26,5 +26,5 @@ router.use(bodyParser.json());
 router.post("/updateCart", ItemsPageController.updateCart);
 router.get("/cart", ItemsPageController.getCart);
 router.post("/removeFromCart", ItemsPageController.removeFromCart);
-router.post("/removeFromCartOnce", ItemsPageController.removeFromCartOnce);
+
 module.exports = router;
