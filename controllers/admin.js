@@ -20,7 +20,7 @@ async function PostFacebook(req,res)
 {
     const pageId = '105535155938772';
     const accessToken = process.env.accessToken_facebook;
-    const message = req.body.PostText;
+    const message = req.body.postdata;
     const apiUrl = `https://graph.facebook.com/${pageId}/feed?message=${message}&access_token=${accessToken}`;
     let isAdmin = req.session.isadmin;
     let username = req.session.username;

@@ -106,31 +106,35 @@ function toggleForm() {
   }
   });
 });
-var postFacebook = {
-  "url" : `http://localhost:70/post-form-route`,
-  "method" : "POST",
 
-}
 $('#post-Facebook').submit(function(e) {
-$.ajax(postFacebook).done(function(response){
-  if(response.message == 'Problem')
-  {
-    Swal.fire({
-      title: 'Error',
-      text: "Problem with post!",
-      icon: 'error',
-      confirmButtonText: 'OK'
-      })
+  e.preventDefault();
+  let postdata=$('#postInput')[0].value;
+    var postFacebook = {
+    "url" : `http://localhost:70/post-form-route`,
+    "method" : "POST",
+    "data": { "postdata": postdata }
+  
   }
-  else{
-  Swal.fire({
-  title: 'Success',
-  text: "Your post has been shared!",
-  icon: 'success',
-  confirmButtonText: 'OK'
+  $.ajax(postFacebook).done(function(response){
+    if(response.message == 'Problem')
+    {
+      Swal.fire({
+        title: 'Error',
+        text: "Problem with post!",
+        icon: 'error',
+        confirmButtonText: 'OK'
+        })
+    }
+    else{
+    Swal.fire({
+    title: 'Success',
+    text: "Your post has been shared!",
+    icon: 'success',
+    confirmButtonText: 'OK'
+    })
+  }
   })
-}
-})
 })
 if(window.location.pathname == "/management"){
   $ondelete = $(".table tbody td a.delete");
