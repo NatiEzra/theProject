@@ -133,6 +133,7 @@ $('#post-Facebook').submit(function(e) {
     icon: 'success',
     confirmButtonText: 'OK'
     })
+    $('#postInput').val('');
   }
   })
 })
