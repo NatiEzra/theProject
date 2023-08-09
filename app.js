@@ -43,4 +43,7 @@ app.use('/', Item_page);
 const Admin_page = require('./routes/admin');
 app.use('/', Admin_page);
 
+const Order_page = require('./routes/orders');
+app.use('/', Order_page);
+
 app.listen(process.env.PORT, () => console.log('Server started on port 70'));
