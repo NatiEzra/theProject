@@ -13,7 +13,7 @@ function Mainpage(req, res) {
     loggedIn = true;
 
   }
-  res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin });
+  res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin,showFire:false });
 }
 function Error(req, res){
 res.render("ErrorPage", {});
