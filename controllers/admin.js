@@ -28,8 +28,10 @@ async function PostFacebook(req,res)
     axios.post(apiUrl,null).then(function(response){
         if(response.status==200)
         {
-          res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users });
+          res.send({ message: 'Your post has been shared!' });
         }
+        else 
+          res.send({message: 'Problem'});
     })
   
   
