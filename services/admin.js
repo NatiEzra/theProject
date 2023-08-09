@@ -5,31 +5,34 @@ const User = require('../models/User');
 // Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    console.log( path.resolve(__dirname, '../public/Images'));
     cb(null, path.resolve(__dirname, '../public/Images')); // Absolute path to save the uploaded images
     //cb(null,'../public/test'); // Absolute path to save the uploaded images
 
   },
   filename: (req, file, cb) => {
+    console.log(file);
     const fileName = file.originalname;
     cb(null, fileName);
   },
 });
 
 // File filter configuration
-const fileFilter = (req, file, cb) => {
-  const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-  if (allowedFileTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(new Error('Only jpeg, jpg, png, and gif image files are allowed.'));
-  }
-};
+// const fileFilter = (req, file, cb) => {
+//   const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+//   if (allowedFileTypes.includes(file.mimetype)) {
+//     cb(null, true);
+//   } else {
+//     cb(new Error('Only jpeg, jpg, png, and gif image files are allowed.'));
+//   }
+// };
 
 // Multer upload instance
-const upload = multer({ storage: storage, fileFilter: fileFilter }).single('single_input');
+const upload = multer({ storage: storage });
 
 async function AddItem(req, res, name, type, gender, price, details, singleInput) {
   try {
+    upload.single('image');
     await upload(req, res, async (err) => {
       if (err) {
         throw new Error(err.message);
