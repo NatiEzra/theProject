@@ -13,7 +13,8 @@ async function register(req, res) {
     await registerService.register(username, firstname , lastname , email , gender , date , password)    
     //req.session.username = username
     //res.redirect('/Mainpage');
-    res.render("Mainpage", { username: username , loggedIn :true , Admin:false });
+    res.render("Mainpage", { username: username , loggedIn :true , Admin:false, showFire:true });
+
   }
   catch (e) {
    //flag is for username, degel is for email
