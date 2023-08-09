@@ -73,32 +73,6 @@ function toggleForm() {
         "method" : "PUT",
         "data" : data
     }
-    var postFacebook = {
-      "url" : `http://localhost:70/post-form-route`,
-      "method" : "POST",
-  
-  }
-  $('#post-Facebook').submit(function(e) {
-    $.ajax(postFacebook).done(function(response){
-      if(message == problemPost)
-      {
-        Swal.fire({
-          title: 'Error',
-          text: "Problem with post!",
-          icon: 'error',
-          confirmButtonText: 'OK'
-          })
-      }
-      else{
-      Swal.fire({
-      title: 'Success',
-      text: "Your post has been shared!",
-      icon: 'success',
-      confirmButtonText: 'OK'
-      })
-    }
-  })
-})
 
 
     Swal.fire({
@@ -132,6 +106,32 @@ function toggleForm() {
   }
   });
 });
+var postFacebook = {
+  "url" : `http://localhost:70/post-form-route`,
+  "method" : "POST",
+
+}
+$('#post-Facebook').submit(function(e) {
+$.ajax(postFacebook).done(function(response){
+  if(response.message == 'Problem')
+  {
+    Swal.fire({
+      title: 'Error',
+      text: "Problem with post!",
+      icon: 'error',
+      confirmButtonText: 'OK'
+      })
+  }
+  else{
+  Swal.fire({
+  title: 'Success',
+  text: "Your post has been shared!",
+  icon: 'success',
+  confirmButtonText: 'OK'
+  })
+}
+})
+})
 if(window.location.pathname == "/management"){
   $ondelete = $(".table tbody td a.delete");
   const message = 
