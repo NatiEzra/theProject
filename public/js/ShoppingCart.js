@@ -468,7 +468,8 @@ const x=await fetch('/cart').
 
       promoName=document.getElementById("promocodeName").innerText;
               foundpromo=null
-      const x = await fetch('/getPromo')
+              if (promoName)
+     { const x = await fetch('/getPromo')
     .then(response => response.json())
     .then(data => {
       data.forEach(async promoCode => {
@@ -479,7 +480,10 @@ const x=await fetch('/cart').
       })});
 
               var username2= await getUserName();   
-           foundpromo.users.push(username2);
+              if (foundpromo)
+           {
+            foundpromo.users.push(username2);
+          }
    
           const updateUserPromo = {
           url: "http://localhost:70/updatePromo",
@@ -488,7 +492,7 @@ const x=await fetch('/cart').
           contentType: "application/json",
             };
             await $.ajax(updateUserPromo);
-
+          }
               await Swal.fire({
                 title: 'Your order has been placed',
                 text: "Enjoy!",
