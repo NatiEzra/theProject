@@ -173,11 +173,7 @@ async function MenJson(req,res){
             const username=req.session.username;
           itemService.removeFromCart(item, username);
             }
-            async function removeFromCartOnce(req, res){
-              const item = req.body;
-              const username=req.session.username;
-              itemService.removeFromCartOnce(item, username);
-              }
+           
 module.exports = {
     additems,
     MenJson,
@@ -202,5 +198,4 @@ module.exports = {
     updateCart,
     getCart,
     removeFromCart,
-    removeFromCartOnce,
   }

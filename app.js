@@ -40,6 +40,9 @@ app.use('/', Main_page);
 const Item_page = require('./routes/items');
 app.use('/', Item_page);
 
+const promocode_page = require('./routes/promocode');
+app.use('/', promocode_page);
+
 const Admin_page = require('./routes/admin');
 app.use('/', Admin_page);
 
