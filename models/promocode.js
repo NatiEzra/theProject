@@ -14,7 +14,12 @@ const promocodeSchema = new mongoose.Schema({
   discount: {
     type: Number,
     required: true,
-  },   
+  }, 
+  users: {
+    type: Array,
+    required: true,
+  }, 
+
 });
 const promocode = mongoose.model('promocodes',promocodeSchema);
 module.exports = promocode;

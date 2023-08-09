@@ -104,6 +104,7 @@ async function getCart(username2){
   return foundUser.cart;
 
 }
+
 async function removeFromCart(item, username2)
 {
   const foundUser = await User.findOne({ username: username2 });
@@ -123,18 +124,7 @@ for(let i=0; i<foundUser.cart.length;i++)
     await foundUser.save();
   }
 }
-async function removeFromCartOnce(item, username2)
-{
-  const foundUser = await User.findOne({ username: username2 });
-  var itemIndex=0;
-  itemIndex = foundUser.cart.findIndex(cartItem => cartItem._id === item._id);
-  if(itemIndex!=-1){
-    foundUser.cart.splice(itemIndex, 1);
-    await foundUser.save();
-    itemIndex = foundUser.cart.findIndex(cartItem => cartItem._id === item._id);
-    console.log("item removed");
-  }
-}
+
 
 module.exports = { 
   addItemWithImage,
@@ -151,5 +141,4 @@ getAllUsers,
 updateCart,
 getCart,
 removeFromCart,
-removeFromCartOnce,
  };
