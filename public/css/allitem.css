@@ -1,0 +1,14 @@
+.table-container {
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    padding: 10px;
+    width: 300%;
+}
+
+.select-group {
+    margin-bottom: 20px; 
+}
+
+.button-group {
+    margin-top: 20px; 
+}
