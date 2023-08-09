@@ -8,3 +8,4 @@ const OrdersController = require("../controllers/orders");
 // GET route for the cart page
 router.get("/myorders", OrdersController.OrderPage);
 
+module.exports = router;
