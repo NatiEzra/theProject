@@ -49,9 +49,21 @@ function Add_user_Form(req,res)
 }
 
 async function Additem(req, res) {
-    const { name, type , gender , price , details ,single_input } = req.body
-    await AdminService.AddItem(req,res,name, type , gender , price , details ,single_input);   
-
+    //const { name, type , gender , price , details ,single_input } = req.body.postdata
+    const name=req.body.postdata.Name;
+    const type=req.body.postdata.Type;
+    const gender=req.body.postdata.Gender;
+    const price=req.body.postdata.Price;
+    const details=req.body.postdata.Details;
+    const single_input=req.body.postdata.Choose_Image;
+    let result=await AdminService.AddItem(req,res,name, type , gender , price , details ,single_input);   
+    if(result)
+    {
+      res.send({ message: 'Your item has been Added!' });
+    }
+    else{
+      res.send({ message: 'There is a Problem' });
+    }
     //res.redirect('/Mainpage');
   
   }

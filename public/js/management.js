@@ -1,5 +1,5 @@
 
-
+let selectedImg;
 function toggleForm() {
     var formContainer = $("#formContainer");
     if (formContainer.hasClass("form-container-hidden")) {
@@ -137,6 +137,60 @@ $('#post-Facebook').submit(function(e) {
   }
   })
 })
+
+
+$('#Add-item').submit(function(e) {
+  e.preventDefault();
+  let postdata={
+    Name:$('#name').val(),
+    Type:$('#type').val(),
+    Gender:$('#gender_').val(),
+    Price:$('#price').val(),
+    Details:$('#details').val(),
+    Choose_Image:selectedImg,
+  }
+    var AddItem = {
+    "url" : `http://localhost:70/management`,
+    "method" : "POST",
+    "data": { "postdata": postdata }
+  
+  }
+  $.ajax(AddItem).done(function(response){
+    if(response.message == 'There is a Problem')
+    {
+      Swal.fire({
+        title: 'Error',
+        text:response.message,
+        icon: 'error',
+        confirmButtonText: 'OK'
+        })
+    }
+    else{
+    Swal.fire({
+    title: 'Success',
+    text: response.message,
+    icon: 'success',
+    confirmButtonText: 'OK'
+    })
+  }
+  $('#name').val();
+  $('#price').val('');
+  $('#details').val('');
+// Get the span element with the class "chosen-img"
+const chosenImgSpan = document.querySelector(".chosen-img");
+
+// Check if the span element exists
+  if (chosenImgSpan) {
+    // Get the image element within the span
+    const imgElement = chosenImgSpan.querySelector("img");
+    
+    // Check if the image element exists
+    if (imgElement) {
+      // Remove the image element
+      imgElement.parentNode.removeChild(imgElement);
+    } }
+  })
+})
 if(window.location.pathname == "/management"){
   $ondelete = $(".table tbody td a.delete");
   const message = 
@@ -197,7 +251,12 @@ $(document).ready(function() {
 $('#chooseimage').click(function(e) {
   e.preventDefault();
   const images = document.getElementById('images-container')
-  images.style.display ='grid'
+  if(images.style.display==='grid')
+  {
+    images.style.display='none';
+  }
+  else{
+  images.style.display ='grid'}
 })
 
 function selectImage(img){
@@ -205,8 +264,7 @@ function selectImage(img){
   images.style.display ='none'
   selectedImg = img;    
   const chosen = document.querySelectorAll('.chosen-img')
-  console.log('isNewImg:', isNewImg);
-  chosen[isNewImg].innerHTML = `<img src="/coin-img/${selectedImg}" alt=""></img>`
+  chosen[0].innerHTML = `<img src="/item-img/${selectedImg}" alt=""></img>`
 }
 
 
