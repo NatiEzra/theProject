@@ -33,3 +33,6 @@ body{
 .hidden{
   display:none;
 }
+.lined{
+  text-decoration: line-through;
+}

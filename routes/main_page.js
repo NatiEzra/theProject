@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require('body-parser');
+
 
 const Main_pageController = require("../controllers/mainpage");
 const StorePageController = require("../controllers/ourStores");
@@ -27,4 +29,8 @@ router.get("/ErrorPage", Main_pageController.Error);
 //router.get("/Salepage", Main_pageController.Salepage);
 router.get("/ourStores", StorePageController.stores);
 router.get("/Storelocation", StorePageController.Storepgage);
+router.get("/editStores", StorePageController.editStores);
+router.use(bodyParser.json());
+router.post("/deleteBranch", StorePageController.deleteBranch);
+
 module.exports = router;
