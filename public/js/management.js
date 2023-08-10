@@ -182,6 +182,16 @@ $('#post-Facebook').submit(function(e) {
 
 $('#Add-item').submit(function(e) {
   e.preventDefault();
+  let price = parseFloat($('#price').val());
+  if (isNaN(price) || price <= 0) {
+    Swal.fire({
+      title: 'Error',
+      text: "Price must be a positive number",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+    return;
+  }
   let postdata={
     Name:$('#name').val(),
     Type:$('#type').val(),
@@ -215,8 +225,8 @@ $('#Add-item').submit(function(e) {
     })
   }
   $('#name').val();
-  $('#price').val('');
   $('#details').val('');
+  $('#price').val('');
 // Get the span element with the class "chosen-img"
 const chosenImgSpan = document.querySelector(".chosen-img");
 
