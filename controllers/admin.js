@@ -1,7 +1,11 @@
 const AdminService = require("../services/admin");
 const axios = require('axios');
 const User = require('../models/User');
-const Swal = require('sweetalert2');
+const socketIo = require("socket.io");
+const http = require('http'); // Node.js HTTP module
+const express = require('express');
+const app = express();
+const server = http.createServer(app); // Create an HTTP server
 
 require('custom-env').env(process.env.NODE_ENV, './config');
 
@@ -165,6 +169,28 @@ async function Update_user(req, res) {
     res.send({ message: 'Error Email or Username is already exsist' });
   }
 }
+
+const io = socketIo(server);
+
+// Handle Socket.io events
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  // Listen for the "createPromoCode" event from clients
+  socket.on("createPromoCode", (data) => {
+    const promoCode = data.promoCode;
+
+    // Here, you can process the promo code creation logic and send a response back to clients
+    // For now, we'll just emit a response event with a simple message
+    socket.emit("promoCodeCreated", { message: "Promo code created successfully!" });
+  });
+
+  // Handle disconnect event
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
+  });
+});
+
 module.exports = {
     Adminpage,
     Additem,
