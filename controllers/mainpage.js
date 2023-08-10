@@ -38,12 +38,17 @@ async function Myaccount(req, res){
     const admin=req.session.isadmin;
     const name=req.session.username;
     const user = await accountService.FindUser(name);
-    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,password:user.password});
   } else {
     res.render("login", { flag: true });
   }
 }
-
+async function updateUser(req,res){
+  const updatedUser = req.body;
+  let result=accountService.UpdateUser(updatedUser, res);
+  console.log(result);
+  
+}
 
 async function Cartpage(req, res){
   const admin=false;
@@ -63,5 +68,6 @@ module.exports = {
   Cartpage,
   Error,
   Myaccount,
-  SavedItems
+  SavedItems,
+  updateUser,
 }
