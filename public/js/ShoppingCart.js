@@ -165,6 +165,9 @@ const x=await fetch('/cart').
 
                   quantity.addEventListener("input", async function () {
                     // Update the total when the quantity changes
+                    document.getElementById("promocodeName").innerText="";
+                    document.getElementById("originalPrice").innerText="";
+                    document.getElementById("originalPriceBox").innerText="";
                    if (quantity.value<0||quantity.value%1!=0||quantity.value>100)
                     {
                       if(quantity.value<0)
@@ -529,20 +532,24 @@ const x=await fetch('/cart').
            
 async function checkPromo() {
   var val = document.getElementById("promocodeId").value;
-
+var flag=false;
   const x = await fetch('/getPromo')
     .then(response => response.json())
     .then(data => {
       data.forEach(async promo => {
-        if (await CheckIfUsed(promo) === false) {
-          if (promo.promocodename === val) {
+        if (promo.promocodename === val) {
+          flag=true;
+          if ( await CheckIfUsed(promo) === false) {
             var totalPrice = calculateTotalPrice();
             totalPrice = totalPrice * ((100 - promo.discount) / 100);
             document.getElementById("tp").innerText = (totalPrice + "₪");
             document.getElementById("fill").innerText="You used the ";
             document.getElementById("promocodeName").innerText=val;
             document.getElementById("3rd").innerText=" Promocode";
-            
+            document.getElementById("originalPrice").innerText=(calculateTotalPrice()+'₪');
+            document.getElementById("originalPriceBox").innerText="Original price";
+            document.getElementById("originalPrice").classList.add("lined");
+           
           /* var username= await getUserName();   
            promo.users.push(username);
    
@@ -557,6 +564,13 @@ async function checkPromo() {
         }
       });
     });
+    if(!flag)
+    {Swal.fire({
+      title: 'Error',
+      text: "Code not found, please try again",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });}
 }           
             async function getUserName(){
               const response = await $.ajax({
