@@ -200,6 +200,14 @@ $('#chooseimage').click(function(e) {
   images.style.display ='grid'
 })
 
+function selectImage(img){
+  const images = document.getElementById('images-container')
+  images.style.display ='none'
+  selectedImg = img;    
+  const chosen = document.querySelectorAll('.chosen-img')
+  console.log('isNewImg:', isNewImg);
+  chosen[isNewImg].innerHTML = `<img src="/coin-img/${selectedImg}" alt=""></img>`
+}
 
 
 
