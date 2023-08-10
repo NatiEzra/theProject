@@ -44,9 +44,15 @@ async function Myaccount(req, res){
   }
 }
 async function updateUser(req,res){
-  const updatedUser = req.body;
-  let result=accountService.UpdateUser(updatedUser, res);
-  console.log(result);
+  const updatedUser = req.body.foundUser;
+  let result=await accountService.UpdateUser(updatedUser);
+  if(result)
+  {
+    res.send({ message: "User updated successfully." });
+  }
+  else{
+    res.send({ message: "User not found." });
+  }
   
 }
 

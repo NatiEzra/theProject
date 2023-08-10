@@ -12,17 +12,19 @@ async function FindUser(username) {
 }
 async function UpdateUser(updatedUser, res)
 {
-  User.findOneAndUpdate({ username: updatedUser.username }, { firstname:updatedUser.firstname, lastname:updatedUser.lastname, email:updatedUser.email,password:updatedUser.password }, { new: true })
+  let bool;
+ await User.findOneAndUpdate({ username: updatedUser.username }, { firstname:updatedUser.firstname, lastname:updatedUser.lastname, email:updatedUser.email,password:updatedUser.password }, { new: true })
   .then(updatedUser => {
      if (updatedUser) {
-      res.status(200).json({ message: "User updated successfully." });
+      bool= true;
     } else {
-      res.status(404).json({ message: "User not found." });
+      bool= false;
     }
   })
   .catch(error => {
-    res.status(500).json({ message: "Error updating user.", error: error.message });
+    bool=  false;
   });
+  return bool;
 }
 
 module.exports = { FindUser,UpdateUser }

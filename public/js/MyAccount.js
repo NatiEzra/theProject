@@ -64,14 +64,14 @@ $(document).ready(function() {
     foundUser.email=eMail;
 
         const updateUser = {
-          url: "http://localhost:70/updateUser",
-          method: "POST",
-          data: JSON.stringify(foundUser), // Convert the user object to JSON
-          contentType: "application/json",
+          "url": "http://localhost:70/updateUser",
+          "method": "POST",
+          "data": { "foundUser": foundUser }, // Convert the user object to JSON
+          
         };
 
         await $.ajax(updateUser).done(function(response) {
-          
+          if(response.message=='User updated successfully.')
           Swal.fire({
             title: 'Success',
             text: "Item added to cart successfully",
