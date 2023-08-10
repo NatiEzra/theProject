@@ -64,6 +64,8 @@ const x=await fetch('/cart').
                 const sizeDiv=document.createElement("td");
                 const erase = document.createElement("a");
                 
+
+
                 erase.className = "shop-tooltip close float-none text-danger";
                 erase.title = "Remove";
                 erase.innerText = "×";
@@ -163,6 +165,9 @@ const x=await fetch('/cart').
 
                   quantity.addEventListener("input", async function () {
                     // Update the total when the quantity changes
+                    document.getElementById("promocodeName").innerText="";
+                    document.getElementById("originalPrice").innerText="";
+                    document.getElementById("originalPriceBox").innerText="";
                    if (quantity.value<0||quantity.value%1!=0||quantity.value>100)
                     {
                       if(quantity.value<0)
@@ -178,6 +183,7 @@ const x=await fetch('/cart').
                         confirmButtonText: 'OK'
                       });
                     }
+                    document.getElementById('promocodeId').value="";
                     const updatedTotal = parseFloat(quantity.value) * parseFloat(product.price);
                     total.textContent = updatedTotal.toFixed(2) + "₪";
                     sumprice = calculateTotalPrice();
@@ -362,19 +368,7 @@ const x=await fetch('/cart').
               console.error("Failed to update cart:", error);
             }
           }
-          async function removeOnce(item)
-          {
-            var request = {
-              "url": "http://localhost:70/removeFromCartOnce",
-              "method": "POST",
-              "data": JSON.stringify(item), // Convert the item object to JSON
-              "contentType": "application/json",
-            };
-            $.ajax(request).done(function(response) {
-              
-            });
-
-          }
+          
 
           async function setQuantity(item)
           {
@@ -465,7 +459,7 @@ const x=await fetch('/cart').
               if (foundUser) 
               {
                 foundUser.cart=[];
-              
+                
               }   
               const updateUserReq = {
                 url: "http://localhost:70/updateCart",
@@ -473,8 +467,35 @@ const x=await fetch('/cart').
                 data: JSON.stringify(foundUser), // Convert the user object to JSON
                 contentType: "application/json",
               };
-      
               await $.ajax(updateUserReq); 
+
+      promoName=document.getElementById("promocodeName").innerText;
+              foundpromo=null
+              if (promoName)
+     { const x = await fetch('/getPromo')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(async promoCode => {
+          if (promoCode.promocodename==promoName)
+          {
+            foundpromo=promoCode;
+          }
+      })});
+
+              var username2= await getUserName();   
+              if (foundpromo)
+           {
+            foundpromo.users.push(username2);
+          }
+   
+          const updateUserPromo = {
+          url: "http://localhost:70/updatePromo",
+          method: "POST",
+          data: JSON.stringify(foundpromo), // Convert the user object to JSON
+          contentType: "application/json",
+            };
+            await $.ajax(updateUserPromo);
+          }
               await Swal.fire({
                 title: 'Your order has been placed',
                 text: "Enjoy!",
@@ -511,17 +532,25 @@ const x=await fetch('/cart').
            
 async function checkPromo() {
   var val = document.getElementById("promocodeId").value;
-
+var flag=false;
   const x = await fetch('/getPromo')
     .then(response => response.json())
     .then(data => {
       data.forEach(async promo => {
-        if (await CheckIfUsed(promo) === false) {
-          if (promo.promocodename === val) {
-            var totalPrice = parseFloat(document.getElementById("tp").textContent.replace("₪", ""));
+        if (promo.promocodename === val) {
+          flag=true;
+          if ( await CheckIfUsed(promo) === false) {
+            var totalPrice = calculateTotalPrice();
             totalPrice = totalPrice * ((100 - promo.discount) / 100);
             document.getElementById("tp").innerText = (totalPrice + "₪");
-           var username= await getUserName();   
+            document.getElementById("fill").innerText="You used the ";
+            document.getElementById("promocodeName").innerText=val;
+            document.getElementById("3rd").innerText=" Promocode";
+            document.getElementById("originalPrice").innerText=(calculateTotalPrice()+'₪');
+            document.getElementById("originalPriceBox").innerText="Original price";
+            document.getElementById("originalPrice").classList.add("lined");
+           
+          /* var username= await getUserName();   
            promo.users.push(username);
    
           const updateUserPromo = {
@@ -530,11 +559,18 @@ async function checkPromo() {
           data: JSON.stringify(promo), // Convert the user object to JSON
           contentType: "application/json",
             };
-            await $.ajax(updateUserPromo);
+            await $.ajax(updateUserPromo);*/
           }
         }
       });
     });
+    if(!flag)
+    {Swal.fire({
+      title: 'Error',
+      text: "Code not found, please try again",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });}
 }           
             async function getUserName(){
               const response = await $.ajax({
@@ -545,9 +581,10 @@ async function checkPromo() {
               return username; // the logged user
             }
             async function CheckIfUsed(promo){
-            for(var i=0;i<promo.users.length;i++)
-            {
-            if(promo.users[i]==getUserName())
+              var user=await getUserName();
+              for(var i=0;i<promo.users.length;i++)
+              {
+              if(promo.users[i]==user)
               {
               await Swal.fire({
                 title: 'Error',
@@ -555,9 +592,9 @@ async function checkPromo() {
                 icon: 'error',
                 confirmButtonText: 'OK'
               });
-                return true;
-             }
+              return true;
             }
+          }
             return false;
           }
         

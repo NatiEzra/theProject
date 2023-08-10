@@ -12,6 +12,15 @@ async function login(username, password) {
         return false;
     }
 }
+async function findUSer(username) {
+    const user = await User.findOne({username:username});  
+    if(user!==null)
+        return user;
+    else
+    {
+        return false;
+    }
+}
 async function getmap(){
     const storelocation= 
     await StoreLocation.find();
@@ -27,5 +36,10 @@ async function register(username, password) {
     await user.save()        
 }
 
-module.exports = { login, register,getmap }
+module.exports = { 
+    login, 
+    register,
+    getmap,
+    findUSer,
+ }
 

@@ -2,56 +2,63 @@ const multer = require('multer');
 const path = require('path');
 const Item = require('../models/Item');
 const User = require('../models/User');
-// Multer configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    console.log( path.resolve(__dirname, '../public/Images'));
-    cb(null, path.resolve(__dirname, '../public/Images')); // Absolute path to save the uploaded images
-    //cb(null,'../public/test'); // Absolute path to save the uploaded images
+// const express = require("express");
+// const router = express.Router();
+// // Multer configuration
+// router.use(express.static('public'));
+let storage = multer.diskStorage({
+    destination:'./public/images', //directory (folder) setting
+    filename:(req, file, cb)=>{
+        cb(null,file.originalname) // file name setting
+    }
+})
 
-  },
-  filename: (req, file, cb) => {
-    console.log(file);
-    const fileName = file.originalname;
-    cb(null, fileName);
-  },
-});
+//Upload Setting
+let upload = multer({
+   storage: storage,
+   fileFilter:(req, file, cb)=>{
+    if(
+        file.mimetype == 'image/jpeg' ||
+        file.mimetype == 'image/jpg' ||
+        file.mimetype == 'image/png' ||
+        file.mimetype == 'image/gif'
 
-// File filter configuration
-// const fileFilter = (req, file, cb) => {
-//   const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-//   if (allowedFileTypes.includes(file.mimetype)) {
-//     cb(null, true);
-//   } else {
-//     cb(new Error('Only jpeg, jpg, png, and gif image files are allowed.'));
-//   }
-// };
-
-// Multer upload instance
-const upload = multer({ storage: storage });
+    ){
+        cb(null, true)
+    }
+    else{
+        cb(null, false);
+        cb(new Error('Only jpeg,  jpg , png, and gif Image allow'))
+    }
+   }
+})
 
 async function AddItem(req, res, name, type, gender, price, details, singleInput) {
   try {
-    upload.single('image');
-    await upload(req, res, async (err) => {
-      if (err) {
-        throw new Error(err.message);
-      } else {
-        const item = new Item({
+     // upload.single('single_input')(req, res, async (err) => {
+      //console.log( path.resolve(__dirname, '../public/Images'));
+      const item = new Item({
           name: name,
           type: type,
           gender: gender,
           price: price,
           details: details,
           img: singleInput, // Save the filename in the database
-        });
+      });
         await item.save();
         console.log('Item saved successfully.');
-      }
-    })
+        return true;
+   // });
   } catch (error) {
     console.error('Error occurred while adding item:', error);
+    return false;
   }
+}
+function AddPhoto(req,res) {
+      upload.single('single_input')(req, res, async (err) => {
+      console.log('Image saved successfully.');
+      });
+  
 }
 async function Listofusers()
 {
@@ -120,4 +127,4 @@ async function check_username(username , email)
       return "email exsist";
     } 
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username};
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto};

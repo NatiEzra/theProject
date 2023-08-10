@@ -1,7 +1,12 @@
 const AdminService = require("../services/admin");
 const axios = require('axios');
 const User = require('../models/User');
-const Swal = require('sweetalert2');
+const socketIo = require("socket.io");
+const http = require('http'); // Node.js HTTP module
+const express = require('express');
+const app = express();
+const server = http.createServer(app); // Create an HTTP server
+
 require('custom-env').env(process.env.NODE_ENV, './config');
 
 async function Adminpage(req, res) {
@@ -48,11 +53,29 @@ function Add_user_Form(req,res)
 }
 
 async function Additem(req, res) {
-    const { name, type , gender , price , details ,single_input } = req.body
-    await AdminService.AddItem(req,res,name, type , gender , price , details ,single_input);   
+    //const { name, type , gender , price , details ,single_input } = req.body.postdata
+    const name=req.body.postdata.Name;
+    const type=req.body.postdata.Type;
+    const gender=req.body.postdata.Gender;
+    const price=req.body.postdata.Price;
+    const details=req.body.postdata.Details;
+    const single_input=req.body.postdata.Choose_Image;
+    let result=await AdminService.AddItem(req,res,name, type , gender , price , details ,single_input);   
+    if(result)
+    {
+      res.send({ message: 'Your item has been Added!' });
+    }
+    else{
+      res.send({ message: 'There is a Problem' });
+    }
     //res.redirect('/Mainpage');
   
   }
+
+async function AddPhoto(req,res)
+{
+  let result= await AdminService.AddPhoto(req,res);   
+}
 
 async function Getlistofusers()
 {
@@ -146,6 +169,28 @@ async function Update_user(req, res) {
     res.send({ message: 'Error Email or Username is already exsist' });
   }
 }
+
+const io = socketIo(server);
+
+// Handle Socket.io events
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  // Listen for the "createPromoCode" event from clients
+  socket.on("createPromoCode", (data) => {
+    const promoCode = data.promoCode;
+
+    // Here, you can process the promo code creation logic and send a response back to clients
+    // For now, we'll just emit a response event with a simple message
+    socket.emit("promoCodeCreated", { message: "Promo code created successfully!" });
+  });
+
+  // Handle disconnect event
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
+  });
+});
+
 module.exports = {
     Adminpage,
     Additem,
@@ -157,5 +202,6 @@ module.exports = {
     Add_user_Form,
     CreateUser , 
     PostFacebook , 
-    check_username
+    check_username,
+    AddPhoto
   }

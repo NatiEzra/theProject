@@ -41,8 +41,10 @@ async function login(req, res) {
     }
     else admin=false;
     req.session.isLoggedIn=true;
-    req.session.username = username;
-    res.render("Mainpage",{Admin:admin , loggedIn: true,showFire:false, username: result.username});
+    var user=await loginService.findUSer(username);
+    req.session.userid=user.id;
+    req.session.username=user.username;
+    res.render("Mainpage",{Admin:admin , loggedIn: true,showFire:false,_id:user.id ,username: result.username});
   } else res.render("login", { flag: result});
 }
 
