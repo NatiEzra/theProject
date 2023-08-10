@@ -10,8 +10,9 @@ const StorePageController = require("../controllers/ourStores");
 // GET route for the cart page
 router.get("/Cartpage", Main_pageController.Cartpage);
 
-// GET route for the myaccount page
+// GET&Post route for the myaccount page
 router.get("/myaccount", Main_pageController.Myaccount);
+router.post("/updateUser", Main_pageController.updateUser);
 
 // GET route for the myaccount page
 router.get("/SavedItems", Main_pageController.SavedItems);
