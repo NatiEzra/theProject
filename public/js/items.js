@@ -121,3 +121,103 @@ const x=await fetch('/AllItemsJson').
         });
       });}
       setItems();
+
+
+    async function setCart() {
+      const existingItems = [];
+  
+      try {
+          const response = await fetch('/allItemsJson');
+          const data2 = await response.json();
+  
+          data2.forEach(item => {
+              existingItems.push({
+                  name: item.name,
+                  price: parseFloat(item.price),
+                  size: item.size.split(',')[0],
+                  color: item.color,
+              });
+          });
+  
+          // Now the existingItems array holds the items with the desired structure
+          console.log(existingItems);
+      } catch (error) {
+          console.error('Error fetching or processing data:', error);
+      }
+  }
+    
+    // Call the setCart function
+setCart();
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const applyFilterButton = document.getElementById('apply-filter-btn');
+        const clearFilterButton = document.getElementById('clear-filter-btn');
+        const filterForm = document.getElementById('filter-form');
+    
+        const priceSelect = document.getElementById('price');
+        const sizeSelect = document.getElementById('size');
+        const colorSelect = document.getElementById('color');
+    
+        // ... (other event listeners for enabling the Apply button)
+    
+             // Enable "Apply" button when a filter option is selected
+             [priceSelect, sizeSelect, colorSelect].forEach(select => {
+              select.addEventListener('change', () => {
+                  applyFilterButton.disabled = false;
+              });
+          });
+
+
+        applyFilterButton.addEventListener('click', () => {
+            const selectedPrice = priceSelect.value !== '' ? parseInt(priceSelect.value) : null;
+            const selectedSize = sizeSelect.value;
+            const selectedColor = colorSelect.value;
+    
+            const filteredItems = items.filter(item => {
+                // Filter based on selected price range
+                if (selectedPrice !== null && item.price > selectedPrice) {
+                    return false;
+                }
+    
+                // Filter based on selected size
+                if (selectedSize !== '' && item.size !== selectedSize) {
+                    return false;
+                }
+    
+                // Filter based on selected color
+                if (selectedColor !== '' && item.color !== selectedColor) {
+                    return false;
+                }
+    
+                return true;
+            });
+    
+            displayFilteredItems(filteredItems);
+        });
+    
+        // ... (other event listeners)
+    
+        function displayFilteredItems(filteredItems) {
+            const container = document.getElementById('container');
+            container.innerHTML = ''; // Clear the container
+    
+            filteredItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.textContent = item.name + ' - Price: ' + item.price + ' Size: ' + item.size + ' Color: ' + item.color;
+                container.appendChild(itemElement);
+            });
+        }
+     applyFilterButton.disabled = true;
+    });
+    
+
+    clearFilterButton.addEventListener('click', () => {
+      priceSelect.value = '';
+      sizeSelect.value = '';
+      colorSelect.value = '';
+      applyFilterButton.disabled = true;
+
+      // Clear the displayed items and reset to default view
+
+  });
+
