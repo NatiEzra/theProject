@@ -28,13 +28,33 @@ async function deleteBranch(req, res){
   branch=req.body;
   storeService.deleteBranch(branch, res);
 }
+async function updateBranch(req, res)
+{
+  branch=req.body.branch;
+  let result=await storeService.updateBranch(branch);
+  if(result){
+    res.send({ message: "Branch updated successfully." });
+  }
+  else
+    res.send({ message: "Branch not found." });
+}
+async function createBranch(req, res){
+  branch=req.body;
+  const result=storeService.createBranch(branch, res);
+  if (result){
+    res.send({ message: "Branch created successfully." });
+  }
+  else
+  res.send({ message: "Branch not found." });
 
-
+}
   module.exports = { 
     stores,
     Storepgage,
     editStores,
     deleteBranch,
+    updateBranch,
+    createBranch,
   }
   
   

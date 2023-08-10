@@ -82,41 +82,56 @@ data2.forEach(branch => {
         }
     })
 })
-    editButton.addEventListener("click", async function () {
+editButton.addEventListener("click", function () {
+    $('#editModal').modal('show');
+    const modalTitle = document.getElementById("editModalLabel");
+    const modalBody = document.querySelector("#editModal .modal-body");
+    const saveChangesButton = document.getElementById("saveChangesButton");
+    modalTitle.textContent = "Edit Branch: " + branch.Address;
+    modalBody.innerHTML = `
+        <label for="addressInput">Address:</label>
+        <input type="text" id="addressInput" class="form-control" value="${branch.Address}">
 
-        addressIn=document.createElement("input");
-        latIn=document.createElement("input");
-        lngIn=document.createElement("input");
+        <label for="latInput">Latitude:</label>
+        <input type="text" id="latInput" class="form-control" value="${branch.lat}">
         
+        <label for="lngInput">Longitude:</label>
+        <input type="text" id="lngInput" class="form-control" value="${branch.lng}">
         
-        latIn.value=branch.lat;
-        lngIn.value=branch.lng;
-        addressIn.value=branch.Address;
+    `;
+    saveChangesButton.addEventListener("click", async function () {
+        const newLat = document.getElementById("latInput").value;
+        const newLng = document.getElementById("lngInput").value;
+        const newAddress = document.getElementById("addressInput").value;
+        branch.Address=newAddress;
+        branch.lat=newLat;
+        branch.lng=newLng;
 
-        branchName.textContent="";
-        latTd.textContent="";
-        lngTd.textContent="";
+        var updateBranch = {
+            "url": "http://localhost:70/updateBranch",
+            "method": "POST",
+            "data": { "branch": branch },
 
-        latTd.appendChild(latIn);
-        lngTd.appendChild(lngIn);
-        nameTd.appendChild(addressIn);
-        
+          };
 
-        var okButton = document.createElement("button");
-        okButton.classList.add("btn", "btn-success", "ok-button");
-        okButton.textContent = "OK";
-
-
-        var cancelButton = document.createElement("button");
-        cancelButton.classList.add("btn", "btn-secondary", "cancel-button");
-        cancelButton.textContent = "Cancel";
-
-        editButton.classList.add("hidden");
-        editTd.appendChild(okButton);
-        editTd.appendChild(cancelButton);
-        
-
-    })
+         await $.ajax(updateBranch).done(function(response) {
+            Swal.fire({
+              title: 'Success',
+              text: "Branch updated  successfully",
+              icon: 'success',
+              confirmButtonText: 'OK'
+              }).then(() => {
+                location.reload(); // Refresh the page
+              });
+          }).fail(function(error) {
+              console.error("Failed to update branch:", error);
+            });
+          
+            
+        // Close the modal
+        $('#editModal').modal('hide');
+    });
+});
 })
 })
 }
@@ -124,6 +139,74 @@ data2.forEach(branch => {
 
 buildPage();
 
+function addStore() {
+    $('#editModal').modal('show');
+    const modalTitle = document.getElementById("editModalLabel");
+    const modalBody = document.querySelector("#editModal .modal-body");
+    const saveChangesButton = document.getElementById("saveChangesButton");
+    modalTitle.textContent = "Add New Store";
+    modalBody.innerHTML = `
+        <label for="addressInput">Address:</label>
+        <input type="text" id="addressInput" class="form-control" value="">
 
+        <label for="latInput">Latitude:</label>
+        <input type="text" id="latInput" class="form-control" value="">
+              
+        <label for="lngInput">Longitude:</label>
+        <input type="text" id="lngInput" class="form-control" value="">
+              
+    `;
+    saveChangesButton.addEventListener("click", async function () {
+        const newLat = document.getElementById("latInput").value;
+        const newLng = document.getElementById("lngInput").value;
+        const newAddress = document.getElementById("addressInput").value;
+        
+        const branch={
+            Address: newAddress,
+            lat: newLat,
+            lng: newLng,
+        }
 
+        var createBranch = {
+            "url": "http://localhost:70/createBranch",
+            "method": "POST",
+            "data": JSON.stringify(branch),
+        "contentType": "application/json",
+          };
+          
+
+          const response = await $.ajax(createBranch);
+        if (response.message === 'Branch created successfully.') {
+         const x= await Swal.fire({
+            title: 'Success',
+            text: "Branch created successfully",
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+
+          location.reload(); 
+        }
+        else{
+            console.error("Failed to update branch:", error);
+        }
+
+          /*await $.ajax(createBranch)
+          .done(function(response) {
+            
+               Swal.fire({
+                  title: 'Success',
+                  text: "Branch created successfully",
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+                }).then(() => {
+                    location.reload(); 
+                });
+            }).fail(function(error) {
+                console.error("Failed to update branch:", error);
+            });*/
+            $('#editModal').modal('hide');
+            
+    });
+  }
+  
 

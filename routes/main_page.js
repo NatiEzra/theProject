@@ -33,5 +33,7 @@ router.get("/Storelocation", StorePageController.Storepgage);
 router.get("/editStores", StorePageController.editStores);
 router.use(bodyParser.json());
 router.post("/deleteBranch", StorePageController.deleteBranch);
+router.post("/updateBranch", StorePageController.updateBranch);
+router.post("/createBranch", StorePageController.createBranch);
 
 module.exports = router;
