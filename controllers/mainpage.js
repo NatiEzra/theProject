@@ -51,7 +51,7 @@ async function updateUser(req,res){
     res.send({ message: "User updated successfully." });
   }
   else{
-    res.send({ message: "User not found." });
+    res.send({ message: "User not found."});
   }
   
 }

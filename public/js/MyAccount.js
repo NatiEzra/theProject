@@ -36,19 +36,30 @@ $(document).ready(function() {
     });
     if(foundUser==null)
     return;
-
+    var flag=false;
     firstName = $("#firstName").val();
     lastName = $("#lastName").val();
     eMail = $("#eMail").val();
+    const elementEmail = document.getElementById("eMail");
     newpassword=$("#NewPassword").val();
     password=$("#password").val();
+    if (!elementEmail.checkValidity()) {
+      await Swal.fire({
+        title: 'Error',
+        text: "Invalid email format",
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
     Users.forEach(async function (user)
      {
-      if (user.email === eMail && user.email!=foundUser.email)
+      if ((user.email === eMail && user.email!==foundUser.email))
        {
+        flag=true;
         await Swal.fire({
           title: 'Error',
-          text: "Promocode was already used",
+          text: "Email is already used by another user",
           icon: 'error',
           confirmButtonText: 'OK'
         });
@@ -66,20 +77,34 @@ $(document).ready(function() {
         const updateUser = {
           "url": "http://localhost:70/updateUser",
           "method": "POST",
-          "data": { "foundUser": foundUser }, // Convert the user object to JSON
-          
+          "data": { "foundUser": foundUser }, // Convert the user object to JSON         
         };
-
-        await $.ajax(updateUser).done(function(response) {
-          if(response.message=='User updated successfully.')
+        const response = await $.ajax(updateUser);
+        if (response.message === 'User updated successfully.') {
           Swal.fire({
             title: 'Success',
-            text: "Item added to cart successfully",
+            text: "User updated successfully",
             icon: 'success',
             confirmButtonText: 'OK'
-            })      
+          });
+        $("#password").val(foundUser.password);
+        $("#NewPassword").val("");
+
+        }
+      else {
+        if(!flag)
+        {
+        // Handle error as needed
+        Swal.fire({
+          title: 'Error',
+          text: "An error occurred while updating the user",
+          icon: 'error',
+          confirmButtonText: 'OK'
         });
-      }  
+      }
+    }
+    }
+        
       
     
 
