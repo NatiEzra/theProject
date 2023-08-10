@@ -194,3 +194,13 @@ $(document).ready(function() {
   });
 });
 
+$('#chooseimage').click(function(e) {
+  e.preventDefault();
+  const images = document.getElementById('images-container')
+  images.style.display ='grid'
+})
+
+
+
+
+

@@ -2,6 +2,7 @@ const AdminService = require("../services/admin");
 const axios = require('axios');
 const User = require('../models/User');
 const Swal = require('sweetalert2');
+
 require('custom-env').env(process.env.NODE_ENV, './config');
 
 async function Adminpage(req, res) {
@@ -50,9 +51,15 @@ function Add_user_Form(req,res)
 async function Additem(req, res) {
     const { name, type , gender , price , details ,single_input } = req.body
     await AdminService.AddItem(req,res,name, type , gender , price , details ,single_input);   
+
     //res.redirect('/Mainpage');
   
   }
+
+async function AddPhoto(req,res)
+{
+  let result= await AdminService.AddPhoto(req,res);   
+}
 
 async function Getlistofusers()
 {
@@ -157,5 +164,6 @@ module.exports = {
     Add_user_Form,
     CreateUser , 
     PostFacebook , 
-    check_username
+    check_username,
+    AddPhoto
   }
