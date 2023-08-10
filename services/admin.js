@@ -47,9 +47,11 @@ async function AddItem(req, res, name, type, gender, price, details, singleInput
       });
         await item.save();
         console.log('Item saved successfully.');
+        return true;
    // });
   } catch (error) {
     console.error('Error occurred while adding item:', error);
+    return false;
   }
 }
 function AddPhoto(req,res) {
