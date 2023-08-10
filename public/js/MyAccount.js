@@ -71,7 +71,7 @@ $(document).ready(function() {
         };
 
         await $.ajax(updateUser).done(function(response) {
-          if()
+          
           Swal.fire({
             title: 'Success',
             text: "Item added to cart successfully",
