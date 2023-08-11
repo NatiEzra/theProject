@@ -432,11 +432,14 @@ const x=await fetch('/cart').
           }
           async function checkout()
           {
+
+            
+            
+            
             const response = await $.ajax({
               url: "http://localhost:70/check",
               method: "GET",
             });
-        
             if (response.message === "NULL") {
               return;
             } else {
@@ -445,10 +448,10 @@ const x=await fetch('/cart').
                 url: "http://localhost:70/Users",
                 method: "GET",
               });
-        
+              
               const Users = userResponse;
               let foundUser = null;
-        
+              
               Users.forEach(function (user) 
               {
                 if (user.username === username) 
@@ -458,6 +461,8 @@ const x=await fetch('/cart').
               });
               if (foundUser) 
               {
+                await createOrder(foundUser);
+                
                 foundUser.cart=[];
                 
               }   
@@ -599,4 +604,51 @@ var flag=false;
           }
         
             
-        
+        async function createOrder(foundUser)
+        {
+          var items=[];
+                for(let i=0; i<foundUser.cart.length;i++)
+                {
+                  items.push({item: foundUser.cart[i].itemId, quantity: foundUser.cart[i].quantity});
+                }
+                var total=document.getElementById("tp");
+                var finalPrice=parseFloat(total.textContent.replace("₪", ""));
+                var order={
+                  user: foundUser._id,
+                  items: items,
+                  totalAmount: finalPrice,
+                  orderDate: Date.now,
+                }
+                /*foundUser.orderHistory.push(order);
+                await addToUserHistory(foundUser);*/
+                const createOrder = {
+                  url: "http://localhost:70/createOrder",
+                  method: "POST",
+                  data: JSON.stringify(order),
+                  contentType: "application/json",
+                };
+              const response=  await $.ajax(createOrder); 
+                
+                if(response.message)
+                {
+                  const orderId=response.message;
+                  foundUser.orderHistory.push(orderId);
+                  const x=await addToUserHistory(foundUser);
+                }
+                else
+                  console.log("failed to register order");
+
+
+
+        }
+
+
+        async function addToUserHistory(foundUser){
+          const updateUserReq = {
+            url: "http://localhost:70/updateCart",
+            method: "POST",
+            data: JSON.stringify(foundUser), // Convert the user object to JSON
+            contentType: "application/json",
+          };
+          await $.ajax(updateUserReq); 
+        }

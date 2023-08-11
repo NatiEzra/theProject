@@ -8,4 +8,8 @@ const OrdersController = require("../controllers/orders");
 // GET route for the cart page
 router.get("/myorders", OrdersController.OrderPage);
 
+
+
+router.post("/createOrder", OrdersController.createOrder);
+
 module.exports = router;
