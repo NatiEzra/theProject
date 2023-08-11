@@ -4,8 +4,9 @@ const loginService = require("../services/account");
 const accountService = require("../services/account");
 
 
-function Mainpage(req, res) {
+async function Mainpage(req, res) {
   let username = logedin.isLoggedIn(req, res);
+  let UserId=await accountService.FindUser(username);
   let admin=req.session.isadmin;
   ;
   if (username == null) loggedIn = false;
@@ -14,7 +15,7 @@ function Mainpage(req, res) {
     loggedIn = true;
 
   }
-  res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin,showFire:false });
+  res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin,  showFire:false, userId: UserId._id });
 }
 function Error(req, res){
 res.render("ErrorPage", {});
