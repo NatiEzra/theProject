@@ -47,7 +47,7 @@ function Add_user_Form(req,res)
 {
     if ('isLoggedIn' in req.session) {
         let isAdmin = req.session.isadmin;
-        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' ,exsist_username :false , exsist_email:false });
+        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' ,exsist_username :false , exsist_email:false,userId:req.session.userid });
     }
     else{
         res.redirect("/ErrorPage");
@@ -98,7 +98,7 @@ async function CreateUser(req, res) {
   let result = await AdminService.CreateUser(username, email, firstname, lastname, gender, date, password);
   if (result) {
     const message  = "The User added successfully!"
-    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message,exsist_username:false,exsist_email:false });
+    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message,exsist_username:false,exsist_email:false , userId:req.session.userid });
 
   }
 }
