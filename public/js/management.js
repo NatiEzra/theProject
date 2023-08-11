@@ -322,6 +322,53 @@ function selectImage(img){
   chosen[0].innerHTML = `<img src="/item-img/${selectedImg}" alt=""></img>`
 }
 
+           
+async function createPromosList() {
+  var table=document.getElementById("tbody");
+  const x = await fetch('/ourPromo')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(async promo => {
+        //create
+        const row=document.createElement("tr");
+        const nameDiv=document.createElement("td");
+        const name=document.createElement("p");
+        const quantityDiv=document.createElement("td");
+        const quantity=document.createElement("p");
+        const discountDiv=document.createElement("td");
+        const discount=document.createElement("p");
+
+        const erase = document.createElement("a");
+        const eraseDiv=document.createElement("td");
+        erase.className = "shop-tooltip close float-none text-danger";
+        erase.title = "Remove";
+        erase.innerText = "×";
+        erase.classList.add("shop-tooltip");
+          
+
+        //erase.href="./cartpage"
+      
+            name.textContent=promo.promocodename;
+            quantity.textContent=promo.quantity;
+            discount.textContent=promo.discount;
+
+            nameDiv.appendChild(name);
+            quantityDiv.appendChild(quantity);
+            discountDiv.appendChild(discount);
+            eraseDiv.appendChild(erase);
+
+           row.appendChild(nameDiv);
+           row.appendChild(quantityDiv);
+           row.appendChild(discountDiv);
+           row.appendChild(eraseDiv);
+
+           table.appendChild(row);
+      })
+    
+    })
+  }
+
+  createPromosList();
 
 // $('#PromoCodeAllUsers').submit(function(e) {
 //   e.preventDefault();

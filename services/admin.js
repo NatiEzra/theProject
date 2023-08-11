@@ -2,6 +2,8 @@ const multer = require('multer');
 const path = require('path');
 const Item = require('../models/Item');
 const User = require('../models/User');
+const Promocode = require('../models/promocode');
+
 // const express = require("express");
 // const router = express.Router();
 // // Multer configuration
@@ -66,6 +68,13 @@ async function Listofusers()
   await User.find();
   return Users;
 }
+async function ListofPromocodes()
+{
+  const Promo= 
+  await Promocode.find();
+  return Promo;
+}
+
 
 async function updateUser(userId, updatedData) {
     try {
@@ -127,4 +136,4 @@ async function check_username(username , email)
       return "email exsist";
     } 
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto};
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes};

@@ -14,7 +14,8 @@ async function Adminpage(req, res) {
     let username = req.session.username;
     if (isAdmin === true) {
       let Users = await Getlistofusers();
-      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users });
+      //let Promo = await GetlistofPromocodes();
+      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users});
     } else {
      res.status(404) // Render the 404 error page
      res.redirect("/ErrorPage");   // Render the 404 error page
@@ -82,7 +83,15 @@ async function Getlistofusers()
   let Users = await AdminService.Listofusers();
   return Users;
 }
-
+async function GetlistofPromocodes()
+{
+  let promo = await AdminService.ListofPromocodes();
+  return promo;
+}
+async function Promocodes(req, res,next) {
+  const PromoLoc=await AdminService.ListofPromocodes();
+  res.json(PromoLoc);
+ }
 async function CreateUser(req, res) {
   const { username, email, firstname, lastname, gender, date, password } = req.body;
   let result = await AdminService.CreateUser(username, email, firstname, lastname, gender, date, password);
@@ -203,5 +212,7 @@ module.exports = {
     CreateUser , 
     PostFacebook , 
     check_username,
-    AddPhoto
+    AddPhoto,
+    GetlistofPromocodes,
+    Promocodes,
   }
