@@ -13,7 +13,10 @@ async function OrderPage(req, res) {
   }
   res.render("MyOrdersPage", { loggedIn: loggedIn, username: username, Admin:admin , userId: req.session.userid});
 }
-
+async function getOrders(req, res){
+  const orders=await orderService.getAllOrders();
+  res.json(orders);
+}
 
 async function createOrder(req, res)
 {
@@ -27,4 +30,5 @@ async function createOrder(req, res)
   module.exports = {
     OrderPage,
     createOrder,
+    getOrders
   }

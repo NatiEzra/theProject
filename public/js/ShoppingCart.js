@@ -148,7 +148,7 @@ const x=await fetch('/cart').
                 
                 
                 //inserting the data
-                image.src=product.img;
+                image.src="Images/"+product.img;
                 itemName.textContent=product.name;
                 price.textContent=product.price;
                 price.textContent+="₪";
@@ -433,7 +433,7 @@ const x=await fetch('/cart').
           async function checkout()
           {
 
-            
+          
             
             
             const response = await $.ajax({
@@ -606,10 +606,32 @@ var flag=false;
             
         async function createOrder(foundUser)
         {
+
+          var existingItems=[];
+
+          const y=await fetch('/allItemsJson').
+                          then(response=>response.json())
+                    .then(data2=>{
+                      data2.forEach(item => {
+                      existingItems.push(item);
+                      })
+                    });
+
           var items=[];
+          var itemExists=false;
                 for(let i=0; i<foundUser.cart.length;i++)
                 {
+                  for(let j=0; j<existingItems.length;j++)
+                  {
+                    if (foundUser.cart[i].itemId==existingItems[j]._id)
+                    {
+                      itemExists=true;
+                    }
+                  }
+                  if(itemExists){
                   items.push({item: foundUser.cart[i].itemId, quantity: foundUser.cart[i].quantity});
+                  }
+                  itemExists=false;
                 }
                 var total=document.getElementById("tp");
                 var finalPrice=parseFloat(total.textContent.replace("₪", ""));

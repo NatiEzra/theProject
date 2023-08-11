@@ -9,6 +9,9 @@ const OrdersController = require("../controllers/orders");
 router.get("/myorders", OrdersController.OrderPage);
 
 
+router.get("/allOrders", OrdersController.getOrders);
+
+
 
 
 

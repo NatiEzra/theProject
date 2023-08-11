@@ -13,8 +13,13 @@ async function createOrder(order, res)
     return x._id;
 
 }
+async function getAllOrders(){
+    const orders=await Order.find();
+    return orders;
+}
 
 
 module.exports = { 
 createOrder,
+getAllOrders
 }

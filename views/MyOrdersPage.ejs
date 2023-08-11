@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="../css/MyOrdersList.css" />
+    
 </head>
 <body>
     <%- include('./templates/header.ejs');%>
@@ -21,7 +22,7 @@
                 <div class="card-body">
                   <h5 class="header-title pb-3 mt-0">Payments</h5>
                   <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+                    <table class="table table-hover mb-0" id="table">
                       <thead>
                         <tr class="align-self-center">
                           <th>Order Date</th>
@@ -69,6 +70,6 @@
     </body>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript"></script>
+    <script type="text/JavaScript" src="../js/MyOrdersPage.js"></script>
  
 </html>
