@@ -26,6 +26,10 @@ async function getmap(){
     await StoreLocation.find();
     return storelocation;
 }
+async function getUsers(){
+    const users=await User.find();
+    return users;
+}
 async function register(username, password) {
 
     const user = new User({
@@ -41,5 +45,6 @@ module.exports = {
     register,
     getmap,
     findUSer,
+    getUsers,
  }
 

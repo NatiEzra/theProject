@@ -50,7 +50,10 @@
                     </li>
                     <li>
                       <% if (loggedIn) { %>
-                        <a class="accord" href="/myorders">
+                        
+                        <a class="accord" href="/myorders?id=<%= userId%>">
+
+
                       <% } else { %>
                         <a class="accord" href="/login">
                       <% } %>

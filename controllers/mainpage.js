@@ -4,8 +4,9 @@ const loginService = require("../services/account");
 const accountService = require("../services/account");
 
 
-function Mainpage(req, res) {
+async function Mainpage(req, res) {
   let username = logedin.isLoggedIn(req, res);
+  let UserId=await accountService.FindUser(username);
   let admin=req.session.isadmin;
   ;
   if (username == null) loggedIn = false;
@@ -14,7 +15,7 @@ function Mainpage(req, res) {
     loggedIn = true;
 
   }
-  res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin,showFire:false });
+  res.render("MainPage", { loggedIn: loggedIn, username: username , Admin:admin,  showFire:false, userId: UserId._id });
 }
 function Error(req, res){
 res.render("ErrorPage", {});
@@ -25,7 +26,7 @@ res.render("ErrorPage", {});
       const admin=req.session.isadmin;
       const name=req.session.username;
       const user = await accountService.FindUser(name);
-      res.render("SavedItems", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+      res.render("SavedItems", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,userId:req.session.userid});
     } else {
       res.render("login", { flag: true });
     }
@@ -38,7 +39,7 @@ async function Myaccount(req, res){
     const admin=req.session.isadmin;
     const name=req.session.username;
     const user = await accountService.FindUser(name);
-    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,password:user.password});
+    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,password:user.password, userId: req.session.userid});
   } else {
     res.render("login", { flag: true });
   }
@@ -62,7 +63,7 @@ async function Cartpage(req, res){
     const admin=req.session.isadmin;
     const name=req.session.username;
     const user = await accountService.FindUser(name);
-    res.render("ShoppingCart", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+    res.render("ShoppingCart", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username, userId: req.session.userid});
   } else {
     res.render("login", { flag: true });
   }

@@ -19,6 +19,9 @@ function toggleForm() {
     if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
       $('#GiftTheUsers').addClass("form-container-hidden");
     }
+    if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allPromos_check').addClass("form-container-hidden");
+    }
   }
   try{
   $('#datatable').DataTable({
@@ -30,6 +33,18 @@ function toggleForm() {
   });
 }catch(e)
 {}
+
+try{
+  $('#promoTable').DataTable({
+    paging: true, // Enable pagination
+    pageLength: 5, // Set the number of rows per page to 5
+    lengthMenu: [5, 10, 15], // Customize the page length options
+
+
+  });
+}catch(e)
+{}
+
   function toggle_Facebook_Form() {
     // $('#PostFacebook_Container').addClass("form-container-add");
     // $('#PostFacebook_Container').removeClass("form-container-hidden");
@@ -55,6 +70,9 @@ function toggleForm() {
     }
     if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
       $('#GiftTheUsers').addClass("form-container-hidden");
+    }
+    if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allPromos_check').addClass("form-container-hidden");
     }
   }
 
@@ -85,7 +103,42 @@ function toggleForm() {
     if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
+    if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allPromos_check').addClass("form-container-hidden");
+    }
   }
+
+  function toggle_Promocodes_Form() {
+  
+    if ($('#allPromos_check').hasClass("form-container-hidden")) {
+      $('#allPromos_check').addClass("form-container-add");
+      $('#allPromos_check').removeClass("form-container-hidden");
+    }
+    else{
+      if ($('#allPromos').hasClass("form-container-add")) {
+        $('#allPromos').removeClass("form-container-add");
+        $('#allPromos').addClass("form-container-hidden");
+      }
+    }
+    if (($('#formContainer')[0].classList.contains('form-container-add')) || (!($('#formContainer')[0].classList.contains('form-container-hidden')))) {
+      $('#formContainer').addClass("form-container-hidden");
+    }
+    if ($('#manageUsersForm').css('display') === 'block') {
+      $('#manageUsersForm').toggle();
+    } 
+    
+    if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
+      $('#manageUsersForm').addClass("form-container-hidden");
+    }
+
+    if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
+      $('#PostFacebook_Container').addClass("form-container-hidden");
+    }
+    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
+      $('#GiftTheUsers').addClass("form-container-hidden");
+    }
+  }
+
 
   $("#AddItem").click(function() {
     toggleForm();
@@ -96,6 +149,10 @@ function toggleForm() {
 
   $("#GiftUsers").click(function() {
     toggle_Gift_Form();
+  });
+
+  $("#Promocodes").click(function() {
+    toggle_Promocodes_Form();
   });
 
   $("#update_user").submit(function(event){
@@ -243,9 +300,9 @@ const chosenImgSpan = document.querySelector(".chosen-img");
   })
 })
 if(window.location.pathname == "/management"){
-  $ondelete = $(".table tbody td a.delete");
+  $ondelete = $(".table tbody");
   const message = 
-  $ondelete.click(function(){
+  $ondelete.on("click", "td a.delete", function() {
       var id = $(this).attr("data-id");
 
       var request = {
@@ -299,6 +356,10 @@ $(document).ready(function() {
       $('#GiftTheUsers')[0].classList.add('form-container-hidden');
       $('#GiftTheUsers')[0].classList.remove('form-container-add');
     }
+    if ($('#allPromos_check')[0].classList.contains('form-container-add')) {
+      $('#allPromos_check')[0].classList.add('form-container-hidden');
+      $('#allPromos_check')[0].classList.remove('form-container-add');
+    }
       $('#manageUsersForm').toggle(); // Toggle the visibility of the form
   });
 });
@@ -322,53 +383,72 @@ function selectImage(img){
   chosen[0].innerHTML = `<img src="/item-img/${selectedImg}" alt=""></img>`
 }
 
+           
+// async function createPromosList() {
+//   var table=document.getElementById("tbody");
+//   const x = await fetch('/ourPromo')
+//     .then(response => response.json())
+//     .then(data => {
+//       data.forEach(async promo => {
+//         //create
+//         const row=document.createElement("tr");
+//         const nameDiv=document.createElement("td");
+//         const name=document.createElement("p");
+//         const quantityDiv=document.createElement("td");
+//         const quantity=document.createElement("p");
+//         const discountDiv=document.createElement("td");
+//         const discount=document.createElement("p");
 
-// $('#PromoCodeAllUsers').submit(function(e) {
-//   e.preventDefault();
-//   let postdata=$('#postPromoCode')[0].value;
-//     var CreatePromo = {
-//     "url" : `http://localhost:70/post-form-route`,
-//     "method" : "POST",
-//     "data": { "postdata": postdata }
-  
-//   }
-//   $.ajax(CreatePromo).done(function(response){
-//     if(response.message == 'Problem')
-//     {
-//       Swal.fire({
-//         title: 'Error',
-//         text: "Problem with post!",
-//         icon: 'error',
-//         confirmButtonText: 'OK'
-//         })
-//     }
-//     else{
-//     Swal.fire({
-//     title: 'Success',
-//     text: "Your post has been shared!",
-//     icon: 'success',
-//     confirmButtonText: 'OK'
+//         const erase = document.createElement("a");
+//         const eraseDiv=document.createElement("td");
+//         erase.className = "shop-tooltip close float-none text-danger";
+//         erase.title = "Remove";
+//         erase.innerText = "×";
+//         erase.classList.add("shop-tooltip");
+          
+
+//         //erase.href="./cartpage"
+      
+//             nameDiv.textContent=promo.promocodename;
+//             quantityDiv.textContent=promo.quantity;
+//             discountDiv.textContent=promo.discount;
+//             eraseDiv.textContent="X";
+//             //nameDiv.appendChild(name);
+//             //quantityDiv.appendChild(quantity);
+//            // discountDiv.appendChild(discount);
+//             //eraseDiv.appendChild(erase);
+
+//            row.appendChild(nameDiv);
+//            row.appendChild(quantityDiv);
+//            row.appendChild(discountDiv);
+//            row.appendChild(eraseDiv);
+
+//            table.appendChild(row);
+//       })
+    
 //     })
-//     $('#postInput').val('');
 //   }
-//   })
-// })
+
+//   createPromosList();
+
+
+
 
  // Add this script at the end of your EJS file
- const socket = io(); // Connect to the server using Socket.io
+//  const socket = io(); // Connect to the server using Socket.io
 
- // Handle the promo code form submission
- const promoCodeForm = document.getElementById("PromoCodeAllUsers");
- const promoCodeButton = document.getElementById("postPromoCode");
- promoCodeButton.addEventListener("click", () => {
-   const promoCodeInput = document.getElementById("GiftInput").value;
+//  // Handle the promo code form submission
+//  const promoCodeForm = document.getElementById("PromoCodeAllUsers");
+//  const promoCodeButton = document.getElementById("postPromoCode");
+//  promoCodeButton.addEventListener("click", () => {
+//    const promoCodeInput = document.getElementById("GiftInput").value;
 
-   // Emit a Socket.io event to the server
-   socket.emit("createPromoCode", { promoCode: promoCodeInput });
- });
+//    // Emit a Socket.io event to the server
+//    socket.emit("createPromoCode", { promoCode: promoCodeInput });
+//  });
 
- // Listen for responses from the server
- socket.on("promoCodeCreated", (response) => {
-   // Handle the response here (e.g., show a success message)
-   console.log("Promo code created:", response);
- });
+//  // Listen for responses from the server
+//  socket.on("promoCodeCreated", (response) => {
+//    // Handle the response here (e.g., show a success message)
+//    console.log("Promo code created:", response);
+//  });

@@ -14,7 +14,9 @@ async function Adminpage(req, res) {
     let username = req.session.username;
     if (isAdmin === true) {
       let Users = await Getlistofusers();
-      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users });
+      let PromoCodes = await GetlistofPromocodes();
+      //let Promo = await GetlistofPromocodes();
+      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users , promocodes: PromoCodes , userId:req.session.userid});
     } else {
      res.status(404) // Render the 404 error page
      res.redirect("/ErrorPage");   // Render the 404 error page
@@ -45,7 +47,7 @@ function Add_user_Form(req,res)
 {
     if ('isLoggedIn' in req.session) {
         let isAdmin = req.session.isadmin;
-        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' ,exsist_username :false , exsist_email:false });
+        res.render("add_user", {loggedIn: true, Admin: isAdmin , username:req.session.username , message:'' ,exsist_username :false , exsist_email:false,userId:req.session.userid });
     }
     else{
         res.redirect("/ErrorPage");
@@ -82,13 +84,21 @@ async function Getlistofusers()
   let Users = await AdminService.Listofusers();
   return Users;
 }
-
+async function GetlistofPromocodes()
+{
+  let promo = await AdminService.ListofPromocodes();
+  return promo;
+}
+async function Promocodes(req, res,next) {
+  const PromoLoc=await AdminService.ListofPromocodes();
+  res.json(PromoLoc);
+ }
 async function CreateUser(req, res) {
   const { username, email, firstname, lastname, gender, date, password } = req.body;
   let result = await AdminService.CreateUser(username, email, firstname, lastname, gender, date, password);
   if (result) {
     const message  = "The User added successfully!"
-    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message,exsist_username:false,exsist_email:false });
+    res.render("add_user", {loggedIn: true, Admin: req.session.isAdmin , username:req.session.username ,message:message,exsist_username:false,exsist_email:false , userId:req.session.userid });
 
   }
 }
@@ -96,7 +106,7 @@ async function Update_user_page(req,res)
 {
   axios.get('http://localhost:70/api/users', { params : { id : req.query.id }})
       .then(function(userdata){
-          res.render("update_user", { user : userdata.data , loggedIn:true , username:req.session.username , Admin:true});
+          res.render("update_user", { user : userdata.data , loggedIn:true , username:req.session.username , Admin:true , userId:req.session.userid});
       })
       .catch(err =>{
           res.send(err);
@@ -203,5 +213,7 @@ module.exports = {
     CreateUser , 
     PostFacebook , 
     check_username,
-    AddPhoto
+    AddPhoto,
+    GetlistofPromocodes,
+    Promocodes,
   }

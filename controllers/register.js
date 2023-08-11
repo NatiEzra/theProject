@@ -14,9 +14,9 @@ async function register(req, res) {
   try {
     await registerService.register(username, firstname , lastname , email , gender , date , password)    
     //req.session.username = username
-    //res.redirect('/Mainpage');
-   
-    res.render("Mainpage", { username: username , loggedIn :true , Admin:false, showFire:true });
+    const user = await User.findOne({username:username}); 
+   const Users=await User.find();
+    res.render("Mainpage", { username: username , loggedIn :true , Admin:false, showFire:true, users: Users , userId:user._id });
     /*
     const promocode = new Promocode({
       promocodename: "welcome",

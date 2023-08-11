@@ -86,7 +86,7 @@ async function getAllUsers()
 }
 async function updateCart(updatedUser, res)
 {
-  User.findOneAndUpdate({ username: updatedUser.username }, { cart: updatedUser.cart }, { new: true })
+  User.findOneAndUpdate({ username: updatedUser.username }, { cart: updatedUser.cart, orderHistory: updatedUser.orderHistory }, { new: true })
   .then(updatedUser => {
      if (updatedUser) {
       res.status(200).json({ message: "Cart updated successfully." });

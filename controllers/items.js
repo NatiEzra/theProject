@@ -12,7 +12,7 @@ async function MenJson(req,res){
     const admin=req.session.isadmin;
     if ('isLoggedIn' in req.session) {
       const name=req.session.username;
-      res.render("Men", {Admin: admin, loggedIn: true, username:name});
+      res.render("Men", {Admin: admin, loggedIn: true, username:name, userId: req.session.userid});
     } else {
       res.render("Men", {Admin: admin, loggedIn: false });
     }
@@ -28,7 +28,7 @@ async function MenJson(req,res){
       const admin=req.session.isadmin;
       if ('isLoggedIn' in req.session) {
         const name=req.session.username;
-        res.render("Men", {Admin: admin, loggedIn: true, username:name});
+        res.render("Men", {Admin: admin, loggedIn: true, username:name, userId: req.session.userid});
       } else {
         res.render("Men", {Admin: admin, loggedIn: false });
       }
@@ -45,7 +45,7 @@ async function MenJson(req,res){
       const admin=req.session.isadmin;
       if ('isLoggedIn' in req.session) {
         const name=req.session.username;
-        res.render("MenPants", {Admin: admin, loggedIn: true, username:name});
+        res.render("MenPants", {Admin: admin, loggedIn: true, username:name, userId: req.session.userid});
       } else {
         res.render("MenPants", {Admin: admin, loggedIn: false});
       }
@@ -60,7 +60,7 @@ async function MenJson(req,res){
         const admin=req.session.isadmin;
         if ('isLoggedIn' in req.session) {
           const name=req.session.username;
-          res.render("AllItems", {Admin: admin, loggedIn: true, username:name});
+          res.render("AllItems", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
         } else {
           res.render("AllItems", {Admin: admin, loggedIn: false});
         }
@@ -70,7 +70,7 @@ async function MenJson(req,res){
     const admin=req.session.isadmin;
     if ('isLoggedIn' in req.session) {
       const name=req.session.username;
-      res.render("Women", {Admin: admin, loggedIn: true, username:name});
+      res.render("Women", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
     } else {
       res.render("Women", {Admin: admin, loggedIn: false });
     }
@@ -85,7 +85,7 @@ async function MenJson(req,res){
       const admin=req.session.isadmin;
       if ('isLoggedIn' in req.session) {
         const name=req.session.username;
-        res.render("MenShoes", {Admin: admin, loggedIn: true, username:name});
+        res.render("MenShoes", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
       } else {
         res.render("MenShoes", {Admin: admin, loggedIn: false });
       }
@@ -101,7 +101,7 @@ async function MenJson(req,res){
       const admin=req.session.isadmin;
       if ('isLoggedIn' in req.session) {
         const name=req.session.username;
-        res.render("MenShirts", {Admin: admin, loggedIn: true, username:name});
+        res.render("MenShirts", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
       } else {
         res.render("MenShirts", {Admin: admin, loggedIn: false });
       }
@@ -115,7 +115,7 @@ async function MenJson(req,res){
         const admin=req.session.isadmin;
         if ('isLoggedIn' in req.session) {
           const name=req.session.username;
-          res.render("WomenShirts", {Admin: admin, loggedIn: true, username:name});
+          res.render("WomenShirts", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
         } else {
           res.render("WomenShirts", {Admin: admin, loggedIn: false });
         }
@@ -130,7 +130,7 @@ async function MenJson(req,res){
           const admin=req.session.isadmin;
           if ('isLoggedIn' in req.session) {
             const name=req.session.username;
-            res.render("WomenPants", {Admin: admin, loggedIn: true, username:name});
+            res.render("WomenPants", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
           } else {
             res.render("WomenPants", {Admin: admin, loggedIn: false });
           }
@@ -144,7 +144,7 @@ async function MenJson(req,res){
             const admin=req.session.isadmin;
             if ('isLoggedIn' in req.session) {
               const name=req.session.username;
-              res.render("WomenShoes", {Admin: admin, loggedIn: true, username:name});
+              res.render("WomenShoes", {Admin: admin, loggedIn: true, username:name, userId:req.session.userid});
             } else {
               res.render("WomenShoes", {Admin: admin, loggedIn: false });
             }

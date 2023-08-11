@@ -27,4 +27,4 @@ async function UpdateUser(updatedUser, res)
   return bool;
 }
 
-module.exports = { FindUser,UpdateUser }
+module.exports = { FindUser,UpdateUser}

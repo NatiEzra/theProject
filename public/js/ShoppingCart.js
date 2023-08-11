@@ -146,7 +146,7 @@ const x=await fetch('/cart').
                 
                 
                 //inserting the data
-                image.src=product.img;
+                image.src="Images/"+product.img;
                 itemName.textContent=product.name;
                 price.textContent=product.price;
                 price.textContent+="₪";
@@ -438,11 +438,14 @@ const x=await fetch('/cart').
           }
           async function checkout()
           {
+
+          
+            
+            
             const response = await $.ajax({
               url: "http://localhost:70/check",
               method: "GET",
             });
-        
             if (response.message === "NULL") {
               return;
             } else {
@@ -451,10 +454,10 @@ const x=await fetch('/cart').
                 url: "http://localhost:70/Users",
                 method: "GET",
               });
-        
+              
               const Users = userResponse;
               let foundUser = null;
-        
+              
               Users.forEach(function (user) 
               {
                 if (user.username === username) 
@@ -464,6 +467,8 @@ const x=await fetch('/cart').
               });
               if (foundUser) 
               {
+                await createOrder(foundUser);
+                
                 foundUser.cart=[];
               
               }   
@@ -562,4 +567,73 @@ async function checkPromo() {
           }
         
             
-        
+        async function createOrder(foundUser)
+        {
+
+          var existingItems=[];
+
+          const y=await fetch('/allItemsJson').
+                          then(response=>response.json())
+                    .then(data2=>{
+                      data2.forEach(item => {
+                      existingItems.push(item);
+                      })
+                    });
+
+          var items=[];
+          var itemExists=false;
+                for(let i=0; i<foundUser.cart.length;i++)
+                {
+                  for(let j=0; j<existingItems.length;j++)
+                  {
+                    if (foundUser.cart[i].itemId==existingItems[j]._id)
+                    {
+                      itemExists=true;
+                    }
+                  }
+                  if(itemExists){
+                  items.push({item: foundUser.cart[i].itemId, quantity: foundUser.cart[i].quantity});
+                  }
+                  itemExists=false;
+                }
+                var total=document.getElementById("tp");
+                var finalPrice=parseFloat(total.textContent.replace("₪", ""));
+                var order={
+                  user: foundUser._id,
+                  items: items,
+                  totalAmount: finalPrice,
+                  orderDate: Date.now,
+                }
+                /*foundUser.orderHistory.push(order);
+                await addToUserHistory(foundUser);*/
+                const createOrder = {
+                  url: "http://localhost:70/createOrder",
+                  method: "POST",
+                  data: JSON.stringify(order),
+                  contentType: "application/json",
+                };
+              const response=  await $.ajax(createOrder); 
+                
+                if(response.message)
+                {
+                  const orderId=response.message;
+                  foundUser.orderHistory.push(orderId);
+                  const x=await addToUserHistory(foundUser);
+                }
+                else
+                  console.log("failed to register order");
+
+
+
+        }
+
+
+        async function addToUserHistory(foundUser){
+          const updateUserReq = {
+            url: "http://localhost:70/updateCart",
+            method: "POST",
+            data: JSON.stringify(foundUser), // Convert the user object to JSON
+            contentType: "application/json",
+          };
+          await $.ajax(updateUserReq); 
+        }
