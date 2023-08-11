@@ -2,6 +2,5 @@
     border: 1px solid #ccc;
     background-color: #f8f9fa;
     padding: 10px;
-    width: 400%;
+    width: 100%; /* Adjust the width as needed */
 }
-

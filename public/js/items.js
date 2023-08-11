@@ -122,10 +122,10 @@ const x=await fetch('/AllItemsJson').
       });}
       setItems();
 
+      
       document.addEventListener('DOMContentLoaded', () => {
         const applyFilterButton = document.getElementById('apply-filter-btn');
         const clearFilterButton = document.getElementById('clear-filter-btn');
-        const filterForm = document.getElementById('filter-form');
     
         const priceSelect = document.getElementById('price');
         const sizeSelect = document.getElementById('size');
@@ -133,78 +133,58 @@ const x=await fetch('/AllItemsJson').
     
         let items = []; // Initialize items array
     
-        // Fetch JSON data from the endpoint
-        fetch('/allItemsJson')
-            .then(response => response.json())
-            .then(data2 => {
-                items = data2.map(item => ({
-                    name: item.name,
-                    price: parseFloat(item.price),
-                    size: item.size.split(',')[0],
-                    color: item.color,
-                }));
+        async function fetchAndDisplayItems() {
+            try {
+                const response = await fetch('/allItemsJson');
+                items = await response.json();
+                displayItems(items);
+            } catch (error) {
+                console.error('Error fetching or processing JSON data:', error);
+            }
+        }
     
-                // Initial display of all items
-                displayFilteredItems(items);
-            })
-            .catch(error => {
-                console.error('Error fetching JSON data:', error);
-            });
-    
-        // Enable "Apply" button when a filter option is selected
-        [priceSelect, sizeSelect, colorSelect].forEach(select => {
-            select.addEventListener('change', () => {
-                applyFilterButton.disabled = false;
-            });
-        });
+        fetchAndDisplayItems();
     
         applyFilterButton.addEventListener('click', () => {
-            const selectedPrice = priceSelect.value !== '' ? parseFloat(priceSelect.value) : null;
+            const selectedPrice = parseFloat(priceSelect.value);
             const selectedSize = sizeSelect.value;
             const selectedColor = colorSelect.value;
     
             const filteredItems = items.filter(item => {
-                // Filter based on selected price range
-                if (selectedPrice !== null && item.price > selectedPrice) {
-                    return false;
-                }
+                const priceCondition = selectedPrice ? parseFloat(item.price) < selectedPrice : true;
+                const sizeCondition = selectedSize ? item.size === selectedSize : true;
+                const colorCondition = selectedColor ? item.color === selectedColor : true;
     
-                // Filter based on selected size
-                if (selectedSize !== '' && item.size !== selectedSize) {
-                    return false;
-                }
-    
-                // Filter based on selected color
-                if (selectedColor !== '' && item.color !== selectedColor) {
-                    return false;
-                }
-    
-                return true;
+                return priceCondition && sizeCondition && colorCondition;
             });
     
-            displayFilteredItems(filteredItems);
+            displayItems(filteredItems);
         });
     
         clearFilterButton.addEventListener('click', () => {
             priceSelect.value = '';
             sizeSelect.value = '';
             colorSelect.value = '';
-            applyFilterButton.disabled = true;
-    
-            // Clear the displayed items and reset to default view
-            displayFilteredItems(items);
+            fetchAndDisplayItems();
         });
     
-        function displayFilteredItems(filteredItems) {
+        function displayItems(displayedItems) {
             const container = document.getElementById('container');
             container.innerHTML = ''; // Clear the container
     
-            filteredItems.forEach(item => {
+            displayedItems.forEach(item => {
                 const itemElement = document.createElement('div');
-                itemElement.textContent = `${item.name} - Price: ${item.price} Size: ${item.size} Color: ${item.color}`;
+                itemElement.textContent = `${item.name} - Price: ${item.price} gender: ${item.gender || 'N/A'} Color: ${item.color || 'N/A'}`;
                 container.appendChild(itemElement);
             });
         }
+    
+        // Enable "Apply" button when any filter option is selected
+        [priceSelect, sizeSelect, colorSelect].forEach(select => {
+            select.addEventListener('change', () => {
+                applyFilterButton.disabled = false;
+            });
+        });
     
         applyFilterButton.disabled = true;
     });
