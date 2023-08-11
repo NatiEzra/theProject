@@ -39,7 +39,7 @@ async function Myaccount(req, res){
     const admin=req.session.isadmin;
     const name=req.session.username;
     const user = await accountService.FindUser(name);
-    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,password:user.password});
+    res.render("myAccountPage", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,password:user.password, userId: req.session.userid});
   } else {
     res.render("login", { flag: true });
   }
@@ -63,7 +63,7 @@ async function Cartpage(req, res){
     const admin=req.session.isadmin;
     const name=req.session.username;
     const user = await accountService.FindUser(name);
-    res.render("ShoppingCart", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+    res.render("ShoppingCart", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username, userId: req.session.userid});
   } else {
     res.render("login", { flag: true });
   }
