@@ -20,7 +20,7 @@ async function editStores(req, res)
       let admin= req.session.isadmin;
       if (username == null) loggedIn = false;
       else loggedIn = true;
-     res.render('editStores',{loggedIn: loggedIn,username: username , Admin:admin});
+     res.render('editStores',{loggedIn: loggedIn,username: username , Admin:admin ,userId:req.session.userid});
 
 }
 async function deleteBranch(req, res){
