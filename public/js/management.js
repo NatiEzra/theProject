@@ -300,9 +300,9 @@ const chosenImgSpan = document.querySelector(".chosen-img");
   })
 })
 if(window.location.pathname == "/management"){
-  $ondelete = $(".table tbody td a.delete");
+  $ondelete = $(".table tbody");
   const message = 
-  $ondelete.click(function(){
+  $ondelete.on("click", "td a.delete", function() {
       var id = $(this).attr("data-id");
 
       var request = {
