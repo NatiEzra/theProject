@@ -89,6 +89,8 @@ body {
   }
   .login-join {
     margin-left: 25px;
+    white-space:nowrap; 
+
   }
   .menu ul li .login-join {
     color: #888; 
@@ -108,6 +110,8 @@ body {
   .greeting {
     font-weight: bold;
     font-size: 18px;
+    white-space:nowrap; 
+
   }  
   .menu ul li a img {
     width: 20px;
