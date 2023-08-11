@@ -12,7 +12,7 @@ async function MenJson(req,res){
     const admin=req.session.isadmin;
     if ('isLoggedIn' in req.session) {
       const name=req.session.username;
-      res.render("Men", {Admin: admin, loggedIn: true, username:name});
+      res.render("Men", {Admin: admin, loggedIn: true, username:name, userId: req.session.userid});
     } else {
       res.render("Men", {Admin: admin, loggedIn: false });
     }
@@ -28,7 +28,7 @@ async function MenJson(req,res){
       const admin=req.session.isadmin;
       if ('isLoggedIn' in req.session) {
         const name=req.session.username;
-        res.render("Men", {Admin: admin, loggedIn: true, username:name});
+        res.render("Men", {Admin: admin, loggedIn: true, username:name, userId: req.session.userid});
       } else {
         res.render("Men", {Admin: admin, loggedIn: false });
       }
@@ -45,7 +45,7 @@ async function MenJson(req,res){
       const admin=req.session.isadmin;
       if ('isLoggedIn' in req.session) {
         const name=req.session.username;
-        res.render("MenPants", {Admin: admin, loggedIn: true, username:name});
+        res.render("MenPants", {Admin: admin, loggedIn: true, username:name, userId: req.session.userid});
       } else {
         res.render("MenPants", {Admin: admin, loggedIn: false});
       }
