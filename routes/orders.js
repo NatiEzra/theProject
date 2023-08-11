@@ -6,7 +6,7 @@ const OrdersController = require("../controllers/orders");
 
 
 // GET route for the cart page
-router.get("/myorders/:id", OrdersController.OrderPage);
+router.get("/myorders", OrdersController.OrderPage);
 
 
 

@@ -11,7 +11,7 @@ async function OrderPage(req, res) {
     loggedIn = true;
 
   }
-  res.render("MyOrdersPage", { loggedIn: loggedIn, username: username, Admin:admin });
+  res.render("MyOrdersPage", { loggedIn: loggedIn, username: username, Admin:admin , userId: req.session.userid});
 }
 
 
