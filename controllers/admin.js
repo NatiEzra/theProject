@@ -106,7 +106,7 @@ async function Update_user_page(req,res)
 {
   axios.get('http://localhost:70/api/users', { params : { id : req.query.id }})
       .then(function(userdata){
-          res.render("update_user", { user : userdata.data , loggedIn:true , username:req.session.username , Admin:true});
+          res.render("update_user", { user : userdata.data , loggedIn:true , username:req.session.username , Admin:true , userId:req.session.userid});
       })
       .catch(err =>{
           res.send(err);
