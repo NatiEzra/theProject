@@ -31,4 +31,7 @@ router.post('/api/users', Admin_pageController.check_username ,Admin_pageControl
 
 router.post('/post-form-route', Admin_pageController.PostFacebook)
 
+//promocodes
+router.get("/ourPromo", Admin_pageController.Promocodes);
+
 module.exports = router;
