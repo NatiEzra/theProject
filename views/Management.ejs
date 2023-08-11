@@ -40,9 +40,6 @@
           <a class="nav-link" id="PostFacebook">Post Facebook</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="CreatePromoCode">Create PromoCode</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" id="GiftUsers">Gift Users</a>
         </li>
         <li class="nav-item">
@@ -186,13 +183,49 @@
   
 
 
-<div id="allPromos">
-      <table id="promoTable" class="table"> 
+<div id="allPromos_check" class="container form-container-hidden">
+  <div class="container">
+<form>
+   <table id="promoTable" class="table">
+       <thead class="thead-dark">
+           <tr>
+             <th>Index</th>
+             <th>Promo name</th>
+             <th>Quantity</th>
+             <th>Discount</th>
+             <th>Delete</th>
+           </tr>
+       </thead>
+       <tbody>
+         <% for(var i = 0; i < promocodes.length; i++) { %>
+           <tr>
+               <td><%= i + 1 %></td>
+               <td><%= promocodes[i].promocodename %></td>
+               <td><%= promocodes[i].quantity %></td>
+               <td><%= promocodes[i].discount %></td>
+               <td>
+                   <a class="btn border-shadow delete" data-id=<%= promocodes[i].promocodename%> >
+                       <span class="text-gradient"><i class="fas fa-times"></i></span>
+                   </a>
+               </td>
+           </tr>
+           <% } %>
+       </tbody>
+   </table>
+</form>
+</div>
+</div>
+
+
+
+
+<!-- <div id="allPromos_check" class="form-container-hidden">
+      <table id="promoTable" class="table" > 
         <thead class="thead-dark">
           <tr>
             <th>Promo name</th>
-            <th>quantity</th>
-            <th>discount</th>
+            <th>Quantity</th>
+            <th>Discount</th>
             <th>Delete</th>
           </tr>
       </thead> 
@@ -200,7 +233,7 @@
       
     </tbody>    
       </table>
-</div>
+</div> -->
   
 
 

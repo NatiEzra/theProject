@@ -14,8 +14,9 @@ async function Adminpage(req, res) {
     let username = req.session.username;
     if (isAdmin === true) {
       let Users = await Getlistofusers();
+      let PromoCodes = await GetlistofPromocodes();
       //let Promo = await GetlistofPromocodes();
-      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users});
+      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users , promocodes: PromoCodes});
     } else {
      res.status(404) // Render the 404 error page
      res.redirect("/ErrorPage");   // Render the 404 error page
