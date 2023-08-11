@@ -26,7 +26,7 @@ res.render("ErrorPage", {});
       const admin=req.session.isadmin;
       const name=req.session.username;
       const user = await accountService.FindUser(name);
-      res.render("SavedItems", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username});
+      res.render("SavedItems", {Admin: admin, loggedIn: true, username:name , firstName:user.firstname , lastname:user.lastname , email:user.email ,username:user.username,userId:req.session.userid});
     } else {
       res.render("login", { flag: true });
     }
