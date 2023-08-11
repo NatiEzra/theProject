@@ -3,14 +3,11 @@
     display: flex;
     flex-wrap: wrap; 
 }
-
-
 .card{
     width: 18rem;
     margin-left:1rem;
     margin-bottom: 1rem;
 }
-
 .shop-button{
     border:none;
 width: 40px;
@@ -67,3 +64,4 @@ h2{
 .buttonsDiv{
     display:flex;
 }
+
