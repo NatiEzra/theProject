@@ -1,6 +1,26 @@
 .table-container {
     border: 1px solid #ccc;
-    background-color: #f8f9fa;
+    background-color: #3a4750; /* Set background color for the card */
+    color: #fff; /* Set text color for the button */
     padding: 10px;
     width: 350%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: center; /* Center the elements inside the container */
+}
+
+/* Style the Apply button */
+#apply-filter-btn {
+    background-color: #ea9215; /* Set background color for the button */
+    color: #fff; /* Set text color for the button */
+}
+
+/* Style the Clear Filters button */
+#clear-filter-btn {
+    background-color: #ea9215; /* Set background color for the button */
+    color: #fff; /* Set text color for the button */
+}
+
+/* Optional: Add some margin to the top to space it from the top of the screen */
+.col-md-3 {
+    margin-top: 50px; /* Adjust the value as needed */
 }
