@@ -16,6 +16,8 @@
       <h2>All items</h2>
     </div>
     <%- include('./templates/dropDown.ejs');%>
+
+   
     <div class="col-md-3">
         <div class="table-container d-flex align-items-center">
             <div class="mr-3">
@@ -23,19 +25,17 @@
                 <select class="form-control" id="price">
                     <option value="">Select</option>
                     <option value="100">Under 100₪</option>
-                    <option value="300">Under 300₪</option>
-                    <option value="400">Under 400₪</option>
-                    <option value="500">Under 500₪</option>
+                    <option value="300">Under 200₪</option>
+                    <option value="400">Under 300₪</option>
+                    <option value="500">Under 400₪</option>
                 </select>
             </div>
             <div class="mr-3">
-                <label for="size">Size:</label>
+                <label for="size">gender:</label>
                 <select class="form-control" id="size">
                     <option value="">Select</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
+                    <option value="S">male</option>
+                    <option value="M">female</option>
                 </select>
             </div>
             <div>
@@ -46,14 +46,17 @@
                     <option value="blue">Blue</option>
                     <option value="yellow">Yellow</option>
                     <option value="red">Red</option>
+                    <option value="yellow">green</option>
+                    <option value="red">grey</option>
                 </select>
             </div>
             <button id="apply-filter-btn" class="btn btn-primary ml-3" disabled>Apply</button>
             <button id="clear-filter-btn" class="btn btn-secondary ml-2">Clear Filters</button>
         </div>
     </div>
-  
-    <div id="container"></div>
+ 
+    <div id="container"></div> 
+    
     <%- include('./templates/footer.ejs');%>
 
 </body>
