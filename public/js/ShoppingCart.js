@@ -163,6 +163,8 @@ const x=await fetch('/cart').
 
                   quantity.addEventListener("input", async function () {
                     // Update the total when the quantity changes
+                    document.getElementById("originalPriceBox").innerText="";
+                    document.getElementById("originalPrice").innerText="";
                    if (quantity.value<0||quantity.value%1!=0||quantity.value>100)
                     {
                       if(quantity.value<0)
@@ -523,12 +525,15 @@ async function checkPromo() {
       data.forEach(async promo => {
         if (await CheckIfUsed(promo) === false) {
           if (promo.promocodename === val) {
-            var totalPrice = parseFloat(document.getElementById("tp").textContent.replace("₪", ""));
+            var totalPrice = calculateTotalPrice();
             totalPrice = totalPrice * ((100 - promo.discount) / 100);
             document.getElementById("tp").innerText = (totalPrice + "₪");
            var username= await getUserName();   
            promo.users.push(username);
-   
+            document.getElementById("originalPriceBox").innerText="Original Price";
+            var originalPrice=document.getElementById("originalPrice");
+            originalPrice.textContent=calculateTotalPrice();
+            originalPrice.classList.add("lined");
           const updateUserPromo = {
           url: "http://localhost:70/updatePromo",
           method: "POST",
