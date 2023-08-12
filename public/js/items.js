@@ -162,11 +162,12 @@ const x=await fetch('/AllItemsJson').
         });
     
         clearFilterButton.addEventListener('click', () => {
-            priceSelect.value = '';
-            sizeSelect.value = '';
-            colorSelect.value = '';
-            fetchAndDisplayItems();
-        });
+          priceSelect.value = '';
+          sizeSelect.value = '';
+          colorSelect.value = '';
+          applyFilterButton.disabled = true; // Disable Apply button
+          fetchAndDisplayItems(); // Fetch and display all items
+      });
     
         function displayItems(displayedItems) {
             const container = document.getElementById('container');
