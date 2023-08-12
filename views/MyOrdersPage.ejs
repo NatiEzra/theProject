@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="../css/MyOrdersList.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </head>
 <body>
@@ -28,43 +29,46 @@
                           <th>Order Date</th>
                           <th>Quantity of Items</th>
                           <th>Total Price</th>
+                          <th>Show More</th>
                           <th>Delete</th>
-                          <th>Add to Cart Again</th>
                           
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Product Devlopment</td>
-                          <td>
-                            <img
-                              src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                              alt
-                              class="thumb-sm rounded-circle mr-2"
-                            />
-                            Kevin Heal
-                          </td>
-                          <td>Paypal</td>
-                          <td>5/8/2018</td>
-                          <td>$15,000</td>
-                         
-                        </tr>
                        
                       </tbody>
                     </table>
                   </div>
     
-                  <div class="pt-3 border-top text-right">
-                    <a href="#" class="text-primary"
-                      >View all <i class="mdi mdi-arrow-right"></i
-                    ></a>
-                  </div>
+                 
                 </div>
               </div>
             </div>
           </div>
         </div>
      
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="editModalLabel">Order Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+
+
         <%- include('./templates/footer.ejs');%>
         
     </body>

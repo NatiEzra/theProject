@@ -39,3 +39,26 @@ body{
     background-color: rgba(96,93,175,.2);
     color: #605daf;
 }
+.custom-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.delete-button {
+    background-color: #d02828;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.images{
+    width: 40px;
+    height: 60px;
+}
