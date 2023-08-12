@@ -58,7 +58,7 @@ body{
     cursor: pointer;
     border-radius: 3px;
 }
-.images{
-    width: 40px;
-    height: 60px;
+.images {
+    max-width: 40px;
+    max-height: 60px;
 }

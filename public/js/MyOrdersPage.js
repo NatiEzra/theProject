@@ -47,9 +47,9 @@ async function buildPage()
 
                 var orderDate = new Date(orders[j].orderDate);
                 var formattedDate = orderDate.toLocaleDateString();
-                
+                var formattedTime = orderDate.toLocaleTimeString();
 
-                dateTD.textContent=formattedDate;
+                dateTD.textContent=formattedDate+' '+formattedTime;
                 quantityTD.textContent=quantity+" ";
                 totalTD.textContent=orders[j].totalAmount;
                 
