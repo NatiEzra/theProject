@@ -34,7 +34,16 @@ function toggleForm() {
   });
 }catch(e)
 {}
+try{
+  $('#orderTable').DataTable({
+    paging: true, // Enable pagination
+    pageLength: 5, // Set the number of rows per page to 5
+    lengthMenu: [5, 10, 15], // Customize the page length options
 
+
+  });
+}catch(e)
+{}
 try{
   $('#promoTable').DataTable({
     paging: true, // Enable pagination
@@ -315,7 +324,49 @@ const chosenImgSpan = document.querySelector(".chosen-img");
 })
 if(window.location.pathname == "/management"){
   $ondelete = $(".table tbody");
-  const message = 
+  $ondelete.on("click", "td a.view", async function(e) {
+    
+                  e.preventDefault();
+                  const orders=await getAllOrders();
+                  const items= await getAllItems();
+                  $('#editOrderModal').modal('show');
+                  const modalBody = document.querySelector("#editOrderModal .modal-body");
+                  modalBody.innerHTML = ``; 
+                  let tableHtml = `
+                  <table class="table table-hover mb-0">
+                      <tbody>
+                          <tr class="align-self-center">
+                              <th>Image</th>
+                              <th>Item Name</th>
+                              <th>Price</th>
+                              <th>Quantity</th>
+                          </tr>
+              `;
+              
+              for (let k = 0; k < orders[i].items.length; k++) {
+                  for (let x = 0; x < items.length; x++) {
+                      if (orders[i].items[k].item == items[x]._id) {
+                          tableHtml += `
+                              <tr class="align-self-center">
+                                  <td><img src="Images/${items[x].img}" class="images"></img></td>
+                                  <td>${items[x].name}</td>
+                                  <td>${items[x].price}₪</td>
+                                  <td>${orders[i].items[k].quantity}</td>
+                              </tr>
+                          `;
+                      }
+                  }
+              }
+              
+              tableHtml += `
+                      </tbody>
+                  </table>
+              `;
+              
+              modalBody.innerHTML += tableHtml;
+                  $('#editOrderModal').modal('hide');
+
+  });
   $ondelete.on("click", "td a.delete", function() {
       var id = $(this).attr("data-id");
 
@@ -506,8 +557,8 @@ async function createOrderHistory(){
                 showMoreButton.classList.add("ui", "button", "show-more-button");
                 showMoreButton.addEventListener("click",function (e){
                     e.preventDefault();
-                  $('#editModal').modal('show');
-                  const modalBody = document.querySelector("#editModal .modal-body");
+                  $('#editOrderModal').modal('show');
+                  const modalBody = document.querySelector("#editOrderModal .modal-body");
                   modalBody.innerHTML = ``; 
                   let tableHtml = `
                   <table class="table table-hover mb-0">
@@ -541,7 +592,7 @@ async function createOrderHistory(){
               `;
               
               modalBody.innerHTML += tableHtml;
-                  $('#editModal').modal('hide');
+                  $('#editOrderModal').modal('hide');
 
               });
 
@@ -552,7 +603,7 @@ async function createOrderHistory(){
   
 }
 
-createOrderHistory();
+//createOrderHistory();
 
 
 

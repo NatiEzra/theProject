@@ -6,6 +6,7 @@ const http = require('http'); // Node.js HTTP module
 const express = require('express');
 const app = express();
 const server = http.createServer(app); // Create an HTTP server
+const orderController = require("./orders");
 
 require('custom-env').env(process.env.NODE_ENV, './config');
 
@@ -15,8 +16,9 @@ async function Adminpage(req, res) {
     if (isAdmin === true) {
       let Users = await Getlistofusers();
       let PromoCodes = await GetlistofPromocodes();
+      let Orders= await orderController.getOrders();
       //let Promo = await GetlistofPromocodes();
-      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users , promocodes: PromoCodes , userId:req.session.userid});
+      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users , promocodes: PromoCodes , userId:req.session.userid, orders: Orders});
     } else {
      res.status(404) // Render the 404 error page
      res.redirect("/ErrorPage");   // Render the 404 error page

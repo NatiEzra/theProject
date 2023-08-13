@@ -15,9 +15,12 @@ async function OrderPage(req, res) {
 }
 async function getOrders(req, res){
   const orders=await orderService.getAllOrders();
+  return orders;
+}
+async function getOrdersJson(req, res){
+  const orders=await orderService.getAllOrders();
   res.json(orders);
 }
-
 async function createOrder(req, res)
 {
   Order=req.body;
@@ -30,5 +33,6 @@ async function createOrder(req, res)
   module.exports = {
     OrderPage,
     createOrder,
-    getOrders
+    getOrders,
+    getOrdersJson
   }

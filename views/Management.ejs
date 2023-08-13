@@ -270,7 +270,7 @@
         </div>
     </div>
 </div>
-<form>
+<!-- <form>
    <table id="orderTable" class="table">
        <thead class="thead-dark">
            <tr>
@@ -285,7 +285,48 @@
         
        </tbody>
    </table>
+</form> -->
+
+<form>
+  <table id="orderTable" class="table">
+      <thead class="thead-dark">
+          <tr>
+            <th>Index</th>
+            <th>Order Date</th>
+            <th>Quantity of Items</th>
+            <th>Total Amount</th>
+            <th>Show More</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < orders.length; i++) { %>
+          <% var orderDate = new Date(orders[i].orderDate);
+             var formattedDate = orderDate.toLocaleDateString();
+             var formattedTime = orderDate.toLocaleTimeString();
+             var quantity = 0; %>
+          
+          <% for (let k = 0; k < orders[i].items.length; k++) {
+               quantity += orders[i].items[k].quantity;
+             } %>
+          
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= formattedDate + ' ' + formattedTime %></td>
+            <td><%= quantity %></td>
+            <td><%= orders[i].totalAmount %></td>
+            <td>
+              <a class="btn border-shadow view" data-id="<%= orders[i]._id %>">
+                <span class="text-gradient"><i class="fas fa-eye"></i></span>
+              </a>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+  </table>
 </form>
+
+
+
 </div>
 </div>
 

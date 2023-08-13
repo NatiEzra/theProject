@@ -166,7 +166,7 @@ async function getUsers()
 async function getAllOrders(){
 
     const orders = await $.ajax({
-            url: "http://localhost:70/allOrders",
+            url: "http://localhost:70/allOrdersJson",
             method: "GET",
         });
         return orders;

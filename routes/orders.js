@@ -11,7 +11,7 @@ router.get("/myorders", OrdersController.OrderPage);
 
 router.get("/allOrders", OrdersController.getOrders);
 
-
+router.get("/allOrdersJson", OrdersController.getOrdersJson);
 
 
 
