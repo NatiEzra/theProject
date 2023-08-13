@@ -383,55 +383,65 @@ function selectImage(img){
   chosen[0].innerHTML = `<img src="/item-img/${selectedImg}" alt=""></img>`
 }
 
-           
-// async function createPromosList() {
-//   var table=document.getElementById("tbody");
-//   const x = await fetch('/ourPromo')
-//     .then(response => response.json())
-//     .then(data => {
-//       data.forEach(async promo => {
-//         //create
-//         const row=document.createElement("tr");
-//         const nameDiv=document.createElement("td");
-//         const name=document.createElement("p");
-//         const quantityDiv=document.createElement("td");
-//         const quantity=document.createElement("p");
-//         const discountDiv=document.createElement("td");
-//         const discount=document.createElement("p");
+const mySpan = document.getElementById("AddPromoCode");
 
-//         const erase = document.createElement("a");
-//         const eraseDiv=document.createElement("td");
-//         erase.className = "shop-tooltip close float-none text-danger";
-//         erase.title = "Remove";
-//         erase.innerText = "×";
-//         erase.classList.add("shop-tooltip");
-          
+// Add a click event listener
+mySpan.addEventListener("click", function() {
+  AddPromoCode();
+});         
 
-//         //erase.href="./cartpage"
+function AddPromoCode() {
+  $('#editModal').modal('show');
+  const modalTitle = document.getElementById("editModalLabel");
+  const modalBody = document.querySelector("#editModal .modal-body");
+  const saveChangesButton = document.getElementById("saveChangesButton");
+  modalTitle.textContent = "Add New PromoCode";
+  modalBody.innerHTML = `
+      <label for="CodeInput_">Code:</label>
+      <input type="text" id="CodeInput" class="form-control" value="">
+
+      <label for="QuantityiInput_">Quantity:</label>
+      <input type="text" id="QuantityiInput" class="form-control" value="">
+            
+      <label for="DiscountInput_">Discount:</label>
+      <input type="text" id="DiscountInput" class="form-control" value="">
+            
+  `;
+  saveChangesButton.addEventListener("click", async function () {
+      const newCode = document.getElementById("CodeInput").value;
+      const newQuantity = document.getElementById("QuantityiInput").value;
+      const NewDiscount = document.getElementById("DiscountInput").value;
       
-//             nameDiv.textContent=promo.promocodename;
-//             quantityDiv.textContent=promo.quantity;
-//             discountDiv.textContent=promo.discount;
-//             eraseDiv.textContent="X";
-//             //nameDiv.appendChild(name);
-//             //quantityDiv.appendChild(quantity);
-//            // discountDiv.appendChild(discount);
-//             //eraseDiv.appendChild(erase);
+      const branch={
+          promocodename: newCode,
+          quantity: newQuantity,
+          discount: NewDiscount,
+      }
 
-//            row.appendChild(nameDiv);
-//            row.appendChild(quantityDiv);
-//            row.appendChild(discountDiv);
-//            row.appendChild(eraseDiv);
+      var createBranch = {
+          "url": "http://localhost:70/createPromoCode",
+          "method": "POST",
+          "data": JSON.stringify(branch),
+      "contentType": "application/json",
+        };
+        const response = await $.ajax(createBranch);
+      if (response.message === 'Code created successfully.') {
+       const x= await Swal.fire({
+          title: 'Success',
+          text: "Code created successfully",
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
 
-//            table.appendChild(row);
-//       })
-    
-//     })
-//   }
-
-//   createPromosList();
-
-
+        location.reload(); 
+      }
+      else{
+          console.error("Failed to Create promocode:", error);
+      }
+          $('#editModal').modal('hide');
+          
+  });
+}
 
 
  // Add this script at the end of your EJS file
