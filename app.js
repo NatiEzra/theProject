@@ -57,23 +57,17 @@ const io = require('socket.io')(server, {
   cors: { origin: "*" }
 });
 io.on('connection', async function(socket){
-  console.log('New user connected');
 
   UsersOnline++;
   socket.on('login', function(data){
     // saving userId to object with socket ID
   });
   socket.on('createPromoCode', function(data) {
-    // Process the promo code creation
-    // You can interact with your database or perform any other actions here
-    // ...
 
-    // Once the promo code is created, emit a message to the sender
     io.emit('promoCodeCreated', { message: 'Promo code has been created successfully.' });
   });
   io.emit('usercnt',UsersOnline);
   socket.on('disconnect', function(){
-    console.log('New user Disconnected');
     UsersOnline--;
     io.emit('usercnt',UsersOnline);
 
