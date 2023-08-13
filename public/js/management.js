@@ -80,8 +80,7 @@ try{
 
 
 
-<<<<<<< HEAD
-    if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
+   /* if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
@@ -90,9 +89,7 @@ try{
     if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
       $('#allOrders_check').addClass("form-container-hidden");
   }
-  }
-=======
->>>>>>> b268c497b1840ecd9d475263358a880c4300f9d6
+  }*/
 
   function toggle_Promocodes_Form() {
   
@@ -120,16 +117,7 @@ try{
     if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
-<<<<<<< HEAD
-    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
-      $('#GiftTheUsers').addClass("form-container-hidden");
-    }
-    if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
-      $('#allOrders_check').addClass("form-container-hidden");
-    }
-=======
    
->>>>>>> b268c497b1840ecd9d475263358a880c4300f9d6
   }
   function toggle_AllOrders_Form() {
     if ($('#allOrders_check').hasClass("form-container-hidden")) {
@@ -465,7 +453,6 @@ function AddPromoCode() {
           
   });
 }
-<<<<<<< HEAD
 
 
 async function createOrderHistory(){
@@ -517,8 +504,8 @@ async function createOrderHistory(){
                 row.appendChild(deleteTD);
                 tableBody.appendChild(row);
                 showMoreButton.classList.add("ui", "button", "show-more-button");
-                showMoreButton.addEventListener("click",function (){
-
+                showMoreButton.addEventListener("click",function (e){
+                    e.preventDefault();
                   $('#editModal').modal('show');
                   const modalBody = document.querySelector("#editModal .modal-body");
                   modalBody.innerHTML = ``; 
@@ -621,5 +608,3 @@ const y=await fetch('/allItemsJson').
 //    // Handle the response here (e.g., show a success message)
 //    console.log("Promo code created:", response);
 //  });
-=======
->>>>>>> b268c497b1840ecd9d475263358a880c4300f9d6
