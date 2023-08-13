@@ -17,10 +17,16 @@ async function stores(req, res,next) {
 async function editStores(req, res)
 {
   let username = req.session.username;
-      let admin= req.session.isadmin;
-      if (username == null) loggedIn = false;
-      else loggedIn = true;
-     res.render('editStores',{loggedIn: loggedIn,username: username , Admin:admin ,userId:req.session.userid});
+  let admin= req.session.isadmin;
+  if (username == null) loggedIn = false;
+  else loggedIn = true;
+  if(admin){
+    res.render('editStores',{loggedIn: loggedIn,username: username , Admin:admin ,userId:req.session.userid});
+  }
+  else{
+    res.status(404) // Render the 404 error page
+     res.redirect("/ErrorPage");
+  }
 
 }
 async function deleteBranch(req, res){

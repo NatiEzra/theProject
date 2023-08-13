@@ -159,7 +159,7 @@
 
 /* video */
 .video-container {
-  margin-top: 20px; 
+  margin-top: 50px; 
   margin-bottom: 40px; 
   text-align: center;
 }
@@ -316,3 +316,50 @@ body{
   border-radius: 50%;
   transform: translate(233%, -50%);
 }
+.chart-container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center; /* Vertically align the content */
+  justify-content: center; /* Horizontally align the content */
+  width: 100%; /* Adjust the width as needed */
+  height: 100%; /* Adjust the width as needed */
+  padding: 20px; /* Add padding to the container for better spacing */
+  margin-top: 10px;
+  margin-bottom: 50px;
+
+}
+
+/* Center the price chart */
+#priceChart {
+  background-color: white;
+  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
+  height: 100%; /* Adjust the width as needed */
+
+}
+
+
+/* CSS style for the bars */
+.bar {
+  fill: #ea9215; /* Set the fill color of the bars */
+  stroke: none; /* Remove any stroke (border) around the bars */
+  width: 20px;
+}
+/* CSS style for the x-axis labels */
+.x-axis-label {
+  fill: black; /* Set the fill color of the x-axis labels to white */
+  font-weight: bold;
+  transform: rotate(-45deg); /* Apply rotation to the x-axis labels */
+  transform-origin: end; /* Set the rotation origin to the end of the text */
+  text-anchor: end; /* Set the text-anchor property for proper alignment */
+  font-size: 15px;
+
+}
+
+.graph-title{
+  text-anchor: middle; /* Set the text-anchor property for proper alignment */
+  font-size: 25px;
+  color:gray;
+  font-weight: bold;
+
+}
+
