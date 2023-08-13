@@ -351,19 +351,19 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <!-- <tbody>
-             <% for(var i = 0; i < orders.length; i++) { %>
+          <tbody>
+             <% for(var i = 0; i < items.length; i++) { %>
               <tr>
-                <td><%= orders[i].name %></td>
-                <td><img src="<%= orders[i].img %>" alt="Product Photo" class="product-photo small-photo"></td>
-                <td><%= orders[i].price %></td>
+                <td><%= items[i].name %></td>
+                <td><img src="<%= items[i].img %>" alt="Product Photo" class="product-photo small-photo"></td>
+                <td><%= items[i].price %></td>
                 <td>
-                  <button class="btn btn-primary btn-sm edit-item" data-id="<%= orders[i]._id %>">Edit</button>
-                  <button class="btn btn-danger btn-sm remove-item" data-id="<%= orders[i]._id %>">Remove</button>
+                  <button class="btn btn-primary btn-sm edit-item" data-id="<%= items[i]._id %>">Edit</button>
+                  <button class="btn btn-danger btn-sm remove-item" data-id="<%= items[i]._id %>">Remove</button>
                 </td>
               </tr>
             <% } %> 
-        </tbody> -->
+        </tbody> 
     </table>
   </form>
 </div>
