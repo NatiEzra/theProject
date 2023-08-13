@@ -305,19 +305,7 @@
         <% for (var i = 0; i < orders.length; i++) { %>
 
 
-          <% var username2="" %>
-
-          <% for(var j = 0; j < users.length; j++) { %>
-
-            <% console.log("order -> " ,orders[i].user.id); %>
-            <% console.log("Users -> ", users[j]._id.id); %>
-            <% console.log(orders[i].user.id==users[j]._id.id); %>
-              <% if (orders[i].user.id==users[j]._id.id) { %>
-                <%  username2=users[j].username %>
-                <% console.log("entered if"); %>
-              <% } %>        
-
-            <% } %>
+          
            
 
           <% var orderDate = new Date(orders[i].orderDate);
@@ -331,7 +319,7 @@
           
           <tr>
             <td><%= i + 1 %></td>
-            <td><%= username2%></td>
+            <td><%= orders[i].username%></td>
             <td><%= formattedDate + ' ' + formattedTime %></td>
             <td><%= quantity %></td>
             <td><%= orders[i].totalAmount %></td>
