@@ -618,7 +618,7 @@ async function createOrderHistory(){
 async function getAllOrders(){
 
     const orders = await $.ajax({
-            url: "http://localhost:70/allOrders",
+            url: "http://localhost:70/allOrdersJson",
             method: "GET",
         });
         return orders;
@@ -627,7 +627,7 @@ async function getAllItems()
 {
     var existingItems=[];
 
-const y=await fetch('/allItemsJson').
+const y=await fetch('/allItems').
                 then(response=>response.json())
           .then(data2=>{
             data2.forEach(item => {
