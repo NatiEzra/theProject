@@ -45,6 +45,16 @@ try{
 }catch(e)
 {}
 try{
+  $('#allItemsTable').DataTable({
+    paging: true, // Enable pagination
+    pageLength: 5, // Set the number of rows per page to 5
+    lengthMenu: [5, 10, 15], // Customize the page length options
+
+
+  });
+}catch(e)
+{}
+try{
   $('#promoTable').DataTable({
     paging: true, // Enable pagination
     pageLength: 5, // Set the number of rows per page to 5
@@ -696,17 +706,6 @@ async function createOrderHistory(){
 }
 
 //createOrderHistory();
-
-
-
-
-
-
-
-
-
-
-
 async function getAllOrders(){
 
     const orders = await $.ajax({
@@ -729,4 +728,175 @@ const y=await fetch('/allItemsJson').
           return existingItems;
 }
 
+
+
+
+
+/////////////// ALL ITEMS ///////////////////
+////////////////////////////////////////////
+
+$(document).ready(function() {
+
+  $('#AllItems').click(function(e) {
+      e.preventDefault();
+      
+      closeOtherForms();
+      
+      $('#allItemsTable').toggle();
+  });
+
+  $('#saveEditButton').click(function() {
+      const itemId = $('#editItemForm').data('id');
+      const updatedItem = {
+          name: $('#editItemName').val(),
+          price: $('#editItemPrice').val()
+      };
+
+      updateItem(itemId, updatedItem);
+      $('#editItemModal').modal('hide');
+  });
+
+  loadAllItems();
+});
+
+async function updateItem(itemId, updatedItem) {
+  try {
+      const response = await $.ajax({
+          url: `http://localhost:70/api/items/${itemId}`,
+          method: 'PUT',
+          data: updatedItem
+      });
+      Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: response.message
+      });
+      loadAllItems();
+  } catch (error) {
+      console.error(error);
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while updating the item.'
+      });
+  }
+}
+
+async function loadAllItems() {
+  const allItems = await $.ajax({
+      url: "http://localhost:70/allItemsJson",
+      method: "GET"
+  });
+
+  const tableBody = $('#allItemsTable tbody');
+  tableBody.empty();
+
+  allItems.forEach(function(item) {
+    const row = `
+        <tr>
+            <td>${item.name}</td>
+            <td><img src="${item.img}" alt="Product Photo" class="product-photo small-photo"></td>
+            <td>${item.price}</td>
+            <td>
+                <button class="btn btn-primary btn-sm edit-item" data-id="${item._id}">Edit</button>
+                <button class="btn btn-danger btn-sm remove-item" data-id="${item._id}">Remove</button>
+            </td>
+        </tr>
+    `;
+    tableBody.append(row);
+});
+
+
+  $('#allItemsTable').on('click', '.edit-item', function() {
+      const itemId = $(this).data('id');
+      openEditModal(itemId);
+      
+  });
+
+  $('#allItemsTable').on('click', '.remove-item', function() {
+      const itemId = $(this).data('id');
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'You will not be able to recover this item!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!',
+      }).then(async (result) => {
+          if (result.isConfirmed) {
+              await removeItem(itemId);
+          }
+      });
+  });
+}
+
+
+
+
+
+
+
+
+
+function closeOtherForms() {
+}
+
+function openEditModal(item) {
+  const editedItem = { ...item };
+
+  Swal.fire({
+      title: 'Edit Item',
+      html: `
+          <form id="editItemForm">
+              <div class="form-group">
+                  <label for="editItemName">Name:</label>
+                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}">
+              </div>
+              <div class="form-group">
+                  <label for="editItemPrice">Price:</label>
+                  <input type="text" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}">
+              </div>
+          </form>
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Save Changes',
+      cancelButtonText: 'Cancel',
+      preConfirm: () => {
+          return {
+              name: $('#editItemName').val(),
+              price: $('#editItemPrice').val()
+          };
+      }
+  }).then((result) => {
+      if (result.isConfirmed) {
+          updateItem(item._id, result.value);
+      }
+  });
+}
+
+
+
+
+async function removeItem(itemId) {
+  try {
+      const response = await $.ajax({
+          url: `http://localhost:70/api/items/${itemId}`,
+          method: 'DELETE'
+      });
+      Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: response.message
+      });
+      loadAllItems();
+  } catch (error) {
+      console.error(error);
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while removing the item.'
+      });
+  }
+}
 

@@ -341,21 +341,35 @@
 </div>
 
 <div class="container mt-5">  
-  <!-- Таблица "All Items" -->
-  <table id="allItemsTable" class="table table-bordered" style="display: none;">
-    <thead class="thead-dark">
-          <tr>
-              <th>Name</th>
-              <th>Photo</th>
-              <th>Price</th>
-              <th>Actions</th>
-          </tr>
-      </thead>
-      <tbody>
-          <!-- Сюда будут добавляться строки с данными -->
-      </tbody>
-  </table>
+  <form>
+    <table id="allItemsTable" class="table table-bordered" style="display: none;">
+      <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          <!-- <% for(var i = 0; i < promocodes.length; i++) { %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= promocodes[i].promocodename %></td>
+                <td><%= promocodes[i].quantity %></td>
+                <td><%= promocodes[i].discount %></td>
+                <td>
+                    <a class="btn border-shadow deletepromocode" data-id=<%= promocodes[i].promocodename%> >
+                        <span class="text-gradient"><i class="fas fa-times"></i></span>
+                    </a>
+                </td>
+            </tr>
+            <% } %> -->
+        </tbody>
+    </table>
+  </form>
 </div>
+
 
 
 
