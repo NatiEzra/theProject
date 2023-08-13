@@ -589,10 +589,16 @@ async function setCart(){
               }
               async function CheckIfUsed(promo){
                 var user=await getUserName();
+                var count=0;
                 for(var i=0;i<promo.users.length;i++)
                 {
                 if(promo.users[i]==user)
-                {
+                { 
+                  count++;
+                }
+              }
+              if(count>=promo.quantity)
+              {
                 await Swal.fire({
                   title: 'Error',
                   text: "Promocode was already used",
@@ -601,9 +607,9 @@ async function setCart(){
                 });
                 return true;
               }
-            }
               return false;
-            }
+              }
+            
           
               
           async function createOrder(foundUser)
