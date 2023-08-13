@@ -159,7 +159,7 @@
 
 /* video */
 .video-container {
-  margin-top: 50px; 
+  margin-top: 10px; 
   margin-bottom: 40px; 
   text-align: center;
 }
@@ -325,7 +325,7 @@ body{
   height: 100%; /* Adjust the width as needed */
   padding: 20px; /* Add padding to the container for better spacing */
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 
 }
 
@@ -337,12 +337,16 @@ body{
 
 }
 
-
 /* CSS style for the bars */
 .bar {
   fill: #ea9215; /* Set the fill color of the bars */
   stroke: none; /* Remove any stroke (border) around the bars */
   width: 20px;
+}
+.barPromo{
+  fill: #3498db; /* Set the fill color of the bars */
+  stroke: none; /* Remove any stroke (border) around the bars */
+  width: 60px;
 }
 /* CSS style for the x-axis labels */
 .x-axis-label {
@@ -360,6 +364,11 @@ body{
   font-size: 25px;
   color:gray;
   font-weight: bold;
+}
 
+#promoChart {
+  background-color: white;
+  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
+  height: 100%; /* Adjust the width as needed */
 }
 
