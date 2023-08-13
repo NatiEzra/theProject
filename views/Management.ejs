@@ -351,21 +351,19 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-          <!-- <% for(var i = 0; i < promocodes.length; i++) { %>
-            <tr>
-                <td><%= i + 1 %></td>
-                <td><%= promocodes[i].promocodename %></td>
-                <td><%= promocodes[i].quantity %></td>
-                <td><%= promocodes[i].discount %></td>
+        <!-- <tbody>
+             <% for(var i = 0; i < orders.length; i++) { %>
+              <tr>
+                <td><%= orders[i].name %></td>
+                <td><img src="<%= orders[i].img %>" alt="Product Photo" class="product-photo small-photo"></td>
+                <td><%= orders[i].price %></td>
                 <td>
-                    <a class="btn border-shadow deletepromocode" data-id=<%= promocodes[i].promocodename%> >
-                        <span class="text-gradient"><i class="fas fa-times"></i></span>
-                    </a>
+                  <button class="btn btn-primary btn-sm edit-item" data-id="<%= orders[i]._id %>">Edit</button>
+                  <button class="btn btn-danger btn-sm remove-item" data-id="<%= orders[i]._id %>">Remove</button>
                 </td>
-            </tr>
-            <% } %> -->
-        </tbody>
+              </tr>
+            <% } %> 
+        </tbody> -->
     </table>
   </form>
 </div>
