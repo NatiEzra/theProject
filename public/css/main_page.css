@@ -305,3 +305,14 @@ body{
 #head{
   text-shadow: 2px 2px #6c757d;
 }
+.UsersOnline{
+  text-align: center;
+  color: blue;
+  width: 333px;
+  /* height: 78px; */
+  background-color: #3498db;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  transform: translate(233%, -50%);
+}

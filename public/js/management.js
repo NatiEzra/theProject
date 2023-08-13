@@ -16,9 +16,7 @@ function toggleForm() {
       formContainer.removeClass("form-container-add");
       formContainer.addClass("form-container-hidden");
     }
-    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
-      $('#GiftTheUsers').addClass("form-container-hidden");
-    }
+    
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
@@ -71,9 +69,7 @@ try{
     if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
       $('#manageUsersForm').addClass("form-container-hidden");
     }
-    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
-      $('#GiftTheUsers').addClass("form-container-hidden");
-    }
+   
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
@@ -83,29 +79,8 @@ try{
   }
 
 
-  function toggle_Gift_Form() {
-  
-    if ($('#GiftTheUsers').hasClass("form-container-hidden")) {
-      $('#GiftTheUsers').addClass("form-container-add");
-      $('#GiftTheUsers').removeClass("form-container-hidden");
-    }
-    else{
-      if ($('#GiftTheUsers').hasClass("form-container-add")) {
-        $('#GiftTheUsers').removeClass("form-container-add");
-        $('#GiftTheUsers').addClass("form-container-hidden");
-      }
-    }
-    if (($('#formContainer')[0].classList.contains('form-container-add')) || (!($('#formContainer')[0].classList.contains('form-container-hidden')))) {
-      $('#formContainer').addClass("form-container-hidden");
-    }
-    if ($('#manageUsersForm').css('display') === 'block') {
-      $('#manageUsersForm').toggle();
-    } 
-    
-    if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
-      $('#manageUsersForm').addClass("form-container-hidden");
-    }
 
+<<<<<<< HEAD
     if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
@@ -116,6 +91,8 @@ try{
       $('#allOrders_check').addClass("form-container-hidden");
   }
   }
+=======
+>>>>>>> b268c497b1840ecd9d475263358a880c4300f9d6
 
   function toggle_Promocodes_Form() {
   
@@ -143,12 +120,16 @@ try{
     if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
+<<<<<<< HEAD
     if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
       $('#GiftTheUsers').addClass("form-container-hidden");
     }
     if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
       $('#allOrders_check').addClass("form-container-hidden");
     }
+=======
+   
+>>>>>>> b268c497b1840ecd9d475263358a880c4300f9d6
   }
   function toggle_AllOrders_Form() {
     if ($('#allOrders_check').hasClass("form-container-hidden")) {
@@ -191,9 +172,7 @@ try{
     toggle_Facebook_Form();
   });
 
-  $("#GiftUsers").click(function() {
-    toggle_Gift_Form();
-  });
+
 
   $("#Promocodes").click(function() {
     toggle_Promocodes_Form();
@@ -399,10 +378,7 @@ $(document).ready(function() {
       $('#PostFacebook_Container')[0].classList.add('form-container-hidden');
       $('#PostFacebook_Container')[0].classList.remove('form-container-add');
     }
-    if ($('#GiftTheUsers')[0].classList.contains('form-container-add')) {
-      $('#GiftTheUsers')[0].classList.add('form-container-hidden');
-      $('#GiftTheUsers')[0].classList.remove('form-container-add');
-    }
+   
     if ($('#allPromos_check')[0].classList.contains('form-container-add')) {
       $('#allPromos_check')[0].classList.add('form-container-hidden');
       $('#allPromos_check')[0].classList.remove('form-container-add');
@@ -489,6 +465,7 @@ function AddPromoCode() {
           
   });
 }
+<<<<<<< HEAD
 
 
 async function createOrderHistory(){
@@ -644,3 +621,5 @@ const y=await fetch('/allItemsJson').
 //    // Handle the response here (e.g., show a success message)
 //    console.log("Promo code created:", response);
 //  });
+=======
+>>>>>>> b268c497b1840ecd9d475263358a880c4300f9d6
