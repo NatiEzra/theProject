@@ -50,7 +50,7 @@ async function buildPage()
                 var formattedTime = orderDate.toLocaleTimeString();
 
                 dateTD.textContent=formattedDate+' '+formattedTime;
-                quantityTD.textContent=quantity+" ";
+                quantityTD.textContent=quantity;
                 totalTD.textContent=orders[j].totalAmount;
                 
                 row.appendChild(dateTD);

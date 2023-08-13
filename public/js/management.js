@@ -22,6 +22,9 @@ function toggleForm() {
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
+    if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allOrders_check').addClass("form-container-hidden");
+  }
   }
   try{
   $('#datatable').DataTable({
@@ -74,6 +77,9 @@ try{
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
+    if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allOrders_check').addClass("form-container-hidden");
+  }
   }
 
 
@@ -106,6 +112,9 @@ try{
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
+    if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allOrders_check').addClass("form-container-hidden");
+  }
   }
 
   function toggle_Promocodes_Form() {
@@ -137,8 +146,43 @@ try{
     if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
       $('#GiftTheUsers').addClass("form-container-hidden");
     }
+    if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allOrders_check').addClass("form-container-hidden");
+    }
   }
+  function toggle_AllOrders_Form() {
+    if ($('#allOrders_check').hasClass("form-container-hidden")) {
+      $('#allOrders_check').addClass("form-container-add");
+      $('#allOrders_check').removeClass("form-container-hidden");
+    } else {
+      if ($('#allOrders').hasClass("form-container-add")) {
+        $('#allOrders').removeClass("form-container-add");
+        $('#allOrders').addClass("form-container-hidden");
+      }
+    }
+    
+    if (($('#formContainer')[0].classList.contains('form-container-add')) || (!($('#formContainer')[0].classList.contains('form-container-hidden')))) {
+      $('#formContainer').addClass("form-container-hidden");
+    }
+    if ($('#manageUsersForm').css('display') === 'block') {
+      $('#manageUsersForm').toggle();
+    } 
+    
+    if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
+      $('#manageUsersForm').addClass("form-container-hidden");
+    }
 
+    if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
+      $('#PostFacebook_Container').addClass("form-container-hidden");
+    }
+    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
+      $('#GiftTheUsers').addClass("form-container-hidden");
+    }
+    if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allPromos_check').addClass("form-container-hidden");
+    }
+  }
+  
 
   $("#AddItem").click(function() {
     toggleForm();
@@ -153,6 +197,9 @@ try{
 
   $("#Promocodes").click(function() {
     toggle_Promocodes_Form();
+  });
+  $("#AllOrders").click(function() {
+    toggle_AllOrders_Form();
   });
 
   $("#update_user").submit(function(event){
@@ -442,6 +489,141 @@ function AddPromoCode() {
           
   });
 }
+
+
+async function createOrderHistory(){
+  var tableBody=document.getElementById("ordersBody");
+    
+    const orders=await getAllOrders();
+    const items= await getAllItems();
+    for(let i=0; i<orders.length;i++)
+    {
+
+                var row=document.createElement("tr");
+                var dateTD=document.createElement("td");
+                var quantityTD=document.createElement("td");
+                var totalTD=document.createElement("td");
+                var showMoreTd=document.createElement("td");
+                var deleteTD=document.createElement("td");
+
+
+
+                var showMoreButton = document.createElement("button");
+                showMoreButton.textContent = "Show more";
+                showMoreButton.className = "custom-button"; 
+
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.className = "delete-button"; 
+
+                showMoreTd.appendChild(showMoreButton);
+                deleteTD.appendChild(deleteButton);
+
+                var quantity=0;
+                for(let k=0;k<orders[i].items.length;k++)
+                {
+                  quantity+=orders[i].items[k].quantity;
+                }
+
+                var orderDate = new Date(orders[i].orderDate);
+                var formattedDate = orderDate.toLocaleDateString();
+                var formattedTime = orderDate.toLocaleTimeString();
+
+                dateTD.textContent=formattedDate+' '+formattedTime;
+                quantityTD.textContent=quantity;
+                totalTD.textContent=orders[i].totalAmount;
+                
+                row.appendChild(dateTD);
+                row.appendChild(quantityTD);
+                row.appendChild(totalTD);
+                row.appendChild(showMoreTd);
+                row.appendChild(deleteTD);
+                tableBody.appendChild(row);
+                showMoreButton.classList.add("ui", "button", "show-more-button");
+                showMoreButton.addEventListener("click",function (){
+
+                  $('#editModal').modal('show');
+                  const modalBody = document.querySelector("#editModal .modal-body");
+                  modalBody.innerHTML = ``; 
+                  let tableHtml = `
+                  <table class="table table-hover mb-0">
+                      <tbody>
+                          <tr class="align-self-center">
+                              <th>Image</th>
+                              <th>Item Name</th>
+                              <th>Price</th>
+                              <th>Quantity</th>
+                          </tr>
+              `;
+              
+              for (let k = 0; k < orders[i].items.length; k++) {
+                  for (let x = 0; x < items.length; x++) {
+                      if (orders[i].items[k].item == items[x]._id) {
+                          tableHtml += `
+                              <tr class="align-self-center">
+                                  <td><img src="Images/${items[x].img}" class="images"></img></td>
+                                  <td>${items[x].name}</td>
+                                  <td>${items[x].price}₪</td>
+                                  <td>${orders[i].items[k].quantity}</td>
+                              </tr>
+                          `;
+                      }
+                  }
+              }
+              
+              tableHtml += `
+                      </tbody>
+                  </table>
+              `;
+              
+              modalBody.innerHTML += tableHtml;
+                  $('#editModal').modal('hide');
+
+              });
+
+              
+
+
+    }
+  
+}
+
+createOrderHistory();
+
+
+
+
+
+
+
+
+
+
+
+async function getAllOrders(){
+
+    const orders = await $.ajax({
+            url: "http://localhost:70/allOrders",
+            method: "GET",
+        });
+        return orders;
+}
+async function getAllItems()
+{
+    var existingItems=[];
+
+const y=await fetch('/allItemsJson').
+                then(response=>response.json())
+          .then(data2=>{
+            data2.forEach(item => {
+            existingItems.push(item);
+            })
+          });
+          return existingItems;
+}
+
+
+
 
 
  // Add this script at the end of your EJS file
