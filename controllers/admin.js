@@ -75,7 +75,20 @@ async function Additem(req, res) {
     //res.redirect('/Mainpage');
   
   }
-
+  async function CreatePromoCode(req, res) {
+    let discount=req.body.discount;
+    let promocodename=req.body.promocodename;
+    let quantity=req.body.quantity;
+    let result=await AdminService.CreatePromoCode(discount,promocodename,quantity);   
+    if(result)
+    {
+      res.send({ message: 'Your PromoCode has been Added!' });
+    }
+    else{
+      res.send({ message: 'There is a Problem' });
+    }
+  
+  }
 async function AddPhoto(req,res)
 {
   let result= await AdminService.AddPhoto(req,res);   
@@ -182,26 +195,7 @@ async function Update_user(req, res) {
   }
 }
 
-const io = socketIo(server);
 
-// Handle Socket.io events
-io.on("connection", (socket) => {
-  console.log("A user connected");
-
-  // Listen for the "createPromoCode" event from clients
-  socket.on("createPromoCode", (data) => {
-    const promoCode = data.promoCode;
-
-    // Here, you can process the promo code creation logic and send a response back to clients
-    // For now, we'll just emit a response event with a simple message
-    socket.emit("promoCodeCreated", { message: "Promo code created successfully!" });
-  });
-
-  // Handle disconnect event
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
-});
 
 module.exports = {
     Adminpage,
@@ -218,4 +212,5 @@ module.exports = {
     AddPhoto,
     GetlistofPromocodes,
     Promocodes,
+    CreatePromoCode,
   }

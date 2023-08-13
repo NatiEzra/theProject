@@ -75,6 +75,24 @@ async function ListofPromocodes()
   return Promo;
 }
 
+async function CreatePromoCode(discount,promocodename,quantity)
+{
+  try{
+  const promocode = new Promocode({
+    promocodename: promocodename,
+    quantity:quantity,
+    discount: discount,
+    users:[]
+  });
+  await promocode.save();
+  return true;
+}
+catch (error) {
+  console.error('Error occurred while adding Promocode:', error);
+  return false;
+}
+}
+
 
 async function updateUser(userId, updatedData) {
     try {
@@ -136,4 +154,4 @@ async function check_username(username , email)
       return "email exsist";
     } 
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes};
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode};

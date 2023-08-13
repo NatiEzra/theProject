@@ -416,11 +416,40 @@ if(window.location.pathname == "/management"){
       });
 
   })
+  $ondelete.on("click", "td a.deletepromocode", async function(e) {
+    e.preventDefault();
+    var promoname = $(this).attr("data-id");
+    var DeletePromoCode = {
+      "url" : `http://localhost:70/api/users/${id}`,
+      "method" : "DELETE"
+  }
+  Swal.fire({
+    title: 'Confirmation',
+    text: 'Do you really want to delete this record?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'OK',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax(DeletePromoCode).done(function(response) {
+        Swal.fire({
+          title: 'Success',
+          text: response.message,
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          location.reload(); // Refresh the page
+        });
+      });
+    } else {
+      // User clicked "Cancel" or closed the alert
+      // Do nothing or perform any desired action
+    }
+  });
+  });
 }
 $(document).ready(function() {
-  // Hide the form initially
-  //$('#manageUsersForm').hide();
-
   $("#closeModalButton").click(function () {
     $("#editOrderModal").modal('hide'); // Close the modal
 });
@@ -484,24 +513,43 @@ function AddPromoCode() {
   $('#editModal').modal('show');
   const modalTitle = document.getElementById("editModalLabel");
   const modalBody = document.querySelector("#editModal .modal-body");
-  const saveChangesButton = document.getElementById("saveChangesButton");
+  const saveChangesButton = document.getElementById("savePromocodeButton");
   modalTitle.textContent = "Add New PromoCode";
   modalBody.innerHTML = `
       <label for="CodeInput_">Code:</label>
-      <input type="text" id="CodeInput" class="form-control" value="">
+      <input type="text" id="CodeInput" name="codename" class="form-control" value="">
 
       <label for="QuantityiInput_">Quantity:</label>
-      <input type="text" id="QuantityiInput" class="form-control" value="">
+      <input type="text" id="QuantityiInput" name="quntitycode" class="form-control" value="">
             
       <label for="DiscountInput_">Discount:</label>
-      <input type="text" id="DiscountInput" class="form-control" value="">
+      <input type="text" id="DiscountInput"  name="discountcode" class="form-control" value="">
             
   `;
-  saveChangesButton.addEventListener("click", async function () {
+  saveChangesButton.addEventListener("click", async function (e) {
+    e.preventDefault();
       const newCode = document.getElementById("CodeInput").value;
       const newQuantity = document.getElementById("QuantityiInput").value;
       const NewDiscount = document.getElementById("DiscountInput").value;
-      
+
+      if (isNaN(NewDiscount) || isNaN(newQuantity)||newQuantity < 0|| NewDiscount<0) {
+        Swal.fire({
+          title: 'Error',
+          text: "newQuantity/NewDiscount must be a positive number",
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+      if (newQuantity=="" || NewDiscount=="" || newCode=="") {
+        Swal.fire({
+          title: 'Error',
+          text: "Add data",
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
       const branch={
           promocodename: newCode,
           quantity: newQuantity,
@@ -515,21 +563,24 @@ function AddPromoCode() {
       "contentType": "application/json",
         };
         const response = await $.ajax(createBranch);
-      if (response.message === 'Code created successfully.') {
-       const x= await Swal.fire({
+      if (response.message === 'Your PromoCode has been Added!') {
+       Swal.fire({
           title: 'Success',
           text: "Code created successfully",
           icon: 'success',
           confirmButtonText: 'OK'
         });
-
-        location.reload(); 
       }
       else{
-          console.error("Failed to Create promocode:", error);
+        Swal.fire({
+          title: 'Error',
+          text: "Problem to create code",
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
-          $('#editModal').modal('hide');
-          
+        $('#editModal').modal('hide');
+        location.reload();
   });
 }
 
@@ -666,24 +717,3 @@ const y=await fetch('/allItemsJson').
 }
 
 
-
-
-
- // Add this script at the end of your EJS file
-//  const socket = io(); // Connect to the server using Socket.io
-
-//  // Handle the promo code form submission
-//  const promoCodeForm = document.getElementById("PromoCodeAllUsers");
-//  const promoCodeButton = document.getElementById("postPromoCode");
-//  promoCodeButton.addEventListener("click", () => {
-//    const promoCodeInput = document.getElementById("GiftInput").value;
-
-//    // Emit a Socket.io event to the server
-//    socket.emit("createPromoCode", { promoCode: promoCodeInput });
-//  });
-
-//  // Listen for responses from the server
-//  socket.on("promoCodeCreated", (response) => {
-//    // Handle the response here (e.g., show a success message)
-//    console.log("Promo code created:", response);
-//  });

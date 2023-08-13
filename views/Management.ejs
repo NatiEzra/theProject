@@ -207,7 +207,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalButton3" >Cancel</button>
-                <button type="button" class="btn btn-primary" id="saveChangesButton">Save Changes</button>
+                <button type="button" class="btn btn-primary" id="savePromocodeButton">Save Promocode</button>
             </div>
         </div>
     </div>
@@ -231,7 +231,7 @@
                <td><%= promocodes[i].quantity %></td>
                <td><%= promocodes[i].discount %></td>
                <td>
-                   <a class="btn border-shadow delete" data-id=<%= promocodes[i].promocodename%> >
+                   <a class="btn border-shadow deletepromocode" data-id=<%= promocodes[i].promocodename%> >
                        <span class="text-gradient"><i class="fas fa-times"></i></span>
                    </a>
                </td>
