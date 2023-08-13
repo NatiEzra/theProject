@@ -16,9 +16,7 @@ function toggleForm() {
       formContainer.removeClass("form-container-add");
       formContainer.addClass("form-container-hidden");
     }
-    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
-      $('#GiftTheUsers').addClass("form-container-hidden");
-    }
+    
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
@@ -68,45 +66,14 @@ try{
     if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
       $('#manageUsersForm').addClass("form-container-hidden");
     }
-    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
-      $('#GiftTheUsers').addClass("form-container-hidden");
-    }
+   
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
   }
 
 
-  function toggle_Gift_Form() {
-  
-    if ($('#GiftTheUsers').hasClass("form-container-hidden")) {
-      $('#GiftTheUsers').addClass("form-container-add");
-      $('#GiftTheUsers').removeClass("form-container-hidden");
-    }
-    else{
-      if ($('#GiftTheUsers').hasClass("form-container-add")) {
-        $('#GiftTheUsers').removeClass("form-container-add");
-        $('#GiftTheUsers').addClass("form-container-hidden");
-      }
-    }
-    if (($('#formContainer')[0].classList.contains('form-container-add')) || (!($('#formContainer')[0].classList.contains('form-container-hidden')))) {
-      $('#formContainer').addClass("form-container-hidden");
-    }
-    if ($('#manageUsersForm').css('display') === 'block') {
-      $('#manageUsersForm').toggle();
-    } 
-    
-    if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
-      $('#manageUsersForm').addClass("form-container-hidden");
-    }
 
-    if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
-      $('#PostFacebook_Container').addClass("form-container-hidden");
-    }
-    if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
-      $('#allPromos_check').addClass("form-container-hidden");
-    }
-  }
 
   function toggle_Promocodes_Form() {
   
@@ -134,9 +101,7 @@ try{
     if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
-    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
-      $('#GiftTheUsers').addClass("form-container-hidden");
-    }
+   
   }
 
 
@@ -147,9 +112,7 @@ try{
     toggle_Facebook_Form();
   });
 
-  $("#GiftUsers").click(function() {
-    toggle_Gift_Form();
-  });
+
 
   $("#Promocodes").click(function() {
     toggle_Promocodes_Form();
@@ -352,10 +315,7 @@ $(document).ready(function() {
       $('#PostFacebook_Container')[0].classList.add('form-container-hidden');
       $('#PostFacebook_Container')[0].classList.remove('form-container-add');
     }
-    if ($('#GiftTheUsers')[0].classList.contains('form-container-add')) {
-      $('#GiftTheUsers')[0].classList.add('form-container-hidden');
-      $('#GiftTheUsers')[0].classList.remove('form-container-add');
-    }
+   
     if ($('#allPromos_check')[0].classList.contains('form-container-add')) {
       $('#allPromos_check')[0].classList.add('form-container-hidden');
       $('#allPromos_check')[0].classList.remove('form-container-add');
@@ -442,23 +402,3 @@ function AddPromoCode() {
           
   });
 }
-
-
- //Add this script at the end of your EJS file
- const socket = io(); // Connect to the server using Socket.io
-
- // Handle the promo code form submission
- const promoCodeForm = document.getElementById("PromoCodeAllUsers");
- const promoCodeButton = document.getElementById("postPromoCode");
- promoCodeButton.addEventListener("click", () => {
-   const promoCodeInput = document.getElementById("GiftInput").value;
-
-   // Emit a Socket.io event to the server
-   socket.emit("createPromoCode", { promoCode: promoCodeInput });
- });
-
- // Listen for responses from the server
- socket.on("promoCodeCreated", (response) => {
-   // Handle the response here (e.g., show a success message)
-   console.log("Promo code created:", response);
- });
