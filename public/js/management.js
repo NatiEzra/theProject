@@ -421,6 +421,19 @@ $(document).ready(function() {
   // Hide the form initially
   //$('#manageUsersForm').hide();
 
+  $("#closeModalButton").click(function () {
+    $("#editOrderModal").modal('hide'); // Close the modal
+});
+$("#closeModalButton2").click(function () {
+  $("#editOrderModal").modal('hide'); // Close the modal
+});
+$("#closeModalButton3").click(function () {
+  $("#editModal").modal('hide'); // Close the modal
+});
+$("#closeModalButton4").click(function () {
+  $("#editModal").modal('hide'); // Close the modal
+});
+
   // Add click event handler to the "Manage Users" link
   $('#manageUsers').click(function(e) {
     e.preventDefault(); // Prevent the default link behavior
