@@ -433,11 +433,6 @@ async function setCart(){
             }
             async function checkout()
             {
-  
-              
-            
-              
-              
               const response = await $.ajax({
                 url: "http://localhost:70/check",
                 method: "GET",
@@ -463,8 +458,17 @@ async function setCart(){
                 });
                 if (foundUser) 
                 {
-                  await createOrder(foundUser);
-                  
+                  if (foundUser.cart == null || foundUser.cart.length === 0) 
+                    {
+                    await Swal.fire({
+                      title: 'You have an empty cart',
+                      text: "fill your cart first!",
+                      icon: 'error',
+                      confirmButtonText: 'OK'
+                    });     
+                    return;   
+                  }
+                  await createOrder(foundUser);            
                   foundUser.cart=[];
                   
                 }   
