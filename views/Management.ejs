@@ -309,9 +309,10 @@
 
           <% for(var j = 0; j < users.length; j++) { %>
 
-            <% console.log(orders[i].user); %>
-            <% console.log(users[j]._id); %>
-              <% if (orders[i].user==users[j]._id) { %>
+            <% console.log("order -> " ,orders[i].user.id); %>
+            <% console.log("Users -> ", users[j]._id.id); %>
+            <% console.log(orders[i].user.id==users[j]._id.id); %>
+              <% if (orders[i].user.id==users[j]._id.id) { %>
                 <%  username2=users[j].username %>
                 <% console.log("entered if"); %>
               <% } %>        
