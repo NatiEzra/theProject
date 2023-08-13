@@ -83,10 +83,9 @@ socket.on('usercnt', function(msg) {
     //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
 //}
 // Fetch all items data and create the graph
-async function createGraph() {
+async function createPriceGraph() {
   const existingItems = await fetch('/MenJson')
     .then(response => response.json());
-
   // Extract item names and prices from the fetched data
   const itemNames = existingItems.map(item => item.name);
   const prices = existingItems.map(item => item.price);
@@ -162,6 +161,84 @@ xAxisGroup.selectAll("text")
     .attr("class", "y-axis")
     .call(d3.axisLeft(yScale));
 }
+async function createPromoDiscountGraph() {
+    const existingPromo = await fetch('/getPromo')
+    .then(response => response.json());
+  // Extract item names and prices from the fetched data
+  const promoNames = existingPromo.map(promo => promo.promocodename);
+  const discount = existingPromo.map(promo => promo.discount);
 
+  // Set up the dimensions for the SVG container
+  const svgWidth = 800; // Adjust the SVG width as needed
+  const svgHeight = 600; // Adjust the SVG height as needed
+  const margin = { top: 40, right: 40, bottom: 80, left: 60 }; // Increased bottom margin for x-axis labels
+  const width = svgWidth - margin.left - margin.right;
+  const height = svgHeight - margin.top - margin.bottom;
+
+  // Create the SVG container for the chart
+  const svg = d3.select("#promoChart")
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
+
+  // Create a group within the SVG for the charting area
+  const chart = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  // Define a title for the graph
+  const graphTitle = "Promocodes discounts";
+
+      // Create a text element for the title and position it at the center
+  svg.append("text")
+  .attr("class", "graph-title")
+  .attr("x", svgWidth / 2)
+  .attr("y", margin.top / 2) // Position it above the chart area
+  .text(graphTitle);
+
+
+  // Adjust the padding between item names on the x-axis
+  const paddingInner = 0.1;
+  const paddingOuter = 0.2;
+
+  // Set up scales for x and y axes with adjusted padding
+  const xScale = d3.scaleBand()
+    .domain(promoNames)
+    .range([0, width])
+    .paddingInner(paddingInner)
+    .paddingOuter(paddingOuter);
+
+  const yScale = d3.scaleLinear()
+    .domain([0, d3.max(discount)])
+    .nice()
+    .range([height, 0]);
+
+  // Create the columns for the chart
+  chart.selectAll(".bar")
+    .data(discount)
+    .enter().append("rect")
+    .attr("class", "barPromo")
+    .attr("x", (item, index) => xScale(promoNames[index]))
+    .attr("y", item => yScale(item))
+    .attr("width", xScale.bandwidth())
+    .attr("height", item => height - yScale(item))
+
+  // Create x and y axes
+  const xAxis = d3.axisBottom(xScale);
+
+// Append x axis to the charting area
+const xAxisGroup = chart.append("g")
+  .attr("class", "x-axis")
+  .attr("transform", "translate(0," + (height) + ")") // Adjust the second parameter to move the labels up
+  .call(xAxis);
+
+// Add a class to the x-axis labels
+xAxisGroup.selectAll("text")
+  .attr("class", "x-axis-label"); // Add this class to the x-axis labels
+
+  // Append y axis to the charting area
+  chart.append("g")
+    .attr("class", "y-axis")
+    .call(d3.axisLeft(yScale));
+}
 // Call the createGraph function
-createGraph();
+createPriceGraph();
+createPromoDiscountGraph();
