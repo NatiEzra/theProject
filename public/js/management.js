@@ -330,12 +330,12 @@ if(window.location.pathname == "/management"){
                   const orders=await getAllOrders();
                   const items= await getAllItems();
                   $('#editOrderModal').modal('show');
-                  const viewLink = document.getElementById("viewLink");
+                  
 
                     // Add a click event listener to the link
                    
                       // Get the value of the data-id attribute
-                      const dataId = viewLink.getAttribute("data-id");
+                      const dataId = $(this).attr("data-id");
                       let order;
                   for (let i=0; i<orders.length;i++)
                   {

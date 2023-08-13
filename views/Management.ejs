@@ -292,6 +292,7 @@
       <thead class="thead-dark">
           <tr>
             <th>Index</th>
+            <th>Ordered By</th>
             <th>Order Date</th>
             <th>Quantity of Items</th>
             <th>Total Amount</th>
@@ -299,7 +300,22 @@
           </tr>
       </thead>
       <tbody>
+
+
+        
         <% for (var i = 0; i < orders.length; i++) { %>
+
+
+          <% var username %>
+
+          <% for(var j = 0; j < users.length; j++) { %>
+              <% if (orders[i].user==users[j]._id) { %>
+                <%  username=users[j].username %>
+              <% } %>        
+
+            <% } %>
+           
+
           <% var orderDate = new Date(orders[i].orderDate);
              var formattedDate = orderDate.toLocaleDateString();
              var formattedTime = orderDate.toLocaleTimeString();
@@ -311,11 +327,12 @@
           
           <tr>
             <td><%= i + 1 %></td>
+            <td><%= username%></td>
             <td><%= formattedDate + ' ' + formattedTime %></td>
             <td><%= quantity %></td>
             <td><%= orders[i].totalAmount %></td>
             <td>
-              <a class="btn border-shadow view" id="viewLink"data-id="<%= orders[i]._id %>">
+              <a class="btn border-shadow view" data-id="<%= orders[i]._id %>">
                 <span class="text-gradient"><i class="fas fa-eye"></i></span>
               </a>
             </td>
