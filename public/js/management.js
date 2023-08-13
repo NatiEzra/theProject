@@ -330,6 +330,21 @@ if(window.location.pathname == "/management"){
                   const orders=await getAllOrders();
                   const items= await getAllItems();
                   $('#editOrderModal').modal('show');
+                  const viewLink = document.getElementById("viewLink");
+
+                    // Add a click event listener to the link
+                   
+                      // Get the value of the data-id attribute
+                      const dataId = viewLink.getAttribute("data-id");
+                      
+                  for (let i=0; i<orders.length;i++)
+                  {
+                    if (orders[i]._id==dataId)
+                    {
+                      const order=order[i];
+                      break;
+                    }
+                  }
                   const modalBody = document.querySelector("#editOrderModal .modal-body");
                   modalBody.innerHTML = ``; 
                   let tableHtml = `
@@ -343,15 +358,15 @@ if(window.location.pathname == "/management"){
                           </tr>
               `;
               
-              for (let k = 0; k < orders[i].items.length; k++) {
+              for (let k = 0; k < order.items.length; k++) {
                   for (let x = 0; x < items.length; x++) {
-                      if (orders[i].items[k].item == items[x]._id) {
+                      if (order.items[k].item == items[x]._id) {
                           tableHtml += `
                               <tr class="align-self-center">
                                   <td><img src="Images/${items[x].img}" class="images"></img></td>
                                   <td>${items[x].name}</td>
                                   <td>${items[x].price}₪</td>
-                                  <td>${orders[i].items[k].quantity}</td>
+                                  <td>${order.items[k].quantity}</td>
                               </tr>
                           `;
                       }
@@ -627,7 +642,7 @@ async function getAllItems()
 {
     var existingItems=[];
 
-const y=await fetch('/allItems').
+const y=await fetch('/allItemsJson').
                 then(response=>response.json())
           .then(data2=>{
             data2.forEach(item => {
