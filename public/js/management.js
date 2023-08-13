@@ -444,21 +444,21 @@ function AddPromoCode() {
 }
 
 
- // Add this script at the end of your EJS file
-//  const socket = io(); // Connect to the server using Socket.io
+ //Add this script at the end of your EJS file
+ const socket = io(); // Connect to the server using Socket.io
 
-//  // Handle the promo code form submission
-//  const promoCodeForm = document.getElementById("PromoCodeAllUsers");
-//  const promoCodeButton = document.getElementById("postPromoCode");
-//  promoCodeButton.addEventListener("click", () => {
-//    const promoCodeInput = document.getElementById("GiftInput").value;
+ // Handle the promo code form submission
+ const promoCodeForm = document.getElementById("PromoCodeAllUsers");
+ const promoCodeButton = document.getElementById("postPromoCode");
+ promoCodeButton.addEventListener("click", () => {
+   const promoCodeInput = document.getElementById("GiftInput").value;
 
-//    // Emit a Socket.io event to the server
-//    socket.emit("createPromoCode", { promoCode: promoCodeInput });
-//  });
+   // Emit a Socket.io event to the server
+   socket.emit("createPromoCode", { promoCode: promoCodeInput });
+ });
 
-//  // Listen for responses from the server
-//  socket.on("promoCodeCreated", (response) => {
-//    // Handle the response here (e.g., show a success message)
-//    console.log("Promo code created:", response);
-//  });
+ // Listen for responses from the server
+ socket.on("promoCodeCreated", (response) => {
+   // Handle the response here (e.g., show a success message)
+   console.log("Promo code created:", response);
+ });
