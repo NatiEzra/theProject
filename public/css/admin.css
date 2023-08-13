@@ -452,3 +452,9 @@ form img{
     max-width: 40px;
     max-height: 60px;
 }
+.nowrap {
+  white-space: nowrap;
+}
+.modal-body {
+  overflow-x: auto;
+}
