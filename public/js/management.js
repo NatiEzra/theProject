@@ -336,12 +336,12 @@ if(window.location.pathname == "/management"){
                    
                       // Get the value of the data-id attribute
                       const dataId = viewLink.getAttribute("data-id");
-                      
+                      let order;
                   for (let i=0; i<orders.length;i++)
                   {
                     if (orders[i]._id==dataId)
                     {
-                      const order=order[i];
+                      order=orders[i];
                       break;
                     }
                   }
