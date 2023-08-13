@@ -7,7 +7,8 @@ async function createOrder(order, res)
         user: order.user,
         items: order.items,
         totalAmount: order.totalAmount,
-        orderDate: order.orderDate
+        orderDate: order.orderDate,
+        username:order.username
     });
     const x=await newOrder.save();
     return x._id;

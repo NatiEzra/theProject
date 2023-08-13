@@ -652,6 +652,7 @@ async function setCart(){
                     items: items,
                     totalAmount: finalPrice,
                     orderDate: Date.now,
+                    username:foundUser.username
                   }
                   /*foundUser.orderHistory.push(order);
                   await addToUserHistory(foundUser);*/
