@@ -807,28 +807,37 @@ async function loadAllItems() {
 });
 
 
-  $('#allItemsTable').on('click', '.edit-item', function() {
-      const itemId = $(this).data('id');
-      openEditModal(itemId);
-      
-  });
+$('#allItemsTable').on('click', '.edit-item', function(e) {
+  e.preventDefault(); 
+  const itemId = $(this).data('id');
+  const editedItem = allItems.find(item => item._id === itemId);
+  openEditModal(editedItem);
+});
 
-  $('#allItemsTable').on('click', '.remove-item', function() {
-      const itemId = $(this).data('id');
-      Swal.fire({
-          title: 'Are you sure?',
-          text: 'You will not be able to recover this item!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!',
-      }).then(async (result) => {
-          if (result.isConfirmed) {
-              await removeItem(itemId);
-          }
-      });
+$('#allItemsTable').on('click', '.remove-item', function(e) {
+  e.preventDefault(); // Предотвращаем отправку запроса на сервер
+  const itemId = $(this).data('id');
+  Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this item!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+  }).then(async (result) => {
+      if (result.isConfirmed) {
+          await removeItem(itemId);
+      }
   });
+});
+  tableBody.append(row);
+
+$('.edit-item').click(function() {
+    const itemId = $(this).data('id');
+    const editedItem = allItems.find(item => item._id === itemId);
+    openEditModal(editedItem);
+});
 }
 
 
