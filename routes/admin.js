@@ -34,5 +34,5 @@ router.post('/post-form-route', Admin_pageController.PostFacebook)
 //promocodes
 router.get("/ourPromo", Admin_pageController.Promocodes);
 
-router.post("/createPromoCode", Admin_pageController.CreatePromoCode);
+router.post("/createPromoCode", Admin_pageController.check_PromoCode,Admin_pageController.CreatePromoCode);
 module.exports = router;

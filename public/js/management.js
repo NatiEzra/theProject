@@ -563,24 +563,37 @@ function AddPromoCode() {
       "contentType": "application/json",
         };
         const response = await $.ajax(createBranch);
+        if(response=="Promocode exsist")
+        {
+          Swal.fire({
+            title: 'Error',
+            text: "Promocode already exsist",
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+      else{
       if (response.message === 'Your PromoCode has been Added!') {
        Swal.fire({
           title: 'Success',
           text: "Code created successfully",
           icon: 'success',
           confirmButtonText: 'OK'
+        }).then(()=>{
+          $('#editModal').modal('hide');
+          location.reload();
         });
       }
-      else{
-        Swal.fire({
-          title: 'Error',
-          text: "Problem to create code",
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-      }
-        $('#editModal').modal('hide');
-        location.reload();
+      // else{
+      //   Swal.fire({
+      //     title: 'Error',
+      //     text: "Problem to create code",
+      //     icon: 'error',
+      //     confirmButtonText: 'OK'
+      //   });
+      // }
+       
+    }
   });
 }
 

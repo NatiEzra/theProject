@@ -154,4 +154,12 @@ async function check_username(username , email)
       return "email exsist";
     } 
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode};
+async function check_PromoCode(promocodename)
+{
+    const promocode = await Promocode.findOne({promocodename:promocodename}); 
+    if(promocode)
+    {
+      return "promocode exsist";
+    }
+}
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode};

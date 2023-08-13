@@ -155,11 +155,23 @@ async function check_username(req, res,next) {
     let result = await AdminService.check_username(username, email);  
     if(result =="username exsist")
     {
-        return res.render( "add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:true,message: '' , exsist_email:false });
+        return res.render( "add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:true,message: '' , exsist_email:false , userId:req.session.userid});
     }
     if(result =="email exsist")
     {
-      return res.render("add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:false,message: '' , exsist_email:true });
+      return res.render("add_user",{ loggedIn: true, Admin: req.session.isAdmin , username:req.session.username,exsist_username:false,message: '' , exsist_email:true, userId:req.session.userid });
+    }
+    return next();
+}
+async function check_PromoCode(req, res,next) {
+    let discount=req.body.discount;
+    let promocodename=req.body.promocodename;
+    let quantity=req.body.quantity;
+    let result = await AdminService.check_PromoCode(promocodename);  
+    if(result =="promocode exsist")
+    {
+        res.send("Promocode exsist");
+        return;
     }
     return next();
 }
@@ -213,4 +225,5 @@ module.exports = {
     GetlistofPromocodes,
     Promocodes,
     CreatePromoCode,
+    check_PromoCode,
   }
