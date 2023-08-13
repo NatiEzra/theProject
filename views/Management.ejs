@@ -48,6 +48,9 @@
         <li class="nav-item">
           <a class="nav-link" id="AllOrders">All Orders</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" id="AllItems">All Items</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -334,13 +337,25 @@
       </tbody>
   </table>
 </form>
-
-
-
 </div>
 </div>
 
-
+<div class="container mt-5">  
+  <!-- Таблица "All Items" -->
+  <table id="allItemsTable" class="table table-bordered" style="display: none;">
+    <thead class="thead-dark">
+          <tr>
+              <th>Name</th>
+              <th>Photo</th>
+              <th>Price</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Сюда будут добавляться строки с данными -->
+      </tbody>
+  </table>
+</div>
 
 
 
