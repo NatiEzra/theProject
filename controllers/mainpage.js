@@ -2,6 +2,19 @@ const fs = require("fs");
 const logedin = require("./login");
 const loginService = require("../services/account");
 const accountService = require("../services/account");
+const itemService = require("../services/items");
+//const Item = require('../models/Item');
+async function GetItemsPerGender(req,res)
+{
+  let result = await itemService.GetItemsPerGender();
+  if(result)
+  {
+    res.send(result);
+    return;
+  }
+  res.send("bad request");
+  return;
+}
 
 
 async function Mainpage(req, res) {
@@ -77,4 +90,5 @@ module.exports = {
   Myaccount,
   SavedItems,
   updateUser,
+  GetItemsPerGender,
 }

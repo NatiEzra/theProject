@@ -7,6 +7,30 @@ async function getitems(){
   return allitems;
 }
 
+async function GetItemsPerGender()
+{
+  let result_;
+  const aggregationPipeline = [
+    {
+      $group: {
+        _id: "$gender", // Group by the 'gender' field
+        items: { $push: "$$ROOT" }, // Push the whole document into the 'items' array
+      },
+    },
+  ];
+
+  // Execute the aggregation pipeline
+  await Item.aggregate(aggregationPipeline)
+    .then((result) => {
+      
+      result_= result;
+    })
+    .catch((error) => {
+      result_=false;
+    });
+    return result_;
+}
+
 async function getMenPants(){
   const Menpants= 
   await Item.find({gender:"male", type: "pants"});
@@ -141,4 +165,5 @@ getAllUsers,
 updateCart,
 getCart,
 removeFromCart,
+GetItemsPerGender,
  };

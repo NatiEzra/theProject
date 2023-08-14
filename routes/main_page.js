@@ -21,7 +21,7 @@ router.get("/SavedItems", Main_pageController.SavedItems);
 // GET route for the main page
 router.get("/Mainpage", Main_pageController.Mainpage);
 //
-
+router.get("/ItemGender", Main_pageController.GetItemsPerGender);
 // GET route for the error page
 router.get("/ErrorPage", Main_pageController.Error);
 
@@ -31,6 +31,7 @@ router.get("/ErrorPage", Main_pageController.Error);
 router.get("/ourStores", StorePageController.stores);
 router.get("/Storelocation", StorePageController.Storepgage);
 router.get("/editStores", StorePageController.editStores);
+
 router.use(bodyParser.json());
 router.post("/deleteBranch", StorePageController.deleteBranch);
 router.post("/updateBranch", StorePageController.updateBranch);
