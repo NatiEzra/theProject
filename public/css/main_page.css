@@ -159,7 +159,7 @@
 
 /* video */
 .video-container {
-  margin-top: 10px; 
+  margin-top: 30px; 
   margin-bottom: 40px; 
   text-align: center;
 }
@@ -333,7 +333,7 @@ body{
 #priceChart {
   background-color: white;
   max-width: 100%; /* Make sure the chart doesn't exceed the container width */
-  height: 100%; /* Adjust the width as needed */
+  height: 120%; /* Adjust the width as needed */
 
 }
 
@@ -345,6 +345,11 @@ body{
 }
 .barPromo{
   fill: #3498db; /* Set the fill color of the bars */
+  stroke: none; /* Remove any stroke (border) around the bars */
+  width: 60px;
+}
+.barOrder{
+  fill:#8c7ae6; /* Set the fill color of the bars */
   stroke: none; /* Remove any stroke (border) around the bars */
   width: 60px;
 }

@@ -68,6 +68,12 @@ async function Listofusers()
   await User.find();
   return Users;
 }
+async function Listofitems()
+{
+  const item= 
+  await Item.find();
+  return item;
+}
 async function ListofPromocodes()
 {
   const Promo= 
@@ -162,4 +168,4 @@ async function check_PromoCode(promocodename)
       return "promocode exsist";
     }
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode};
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode, Listofitems};

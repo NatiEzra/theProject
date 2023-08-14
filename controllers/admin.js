@@ -17,8 +17,9 @@ async function Adminpage(req, res) {
       let Users = await Getlistofusers();
       let PromoCodes = await GetlistofPromocodes();
       let Orders= await orderController.getOrders();
+      let Items = await Getlistofitems();
       //let Promo = await GetlistofPromocodes();
-      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users , promocodes: PromoCodes , userId:req.session.userid, orders: Orders});
+      res.render("Management", { loggedIn: true, username: username, Admin: isAdmin , users:Users , promocodes: PromoCodes , userId:req.session.userid, orders: Orders, items: Items});
     } else {
      res.status(404) // Render the 404 error page
      res.redirect("/ErrorPage");   // Render the 404 error page
@@ -98,6 +99,11 @@ async function Getlistofusers()
 {
   let Users = await AdminService.Listofusers();
   return Users;
+}
+async function Getlistofitems()
+{
+  let items = await AdminService.Listofitems();
+  return items;
 }
 async function GetlistofPromocodes()
 {
@@ -226,4 +232,5 @@ module.exports = {
     Promocodes,
     CreatePromoCode,
     check_PromoCode,
+    Getlistofitems,
   }

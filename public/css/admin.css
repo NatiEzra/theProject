@@ -458,3 +458,7 @@ form img{
 .modal-body {
   overflow-x: auto;
 }
+.small-photo {
+  width: 50px; /* Задайте желаемую ширину */
+  height: auto; /* Позволяет сохранить пропорции изображения */
+}
