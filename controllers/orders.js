@@ -18,8 +18,12 @@ async function getOrders(req, res){
   return orders;
 }
 async function getOrdersJson(req, res){
-  const orders=await orderService.getAllOrders();
-  res.json(orders);
+  if (req.session.isadmin)
+  {const orders=await orderService.getAllOrders();
+  res.json(orders);}
+  else
+  {const orders=await orderService.getUserOrders(req.session.userid);
+  res.json(orders)}
 }
 async function createOrder(req, res)
 {

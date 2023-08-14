@@ -18,9 +18,13 @@ async function getAllOrders(){
     const orders=await Order.find();
     return orders;
 }
-
+async function getUserOrders(userId){
+    const orders=await Order.find({user: userId});
+    return orders;
+}
 
 module.exports = { 
 createOrder,
-getAllOrders
+getAllOrders,
+getUserOrders
 }
