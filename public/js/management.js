@@ -10,6 +10,10 @@ function toggleForm() {
         $('#PostFacebook_Container')[0].classList.add('form-container-hidden');
         $('#PostFacebook_Container')[0].classList.remove('form-container-add');
       }
+      if ($('#Allitems')[0].classList.contains('form-container-add')) {
+        $('#Allitems')[0].classList.add('form-container-hidden');
+        $('#Allitems')[0].classList.remove('form-container-add');
+      }
       formContainer.removeClass("form-container-hidden");
       formContainer.addClass("form-container-add");
     } else {
@@ -23,6 +27,9 @@ function toggleForm() {
     if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
       $('#allOrders_check').addClass("form-container-hidden");
   }
+  if (($('#Allitems')[0].classList.contains('form-container-add')) || (!($('#Allitems')[0].classList.contains('form-container-hidden')))) {
+    $('#Allitems').addClass("form-container-hidden");
+}
   }
   try{
   $('#datatable').DataTable({
@@ -95,6 +102,9 @@ try{
     if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
       $('#allOrders_check').addClass("form-container-hidden");
   }
+  if (($('#Allitems')[0].classList.contains('form-container-add')) || (!($('#Allitems')[0].classList.contains('form-container-hidden')))) {
+    $('#Allitems').addClass("form-container-hidden");
+}
   }
 
 
@@ -136,8 +146,53 @@ try{
     if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
       $('#PostFacebook_Container').addClass("form-container-hidden");
     }
+    if (($('#Allitems')[0].classList.contains('form-container-add')) || (!($('#Allitems')[0].classList.contains('form-container-hidden')))) {
+      $('#Allitems').addClass("form-container-hidden");
+  }
+  if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
+    $('#allOrders_check').addClass("form-container-hidden");
+}
    
   }
+
+  function toggle_AllItems_Form() {
+    if ($('#Allitems').hasClass("form-container-hidden")) {
+      $('#Allitems').addClass("form-container-add");
+      $('#Allitems').removeClass("form-container-hidden");
+    } else {
+      if ($('#Allitems').hasClass("form-container-add")) {
+        $('#Allitems').removeClass("form-container-add");
+        $('#Allitems').addClass("form-container-hidden");
+      }
+    }
+    
+    if (($('#formContainer')[0].classList.contains('form-container-add')) || (!($('#formContainer')[0].classList.contains('form-container-hidden')))) {
+      $('#formContainer').addClass("form-container-hidden");
+    }
+    if ($('#manageUsersForm').css('display') === 'block') {
+      $('#manageUsersForm').toggle();
+    } 
+    
+    if (($('#manageUsersForm')[0].classList.contains('form-container-add')) || (!($('#manageUsersForm')[0].classList.contains('form-container-hidden')))) {
+      $('#manageUsersForm').addClass("form-container-hidden");
+    }
+
+    if (($('#PostFacebook_Container')[0].classList.contains('form-container-add')) || (!($('#PostFacebook_Container')[0].classList.contains('form-container-hidden')))) {
+      $('#PostFacebook_Container').addClass("form-container-hidden");
+    }
+    if (($('#GiftTheUsers')[0].classList.contains('form-container-add')) || (!($('#GiftTheUsers')[0].classList.contains('form-container-hidden')))) {
+      $('#GiftTheUsers').addClass("form-container-hidden");
+    }
+    if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allPromos_check').addClass("form-container-hidden");
+    }
+    if (($('#allOrders_check')[0].classList.contains('form-container-add')) || (!($('#allOrders_check')[0].classList.contains('form-container-hidden')))) {
+      $('#allOrders_check').addClass("form-container-hidden");
+    }
+    
+  }
+
+
   function toggle_AllOrders_Form() {
     if ($('#allOrders_check').hasClass("form-container-hidden")) {
       $('#allOrders_check').addClass("form-container-add");
@@ -169,6 +224,9 @@ try{
     if (($('#allPromos_check')[0].classList.contains('form-container-add')) || (!($('#allPromos_check')[0].classList.contains('form-container-hidden')))) {
       $('#allPromos_check').addClass("form-container-hidden");
     }
+    if (($('#Allitems')[0].classList.contains('form-container-add')) || (!($('#Allitems')[0].classList.contains('form-container-hidden')))) {
+      $('#Allitems').addClass("form-container-hidden");
+  }
   }
   
 
@@ -186,6 +244,9 @@ try{
   });
   $("#AllOrders").click(function() {
     toggle_AllOrders_Form();
+  });
+  $("#AllItems").click(function() {
+    toggle_AllItems_Form();
   });
 
   $("#update_user").submit(function(event){
@@ -489,6 +550,14 @@ $("#closeModalButton4").click(function () {
       $('#allPromos_check')[0].classList.add('form-container-hidden');
       $('#allPromos_check')[0].classList.remove('form-container-add');
     }
+    if ($('#allOrders_check')[0].classList.contains('form-container-add')) {
+      $('#allOrders_check')[0].classList.add('form-container-hidden');
+      $('#allOrders_check')[0].classList.remove('form-container-add');
+    }
+    if ($('#Allitems')[0].classList.contains('form-container-add')) {
+      $('#Allitems')[0].classList.add('form-container-hidden');
+      $('#Allitems')[0].classList.remove('form-container-add');
+    }
       $('#manageUsersForm').toggle(); // Toggle the visibility of the form
   });
 });
@@ -736,14 +805,6 @@ const y=await fetch('/allItemsJson').
 ////////////////////////////////////////////
 
 $(document).ready(function() {
-
-  $('#AllItems').click(function(e) {
-      e.preventDefault();
-      
-      closeOtherForms();
-      
-      $('#allItemsTable').toggle();
-  });
 
   $('#saveEditButton').click(function() {
       const itemId = $('#editItemForm').data('id');

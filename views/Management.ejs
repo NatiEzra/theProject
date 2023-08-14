@@ -340,9 +340,9 @@
 </div>
 </div>
 
-<div class="container mt-5">  
+<div id="Allitems" class="container mt-5 form-container-hidden" >  
   <form>
-    <table id="allItemsTable" class="table table-bordered" style="display: none;">
+    <table id="allItemsTable" class="table">
       <thead class="thead-dark">
             <tr>
                 <th>Name</th>
@@ -351,19 +351,27 @@
                 <th>Actions</th>
             </tr>
         </thead>
-          <tbody>
-             <% for(var i = 0; i < items.length; i++) { %>
-              <tr>
-                <td><%= items[i].name %></td>
-                <td><img src="<%= items[i].img %>" alt="Product Photo" class="product-photo small-photo"></td>
-                <td><%= items[i].price %></td>
-                <td>
-                  <button class="btn btn-primary btn-sm edit-item" data-id="<%= items[i]._id %>">Edit</button>
-                  <button class="btn btn-danger btn-sm remove-item" data-id="<%= items[i]._id %>">Remove</button>
-                </td>
-              </tr>
-            <% } %> 
-        </tbody> 
+        <tbody>
+          <% for (var i = 0; i < items.length; i++) { %>
+            <tr>
+              <td><%= items[i].name %></td>
+              
+              <% var image = items[i].img; %>
+              <% if (!image.includes("/")) { %>
+                <% image = "Images/" + items[i].img; %>
+              <% } %>
+              
+              <td><img src="<%= image %>" alt="Product Photo" class="product-photo small-photo"></td>
+              
+              <td><%= items[i].price %></td>
+              <td>
+                <button class="btn btn-primary btn-sm edit-item" data-id="<%= items[i]._id %>">Edit</button>
+                <button class="btn btn-danger btn-sm remove-item" data-id="<%= items[i]._id %>">Remove</button>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+        
     </table>
   </form>
 </div>
@@ -379,8 +387,8 @@
   <%- include('./templates/footer.ejs'); %>
   <script src="../js/management.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.2/semantic.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.2/semantic.min.css"> -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.2/semantic.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.2/semantic.min.js"></script> -->
 </body>
 </html>
