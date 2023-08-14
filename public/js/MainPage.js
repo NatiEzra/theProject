@@ -5,83 +5,6 @@ socket.on('usercnt', function(msg) {
   $('#UsersCounnt')[0].innerHTML = "There is "+ msg +" Users online";
 });
 
-//   // Fetch all items data
-// async function CreateGraph()
-// {
-//   var existingItems=[];
-//   var prices = [];
-//   var itemNames = [];
-
-// const y=await fetch('/allItemsJson').
-// then(response=>response.json())
-// .then(data2=>{
-// data2.forEach(item => {
-// existingItems.push(item);
-// itemNames.push(item.name); // Assuming there's a 'name' property for items
-
-// prices.push(item.price); // Assuming there's a 'price' property for items
-// })
-// });
-//  // Create the price chart data
-//  const priceData = {
-//   labels: itemNames,
-//   datasets: [
-//     {
-//       label: 'Prices',
-//       data: prices,
-//       borderColor: 'rgba(255, 99, 132, 1)',
-//       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//       fill: false,
-//       pointRadius: 4
-//     }
-//   ]
-// };
-//   // Create the chart configuration for each chart
-//   const config1 = {
-//     type: 'line',
-//     data: priceData,
-//     options: {
-//       responsive: true,
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     }
-//   };
-
-    // Create the price chart
-    //const priceCtx = document.getElementById('priceChart').getContext('2d');
-  //  const priceChart = new Chart(priceCtx, config1);
-
-    // const changeData = [/* ... */];
-    // const volumeData = [/* ... */];
-
-    // // Set the dimensions and margins for the charts
-    // const width = 300; // Adjust the width as needed
-    // const height = 200; // Adjust the height as needed
-    // const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-
-    // // Create SVG elements for the charts using D3
-    // const priceChartSvg = d3.select("#priceChart")
-    //     .attr("width", width + margin.left + margin.right)
-    //     .attr("height", height + margin.top + margin.bottom)
-    //     .append("g")
-    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-    // const changeChartSvg = d3.select("#changeChart")
-    //     .attr("width", width + margin.left + margin.right)
-    //     .attr("height", height + margin.top + margin.bottom)
-    //     .append("g")
-    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-    // const volumeChartSvg = d3.select("#volumeChart")
-    //     .attr("width", width + margin.left + margin.right)
-    //     .attr("height", height + margin.top + margin.bottom)
-    //     .append("g")
-  
-    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
-//}
 // Fetch all items data and create the graph
 async function createPriceGraph() {
   const existingItems = await fetch('/MenJson')
@@ -239,6 +162,104 @@ xAxisGroup.selectAll("text")
     .attr("class", "y-axis")
     .call(d3.axisLeft(yScale));
 }
-// Call the createGraph function
+async function createOrderGraph() {
+  try {
+    const existingOrder = await fetch('/allOrdersJson').then(response => response.json());
+
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+       // Initialize an array to hold the order counts for each month
+       const orderCountsByMonth = Array.from({ length: 12 }, () => ({ month: '', count: 0 }));
+
+       // Group orders by month and count the total number of orders for each month
+       existingOrder.forEach(order => {
+         const month = new Date(order.orderDate).getMonth();
+         orderCountsByMonth[month].month = monthNames[month];
+         orderCountsByMonth[month].count++;
+       });
+   
+
+    // Set up the dimensions for the SVG container
+    const svgWidth = 800; // Adjust the SVG width as needed
+    const svgHeight = 600; // Adjust the SVG height as needed
+    const margin = { top: 40, right: 40, bottom: 80, left: 60 }; // Increased bottom margin for x-axis labels
+    const width = svgWidth - margin.left - margin.right;
+    const height = svgHeight - margin.top - margin.bottom;
+
+    // Create the SVG container for the chart
+    const svg = d3.select("#orderChart")
+      .attr("width", svgWidth)
+      .attr("height", svgHeight);
+
+    // Create a group within the SVG for the charting area
+    const chart = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+  // Define a title for the graph
+  const graphTitle = "Orders per month";
+
+      // Create a text element for the title and position it at the center
+  svg.append("text")
+  .attr("class", "graph-title")
+  .attr("x", svgWidth / 2)
+  .attr("y", margin.top / 2) // Position it above the chart area
+  .text(graphTitle);
+
+
+    // Create x and y scales
+    const xScale = d3.scaleBand()
+      .domain(monthNames)
+      .range([0, width])
+      .paddingInner(0.1)
+      .paddingOuter(0.2);
+
+    const yScale = d3.scaleLinear()
+      .domain([0, d3.max(orderCountsByMonth, d => d.count)])
+      .nice()
+      .range([height, 0]);
+
+      
+
+    // Create the columns for the chart
+    chart.selectAll(".bar")
+      .data(orderCountsByMonth)
+      .enter().append("rect")
+      .attr("class", "barOrder")
+      .attr("x", d => xScale(d.month))
+      .attr("y", d => yScale(d.count))
+      .attr("width", xScale.bandwidth())
+      .attr("height", d => height - yScale(d.count));
+
+    // Create x and y axes
+    const xAxis = d3.axisBottom(xScale);
+
+    // Append x axis to the charting area
+    const xAxisGroup = chart.append("g")
+      .attr("class", "x-axis")
+      .attr("transform", "translate(0," + height + ")") // Adjust the second parameter to move the labels up
+      .call(xAxis);
+
+    // Add a class to the x-axis labels
+    xAxisGroup.selectAll("text")
+      .attr("class", "x-axis-label") // Add this class to the x-axis labels
+      .attr("transform", "rotate(-45)") // Rotate the x-axis labels for better readability
+      .attr("dy", "0.35em") // Adjust vertical alignment of the rotated labels
+      .attr("text-anchor", "end"); // Align the end of the label with the tick
+
+    // Append y axis to the charting area
+    chart.append("g")
+      .attr("class", "y-axis")
+      .call(d3.axisLeft(yScale));
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Call the functions
+createOrderGraph();
 createPriceGraph();
 createPromoDiscountGraph();
+
