@@ -78,9 +78,9 @@ async function addItemWithImage() {
     console.error("Error saving item:", error);
   }
 }
-async function getAllUsers()
+async function getAllUsers(username)
 {
-  const allUsers=await User.find();
+  const allUsers=await User.find({username:username});
   return allUsers;
 
 }

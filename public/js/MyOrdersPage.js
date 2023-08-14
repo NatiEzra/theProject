@@ -5,7 +5,6 @@ async function buildPage()
     const users =await getUsers();
     const orders=await getAllOrders();
     const items= await getAllItems();
-    var foundUser;
     for (let i=0; i<users.length; i++)
     {
         if (users[i].username==username.username)

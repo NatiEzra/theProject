@@ -156,7 +156,7 @@ async function MenJson(req,res){
             }
             async function getUsers(req,res)
             {
-              const allUsers=await itemService.getAllUsers();
+              const allUsers=await itemService.getAllUsers(req.session.username);
               res.json(allUsers);
             }
             async function updateCart(req,res){
