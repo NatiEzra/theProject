@@ -11,6 +11,9 @@
     position: relative;
     padding-top: 0%; 
 }
+.card:hover {
+    transform: translateY(-5px);
+}
 .shop-button{
     border:none;
 width: 40px;
