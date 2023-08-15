@@ -156,6 +156,20 @@ async function Delete_user (req, res)
   }
 }
 
+async function Delete_PromoCode (req, res)
+{
+  const id = req.body.promoid;
+  let result = await AdminService.DeletePromoCode(id);
+  if(result)
+  {
+    res.send({
+      message : "Promocode was deleted successfully!" });
+  }
+  else{
+    res.send({message:"Cant remove!"});
+  }
+}
+
 async function check_username(req, res,next) {
   const { username, email} = req.body
     let result = await AdminService.check_username(username, email);  
@@ -233,4 +247,5 @@ module.exports = {
     CreatePromoCode,
     check_PromoCode,
     Getlistofitems,
+    Delete_PromoCode,
   }
