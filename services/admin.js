@@ -147,6 +147,19 @@ async function findByIdAndDelete(id)
     return true;
   }
 }
+
+async function DeletePromoCode(id)
+{
+  let result = await Promocode.findByIdAndDelete(id);
+  if(!result)
+  {
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
 async function check_username(username , email)
 {
     const user = await User.findOne({username:username}); 
@@ -168,4 +181,4 @@ async function check_PromoCode(promocodename)
       return "promocode exsist";
     }
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode, Listofitems};
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode, Listofitems, DeletePromoCode};

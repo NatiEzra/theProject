@@ -362,7 +362,7 @@ $('#Add-item').submit(function(e) {
     {
       Swal.fire({
         title: 'Error',
-        text:response.message,
+        text:"Fill all data",
         icon: 'error',
         confirmButtonText: 'OK'
         })
@@ -491,10 +491,11 @@ if(window.location.pathname == "/management"){
   })
   $ondelete.on("click", "td a.deletepromocode", async function(e) {
     e.preventDefault();
-    var promoname = $(this).attr("data-id");
+    var promocode_id = $(this).attr("data-id");
     var DeletePromoCode = {
-      "url" : `http://localhost:70/api/users/${id}`,
-      "method" : "DELETE"
+      "url" : `http://localhost:70/api/promocodes/${promocode_id}`,
+      "method" : "DELETE",
+      "data":{"promoid":promocode_id}
   }
   Swal.fire({
     title: 'Confirmation',
@@ -506,6 +507,15 @@ if(window.location.pathname == "/management"){
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax(DeletePromoCode).done(function(response) {
+        if(response.message=="Cant remove!"){
+          Swal.fire({
+            title: 'Error',
+            text: response.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+        else{
         Swal.fire({
           title: 'Success',
           text: response.message,
@@ -514,6 +524,7 @@ if(window.location.pathname == "/management"){
         }).then(() => {
           location.reload(); // Refresh the page
         });
+        }
       });
     } else {
       // User clicked "Cancel" or closed the alert
