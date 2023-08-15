@@ -17,7 +17,8 @@
     </div>
     <%- include('./templates/dropDown.ejs');%>
 
-   
+    <div class="container-fluid">
+        <div class="row">
     <div class="col-md-3">
         <div class="table-container d-flex align-items-center">
             <div class="mr-3">
@@ -30,6 +31,7 @@
                     <option value="500">Under 400₪</option>
                 </select>
             </div>
+
             <div class="mr-3">
                 <label for="size">gender:</label>
                 <select class="form-control" id="gender">
@@ -37,8 +39,8 @@
                     <option value="S">male</option>
                     <option value="M">female</option>
                 </select>
-                
             </div>
+
             <div>
                 <label for="color">Color:</label>
                 <select class="form-control" id="color">
@@ -51,10 +53,13 @@
                     <option value="red">grey</option>
                 </select>
             </div>
+
             <button id="apply-filter-btn" class="btn btn-primary ml-3" disabled>Apply</button>
             <button id="clear-filter-btn" class="btn btn-secondary ml-2">Clear Filters</button>
         </div>
     </div>
+    
+    <div class="col-md-9">
     <div id="sort-options" class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-options-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort Order
@@ -62,6 +67,9 @@
         <div class="dropdown-menu" aria-labelledby="sort-options-dropdown">
             <a class="dropdown-item" href="#" data-sort="low-high">Low to High</a>
             <a class="dropdown-item" href="#" data-sort="high-low">High to Low</a>
+       </div>
+                </div>
+            </div>
         </div>
     </div>
     
