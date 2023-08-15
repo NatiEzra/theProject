@@ -4,22 +4,7 @@
     color: #fff; /* Set text color for the button */
     padding: 10px;
     width: 350%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the container horizontally */
     text-align: center; /* Center the elements inside the container */
-}
-/* Style the filter and sort options row */
-.row {
-    margin-top: 20px;
-}
-
-/* Style the filter options container */
-.col-md-3 {
-    padding: 15px;
-}
-
-/* Style the sort options container */
-.col-md-9 {
-    text-align: right;
 }
 
 /* Style the Apply button */
@@ -38,12 +23,6 @@
 #sort-options-dropdown {
     background-color: #ea9215; /* Set background color for the dropdown button */
     color: #fff; /* Set text color for the dropdown button */
+    margin: 15px;
+    margin-top: -70px;
 }
-
-/* Style the Sort Order dropdown items */
-.dropdown-item {
-    color: #000; /* Set text color for the dropdown items */
-    background-color: f8f9fa;
-}
-
-
