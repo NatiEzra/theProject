@@ -198,7 +198,7 @@ const x=await fetch('/AllItemsJson').
      // Apply filtering when the "Apply" button is clicked
      applyFilterButton.addEventListener('click', () => {
       const selectedPrice = parseFloat(document.getElementById('price').value);
-      const selectedSize = document.getElementById('size').value;
+      const selectedSize = document.getElementById('gender').value;
       const selectedColor = document.getElementById('color').value;
 
       const filteredItems = items.filter(item => {
@@ -215,7 +215,7 @@ const x=await fetch('/AllItemsJson').
     // Clear filters and display all items when the "Clear Filters" button is clicked
     clearFilterButton.addEventListener('click', () => {
       document.getElementById('price').value = '';
-      document.getElementById('size').value = '';
+      document.getElementById('gender').value = '';
       document.getElementById('color').value = '';
       applyFilterButton.disabled = true;
       fetchAndDisplayItems();
@@ -244,7 +244,7 @@ const x=await fetch('/AllItemsJson').
     }
 
      // Enable "Apply" button when any filter option is selected
-     ['price', 'size', 'color'].forEach(selectId => {
+     ['price', 'gender', 'color'].forEach(selectId => {
       document.getElementById(selectId).addEventListener('change', () => {
           applyFilterButton.disabled = false;
       });
