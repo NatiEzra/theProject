@@ -373,7 +373,9 @@ $('#Add-item').submit(function(e) {
     text: response.message,
     icon: 'success',
     confirmButtonText: 'OK'
-    })
+    }).then(() => {
+      location.reload(); // Refresh the page
+    });
   }
   $('#name').val();
   $('#details').val('');
@@ -850,22 +852,22 @@ async function loadAllItems() {
   });
 
   const tableBody = $('#allItemsTable tbody');
-  tableBody.empty();
+  //tableBody.empty();
 
-  allItems.forEach(function(item) {
-    const row = `
-        <tr>
-            <td>${item.name}</td>
-            <td><img src="${item.img}" alt="Product Photo" class="product-photo small-photo"></td>
-            <td>${item.price}</td>
-            <td>
-                <button class="btn btn-primary btn-sm edit-item" data-id="${item._id}">Edit</button>
-                <button class="btn btn-danger btn-sm remove-item" data-id="${item._id}">Remove</button>
-            </td>
-        </tr>
-    `;
-    tableBody.append(row);
-});
+//   allItems.forEach(function(item) {
+//     const row = `
+//         <tr>
+//             <td>${item.name}</td>
+//             <td><img src="${item.img}" alt="Product Photo" class="product-photo small-photo"></td>
+//             <td>${item.price}</td>
+//             <td>
+//                 <button class="btn btn-primary btn-sm edit-item" data-id="${item._id}">Edit</button>
+//                 <button class="btn btn-danger btn-sm remove-item" data-id="${item._id}">Remove</button>
+//             </td>
+//         </tr>
+//     `;
+//     tableBody.append(row);
+// });
 
 
 $('#allItemsTable').on('click', '.edit-item', function(e) {
@@ -892,7 +894,6 @@ $('#allItemsTable').on('click', '.remove-item', function(e) {
       }
   });
 });
-  tableBody.append(row);
 
 $('.edit-item').click(function() {
     const itemId = $(this).data('id');
@@ -957,24 +958,25 @@ async function removeItem(itemId) {
       });
 
       // loadAllItems();
-      $.ajax(resp).done(function(response){
-        if(response.message == "Problem with remove the item")
-        {
+      const response = await $.ajax(resp);
+      if(resp.message == "Problem with remove the item")
+      {
           Swal.fire({
             title: 'Error',
-            text: response.message,
+            text: resp.message,
             icon: 'error',
             confirmButtonText: 'OK'
             })
-        }
-        else{
+      }
+      else{
         Swal.fire({
         title: 'Success',
-        text: response.message,
+        text: resp.message,
         icon: 'success',
         confirmButtonText: 'OK'
-        })
+      }).then(() => {
+        location.reload(); // Refresh the page
+      });
       }
-    })
 }
 

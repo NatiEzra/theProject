@@ -15,10 +15,7 @@ async function createGenderGraph() {
   await $.ajax(GenderGraph).done(function(response){
      valuepergender = response;
   });
-  console.log(valuepergender);
-  //const existingItems = await fetch('/MenJson')
-//.then(response => response.json());
-  // Extract item names and prices from the fetched data
+
   const itemNames = valuepergender.map(item => item._id);
   const prices = valuepergender.map(item => item.items.length);
 
@@ -349,7 +346,7 @@ async function createOrderGraph() {
 
 // Call the functions
 createOrderGraph();
-createPriceGraph();
+//createPriceGraph();
 createGenderGraph();
 createPromoDiscountGraph();
 

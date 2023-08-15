@@ -356,13 +356,8 @@
             <tr>
               <td><%= items[i].name %></td>
               
-              <% var image = items[i].img; %>
-              <% if (!image.includes("/")) { %>
-                <% image = "Images/" + items[i].img; %>
-              <% } %>
-              
-              <td><img src="<%= image %>" alt="Product Photo" class="product-photo small-photo"></td>
-              
+              <td><img src="Images/<%= items[i].img %>" alt="Product Photo" class="product-photo small-photo"></td>
+             
               <td><%= items[i].price %></td>
               <td>
                 <button class="btn btn-primary btn-sm edit-item" data-id="<%= items[i]._id %>">Edit</button>

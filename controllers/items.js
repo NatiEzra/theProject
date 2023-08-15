@@ -6,7 +6,7 @@ function additems(req, res) {
 async function MenJson(req,res){
   const MenItems=await itemService.getitems();
     res.json(MenItems);
-  }
+}
   async function Men(req, res){
     
     const admin=req.session.isadmin;
@@ -178,11 +178,11 @@ async function MenJson(req,res){
               let result = await itemService.removeItem(item);
               if (result)
               {
-                res.send({message: 'The item removed'});
+                res.send({message: "The item removed"});
               }
               else
               {
-                res.send({message: 'Problem with remove the item'});
+                res.send({message: "Problem with remove the item"});
 
               } 
           
