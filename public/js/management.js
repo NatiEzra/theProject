@@ -362,7 +362,7 @@ $('#Add-item').submit(function(e) {
     {
       Swal.fire({
         title: 'Error',
-        text:response.message,
+        text:"Fill all data",
         icon: 'error',
         confirmButtonText: 'OK'
         })
