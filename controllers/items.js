@@ -173,6 +173,20 @@ async function MenJson(req,res){
             const username=req.session.username;
           itemService.removeFromCart(item, username);
             }
+            async function removeItem(req, res){
+              const item = req.body.itemId;
+              let result = await itemService.removeItem(item);
+              if (result)
+              {
+                res.send({message: 'The item removed'});
+              }
+              else
+              {
+                res.send({message: 'Problem with remove the item'});
+
+              } 
+          
+              }
            
 module.exports = {
     additems,
@@ -198,4 +212,5 @@ module.exports = {
     updateCart,
     getCart,
     removeFromCart,
+    removeItem
   }

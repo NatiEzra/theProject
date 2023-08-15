@@ -148,6 +148,19 @@ for(let i=0; i<foundUser.cart.length;i++)
     await foundUser.save();
   }
 }
+async function removeItem(item)
+{
+  let res = await Item.findOneAndDelete({
+    _id: item
+  })
+  if(!res)
+  {
+    return false;
+  }
+  else{
+    return true;
+  }
+}
 
 
 module.exports = { 
@@ -166,4 +179,5 @@ updateCart,
 getCart,
 removeFromCart,
 GetItemsPerGender,
+removeItem,
  };

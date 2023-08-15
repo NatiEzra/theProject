@@ -949,24 +949,32 @@ function openEditModal(item) {
 
 
 async function removeItem(itemId) {
-  try {
-      const response = await $.ajax({
+      const resp = await $.ajax({
           url: `http://localhost:70/api/items/${itemId}`,
-          method: 'DELETE'
+          method: 'POST',
+          "data": { "itemId": itemId }, // Convert the item object to JSON
+          // "contentType": "application/json",
       });
-      Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: response.message
-      });
-      loadAllItems();
-  } catch (error) {
-      console.error(error);
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'An error occurred while removing the item.'
-      });
-  }
+
+      // loadAllItems();
+      $.ajax(resp).done(function(response){
+        if(response.message == "Problem with remove the item")
+        {
+          Swal.fire({
+            title: 'Error',
+            text: response.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+            })
+        }
+        else{
+        Swal.fire({
+        title: 'Success',
+        text: response.message,
+        icon: 'success',
+        confirmButtonText: 'OK'
+        })
+      }
+    })
 }
 
