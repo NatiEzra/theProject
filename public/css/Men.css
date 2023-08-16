@@ -78,17 +78,17 @@ h2{
 }
 @media screen and (max-width: 700px) {
     .card {
-        flex-basis: calc(33.33% - 1rem); 
+        flex-basis: calc(40.33% - 1rem); 
     }
 }
 @media screen and (max-width: 900px) {
     .card {
-        flex-basis: calc(50% - 1rem); 
+        flex-basis: calc(40% - 1rem); 
     }
 }
 @media screen and (max-width: 700px) {
     .card {
-        flex-basis: calc(60% - 1rem); 
+        flex-basis: calc(40% - 1rem); 
     }
 }
 
