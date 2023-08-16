@@ -15,7 +15,9 @@ body{
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
-
+.AboutUs{
+  column-count: 2;
+}
 .card {
   max-width: 180px;
   max-height: 290px;

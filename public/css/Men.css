@@ -4,7 +4,7 @@
     flex-wrap: wrap; 
 }
 .card{
-    flex: 1 1 calc(20% - 1rem);
+    
     width: 18rem;
     margin-left:1rem;
     margin-bottom: 1rem;
