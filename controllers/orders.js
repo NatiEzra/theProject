@@ -25,10 +25,29 @@ async function getOrdersJson(req, res){
   {const orders=await orderService.getUserOrders(req.session.userid);
   res.json(orders)}
 }
-async function AllOrderJson(req,res){
-  const all=await orderService.getAllOrders();
-    res.json(all);
+async function AllOrderJson(req, res) {
+  try {
+    const all = await orderService.getAllOrders();
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    // Extract and transform the order data to contain only the months
+    const monthsOnly = all.map(order => {
+      const monthIndex = new Date(order.orderDate).getMonth();
+      const monthName = monthNames[monthIndex]; // Assuming you have monthNames array defined
+
+      return {
+        month: monthName,
+      };
+    });
+
+    res.json(monthsOnly);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
+}
 async function createOrder(req, res)
 {
   Order=req.body;

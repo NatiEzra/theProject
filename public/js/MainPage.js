@@ -67,7 +67,7 @@ async function createGenderGraph() {
     .data(prices)
     .enter().append("rect")
     .attr("class", "barGender")
-    .attr("x", (item, index) => xScale(itemNames[index])+ xScale.bandwidth() / 2.6)
+    .attr("x", (item, index) => xScale(itemNames[index])+ xScale.bandwidth() / 2.7)
     .attr("y", item => yScale(item))
     .attr("width", xScale.bandwidth())
     .attr("height", item => height - yScale(item))
@@ -258,21 +258,16 @@ async function createOrderGraph() {
     ];
        // Initialize an array to hold the order counts for each month
        const orderCountsByMonth = Array.from({ length: 12 }, () => ({ month: '', count: 0 }));
-       console.log("Loop started");
        console.log(`existingOrder length: ${existingOrder.length}`);
 
-       // Group orders by month and count the total number of orders for each month
-       existingOrder.forEach(order => {
-        console.log("Loop lllstarted");
+     // Group orders by month and count the total number of orders for each month
+     existingOrder.forEach(order => {
+      const monthName = order.month; // Assuming your API response contains a "month" property
+      const monthIndex = monthNames.indexOf(monthName); // Get the month index
 
-        const monthIndex = new Date(order.orderDate).getMonth(); // Get the month index
-        console.log('${monthIndex}');
-       // console.log('Month name: ${monthNames[monthIndex]}`);
-        orderCountsByMonth[monthIndex].month = monthNames[monthIndex]; // Use the correct month name
-        orderCountsByMonth[monthIndex].count++;
-      });
-      console.log("Loop ended");
-      
+      orderCountsByMonth[monthIndex].month = monthName;
+      orderCountsByMonth[monthIndex].count++;
+    });   
 
     // Set up the dimensions for the SVG container
     const svgWidth = 800; // Adjust the SVG width as needed
