@@ -203,7 +203,7 @@ const x=await fetch('/AllItemsJson').
 
       const filteredItems = items.filter(item => {
           const priceCondition = selectedPrice ? parseFloat(item.price) < selectedPrice : true;
-          const sizeCondition = selectedSize ? item.size === selectedSize : true;
+          const sizeCondition = selectedSize ? item.gender === selectedSize : true;
           const colorCondition = selectedColor ? item.color === selectedColor : true;
 
           return priceCondition && sizeCondition && colorCondition;
