@@ -351,7 +351,7 @@ body{
 .barOrder{
   fill:#8c7ae6; /* Set the fill color of the bars */
   stroke: none; /* Remove any stroke (border) around the bars */
-  width: 60px;
+  width: 35px;
 }
 .barGender{
   fill:cadetblue; /* Set the fill color of the bars */
