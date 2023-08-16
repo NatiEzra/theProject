@@ -66,8 +66,8 @@ async function createGenderGraph() {
   chart.selectAll(".bar")
     .data(prices)
     .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", (item, index) => xScale(itemNames[index]))
+    .attr("class", "barGender")
+    .attr("x", (item, index) => xScale(itemNames[index])+ xScale.bandwidth() / 2.6)
     .attr("y", item => yScale(item))
     .attr("width", xScale.bandwidth())
     .attr("height", item => height - yScale(item))
@@ -250,7 +250,7 @@ xAxisGroup.selectAll("text")
 }
 async function createOrderGraph() {
   try {
-    const existingOrder = await fetch('/allOrdersJson').then(response => response.json());
+    const existingOrder = await fetch('/allOrdersJsonForAll').then(response => response.json());
 
     const monthNames = [
       'January', 'February', 'March', 'April', 'May', 'June',
@@ -258,14 +258,21 @@ async function createOrderGraph() {
     ];
        // Initialize an array to hold the order counts for each month
        const orderCountsByMonth = Array.from({ length: 12 }, () => ({ month: '', count: 0 }));
+       console.log("Loop started");
+       console.log(`existingOrder length: ${existingOrder.length}`);
 
        // Group orders by month and count the total number of orders for each month
        existingOrder.forEach(order => {
-         const month = new Date(order.orderDate).getMonth();
-         orderCountsByMonth[month].month = monthNames[month];
-         orderCountsByMonth[month].count++;
-       });
-   
+        console.log("Loop lllstarted");
+
+        const monthIndex = new Date(order.orderDate).getMonth(); // Get the month index
+        console.log('${monthIndex}');
+       // console.log('Month name: ${monthNames[monthIndex]}`);
+        orderCountsByMonth[monthIndex].month = monthNames[monthIndex]; // Use the correct month name
+        orderCountsByMonth[monthIndex].count++;
+      });
+      console.log("Loop ended");
+      
 
     // Set up the dimensions for the SVG container
     const svgWidth = 800; // Adjust the SVG width as needed
@@ -346,7 +353,7 @@ async function createOrderGraph() {
 
 // Call the functions
 createOrderGraph();
-//createPriceGraph();
+createPriceGraph();
 createGenderGraph();
 createPromoDiscountGraph();
 

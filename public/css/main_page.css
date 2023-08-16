@@ -353,6 +353,11 @@ body{
   stroke: none; /* Remove any stroke (border) around the bars */
   width: 60px;
 }
+.barGender{
+  fill:cadetblue; /* Set the fill color of the bars */
+  stroke: none; /* Remove any stroke (border) around the bars */
+  width: 60px;
+}
 /* CSS style for the x-axis labels */
 .x-axis-label {
   fill: black; /* Set the fill color of the x-axis labels to white */
@@ -361,6 +366,7 @@ body{
   transform-origin: end; /* Set the rotation origin to the end of the text */
   text-anchor: end; /* Set the text-anchor property for proper alignment */
   font-size: 15px;
+  
 
 }
 

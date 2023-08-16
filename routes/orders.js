@@ -13,7 +13,7 @@ router.get("/allOrders", OrdersController.getOrders);
 
 router.get("/allOrdersJson", OrdersController.getOrdersJson);
 
-
+router.get("/allOrdersJsonForAll", OrdersController.AllOrderJson);
 
 
 router.post("/createOrder", OrdersController.createOrder);

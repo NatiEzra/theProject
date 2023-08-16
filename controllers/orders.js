@@ -25,6 +25,10 @@ async function getOrdersJson(req, res){
   {const orders=await orderService.getUserOrders(req.session.userid);
   res.json(orders)}
 }
+async function AllOrderJson(req,res){
+  const all=await orderService.getAllOrders();
+    res.json(all);
+  }
 async function createOrder(req, res)
 {
   Order=req.body;
@@ -38,5 +42,6 @@ async function createOrder(req, res)
     OrderPage,
     createOrder,
     getOrders,
-    getOrdersJson
+    getOrdersJson,
+    AllOrderJson
   }
