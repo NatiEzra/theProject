@@ -932,28 +932,28 @@ $('.edit-item').click(function() {
 
 function openEditModal(item) {
   const editedItem = { ...item };
-  switch (editedItem.gender) {
-    case "male":
-      document.querySelector("#_gender_ [value='male']").selected = true;
-      break;
-    case "female":
-      document.querySelector("#_gender_ [value='female']").selected = true;
-      break;
-    case "other":
-      document.querySelector("#_gender_ [value='other']").selected = true;
-      break;
-  }
-  switch (editedItem.type) {
-    case "pants":
-      document.querySelector("#type_ [value='pants']").selected = true;
-      break;
-    case "shirts":
-      document.querySelector("#type_ [value='shirts']").selected = true;
-      break;
-    case "shoes":
-      document.querySelector("#type_ [value='shoes']").selected = true;
-      break;
-  }
+  // switch (editedItem.gender) {
+  //   case "male":
+  //     document.querySelector("#_gender_ [value='male']").selected = true;
+  //     break;
+  //   case "female":
+  //     document.querySelector("#_gender_ [value='female']").selected = true;
+  //     break;
+  //   case "other":
+  //     document.querySelector("#_gender_ [value='other']").selected = true;
+  //     break;
+  // }
+  // switch (editedItem.type) {
+  //   case "pants":
+  //     document.querySelector("#type_ [value='pants']").selected = true;
+  //     break;
+  //   case "shirts":
+  //     document.querySelector("#type_ [value='shirts']").selected = true;
+  //     break;
+  //   case "shoes":
+  //     document.querySelector("#type_ [value='shoes']").selected = true;
+  //     break;
+  // }
   const genderSelect = document.getElementById('_gender_');
 for (let i = 0; i < genderSelect.options.length; i++) {
     if (genderSelect.options[i].value === editedItem.gender) {
@@ -971,7 +971,7 @@ for (let i = 0; i < genderSelect.options.length; i++) {
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Price:</label>
-                  <input type="number" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" required>
+                  <input type="number" min="1" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Type:</label>
