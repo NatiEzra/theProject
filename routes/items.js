@@ -27,7 +27,7 @@ router.post("/updateCart", ItemsPageController.updateCart);
 router.get("/cart", ItemsPageController.getCart);
 router.post("/removeFromCart", ItemsPageController.removeFromCart);
 router.post("/api/items/:id", ItemsPageController.removeItem);
-
+router.put("/api/items/:id", ItemsPageController.UpdateItem);
 
 
 module.exports = router;

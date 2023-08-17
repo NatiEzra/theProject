@@ -161,6 +161,18 @@ async function removeItem(item)
     return true;
   }
 }
+async function UpdateItem(itemData) {
+  try {
+    const item = await Item.findByIdAndUpdate({ _id: itemData._id }, { name:itemData.name, price:itemData.price, type:itemData.type,details:itemData.details,gender:itemData.gender }, { new: false })
+    if (!item) {
+      throw new Error(`Cannot update user with ID ${itemData._id}. User not found.`);
+    }
+    return item;
+  } catch (error) {
+    console.error('Error occurred while updating item:', error);
+    throw error;
+  }
+}
 
 
 module.exports = { 
@@ -180,4 +192,5 @@ getCart,
 removeFromCart,
 GetItemsPerGender,
 removeItem,
+UpdateItem,
  };

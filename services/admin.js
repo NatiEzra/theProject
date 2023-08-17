@@ -113,6 +113,9 @@ async function updateUser(userId, updatedData) {
       throw error;
     }
   }
+  
+ 
+
 async function CreateUser(username, email,firstname , lastname , gender , date , password){
     const user = new User({
       username: username,
@@ -181,4 +184,4 @@ async function check_PromoCode(promocodename)
       return "promocode exsist";
     }
 }
-module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode, Listofitems, DeletePromoCode};
+module.exports = { AddItem , Listofusers , updateUser , CreateUser,findById ,findByIdAndDelete , check_username , AddPhoto,ListofPromocodes , CreatePromoCode,check_PromoCode, Listofitems, DeletePromoCode };

@@ -834,26 +834,43 @@ $(document).ready(function() {
 });
 
 async function updateItem(itemId, updatedItem) {
-  try {
+      let ItemData={
+        _id:itemId,
+        name:$('#editItemName').val(),
+        price:$('#editItemPrice').val(),
+        type:$('#type_').val(),
+        details:$('#editItemdetails').val(),
+        gender:$('#_gender_').val(),
+      }
+
+      
       const response = await $.ajax({
-          url: `http://localhost:70/api/items/${itemId}`,
-          method: 'PUT',
-          data: updatedItem
-      });
-      Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: response.message
-      });
-      loadAllItems();
-  } catch (error) {
-      console.error(error);
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'An error occurred while updating the item.'
-      });
-  }
+          "url": `http://localhost:70/api/items/${itemId}`,
+          "method": 'PUT',
+          "data": { "itemId": ItemData },
+      }).done(function(response){
+        if(response.message=="Item updated successfully")
+        {
+          Swal.fire({
+            title: 'Success',
+            text: response.message,
+            icon: 'success',
+            confirmButtonText: 'OK'
+            }).then(() => {
+              location.reload(); // Refresh the page
+            });
+        }
+        else{
+        Swal.fire({
+        title: 'Error',
+        text: "Problem to Update Item",
+        icon: 'error',
+        confirmButtonText: 'OK'
+        })
+      }
+    });
+      //loadAllItems();
+
 }
 
 async function loadAllItems() {
@@ -926,7 +943,35 @@ function closeOtherForms() {
 
 function openEditModal(item) {
   const editedItem = { ...item };
-
+  switch (editedItem.gender) {
+    case "male":
+      document.querySelector("#_gender_ [value='male']").selected = true;
+      break;
+    case "female":
+      document.querySelector("#_gender_ [value='female']").selected = true;
+      break;
+    case "other":
+      document.querySelector("#_gender_ [value='other']").selected = true;
+      break;
+  }
+  switch (editedItem.type) {
+    case "pants":
+      document.querySelector("#type_ [value='pants']").selected = true;
+      break;
+    case "shirts":
+      document.querySelector("#type_ [value='shirts']").selected = true;
+      break;
+    case "shoes":
+      document.querySelector("#type_ [value='shoes']").selected = true;
+      break;
+  }
+  const genderSelect = document.getElementById('_gender_');
+for (let i = 0; i < genderSelect.options.length; i++) {
+    if (genderSelect.options[i].value === editedItem.gender) {
+        genderSelect.options[i].selected = true;
+        break;
+    }
+}
   Swal.fire({
       title: 'Edit Item',
       html: `
@@ -939,8 +984,29 @@ function openEditModal(item) {
                   <label for="editItemPrice">Price:</label>
                   <input type="text" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}">
               </div>
+              <div class="form-group">
+                  <label for="editItemPrice">Type:</label>
+                  <select class="form-control" id="type_" name="type" required>
+                  <option value="pants" ${editedItem.type === 'pants' ? 'selected' : ''}>pants</option>
+                  <option value="shirts" ${editedItem.type === 'shirts' ? 'selected' : ''}>shirts</option>
+                  <option value="shoes" ${editedItem.type === 'shoes' ? 'selected' : ''}>shoes</option>
+                </select>
+              </div>
+              <div class="form-group">
+                  <label for="editItemdetails">Details:</label>
+                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}">
+              </div>
+              <div class="form-group">
+                  <label for="editItemgender">Gender:</label>
+                  <select class="form-control" id="_gender_" name="gender" required>
+                    <option value="male" ${editedItem.gender === 'male' ? 'selected' : ''}>Male</option>
+                    <option value="female" ${editedItem.gender === 'female' ? 'selected' : ''}>Female</option>
+                    <option value="other" ${editedItem.gender === 'other' ? 'selected' : ''}>Other</option>
+                </select>
+              </div>
           </form>
       `,
+      
       showCancelButton: true,
       confirmButtonText: 'Save Changes',
       cancelButtonText: 'Cancel',
