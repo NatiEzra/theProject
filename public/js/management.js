@@ -930,17 +930,6 @@ $('.edit-item').click(function() {
 });
 }
 
-
-
-
-
-
-
-
-
-function closeOtherForms() {
-}
-
 function openEditModal(item) {
   const editedItem = { ...item };
   switch (editedItem.gender) {
@@ -978,11 +967,11 @@ for (let i = 0; i < genderSelect.options.length; i++) {
           <form id="editItemForm">
               <div class="form-group">
                   <label for="editItemName">Name:</label>
-                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}">
+                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Price:</label>
-                  <input type="text" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}">
+                  <input type="number" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Type:</label>
@@ -994,7 +983,7 @@ for (let i = 0; i < genderSelect.options.length; i++) {
               </div>
               <div class="form-group">
                   <label for="editItemdetails">Details:</label>
-                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}">
+                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}" required>
               </div>
               <div class="form-group">
                   <label for="editItemgender">Gender:</label>
@@ -1011,11 +1000,26 @@ for (let i = 0; i < genderSelect.options.length; i++) {
       confirmButtonText: 'Save Changes',
       cancelButtonText: 'Cancel',
       preConfirm: () => {
-          return {
-              name: $('#editItemName').val(),
-              price: $('#editItemPrice').val()
-          };
-      }
+        const editedName = $('#editItemName').val();
+        const editedPrice = $('#editItemPrice').val();
+        const editedDetails = $('#editItemdetails').val();
+    
+        if (!editedName || !editedPrice || !editedDetails) {
+            Swal.showValidationMessage('Please fill in all required fields');
+            return false;
+        }
+    
+        if (!(/^\d+$/.test(editedPrice))) {
+            Swal.showValidationMessage('Price must be a numeric value');
+            return false;
+        }
+    
+        return {
+            name: editedName,
+            price: editedPrice
+        };
+    }
+    
   }).then((result) => {
       if (result.isConfirmed) {
           updateItem(item._id, result.value);
