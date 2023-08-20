@@ -20,8 +20,8 @@ async function createGenderGraph() {
   const prices = valuepergender.map(item => item.items.length);
 
   // Set up the dimensions for the SVG container
-  const svgWidth = 800; // Adjust the SVG width as needed
-  const svgHeight = 600; // Adjust the SVG height as needed
+  const svgWidth = 650; // Adjust the SVG width as needed
+  const svgHeight = 470; // Adjust the SVG height as needed
   const margin = { top: 40, right: 40, bottom: 80, left: 60 }; // Increased bottom margin for x-axis labels
   const width = svgWidth - margin.left - margin.right;
   const height = svgHeight - margin.top - margin.bottom;
@@ -100,8 +100,8 @@ async function createPriceGraph() {
   const prices = existingItems.map(item => item.price);
 
   // Set up the dimensions for the SVG container
-  const svgWidth = 800; // Adjust the SVG width as needed
-  const svgHeight = 600; // Adjust the SVG height as needed
+  const svgWidth = 650; // Adjust the SVG width as needed
+  const svgHeight = 470; // Adjust the SVG height as needed
   const margin = { top: 40, right: 40, bottom: 80, left: 60 }; // Increased bottom margin for x-axis labels
   const width = svgWidth - margin.left - margin.right;
   const height = svgHeight - margin.top - margin.bottom;
@@ -178,8 +178,8 @@ async function createPromoDiscountGraph() {
   const discount = existingPromo.map(promo => promo.discount);
 
   // Set up the dimensions for the SVG container
-  const svgWidth = 800; // Adjust the SVG width as needed
-  const svgHeight = 600; // Adjust the SVG height as needed
+  const svgWidth = 650; // Adjust the SVG width as needed
+  const svgHeight = 470; // Adjust the SVG height as needed
   const margin = { top: 40, right: 40, bottom: 80, left: 60 }; // Increased bottom margin for x-axis labels
   const width = svgWidth - margin.left - margin.right;
   const height = svgHeight - margin.top - margin.bottom;
@@ -270,8 +270,8 @@ async function createOrderGraph() {
     });   
 
     // Set up the dimensions for the SVG container
-    const svgWidth = 800; // Adjust the SVG width as needed
-    const svgHeight = 600; // Adjust the SVG height as needed
+    const svgWidth = 650; // Adjust the SVG width as needed
+    const svgHeight = 470; // Adjust the SVG height as needed
     const margin = { top: 40, right: 40, bottom: 80, left: 60 }; // Increased bottom margin for x-axis labels
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;

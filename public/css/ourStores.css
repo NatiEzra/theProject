@@ -18,6 +18,10 @@ body{
 .AboutUs{
   column-count: 2;
   font-family: myFirstFont;
+  text-align: center;
+  color:#ea9215;
+  font-weight: bold;
+
 }
 @font-face {
   font-family: myFirstFont;

@@ -321,22 +321,43 @@ body{
   margin: 0 auto;
   align-items: center; /* Vertically align the content */
   justify-content: center; /* Horizontally align the content */
-  width: 100%; /* Adjust the width as needed */
-  height: 100%; /* Adjust the width as needed */
+  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
+  max-height: 100%; /* Adjust the width as needed */
   padding: 20px; /* Add padding to the container for better spacing */
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 1px; /* Adjust this value to reduce the space */
+
+}
+.chart2-container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center; /* Vertically align the content */
+  justify-content: center; /* Horizontally align the content */
+  max-width: 100%; /* Adjust the width as needed */
+  padding: 20px; /* Add padding to the container for better spacing */
+  margin-top: 1px; /* Adjust this value to reduce the space */
+  margin-bottom: 25px; /* Adjust this value to reduce the space */
 
 }
 
 /* Center the price chart */
 #priceChart {
-  background-color: white;
   max-width: 100%; /* Make sure the chart doesn't exceed the container width */
-  height: 120%; /* Adjust the width as needed */
+  height: 550px; /* Adjust the width as needed */
 
 }
-
+#orderChart {
+  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
+  max-height: 100%; /* Adjust the width as needed */
+}
+#promoChart {
+  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
+  max-height: 100%; /* Adjust the width as needed */
+}
+#GenderChart{
+  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
+  height: 550px; /* Adjust the width as needed */
+}
 /* CSS style for the bars */
 .bar {
   fill: #ea9215; /* Set the fill color of the bars */
@@ -359,16 +380,15 @@ body{
   width: 60px;
 }
 /* CSS style for the x-axis labels */
+
+/* CSS for X-axis labels */
 .x-axis-label {
-  fill: black; /* Set the fill color of the x-axis labels to white */
-  font-weight: bold;
-  transform: rotate(-45deg); /* Apply rotation to the x-axis labels */
-  transform-origin: end; /* Set the rotation origin to the end of the text */
-  text-anchor: end; /* Set the text-anchor property for proper alignment */
-  font-size: 15px;
-  
+  font-size: 12px;
+  transform: translate(-3px, 0) rotate(-45deg); /* Rotate and translate the labels */
+  text-anchor: end; /* Align the end of the label with the tick */
 
 }
+
 
 .graph-title{
   text-anchor: middle; /* Set the text-anchor property for proper alignment */
@@ -377,9 +397,4 @@ body{
   font-weight: bold;
 }
 
-#promoChart {
-  background-color: white;
-  max-width: 100%; /* Make sure the chart doesn't exceed the container width */
-  height: 100%; /* Adjust the width as needed */
-}
 
