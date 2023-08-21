@@ -6,6 +6,11 @@
     width: max-content;
 }
 
+.cont {
+    display: flex;
+    align-items: center;
+    margin-top: -10%; /* Adjust this value as needed */
+}
 
 /* Style the Apply button */
 #apply-filter-btn {
@@ -29,16 +34,16 @@
 
 /* Style the search input */
 #search-input {
-    border: 1px solid #ccc;
+    margin: 0; /* Reset margin to remove any default margin */
     padding: 8px;
     border-radius: 4px;
-    margin-right: 10px;
     font-size: 14px;
     width: 200px;
 }
 
-/* Style the search button */
+/* Reset margins and padding on the search button */
 #search-button {
+    margin: 0; /* Reset margin to remove any default margin */
     background-color: #ea9215;
     color: #fff;
     border: none;
@@ -47,5 +52,4 @@
     cursor: pointer;
     font-size: 14px;
     width: 100px;
-
 }
