@@ -17,17 +17,19 @@
     <%- include('./templates/dropDown.ejs');%>
 
     
-    <input type="text" id="search-input" placeholder="Search items...">
-    <button id="search-button">Search</button>
-
-    <div id="sort-options" class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-options-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sort Order
-      </button>
-      <div class="dropdown-menu" aria-labelledby="sort-options-dropdown">
-          <a class="dropdown-item" href="#" data-sort="low-high">Low to High</a>
-          <a class="dropdown-item" href="#" data-sort="high-low">High to Low</a>
-      </div>
+    <div class="cont">
+      <input type="text" id="search-input" placeholder="Search items...">
+      <button id="search-button">Search</button>
+  
+      <div id="sort-options" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="sort-options-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort Order
+        </button>
+        <div class="dropdown-menu" aria-labelledby="sort-options-dropdown">
+            <a class="dropdown-item" href="#" data-sort="low-high">Low to High</a>
+            <a class="dropdown-item" href="#" data-sort="high-low">High to Low</a>
+        </div>
+    </div>
   </div>
 
     <div id="container"></div>

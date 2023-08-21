@@ -1,11 +1,11 @@
 .table-container {
-    border: 1px solid #ccc;
     background-color: #3a4750; /* Set background color for the card */
     color: #fff; /* Set text color for the button */
     padding: 10px;
-    width: 350%; /* Adjust the width as needed */
     text-align: center; /* Center the elements inside the container */
+    width: max-content;
 }
+
 
 /* Style the Apply button */
 #apply-filter-btn {
@@ -19,12 +19,12 @@
     color: #fff; /* Set text color for the button */
 }
 
+
 /* Style the Sort Order dropdown */
 #sort-options-dropdown {
     background-color: #ea9215; /* Set background color for the dropdown button */
     color: #fff; /* Set text color for the dropdown button */
     margin: 15px;
-    margin-top: -70px;
 }
 
 /* Style the search input */
