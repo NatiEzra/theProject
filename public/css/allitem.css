@@ -6,11 +6,6 @@
     width: max-content;
 }
 
-.cont {
-    display: flex;
-    align-items: center;
-    margin-top: -10%; /* Adjust this value as needed */
-}
 
 /* Style the Apply button */
 #apply-filter-btn {
