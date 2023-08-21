@@ -251,5 +251,26 @@ const x=await fetch('/AllItemsJson').
   });
 
   applyFilterButton.disabled = true;
+
+  // Search functionality
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+
+  searchButton.addEventListener('click', () => {
+      const query = searchInput.value.toLowerCase();
+      const filteredItems = items.filter(item =>
+          item.name.toLowerCase().includes(query) || item.details.toLowerCase().includes(query)
+      );
+      displayItems(filteredItems);
+  });
+
+  searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filteredItems = items.filter(item =>
+          item.name.toLowerCase().includes(query) || item.details.toLowerCase().includes(query)
+      );
+      displayItems(filteredItems);
+  });
 });
+
 

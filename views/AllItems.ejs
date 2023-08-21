@@ -17,6 +17,8 @@
     </div>
     <%- include('./templates/dropDown.ejs');%>
 
+    <input type="text" id="search-input" placeholder="Search items...">
+<button id="search-button">Search</button>
    
     <div class="col-md-3">
         <div class="table-container d-flex align-items-center">
@@ -47,7 +49,7 @@
                     <option value="pants">Pants</option>
                     <option value="shoes">Shoes</option>
                 </select>
-                
+
             </div>
             <button id="apply-filter-btn" class="btn btn-primary ml-3" disabled>Apply</button>
             <button id="clear-filter-btn" class="btn btn-secondary ml-2">Clear Filters</button>
@@ -62,6 +64,9 @@
             <a class="dropdown-item" href="#" data-sort="high-low">High to Low</a>
         </div>
     </div>
+
+  
+    
     
     <div id="container"></div> 
     

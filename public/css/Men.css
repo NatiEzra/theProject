@@ -92,3 +92,33 @@ h2{
     }
 }
 
+
+/* Style the Sort Order dropdown */
+#sort-options-dropdown {
+    background-color: #ea9215; /* Set background color for the dropdown button */
+    color: #fff; /* Set text color for the dropdown button */
+    margin: 15px;
+}
+
+/* Style the search input */
+#search-input {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+    width: 200px;
+}
+
+/* Style the search button */
+#search-button {
+    background-color: #ea9215;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100px;
+
+}
