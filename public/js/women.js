@@ -81,12 +81,9 @@ async function setWomenItems() {
                 const title=document.createElement("h5");
                 const desc=document.createElement('p');
                 const aLink=document.createElement('a');
-                const a2=document.createElement('a');
-                const Like=document.createElement("img");
                 const shoppingCart=document.createElement("img");
                 const price=document.createElement('p');
                 shoppingCart.src="../Images/bag.png";
-                Like.src="../Images/heart.png";
                 image.src="../Images/";
                 image.src+=item.img;
                 title.textContent = item.name;
@@ -99,7 +96,6 @@ async function setWomenItems() {
                 desc.classList.add('card-text');
                 aLink.classList.add('shop-button');
                 shoppingCart.classList.add('bag-button-img');
-                Like.classList.add('bag-button-img');
                 price.classList.add('price');
                 shoppingCart.alt="Add to cart";
                 newDiv.appendChild(card);
@@ -108,9 +104,7 @@ async function setWomenItems() {
                 body.appendChild(title);
                 body.appendChild(desc);
                 aLink.appendChild(shoppingCart);
-               a2.appendChild(Like);
                 body.appendChild(aLink);
-                body.appendChild(a2);
                 body.appendChild(price);
                 aLink.onclick=function(){
                   addToCart(item);
@@ -148,13 +142,10 @@ async function setWomenItems() {
             const title = document.createElement("h5");
             const desc = document.createElement('p');
             const aLink = document.createElement('a');
-            const a2 = document.createElement('a');
-            const likeImage = document.createElement("img");
             const cartImage = document.createElement("img");
             const price = document.createElement('p');
 
             cartImage.src = "../Images/bag.png";
-            likeImage.src = "../Images/heart.png";
             image.src = "../Images/" + item.img;
             title.textContent = item.name;
             desc.textContent = item.details;
@@ -167,7 +158,6 @@ async function setWomenItems() {
             desc.classList.add('card-text');
             aLink.classList.add('shop-button');
             cartImage.classList.add('bag-button-img');
-            likeImage.classList.add('bag-button-img');
             price.classList.add('price');
 
             cartImage.alt = "Add to cart";
@@ -178,9 +168,7 @@ async function setWomenItems() {
             body.appendChild(title);
             body.appendChild(desc);
             aLink.appendChild(cartImage);
-            a2.appendChild(likeImage);
             body.appendChild(aLink);
-            body.appendChild(a2);
             body.appendChild(price);
 
             aLink.onclick = function () {
