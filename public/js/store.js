@@ -129,3 +129,50 @@ searchBox.addEventListener("keydown", function(event) {
         handleSearch();
     }
 });
+function setCanvas(){
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  context.imageSmoothingEnabled = true;
+  const dpr = window.devicePixelRatio || 1;
+canvas.width = canvas.clientWidth * dpr;
+canvas.height = canvas.clientHeight * dpr;
+context.scale(dpr, dpr);
+  const toggleButton = document.getElementById('toggleButton');
+  const image = new Image();
+  image.src = '../Images/CanvasPhoto.png';
+  let isImageVisible = false;
+
+  function drawImage() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if (isImageVisible) {
+      const aspectRatio = image.width / image.height;
+      const canvasAspectRatio = canvas.width / canvas.height;
+
+      let drawWidth, drawHeight, drawX, drawY;
+
+      if (canvasAspectRatio > aspectRatio) {
+          drawWidth = canvas.height * aspectRatio;
+          drawHeight = canvas.height;
+          drawX = (canvas.width - drawWidth) / 2;
+          drawY = 0;
+      } else {
+          drawWidth = canvas.width;
+          drawHeight = canvas.width / aspectRatio;
+          drawX = 0;
+          drawY = (canvas.height - drawHeight) / 2;
+      }
+
+      context.drawImage(image, drawX, drawY, drawWidth, drawHeight);
+    }
+}
+
+drawImage();
+toggleButton.addEventListener('click', () => {
+    isImageVisible = !isImageVisible;
+    drawImage();
+});
+}
+setCanvas();
+
+
+
