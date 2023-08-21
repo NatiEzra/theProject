@@ -81,12 +81,9 @@ async function setMenShoes() {
                 const title=document.createElement("h5");
                 const desc=document.createElement('p');
                 const aLink=document.createElement('a');
-                const a2=document.createElement('a');
-                const Like=document.createElement("img");
                 const shoppingCart=document.createElement("img");
                 const price=document.createElement('p');
                 shoppingCart.src="../Images/bag.png";
-                Like.src="../Images/heart.png";
                 image.src="../Images/";
                 image.src+=item.img;
                 title.textContent = item.name;
@@ -99,7 +96,6 @@ async function setMenShoes() {
                 desc.classList.add('card-text');
                 aLink.classList.add('shop-button');
                 shoppingCart.classList.add('bag-button-img');
-                Like.classList.add('bag-button-img');
                 price.classList.add('price');
                 shoppingCart.alt="Add to cart";
                 newDiv.appendChild(card);
@@ -108,9 +104,7 @@ async function setMenShoes() {
                 body.appendChild(title);
                 body.appendChild(desc);
                 aLink.appendChild(shoppingCart);
-               a2.appendChild(Like);
                 body.appendChild(aLink);
-                body.appendChild(a2);
                 body.appendChild(price);
                 aLink.onclick=function(){
                   addToCart(item);
