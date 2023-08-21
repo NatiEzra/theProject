@@ -199,24 +199,24 @@ const x=await fetch('/AllItemsJson').
      applyFilterButton.addEventListener('click', () => {
       const selectedPrice = parseFloat(document.getElementById('price').value);
       const selectedSize = document.getElementById('gender').value;
-      const selectedColor = document.getElementById('color').value;
+      const selectedType = document.getElementById('type').value;
 
       const filteredItems = items.filter(item => {
           const priceCondition = selectedPrice ? parseFloat(item.price) < selectedPrice : true;
           const sizeCondition = selectedSize ? item.gender === selectedSize : true;
-          const colorCondition = selectedColor ? item.color === selectedColor : true;
+          const typeCondition = selectedType ? item.type === selectedType : true;
 
-          return priceCondition && sizeCondition && colorCondition;
+          return priceCondition && sizeCondition && typeCondition;
       });
 
       displayItems(filteredItems);
-    });
+  });
 
     // Clear filters and display all items when the "Clear Filters" button is clicked
     clearFilterButton.addEventListener('click', () => {
       document.getElementById('price').value = '';
       document.getElementById('gender').value = '';
-      document.getElementById('color').value = '';
+      document.getElementById('type').value = ''; 
       applyFilterButton.disabled = true;
       fetchAndDisplayItems();
   });
@@ -244,7 +244,7 @@ const x=await fetch('/AllItemsJson').
     }
 
      // Enable "Apply" button when any filter option is selected
-     ['price', 'gender', 'color'].forEach(selectId => {
+     ['price', 'gender', 'type'].forEach(selectId => {
       document.getElementById(selectId).addEventListener('change', () => {
           applyFilterButton.disabled = false;
       });
