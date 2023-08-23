@@ -88,7 +88,7 @@ const x=await fetch('/AllItemsJson').
             const shoppingCart=document.createElement("img");
             const price=document.createElement('p');
             shoppingCart.src="../Images/bag.png";
-            Like.src="../Images/heart.png";
+           // Like.src="../Images/heart.png";
             image.src="../Images/";
             image.src+=item.img;
             title.textContent = item.name;
@@ -157,7 +157,7 @@ const x=await fetch('/AllItemsJson').
             const price = document.createElement('p');
 
             cartImage.src = "../Images/bag.png";
-            likeImage.src = "../Images/heart.png";
+           // likeImage.src = "../Images/heart.png";
             image.src = "../Images/" + item.img;
             title.textContent = item.name;
             desc.textContent = item.details;
