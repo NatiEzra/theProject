@@ -1,6 +1,11 @@
 const User = require("../models/User");
 
 
+async function getEmails() {
+  const allusers=await User.find();
+  return allusers;
+}
+
 async function FindUser(username) {
     const user = await User.findOne({username:username});  
     if(user!==null)
@@ -27,4 +32,4 @@ async function UpdateUser(updatedUser, res)
   return bool;
 }
 
-module.exports = { FindUser,UpdateUser}
+module.exports = { FindUser,UpdateUser,getEmails}

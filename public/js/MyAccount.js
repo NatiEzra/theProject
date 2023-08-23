@@ -25,6 +25,7 @@ $(document).ready(function() {
       method: "GET",
     });
    var username=$('#username')[0].textContent;
+    console.log(userResponse);
 
     const Users = userResponse;
     let foundUser = null;
@@ -50,11 +51,16 @@ $(document).ready(function() {
         icon: 'error',
         confirmButtonText: 'OK'
       });
+      eMail=foundUser.email;
       return;
     }
-    Users.forEach(async function (user)
+    const emails = await $.ajax({
+      url: "http://localhost:70/allEmails",
+      method: "GET",
+    });
+    emails.forEach(async function (email)
      {
-      if ((user.email === eMail && user.email!==foundUser.email))
+      if ((email === eMail && email!==foundUser.email))
        {
         flag=true;
         await Swal.fire({

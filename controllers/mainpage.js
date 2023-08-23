@@ -57,6 +57,22 @@ async function Myaccount(req, res){
     res.render("login", { flag: true });
   }
 }
+
+async function getEmails(req, res) {
+  try {
+    const users = await accountService.getEmails();
+    
+    // Extract the email properties from the user objects
+    const emails = users.map(user => user.email);
+    
+    res.json(emails);
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error("Error fetching email addresses:", error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+}
+
 async function updateUser(req,res){
   const updatedUser = req.body.foundUser;
   let result=await accountService.UpdateUser(updatedUser);
@@ -91,4 +107,5 @@ module.exports = {
   SavedItems,
   updateUser,
   GetItemsPerGender,
+  getEmails,
 }
