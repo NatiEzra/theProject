@@ -840,7 +840,7 @@ async function updateItem(itemId, updatedItem) {
         _id:itemId,
         name:$('#editItemName').val(),
         price:$('#editItemPrice').val(),
-        type:$('#type_').val(),
+        type:$('#type').val(),
         details:$('#editItemdetails').val(),
         gender:$('#_gender').val(),
       }
@@ -947,13 +947,13 @@ function openEditModal(item) {
   // }
   // switch (editedItem.type) {
   //   case "pants":
-  //     document.querySelector("#type_ [value='pants']").selected = true;
+  //     document.querySelector("#type [value='pants']").selected = true;
   //     break;
   //   case "shirts":
-  //     document.querySelector("#type_ [value='shirts']").selected = true;
+  //     document.querySelector("#type [value='shirts']").selected = true;
   //     break;
   //   case "shoes":
-  //     document.querySelector("#type_ [value='shoes']").selected = true;
+  //     document.querySelector("#type [value='shoes']").selected = true;
   //     break;
   // }
  
@@ -971,7 +971,7 @@ function openEditModal(item) {
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Type:</label>
-                  <select class="form-control" id="type_" name="type" required>
+                  <select class="form-control" id="type" name="type" required>
                   <option value="pants" ${editedItem.type === 'pants' ? 'selected' : ''}>pants</option>
                   <option value="shirts" ${editedItem.type === 'shirts' ? 'selected' : ''}>shirts</option>
                   <option value="shoes" ${editedItem.type === 'shoes' ? 'selected' : ''}>shoes</option>

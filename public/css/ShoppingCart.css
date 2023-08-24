@@ -36,3 +36,36 @@ body{
 .lined{
   text-decoration: line-through;
 }
+
+
+.nice-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top:7px;
+}
+
+.primary-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.secondary-button {
+  background-color: #e67e22;
+  color: white;
+}
+
+.outline-button {
+  background-color: transparent;
+  border: 2px solid #3498db;
+  color: #3498db;
+}
+
+.nice-button:hover,
+.nice-button:focus {
+  opacity: 0.8;
+}
