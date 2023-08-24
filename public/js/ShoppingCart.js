@@ -493,10 +493,10 @@ async function setCart(){
             }
         })});
   
-                var username2= await getUserName();   
+                var userId= await getUserId();   
                 if (foundpromo)
              {
-              foundpromo.users.push(username2);
+              foundpromo.users.push(userId);
             }
      
             const updateUserPromo = {
@@ -583,16 +583,16 @@ async function setCart(){
         confirmButtonText: 'OK'
       });}
   }           
-              async function getUserName(){
+              async function getUserId(){
                 const response = await $.ajax({
                   url: "http://localhost:70/check",
                   method: "GET",
                 });
-                const username = response.message.username;
+                const username = response.message.userid;
                 return username; // the logged user
               }
               async function CheckIfUsed(promo){
-                var user=await getUserName();
+                var user=await getUserId();
                 var count=0;
                 for(var i=0;i<promo.users.length;i++)
                 {

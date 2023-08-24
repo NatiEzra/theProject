@@ -54,6 +54,19 @@ $(document).ready(function() {
       eMail=foundUser.email;
       return;
     }
+
+    var letters=/^[\p{L}a-zA-Zа-яА-Я]+$/u; //allowing the name to have letters in all langueges (p{L}=Uncode)
+    if (firstName==""||!firstName.match(letters)||firstName.length>30||lastName==""||!lastName.match(letters)||lastName.length>30){
+      await Swal.fire({
+        title: 'Error',
+        text: "Invalid name format",
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      firstName=foundUser.firstname;
+      lastName=foundUser.lastname;
+      return;
+    }
     const emails = await $.ajax({
       url: "http://localhost:70/allEmails",
       method: "GET",
