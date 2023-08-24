@@ -534,6 +534,8 @@ if(window.location.pathname == "/management"){
   });
 }
 $(document).ready(function() {
+
+
   $("#closeModalButton").click(function () {
     $("#editOrderModal").modal('hide'); // Close the modal
 });
@@ -840,7 +842,7 @@ async function updateItem(itemId, updatedItem) {
         price:$('#editItemPrice').val(),
         type:$('#type_').val(),
         details:$('#editItemdetails').val(),
-        gender:$('#_gender_').val(),
+        gender:$('#_gender').val(),
       }
 
       
@@ -934,13 +936,13 @@ function openEditModal(item) {
   const editedItem = { ...item };
   // switch (editedItem.gender) {
   //   case "male":
-  //     document.querySelector("#_gender_ [value='male']").selected = true;
+  //     document.querySelector("#_gender [value='male']").selected = true;
   //     break;
   //   case "female":
-  //     document.querySelector("#_gender_ [value='female']").selected = true;
+  //     document.querySelector("#_gender [value='female']").selected = true;
   //     break;
   //   case "other":
-  //     document.querySelector("#_gender_ [value='other']").selected = true;
+  //     document.querySelector("#_gender [value='other']").selected = true;
   //     break;
   // }
   // switch (editedItem.type) {
@@ -954,13 +956,7 @@ function openEditModal(item) {
   //     document.querySelector("#type_ [value='shoes']").selected = true;
   //     break;
   // }
-  const genderSelect = document.getElementById('_gender_');
-for (let i = 0; i < genderSelect.options.length; i++) {
-    if (genderSelect.options[i].value === editedItem.gender) {
-        genderSelect.options[i].selected = true;
-        break;
-    }
-}
+ 
   Swal.fire({
       title: 'Edit Item',
       html: `
@@ -986,8 +982,8 @@ for (let i = 0; i < genderSelect.options.length; i++) {
                   <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}" required>
               </div>
               <div class="form-group">
-                  <label for="editItemgender">Gender:</label>
-                  <select class="form-control" id="_gender_" name="gender" required>
+                  <label for="_gender">Gender:</label>
+                  <select class="form-control" id="_gender" name="gender" required>
                     <option value="male" ${editedItem.gender === 'male' ? 'selected' : ''}>Male</option>
                     <option value="female" ${editedItem.gender === 'female' ? 'selected' : ''}>Female</option>
                     <option value="other" ${editedItem.gender === 'other' ? 'selected' : ''}>Other</option>
@@ -995,7 +991,7 @@ for (let i = 0; i < genderSelect.options.length; i++) {
               </div>
           </form>
       `,
-      
+     
       showCancelButton: true,
       confirmButtonText: 'Save Changes',
       cancelButtonText: 'Cancel',
@@ -1003,7 +999,7 @@ for (let i = 0; i < genderSelect.options.length; i++) {
         const editedName = $('#editItemName').val();
         const editedPrice = $('#editItemPrice').val();
         const editedDetails = $('#editItemdetails').val();
-    
+        const editedGender = $('#_gender').val();
         if (!editedName || !editedPrice || !editedDetails) {
             Swal.showValidationMessage('Please fill in all required fields');
             return false;
@@ -1016,7 +1012,8 @@ for (let i = 0; i < genderSelect.options.length; i++) {
     
         return {
             name: editedName,
-            price: editedPrice
+            price: editedPrice,
+            gender: editedGender
         };
     }
     
