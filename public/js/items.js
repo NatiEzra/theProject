@@ -198,6 +198,12 @@ const x=await fetch('/AllItemsJson').
       });
 
       displayItems(filteredItems);
+      sortOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const sortOrder = option.getAttribute('data-sort');
+            sortItems(sortOrder, filteredItems);
+        });
+    });
   });
 
     // Clear filters and display all items when the "Clear Filters" button is clicked
@@ -214,13 +220,16 @@ const x=await fetch('/AllItemsJson').
     sortOptions.forEach(option => {
         option.addEventListener('click', () => {
             const sortOrder = option.getAttribute('data-sort');
-            sortItems(sortOrder);
+            sortItems(sortOrder, []);
         });
     });
 
     // Function to sort items based on selected sort order
-    function sortItems(sortOrder) {
-        const sortedItems = [...items]; // Create a copy of the original items array
+    function sortItems(sortOrder, filteredItems) {
+        let sortedItems = [...items]; // Create a copy of the original items array
+        if (filteredItems.length!=0){
+          sortedItems = [...filteredItems];
+        }
         
         if (sortOrder === 'low-high') {
             sortedItems.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
