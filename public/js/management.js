@@ -345,8 +345,8 @@ $('#Add-item').submit(function(e) {
   }
   let postdata={
     Name:$('#name').val(),
-    Type:$('#type').val(),
-    Gender:$('#gender_').val(),
+    Type:$('#type_').val(),
+    Gender:$('#_gender_').val(),
     Price:$('#price').val(),
     Details:$('#details').val(),
     Choose_Image:selectedImg,

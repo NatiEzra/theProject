@@ -82,7 +82,7 @@ async function buildPage()
                             tableHtml += `
                                 <tr class="align-self-center">
                                     <td><img src="Images/${items[x].img}" class="images"></img></td>
-                                    <td>${items[x].name}</td>
+                                    <td class="item-name">${items[x].name}</td>
                                     <td>${items[x].price}₪</td>
                                     <td>${orders[j].items[k].quantity}</td>
                                 </tr>

@@ -62,3 +62,11 @@ body{
     max-width: 40px;
     max-height: 60px;
 }
+
+.item-name {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
