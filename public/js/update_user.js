@@ -54,5 +54,13 @@ function isValidEmail(email) {
         text: 'Please select a gender.',
       });
     }
+    else if(usernameInput.value=="")
+    {
+      event.preventDefault(); 
+      Swal.fire({
+        icon: 'error',
+        title: 'Please fill the username field'
+      });
+    }
   });
   

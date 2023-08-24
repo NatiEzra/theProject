@@ -66,6 +66,7 @@ async function buildPage()
                     const modalBody = document.querySelector("#editModal .modal-body");
                     modalBody.innerHTML = ``; 
                     let tableHtml = `
+                    <div class="table-container">
                     <table class="table table-hover mb-0">
                         <tbody>
                             <tr class="align-self-center">
@@ -94,6 +95,7 @@ async function buildPage()
                 tableHtml += `
                         </tbody>
                     </table>
+                    </div>
                 `;
                 
                 modalBody.innerHTML += tableHtml;

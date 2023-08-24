@@ -343,6 +343,24 @@ $('#Add-item').submit(function(e) {
     });
     return;
   }
+  if($('#name').val().length>40){
+    Swal.fire({
+      title: 'Error',
+      text: "Item name cannot be longer than 40 letters",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+    return;
+  }
+  if($('#details').val().length>40){
+    Swal.fire({
+      title: 'Error',
+      text: "Item details cannot be longer than 40 letters",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+    return;
+  }
   let postdata={
     Name:$('#name').val(),
     Type:$('#type_').val(),
@@ -828,6 +846,8 @@ $(document).ready(function() {
           price: $('#editItemPrice').val()
       };
 
+      
+
       updateItem(itemId, updatedItem);
       $('#editItemModal').modal('hide');
   });
@@ -836,6 +856,24 @@ $(document).ready(function() {
 });
 
 async function updateItem(itemId, updatedItem) {
+  if($('#editItemName').val().length>40){
+    Swal.fire({
+      title: 'Error',
+      text: "Item name cannot be longer than 40 letters",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+    return;
+  }
+  if($('#editItemdetails').val().length>40){
+    Swal.fire({
+      title: 'Error',
+      text: "Item details cannot be longer than 40 letters",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+    return;
+  }
       let ItemData={
         _id:itemId,
         name:$('#editItemName').val(),

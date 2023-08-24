@@ -103,6 +103,16 @@ editButton.addEventListener("click", function () {
         const newLat = document.getElementById("latInput").value;
         const newLng = document.getElementById("lngInput").value;
         const newAddress = document.getElementById("addressInput").value;
+        if (isNaN(newLat)||isNaN(newLng)||newAddress==""||newLat==""||newLng==""){
+            const y= await Swal.fire({
+                title: 'Error',
+                text: "Invalid details",
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+              return;
+    
+        }
         branch.Address=newAddress;
         branch.lat=newLat;
         branch.lng=newLng;
@@ -160,7 +170,16 @@ function addStore() {
         const newLat = document.getElementById("latInput").value;
         const newLng = document.getElementById("lngInput").value;
         const newAddress = document.getElementById("addressInput").value;
-        
+        if (isNaN(newLat)||isNaN(newLng)||newAddress==""||newLat==""||newLng==""){
+            const y= await Swal.fire({
+                title: 'Error',
+                text: "Invalid details",
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+              return;
+    
+        }
         const branch={
             Address: newAddress,
             lat: newLat,
