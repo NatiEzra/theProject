@@ -14,6 +14,8 @@ router.get("/Cartpage", Main_pageController.Cartpage);
 router.get("/myaccount", Main_pageController.Myaccount);
 router.post("/updateUser", Main_pageController.updateUser);
 
+router.get("/allEmails", Main_pageController.getEmails);
+
 // GET route for the myaccount page
 router.get("/SavedItems", Main_pageController.SavedItems);
 
