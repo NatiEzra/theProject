@@ -41,14 +41,6 @@ async function initMap() {
 
     addAddresses();
 
-
-    // Create multiple markers
-    /*const markerPositions = [
-      { lat: 31.771959, lng: 35.217018 },
-      { lat: 31.572500, lng: 35.218000 },
-      { lat: 31.673000, lng: 35.219000 },
-      // Add more marker positions as needed
-    ];*/
   
     markerPositions.forEach((position) => {
       const marker = new google.maps.Marker({

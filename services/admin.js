@@ -4,41 +4,10 @@ const Item = require('../models/Item');
 const User = require('../models/User');
 const Promocode = require('../models/promocode');
 
-// const express = require("express");
-// const router = express.Router();
-// // Multer configuration
-// router.use(express.static('public'));
-let storage = multer.diskStorage({
-    destination:'./public/images', //directory (folder) setting
-    filename:(req, file, cb)=>{
-        cb(null,file.originalname) // file name setting
-    }
-})
-
-//Upload Setting
-let upload = multer({
-   storage: storage,
-   fileFilter:(req, file, cb)=>{
-    if(
-        file.mimetype == 'image/jpeg' ||
-        file.mimetype == 'image/jpg' ||
-        file.mimetype == 'image/png' ||
-        file.mimetype == 'image/gif'
-
-    ){
-        cb(null, true)
-    }
-    else{
-        cb(null, false);
-        cb(new Error('Only jpeg,  jpg , png, and gif Image allow'))
-    }
-   }
-})
 
 async function AddItem(req, res, name, type, gender, price, details, singleInput) {
   try {
-     // upload.single('single_input')(req, res, async (err) => {
-      //console.log( path.resolve(__dirname, '../public/Images'));
+
       const item = new Item({
           name: name,
           type: type,
@@ -114,8 +83,6 @@ async function updateUser(userId, updatedData) {
     }
   }
   
- 
-
 async function CreateUser(username, email,firstname , lastname , gender , date , password){
     const user = new User({
       username: username,

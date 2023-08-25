@@ -7,9 +7,6 @@ async function login(username, password) {
 }
 
 async function register(username, firstname , lastname , email , gender , date , password) {
-    // console.log(username, firstname , lastname , email , gender , date , password);
-    // const user2 = await User.find({});
-    // console.log(user2);
     const user = new User({
         username: username,
         firstname : firstname , 
