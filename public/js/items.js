@@ -116,7 +116,7 @@ const x=await fetch('/AllItemsJson').
       });}
       setItems();
 
-    
+let filteredItems;
     //////// low-high & high-low  & filters//////
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -200,7 +200,7 @@ const x=await fetch('/AllItemsJson').
 
 
       // Filter items based on selected criterion
-      const filteredItems = items.filter(item => {
+       filteredItems = items.filter(item => {
           const priceCondition = selectedPrice ? parseFloat(item.price) < selectedPrice : true;
           const sizeCondition = selectedSize ? item.gender === selectedSize : true;
           const typeCondition = selectedType ? item.type === selectedType : true;
@@ -226,6 +226,7 @@ const x=await fetch('/AllItemsJson').
       document.getElementById('price').value = '';
       document.getElementById('gender').value = '';
       document.getElementById('type').value = ''; 
+      filteredItems=[];
       applyFilterButton.disabled = true;
       fetchAndDisplayItems();       // Fetch and display all items
   });
@@ -276,7 +277,7 @@ const x=await fetch('/AllItemsJson').
       const query = searchInput.value.toLowerCase();
 
       // Filter items based on search query
-      const filteredItems = items.filter(item =>
+       filteredItems = items.filter(item =>
           item.name.toLowerCase().includes(query) || item.details.toLowerCase().includes(query)
       );
       displayItems(filteredItems);   // Display search results
@@ -288,7 +289,7 @@ const x=await fetch('/AllItemsJson').
       const query = searchInput.value.toLowerCase();
 
       // Filter items based on search query
-      const filteredItems = items.filter(item =>
+       filteredItems = items.filter(item =>
           item.name.toLowerCase().includes(query) || item.details.toLowerCase().includes(query)
       );
       displayItems(filteredItems);  // Display search results
