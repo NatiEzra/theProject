@@ -102,7 +102,9 @@ h2{
     margin: 15px;
     
 }
-
+.cont1{
+    margin-left: 30%;
+}
 /* Style the search input */
 #search-input {
     border: 1px solid #ccc;
