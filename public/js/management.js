@@ -629,13 +629,13 @@ function AddPromoCode() {
   modalTitle.textContent = "Add New PromoCode";
   modalBody.innerHTML = `
       <label for="CodeInput_">Code:</label>
-      <input type="text" id="CodeInput" name="codename" class="form-control" value="">
+      <input type="text" id="CodeInput" name="codename" class="form-control" value="" maxlength="10">
 
       <label for="QuantityiInput_">Quantity:</label>
-      <input type="text" id="QuantityiInput" name="quntitycode" class="form-control" value="">
+      <input type="text" id="QuantityiInput" name="quntitycode" class="form-control" value="" min="1" max="10">
             
       <label for="DiscountInput_">Discount:</label>
-      <input type="text" id="DiscountInput"  name="discountcode" class="form-control" value="">
+      <input type="text" id="DiscountInput"  name="discountcode" class="form-control" value="" min="1" max="100">
             
   `;
   saveChangesButton.addEventListener("click", async function (e) {
@@ -644,10 +644,20 @@ function AddPromoCode() {
       const newQuantity = document.getElementById("QuantityiInput").value;
       const NewDiscount = document.getElementById("DiscountInput").value;
 
-      if (isNaN(NewDiscount) || isNaN(newQuantity)||newQuantity < 0|| NewDiscount<0) {
+      if (isNaN(NewDiscount) || isNaN(newQuantity)||newQuantity < 0|| NewDiscount<0 || NewDiscount[0]==0 ||newQuantity[0]==0) {
         Swal.fire({
           title: 'Error',
           text: "newQuantity/NewDiscount must be a positive number",
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+
+      if (newQuantity>10||NewDiscount>100 ) {
+        Swal.fire({
+          title: 'Error',
+          text: "Quantity must  be between 1-10 / Discount must be between 1-100 ",
           icon: 'error',
           confirmButtonText: 'OK'
         });
