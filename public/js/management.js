@@ -334,7 +334,7 @@ $('#post-Facebook').submit(function(e) {
 $('#Add-item').submit(function(e) {
   e.preventDefault();
   let price = parseFloat($('#price').val());
-  if (isNaN(price) || price <= 0 || (price[0]==0) ){
+  if (isNaN(price) || price <= 0 || ($('#price').val()[0]==0) ){
     Swal.fire({
       title: 'Error',
       text: "Price must be a positive number",
