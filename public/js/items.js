@@ -119,25 +119,33 @@ const x=await fetch('/AllItemsJson').
     
     //////// low-high & high-low  & filters//////
     document.addEventListener('DOMContentLoaded', () => {
+
+      // Getting references to various elements on the page
       const applyFilterButton = document.getElementById('apply-filter-btn');
       const clearFilterButton = document.getElementById('clear-filter-btn');
       const sortOptions = document.querySelectorAll('#sort-options .dropdown-item');
       const container = document.getElementById('container');
-      let items = []; // Initialize items array
+      let items = []; // Initialize items array to store fetched items
   
+
+      // This function fetches JSON data for items and displays them
     async function fetchAndDisplayItems() {
         try {
-            const response = await fetch('/AllItemsJson');
-            items = await response.json();
-            displayItems(items);
+            const response = await fetch('/AllItemsJson'); // Fetching JSON data from a URL
+            items = await response.json();  // Parsing the JSON response
+            displayItems(items);  // Display the fetched items
         } catch (error) {
             console.error('Error fetching or processing JSON data:', error);
         }
     }
-    
+
+
+    // This function displays items in the provided container
     function displayItems(displayedItems) {
         container.innerHTML = ''; // Clear the container
 
+
+         // Loop through each item and create elements to display them
         displayedItems.forEach(item => {
             const image = document.createElement("img");
             const card = document.createElement("div");
@@ -185,10 +193,13 @@ const x=await fetch('/AllItemsJson').
 
      // Apply filtering when the "Apply" button is clicked
      applyFilterButton.addEventListener('click', () => {
+      // Get selected filter values
       const selectedPrice = parseFloat(document.getElementById('price').value);
       const selectedSize = document.getElementById('gender').value;
       const selectedType = document.getElementById('type').value;
 
+
+      // Filter items based on selected criterion
       const filteredItems = items.filter(item => {
           const priceCondition = selectedPrice ? parseFloat(item.price) < selectedPrice : true;
           const sizeCondition = selectedSize ? item.gender === selectedSize : true;
@@ -197,7 +208,11 @@ const x=await fetch('/AllItemsJson').
           return priceCondition && sizeCondition && typeCondition;
       });
 
+
+      // Display filtered items
       displayItems(filteredItems);
+
+          // Attach click event listeners to sort options
       sortOptions.forEach(option => {
         option.addEventListener('click', () => {
             const sortOrder = option.getAttribute('data-sort');
@@ -212,7 +227,7 @@ const x=await fetch('/AllItemsJson').
       document.getElementById('gender').value = '';
       document.getElementById('type').value = ''; 
       applyFilterButton.disabled = true;
-      fetchAndDisplayItems();
+      fetchAndDisplayItems();       // Fetch and display all items
   });
 
 
@@ -220,7 +235,7 @@ const x=await fetch('/AllItemsJson').
     sortOptions.forEach(option => {
         option.addEventListener('click', () => {
             const sortOrder = option.getAttribute('data-sort');
-            sortItems(sortOrder, []);
+            sortItems(sortOrder, []);   // Sort all items (no filtering)
         });
     });
 
@@ -231,12 +246,14 @@ const x=await fetch('/AllItemsJson').
           sortedItems = [...filteredItems];
         }
         
+        // Sort items based on the selected sort order
         if (sortOrder === 'low-high') {
             sortedItems.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         } else if (sortOrder === 'high-low') {
             sortedItems.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         }
         
+        // Display sorted items
         displayItems(sortedItems);
     }
 
@@ -247,26 +264,34 @@ const x=await fetch('/AllItemsJson').
       });
   });
 
+  // Initially disable "Apply" button
   applyFilterButton.disabled = true;
 
   // Search functionality
   const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
 
+  // When the search button is clicked
   searchButton.addEventListener('click', () => {
       const query = searchInput.value.toLowerCase();
+
+      // Filter items based on search query
       const filteredItems = items.filter(item =>
           item.name.toLowerCase().includes(query) || item.details.toLowerCase().includes(query)
       );
-      displayItems(filteredItems);
+      displayItems(filteredItems);   // Display search results
   });
 
+
+  // When the search input changes
   searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
+
+      // Filter items based on search query
       const filteredItems = items.filter(item =>
           item.name.toLowerCase().includes(query) || item.details.toLowerCase().includes(query)
       );
-      displayItems(filteredItems);
+      displayItems(filteredItems);  // Display search results
   });
 });
 
