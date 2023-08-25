@@ -97,7 +97,8 @@ async function createPriceGraph() {
     .then(response => response.json());
   // Extract item names and prices from the fetched data
   const itemNames = existingItems.map(item => item.name);
-  const prices = existingItems.map(item => item.price);
+  const prices = existingItems.map(item => parseFloat(item.price));
+
 
   // Set up the dimensions for the SVG container
   const svgWidth = 650; // Adjust the SVG width as needed
@@ -136,10 +137,9 @@ async function createPriceGraph() {
     .range([0, width])
     .paddingInner(paddingInner)
     .paddingOuter(paddingOuter);
-
+console.log(d3.max(prices))
   const yScale = d3.scaleLinear()
     .domain([0, d3.max(prices)])
-    .nice()
     .range([height, 0]);
 
   // Create the columns for the chart
