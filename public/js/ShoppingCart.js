@@ -154,7 +154,7 @@ async function setCart(){
                   price.textContent=product.price;
                   price.textContent+="₪";
                   quantity.type="number";
-                  quantity.min="0";
+                  quantity.min="1";
                   quantity.max="100";
                   quantity.value=item.quantity;
                   total.textContent=quantity.value*product.price;
@@ -169,9 +169,9 @@ async function setCart(){
                       document.getElementById("promocodeName").innerText="";
                       document.getElementById("originalPrice").innerText="";
                       document.getElementById("originalPriceBox").innerText="";
-                     if (quantity.value<0||quantity.value%1!=0||quantity.value>100)
+                     if (quantity.value<1||quantity.value%1!=0||quantity.value>100)
                       {
-                        if(quantity.value<0)
+                        if(quantity.value<=0)
                         {
                           item.quantity=1;
                         }
@@ -432,7 +432,8 @@ async function setCart(){
               }
             }
             async function checkout()
-            {
+            {          
+              document.getElementById('checkout').disabled = true;
               const response = await $.ajax({
                 url: "http://localhost:70/check",
                 method: "GET",
@@ -466,6 +467,7 @@ async function setCart(){
                       icon: 'error',
                       confirmButtonText: 'OK'
                     });     
+                    document.getElementById('checkout').disabled = false;
                     return;   
                   }
                   await createOrder(foundUser);            
@@ -517,29 +519,7 @@ async function setCart(){
                 window.location.href = "/mainpage";
             }
           }
-          /*
-         async function checkPromo(){
-          
-            var val=document.getElementById("promocodeId").value;
   
-            const x=await fetch('/getPromo').
-            then(response=>response.json())
-            .then(data=>{
-              data.forEach(promo=>{
-               if(CheckIfUsed(promo)==false))
-                {
-                  if(promo.promocodename==val)
-                  {
-               var totalPrice= parseFloat(document.getElementById("tp").textContent.replace("₪", ""));
-             totalPrice= totalPrice*((100-promo.discount)/100); 
-             document.getElementById("tp").innerText=(totalPrice+"₪");
-                    promo.users.push(getUserName());        
-                  }
-                } 
-              }       
-                );
-              });}
-  */
              
   async function checkPromo() {
     var val = document.getElementById("promocodeId").value;
