@@ -963,11 +963,11 @@ function openEditModal(item) {
           <form id="editItemForm">
               <div class="form-group">
                   <label for="editItemName">Name:</label>
-                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}" required>
+                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}" maxlength="20" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Price:</label>
-                  <input type="number" min="1" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" required>
+                  <input type="number" min="1" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" max="10000" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Type:</label>
@@ -979,7 +979,7 @@ function openEditModal(item) {
               </div>
               <div class="form-group">
                   <label for="editItemdetails">Details:</label>
-                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}" required>
+                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}" maxlength="30" required>
               </div>
               <div class="form-group">
                   <label for="_gender">Gender:</label>
@@ -1005,11 +1005,18 @@ function openEditModal(item) {
             return false;
         }
     
-        if (!(/^\d+$/.test(editedPrice))) {
+        if (!(/^\d+$/.test(editedPrice)) ||( editedPrice<=0) || (editedPrice[0]==0)) {
             Swal.showValidationMessage('Price must be a numeric value');
             return false;
         }
-    
+        if(editedPrice>10000){
+          Swal.showValidationMessage('Price Max is 10000');
+          return false;
+        }
+        if(editedPrice[0]==0){
+          Swal.showValidationMessage('Price Max is 10000');
+          return false;
+        }
         return {
             name: editedName,
             price: editedPrice,
