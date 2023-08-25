@@ -520,7 +520,6 @@ async function setCart(){
             }
           }
   
-             
   async function checkPromo() {
     var val = document.getElementById("promocodeId").value;
   var flag=false;
@@ -541,16 +540,7 @@ async function setCart(){
               document.getElementById("originalPriceBox").innerText="Original price";
               document.getElementById("originalPrice").classList.add("lined");
              
-            /* var username= await getUserName();   
-             promo.users.push(username);
-     
-            const updateUserPromo = {
-            url: "http://localhost:70/updatePromo",
-            method: "POST",
-            data: JSON.stringify(promo), // Convert the user object to JSON
-            contentType: "application/json",
-              };
-              await $.ajax(updateUserPromo);*/
+          
             }
           }
         });
@@ -592,9 +582,7 @@ async function setCart(){
                 return true;
               }
               return false;
-              }
-            
-          
+              } 
               
           async function createOrder(foundUser)
           {
