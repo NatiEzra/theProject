@@ -3,7 +3,10 @@
     color: #fff; /* Set text color for the button */
     padding: 10px;
     text-align: center; /* Center the elements inside the container */
-    width: max-content;
+    width:max-content;
+}
+.cont2{
+    margin-left: 30%;
 }
 
 
@@ -34,6 +37,8 @@
     border-radius: 4px;
     font-size: 14px;
     width: 200px;
+    margin-left: 20px;
+
 }
 
 /* Reset margins and padding on the search button */

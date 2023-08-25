@@ -44,7 +44,7 @@ $(document).ready(function() {
     const elementEmail = document.getElementById("eMail");
     newpassword=$("#NewPassword").val();
     password=$("#password").val();
-    if (!elementEmail.checkValidity()) {
+    if (!elementEmail.checkValidity() ||elementEmail.value=="") {
       await Swal.fire({
         title: 'Error',
         text: "Invalid email format",
@@ -105,6 +105,9 @@ $(document).ready(function() {
             text: "User updated successfully",
             icon: 'success',
             confirmButtonText: 'OK'
+          }).then(() => {
+            // Refresh the page after the success message is closed
+            location.reload();
           });
         $("#password").val(foundUser.password);
         $("#NewPassword").val("");
