@@ -9,8 +9,6 @@
     margin-left: 30%;
 }
 
-
-
 /* Style the Apply button */
 #apply-filter-btn {
     background-color: #ea9215; /* Set background color for the button */
@@ -38,7 +36,6 @@
     font-size: 14px;
     width: 200px;
     margin-left: 20px;
-
 }
 
 /* Reset margins and padding on the search button */

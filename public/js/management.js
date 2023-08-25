@@ -920,22 +920,7 @@ async function loadAllItems() {
   });
 
   const tableBody = $('#allItemsTable tbody');
-  //tableBody.empty();
-
-//   allItems.forEach(function(item) {
-//     const row = `
-//         <tr>
-//             <td>${item.name}</td>
-//             <td><img src="${item.img}" alt="Product Photo" class="product-photo small-photo"></td>
-//             <td>${item.price}</td>
-//             <td>
-//                 <button class="btn btn-primary btn-sm edit-item" data-id="${item._id}">Edit</button>
-//                 <button class="btn btn-danger btn-sm remove-item" data-id="${item._id}">Remove</button>
-//             </td>
-//         </tr>
-//     `;
-//     tableBody.append(row);
-// });
+ 
 
 
 $('#allItemsTable').on('click', '.edit-item', function(e) {
@@ -946,7 +931,7 @@ $('#allItemsTable').on('click', '.edit-item', function(e) {
 });
 
 $('#allItemsTable').on('click', '.remove-item', function(e) {
-  e.preventDefault(); // Предотвращаем отправку запроса на сервер
+  e.preventDefault(); 
   const itemId = $(this).data('id');
   Swal.fire({
       title: 'Are you sure?',
@@ -972,29 +957,6 @@ $('.edit-item').click(function() {
 
 function openEditModal(item) {
   const editedItem = { ...item };
-  // switch (editedItem.gender) {
-  //   case "male":
-  //     document.querySelector("#_gender [value='male']").selected = true;
-  //     break;
-  //   case "female":
-  //     document.querySelector("#_gender [value='female']").selected = true;
-  //     break;
-  //   case "other":
-  //     document.querySelector("#_gender [value='other']").selected = true;
-  //     break;
-  // }
-  // switch (editedItem.type) {
-  //   case "pants":
-  //     document.querySelector("#type [value='pants']").selected = true;
-  //     break;
-  //   case "shirts":
-  //     document.querySelector("#type [value='shirts']").selected = true;
-  //     break;
-  //   case "shoes":
-  //     document.querySelector("#type [value='shoes']").selected = true;
-  //     break;
-  // }
- 
   Swal.fire({
       title: 'Edit Item',
       html: `

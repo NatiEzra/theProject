@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="name" class="text-light">UserName</label>
                     <input type="hidden" name="id">
-                    <input type="text" name="username" placeholder="UserName" id="userName">
+                    <input type="text" name="username" placeholder="UserName" id="userName" maxlength="20">
                     <% if (exsist_username) { %>                  
                         <script>
                             const usernameInput = document.getElementById("userName");                  
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Email" class="text-light">Email</label>
-                    <input type="text" id="email" name="email" placeholder="example@gmail.com">
+                    <input type="text" id="email" name="email" placeholder="example@gmail.com" maxlength="20">
                     <% if (exsist_email) { %>                  
                         <script>
                             const usernameInput = document.getElementById("email");                  
@@ -63,11 +63,11 @@
                 </div>
                 <div class="form-group">
                     <label for="FirstName" class="text-light">FirstName</label>
-                    <input type="text" name="firstname" placeholder="FirstName">
+                    <input type="text" name="firstname" placeholder="FirstName" maxlength="20">
                 </div>
                 <div class="form-group">
                     <label for="LastName" class="text-light">LastName</label>
-                    <input type="text" name="lastname" placeholder="LastName">
+                    <input type="text" name="lastname" placeholder="LastName" maxlength="20">
                 </div>
                 <div class="form-group">
                     <label for="gender" class="text-light">Gender</label>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Password" class="text-light">Password</label>
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password" maxlength="20">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn text-dark update">Save</button>
