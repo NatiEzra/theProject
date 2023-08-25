@@ -59,7 +59,7 @@
     <form id="Add-item">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="input-text form-control" id="name" name="name" required>
+        <input type="text" class="input-text form-control" id="name" name="name" maxlength="25" required>
       </div>
       <div class="form-group">
         <label for="type">Type</label>
@@ -83,7 +83,7 @@
       </div>
       <div class="form-group">
         <label for="details">Details</label>
-        <textarea class="input-textarea form-control" id="details" name="details" required></textarea>
+        <textarea class="input-textarea form-control" id="details" name="details" required maxlength="30"></textarea>
       </div>
       <button class="btn btn-info" id="chooseimage">Choose Image</button><span class="chosen-img"></span>
       <!-- <div class="form-group">
