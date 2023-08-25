@@ -17,15 +17,7 @@ async function register(req, res) {
     const user = await User.findOne({username:username}); 
    const Users=await User.find();
     res.render("Mainpage", { username: username , loggedIn :true , Admin:false, showFire:true, users: Users , userId:user._id });
-    /*
-    const promocode = new Promocode({
-      promocodename: "welcome",
-      quantity : 1, 
-      discount : 10,
-      users : [], 
-  });
-  await promocode.save()   
-  */
+ 
   }
   catch (e) {
    //flag is for username, degel is for email
