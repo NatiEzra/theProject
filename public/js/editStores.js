@@ -90,20 +90,21 @@ editButton.addEventListener("click", function () {
     modalTitle.textContent = "Edit Branch: " + branch.Address;
     modalBody.innerHTML = `
         <label for="addressInput">Address:</label>
-        <input type="text" id="addressInput" class="form-control" value="${branch.Address}">
+        <input type="text" id="addressInput" class="form-control" maxlength="20" value="${branch.Address}">
 
         <label for="latInput">Latitude:</label>
-        <input type="text" id="latInput" class="form-control" value="${branch.lat}">
+        <input type="text" id="latInput" class="form-control" maxlength="20" value="${branch.lat}">
         
         <label for="lngInput">Longitude:</label>
-        <input type="text" id="lngInput" class="form-control" value="${branch.lng}">
+        <input type="text" id="lngInput" class="form-control" maxlength="20" value="${branch.lng}">
         
     `;
     saveChangesButton.addEventListener("click", async function () {
         const newLat = document.getElementById("latInput").value;
         const newLng = document.getElementById("lngInput").value;
         const newAddress = document.getElementById("addressInput").value;
-        if (isNaN(newLat)||isNaN(newLng)||newAddress==""||newLat==""||newLng==""){
+        var letters = /^[\u00C0-\u02AFa-zA-Zа-яА-Я\s]+$/u; //allowing the name to have letters in all langueges (p{L}=Uncode)
+        if (isNaN(newLat)||isNaN(newLng)||newAddress==""||newLat==""||newLng=="" || !newAddress.match(letters)){
             const y= await Swal.fire({
                 title: 'Error',
                 text: "Invalid details",
@@ -157,20 +158,21 @@ function addStore() {
     modalTitle.textContent = "Add New Store";
     modalBody.innerHTML = `
         <label for="addressInput">Address:</label>
-        <input type="text" id="addressInput" class="form-control" value="">
+        <input type="text" id="addressInput" class="form-control" value="" maxlength="25">
 
         <label for="latInput">Latitude:</label>
-        <input type="text" id="latInput" class="form-control" value="">
+        <input type="text" id="latInput" class="form-control" value="" maxlength="20">
               
         <label for="lngInput">Longitude:</label>
-        <input type="text" id="lngInput" class="form-control" value="">
+        <input type="text" id="lngInput" class="form-control" value="" maxlength="20">
               
     `;
     saveChangesButton.addEventListener("click", async function () {
         const newLat = document.getElementById("latInput").value;
         const newLng = document.getElementById("lngInput").value;
         const newAddress = document.getElementById("addressInput").value;
-        if (isNaN(newLat)||isNaN(newLng)||newAddress==""||newLat==""||newLng==""){
+        var letters = /^[\u00C0-\u02AFa-zA-Zа-яА-Я\s]+$/u; //allowing the name to have letters in all langueges (p{L}=Uncode)
+        if (isNaN(newLat)||isNaN(newLng)||newAddress==""||newLat==""||newLng=="" || !newAddress.match(letters)){
             const y= await Swal.fire({
                 title: 'Error',
                 text: "Invalid details",
