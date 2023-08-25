@@ -629,13 +629,13 @@ function AddPromoCode() {
   modalTitle.textContent = "Add New PromoCode";
   modalBody.innerHTML = `
       <label for="CodeInput_">Code:</label>
-      <input type="text" id="CodeInput" name="codename" class="form-control" value="">
+      <input type="text" id="CodeInput" name="codename" class="form-control" value="" maxlength="10">
 
       <label for="QuantityiInput_">Quantity:</label>
-      <input type="text" id="QuantityiInput" name="quntitycode" class="form-control" value="">
+      <input type="text" id="QuantityiInput" name="quntitycode" class="form-control" value="" min="1" max="10">
             
       <label for="DiscountInput_">Discount:</label>
-      <input type="text" id="DiscountInput"  name="discountcode" class="form-control" value="">
+      <input type="text" id="DiscountInput"  name="discountcode" class="form-control" value="" min="1" max="100">
             
   `;
   saveChangesButton.addEventListener("click", async function (e) {
@@ -644,10 +644,20 @@ function AddPromoCode() {
       const newQuantity = document.getElementById("QuantityiInput").value;
       const NewDiscount = document.getElementById("DiscountInput").value;
 
-      if (isNaN(NewDiscount) || isNaN(newQuantity)||newQuantity < 0|| NewDiscount<0) {
+      if (isNaN(NewDiscount) || isNaN(newQuantity)||newQuantity < 0|| NewDiscount<0 || NewDiscount[0]==0 ||newQuantity[0]==0) {
         Swal.fire({
           title: 'Error',
           text: "newQuantity/NewDiscount must be a positive number",
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+
+      if (newQuantity>10||NewDiscount>100 ) {
+        Swal.fire({
+          title: 'Error',
+          text: "Quantity must  be between 1-10 / Discount must be between 1-100 ",
           icon: 'error',
           confirmButtonText: 'OK'
         });
@@ -963,11 +973,11 @@ function openEditModal(item) {
           <form id="editItemForm">
               <div class="form-group">
                   <label for="editItemName">Name:</label>
-                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}" required>
+                  <input type="text" class="form-control" id="editItemName" name="name" value="${editedItem.name}" maxlength="20" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Price:</label>
-                  <input type="number" min="1" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" required>
+                  <input type="number" min="1" class="form-control" id="editItemPrice" name="price" value="${editedItem.price}" max="10000" required>
               </div>
               <div class="form-group">
                   <label for="editItemPrice">Type:</label>
@@ -979,7 +989,7 @@ function openEditModal(item) {
               </div>
               <div class="form-group">
                   <label for="editItemdetails">Details:</label>
-                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}" required>
+                  <input type="text" class="form-control" id="editItemdetails" name="price" value="${editedItem.details}" maxlength="30" required>
               </div>
               <div class="form-group">
                   <label for="_gender">Gender:</label>
@@ -1005,11 +1015,18 @@ function openEditModal(item) {
             return false;
         }
     
-        if (!(/^\d+$/.test(editedPrice))) {
+        if (!(/^\d+$/.test(editedPrice)) ||( editedPrice<=0) || (editedPrice[0]==0)) {
             Swal.showValidationMessage('Price must be a numeric value');
             return false;
         }
-    
+        if(editedPrice>10000){
+          Swal.showValidationMessage('Price Max is 10000');
+          return false;
+        }
+        if(editedPrice[0]==0){
+          Swal.showValidationMessage('Price Max is 10000');
+          return false;
+        }
         return {
             name: editedName,
             price: editedPrice,
