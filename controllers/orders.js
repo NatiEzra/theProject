@@ -5,13 +5,17 @@ async function OrderPage(req, res) {
   let username = logedin.isLoggedIn(req, res);
   let admin=req.session.isadmin;
   
-  if (username == null) loggedIn = false;
+  if (username == null) 
+  {
+    loggedIn = false;
+    res.render("login", { flag: true });
+  }
   else
   { 
     loggedIn = true;
-
+    res.render("MyOrdersPage", { loggedIn: loggedIn, username: username, Admin:admin , userId: req.session.userid});
   }
-  res.render("MyOrdersPage", { loggedIn: loggedIn, username: username, Admin:admin , userId: req.session.userid});
+  
 }
 async function getOrders(req, res){
   const orders=await orderService.getAllOrders();
