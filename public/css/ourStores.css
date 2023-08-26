@@ -37,11 +37,8 @@ body{
   padding: 40px 35px;
   text-align: center;
 }
-/* Add this CSS to your existing ourStores.css or create a new CSS file for the weather card styles */
 
 /* Weather Card */
-
-
 .weather-card {
   max-width: 300px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -117,7 +114,7 @@ body{
   border-radius: 27px;
  
   font-family: Poppins-Bold;
-  color: #fff; /* Add this line to change the text color to white */
+  color: #fff; 
   background-color: transparent; /* Remove the background color */
 }
 .col{
@@ -150,8 +147,6 @@ body{
 }
 
 
-
-\\\\
 .headline{
   margin-top: 20px;
 
