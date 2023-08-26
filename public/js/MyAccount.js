@@ -59,7 +59,7 @@ $(document).ready(function() {
     if (firstName==""||!firstName.match(letters)||firstName.length>30||lastName==""||!lastName.match(letters)||lastName.length>30){
       await Swal.fire({
         title: 'Error',
-        text: "Invalid name format",
+        text: "Name and last name must contain only letters.",
         icon: 'error',
         confirmButtonText: 'OK'
       });
